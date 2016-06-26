@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-06-26T17:13:16.000Z</updated>
+  <updated>2016-06-26T17:15:47.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -19,10 +19,71 @@
     <link href="http://python-ning.github.io/2016/06/26/123/"/>
     <id>http://python-ning.github.io/2016/06/26/123/</id>
     <published>2016-06-26T07:00:00.000Z</published>
-    <updated>2016-06-26T17:13:16.000Z</updated>
-    <content type="html"></content>
+    <updated>2016-06-26T17:15:47.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="HTTP简介">HTTP简介</h3><p>超文本传输协议（HyperText Transfer Protocol，HTTP）是互联网上应用最为广泛的一种网络协议。设计HTTP的最初目的是提供一种发布和接收HTML页面的方法。OSI模型1义了整个世界计算机相互连接的标准，总共分为7层，其中最上层（也就是第7层）就是应用层，HTTP、HTTPS、FTP、TELNET、SSH、SMTP和POP3都属于应用层。这是软件工程师最关心的一层。</p>
+<p>SI模型越靠近底层，就越接近硬件。在HTTP协议中，并没有规定必须使用它或它支持的层。事实上，HTTP可以在任何互联网协议或其他网络上实现。HTTP假定其下层协议提供可靠的传输，因此，任何能够提供这种保证的协议都可以被其使用，也就是其在TCP/IP协议族使用TCP作为其传输层。</p>
+<p>OSI模型，图片来自维基百科。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/P072.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="关于HTTP版本">关于HTTP版本</h3><p>HTTP已经演化出了很多版本，它们中的大部分都是向下兼容的。客户端在请求的开始告诉服务器它采用的协议版本号，而后者则在响应中采用相同或者更早的协议版本。</p>
+<p>当前应用最广泛的HTTP版本为HTTP/1.1，它自从1999年发布以来，距写作本书时已有16年的时间。比起HTTP/1，它增加了几个重要特性，比如缓存处理（在下一章介绍）和持续连接，以及其他一些性能优化。</p>
+<p>2015年2月，HTTP/2正式发布。新的HTTP版本有一些重大更新，除了一如既往地向下兼容HTTP/1以外，还有一些优化，比如减小网络传输延迟，并简化服务器向浏览器传输内容的过程。主流的服务器（Apache、Nginx等）和浏览器（Firefox、Chrome、Safari以及iOS和Android的浏览器等）的最新版都已经支持HTTP/2，剩下的就需要网站管理员把服务器升级到最新版了。</p>
+<h3 id="例子">例子</h3><p>下面是一个HTTP客户端与服务器之间会话的例子，运行于www.google.com，端口80。<br>客户端首先发出请求。</p>
+<pre><code>GET / HTTP/<span class="number">1.1</span>
+Host:www<span class="class">.google</span><span class="class">.com</span>
+</code></pre><p>第一行指定方法、资源路径、协议版本。当然这是一个简化后的例子，实际请求中还会有当前Google登录账户的cookie、HTTPS头、浏览器接受何种类型的压缩格式和UA2代码等。<br>服务器随之应答。</p>
+<pre><code>HTTP/<span class="number">1.1</span> <span class="number">200</span> OK
+Content-Length: <span class="number">3059</span>
+Server: GWS/<span class="number">2.0</span>
+Date: Mon, <span class="number">20</span> Apr <span class="number">2015</span> <span class="number">20</span>:<span class="number">30</span>:<span class="number">45</span> GMT
+Content-Type: text/html
+Cache-control: <span class="keyword">private</span>
+Set-cookie: PREF=ID=<span class="number">73</span>d4aef52e57bae9:TM=<span class="number">1042253044</span>:LM=<span class="number">1042253044</span>:S= SMCc_HRPCQiqy
+X9j; expires=Sun, <span class="number">17</span>-Jan-<span class="number">2038</span> <span class="number">19</span>:<span class="number">14</span>:<span class="number">07</span> GMT; path=/; domain=.google.com
+Connection: keep-alive
+</code></pre><p>在这一串HTTPS头之后，会紧跟着一个空行，然后是HTML格式的文本组成的Google主页。<br>介绍完关于HTTP的基本知识，我们来分别看看前端工程师和后台工程师分别是怎样看待这个最熟悉的小伙伴的。</p>
+<h3 id="前端视角">前端视角</h3><p>前端工程师的职责之一是，让网站又快又好地展现在用户的浏览器中。<br>从这个角度来说，对HTTP的理解是这样的：打开HttpWatch3，然后随意访问一个网站。HttpWatch会按照浏览器请求的次序，列出打开这个网站的时候发生的请求细节。</p>
+<p>1.发出的请求列表。<br>2.每个请求的开始时间。<br>3.每个请求从开始到结束花费的时间。<br>4.每个请求的类型（比如是文本、CSS、JS，还是图片或者字体等）。<br>5.每个请求的状态码（比如是200、还是from cache、304、404等）。<br>6.每个请求产生的流量消耗。<br>7.每个请求gzip4压缩前的体积，以及在本地gzip解压后的体积。</p>
+<p>通过查看站点的HTTP请求信息，可以得到很多优化信息。每一个前端工程师都知道的基本优化方法是：尽量减少同一域下的HTTP请求数，以及尽量减少每一个资源的体积。</p>
+<h3 id="尽量减少同一域下的HTTP请求数">尽量减少同一域下的HTTP请求数</h3><p>浏览器常常限定了对同一域名发起的并发连接数的上限。IE6/7和Firefox2的设计规则是，同时只能对一个域名发起两个并发连接。新版本的各种浏览器普遍把这一上限设定为4至8个。如果浏览器需要对某个域进行更多的连接，则需要在用完了当前连接之后，重复使用或者重新建立TCP连接。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/P075.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>QQ空间的CSS贴图由程序自动生成，保证最佳的图片质量、最合理的图片摆放和最小的体积。</p>
+<p>由于浏览器针对资源的域名限制并发连接数，而不是针对浏览器地址栏中的页面域名，所以很多静态资源可以放在其他域名下（不同的子域名也被认为是不同的域名）。如果您只有一台服务器，可以把这些不同的域名同时指向一个IP，也就提高了对这台服务器的并发连接数限制（不过要小心服务器压力过大）。</p>
+<p>把静态资源放在非主域名下，这种做法除了可以增加浏览器并发，还有一个好处是，减少HTTP请求中携带的不必要的cookie数据。cookie是某些网站为了辨别用户身份而储存在用户浏览器中的数据。cookie的作用域是整个域名，也就是说如果某个cookie存放在google.com域名下，那么对于google.com域名下的所有HTTP请求头都会带上cookie数据。如果Google把所有的资源都放在google.com下，那么所有资源的请求都会带上cookie数据。对于静态资源来说，这是毫无必要的，因为这对带宽和链接速度都造成了影响。所以我们一般把静态资源放在单独的域名下。</p>
+<p>除此之外，前端工程师经常做的优化是合并同一域名下的资源，比如把多个CSS合并为一个CSS，或者将图片组合为CSS贴图。6</p>
+<p>还有一些优化建议是省掉不必要的HTTP请求，比如内嵌小型CSS、内嵌小型JavaScript、设置缓存，以及减少重定向。这些做法虽然各不相同，但是如果了解HTTP请求的过程，就知道这些优化方法的最终目的都是最大化利用有限的请求数。</p>
+<h3 id="尽量减少每一个资源的体积">尽量减少每一个资源的体积</h3><p>我们不光要限制请求数，还要尽量减少每一个资源的体积。因为资源的体积越大，在传输中消耗的流量就越多，等待时间也越久。</p>
+<p>在面试应聘者的时候，我会问的一个基础题目是“常用的图片格式有哪些，它们的使用场景是什么”。如果能选择合适的图片格式，就能够用更小的体积，达到更好的显示效果。对图片格式的敏感，能反映出工程师对带宽和速度的不懈追求。</p>
+<p>此外，对于比较大的文本资源，必须开启gzip压缩。因为gzip对于含有重复“单词”的文本文件，压缩率非常高，能有效提高传输过程。</p>
+<p>对于一个CSS资源的请求耗时，我想说明两个细节。</p>
+<p>1.这个CSS资源请求的体积是36.4KB（这是gzip压缩过的体积），解压缩之后，CSS内容实际上是263KB，可以算出压缩后体积是原来的13.8%。<br>2.整个连接的建立花费了30%的时间，发出请求到等待收到第一个字节回复花费了20%的时间，下载CSS资源的内容花费了50%的时间。</p>
+<p>如果没有设置gzip，下载这个CSS文件会需要好几倍的时间。</p>
+<h3 id="后台视角">后台视角</h3><p>前端工程师对HTTP的关注点在于尽量减少同一域下的HTTP请求数，以及尽量减少每一个资源的体积。与之不同，后台工程师对于HTTP的关注在于让服务器尽快响应请求，以及减少请求对服务器的开销。</p>
+<p>后台工程师知道，浏览器限定对某个域的并发连接数，很大程度上是浏览器对服务器的一种保护行为。浏览器作为一种善意的客户端，为了保护服务器不被大量的并发请求弄得崩溃，才限定了对同一个域的最大并发连接数。而一些“恶意”的客户端，比如一些下载软件，它作为一个HTTP协议客户端，不考虑到服务器的压力，而发起大量的并发请求（虽然用户感觉到下载速度很快），但是由于它违反了规则，所以经常被服务器端“防范”和屏蔽。</p>
+<p>那么为什么服务器对并发请求数这么敏感？</p>
+<p>虽然服务器的多个进程看上去是在同时运行，但是对于单核CPU的架构来说，实际上是计算机系统同一段时间内，以进程的形式，将多个程序加载到存储器中，并借由时间共享，以在一个处理器上表现出同时运行的感觉。由于在操作系统中，生成进程、销毁进程、进程间切换都很消耗CPU和内存，因此当负载高时，性能会明显降低。</p>
+<h3 id="提高服务器的请求处理能力">提高服务器的请求处理能力</h3><p>在早期系统中（如Linux 2.4以前），进程是基本运作单位。在支持线程的系统（Linux2.6）中，线程才是基本的运作单位，而进程只是线程的容器。由于线程开销明显小于进程，而且部分资源还可以共享，因此效率较高。</p>
+<p>Apache是市场份额最大的服务器，超过50%的网站运行在Apache上。Apache 通过模块化的设计来适应各种环境，其中一个模块叫做多处理模块（MPM），专门用来处理多请求的情况。Apache安装在不同系统上的时候会调用不同的默认MPM，我们不用关心具体的细节，只需要了解Unix上默认的MPM是prefork。为了优化，我们可以改成worker模式。</p>
+<p>prefork和worker模式的最大区别就是，prefork的一个进程维持一个连接，而worker的一个线程维持一个连接。所以prefork更稳定但内存消耗也更大，worker没有那么稳定，因为很多连接的线程共享一个进程，当一个线程崩溃的时候，整个进程和所有线程一起死掉。但是worker的内存使用要比prefork低得多，所以很适合用在高HTTP请求的服务器上。</p>
+<p>近年来Nginx越来越受到市场的青睐。在高连接并发的情况下，Nginx是Apache服务器不错的替代品或者补充：一方面是Nginx更加轻量级，占用更少的资源和内存；另一方面是Nginx 处理请求是异步非阻塞的，而Apache 则是阻塞型的，在高并发下Nginx 能保持低资源、低消耗和高性能。</p>
+<p>由于Apache和Nginx各有所长，所以经常的搭配是Nginx处理前端并发，Apache处理后台请求。</p>
+<p>值得一提的是，新秀Node.js也是采用基于事件的异步非阻塞方式处理请求，所以在处理高并发请求上有天然的优势。</p>
+<h3 id="DDoS攻击">DDoS攻击</h3><p>DDoS是Distributed Denial of Service的缩写，DDoS攻击翻译成中文就是“分布式拒绝服务”攻击。</p>
+<p>简单来说，就是黑客入侵并控制了大量用户的计算机（俗称“肉鸡”），然后在这些计算机上安装了DDoS攻击软件。我们知道浏览器作为一种“善意”的客户端，限制了HTTP并发连接数。但是DDoS就没有这样的道德准则，每一个DDoS攻击客户端都可以自由设置TCP/IP并发连接数，并且连接上服务器之后，它不会马上断开连接，而是保持这个连接一段时间，直到同时连接的数量大于最大连接数，才断开之前的连接。</p>
+<p>就这样，攻击者通过海量的请求，让目标服务器瘫痪，无法响应正常的用户请求，以此达到攻击的效果。</p>
+<p>对于这样的攻击，几乎没有什么特别好的防护方法。除了增加带宽和提高服务器能同时接纳的客户数，另一种方法就是让首页静态化。DDoS攻击者喜欢攻击的页面一般是会对数据库进行写操作的页面，这样的页面无法静态化，服务器更容易宕机。DDoS攻击者一般不会攻击静态化的页面或者图片，因为静态资源对服务器压力小，而且能够部署在CDN上。</p>
+<p>这里介绍的只是最简单的TCP/IP攻击，而DDoS是一个概称，具体来说，有各种攻击方式，比如CC攻击、SYN攻击、NTP攻击、TCP攻击和DNS攻击等。</p>
+<h3 id="BigPipe">BigPipe</h3><p>前端跟后端在HTTP上也能有交集，BigPipe就是一个例子。<br>现有的HTTP数据请求流程是：客户端建立连接，服务器同意连接，客户端发起请求，服务器返回数据，客户端接受并处理数据。这个处理流程有两个问题。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/6_1.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>现有的阻塞模型，黄色代表服务器生成页面，白色代表网络传输，紫色代表浏览器渲染页面。</p>
+<p>第一，HTTP协议的底层是TCP/IP，而TCP/IP规定3次握手才建立一次连接。每一个新增的请求都要重新建立TCP/IP连接，从而消耗服务器的资源，并且浪费连接时间。对于几种不同的服务器程序（Apache、Nginx和Node.js等），所消耗的内存和CPU资源也不太一样，但是新的连接无法避免，没有从本质上解决问题。</p>
+<p>第二个问题是，在现有的阻塞模型中，服务器计算生成页面需要时间。等服务器完全生成好整个页面，才开始网络传输，网络传输也需要时间。整个页面都完全传输到浏览器中之后，在浏览器中最后渲染还是需要时间。三者是阻塞式的，每一个环节都在等上一个环节100%完成才开始。页面作为一个整体，需要完整地经历3个阶段才能出现在浏览器中，效率很低。</p>
+<p>BigPipe是Facebook公司科学家Changhao Jiang发明的一种非阻塞式模型，这种模型能完美解决上面的两个问题。</p>
+<p>通俗来解释，BigPipe首先把HTML页面分为很多部分，然后在服务器和浏览器之间建立一条管道（BigPipe就是“大管道”的意思），HTML的不同部分可以源源不断地从服务器传输到浏览器。BigPipe首先输送的内容是框架性HTML结构，这个框架结构可能会定义每个Pagelet模块的位置和宽高，但是这些pagelet都是空的，就像只有钢筋混泥土骨架的毛坯房。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/6_2.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>BigPipe页面的渲染流程。<br>服务器传输完框架性HTML结构之后，对浏览器说：“我这个请求还没结束，我们保持这个连接不要断开，不过您可以先用我给您的这部分来渲染。”<br>所以浏览器就开始渲染这个“不完整的HTML”，毛坯房页面很快出现在用户眼前，具体的页面模块都显示“正在加载”。<br>接下来管道里源源不断地传输过来很多模块，这时候最开始加载在服务器中的JS代码开始工作，它会负责把每一个模块依次渲染到页面上。<br>在用户的感知上，页面非常快地出现在眼前，但是所有的模块都显示正在加载中，然后主要的区域（比如重要的用户动态）优先出现，接下来是logo、边栏和各种挂件等。<br>为什么BigPipe能够让服务器对浏览器说“我这个请求还没结束，我们保持这个连接不要断开”呢？答案是HTTP1.1的分块传输编码。<br>HTTP 1.1引入分块传输编码，允许服务器为动态生成的内容维持HTTP持久链接。如果一个HTTP消息（请求消息或应答消息）的Transfer-Encoding消息头的值为chunked，那么消息体由数量不确定的块组成——也就是说想发送多少块就发送多少块——并以最后一个大小为0的块为结束。<br>实现这个架构需要深刻理解HTTP 1.1的规则，而且要有前端的知识。在我看来，这就是一个极佳的全栈工程师改变世界的例子。<br>截止写书时，Chrome、Safari和Opera已经支持HTTP/2并默认开启，它允许服务器向浏览器“推送”内容。也就是说，返回的条目数可以比请求的条目数多，这样服务器可以在一开始就推送所有它认为浏览器“应该需要”的资源，而不需要浏览器接受并解析完HTML页面才开始请求下载CSS、JavaScript等。而且，后面的请求可以复用之前已经建立的底层连接。</p>
+]]></content>
     <summary type="html">
-    
+    <![CDATA[<h3 id="HTTP简介">HTTP简介</h3><p>超文本传输协议（HyperText Transfer Protocol，HTTP）是互联网上应用最为广泛的一种网络协议。设计HTTP的最初目的是提供一种发布和接收HTML页面的方法。OSI模型1义了整个世界计算机相互连接]]>
     </summary>
     
       <category term="http" scheme="http://python-ning.github.io/tags/http/"/>
@@ -483,45 +544,6 @@ class <span class="function"><span class="title">Article</span><span class="para
   </entry>
   
   <entry>
-    <title><![CDATA[Django(六)用django自带Paginator实现分页功能]]></title>
-    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
-    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
-    <published>2016-04-08T07:00:00.000Z</published>
-    <updated>2016-04-12T17:54:54.000Z</updated>
-    <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<p>在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。</p>
-<h3 id="在view-py中使用Paginator">在view.py中使用Paginator</h3><pre><code><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator, EmptyPage, PageNotAnInteger
-<span class="keyword">from</span> app.models <span class="keyword">import</span> Topic
-
-<span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>
-limit = <span class="number">3</span>  <span class="comment"># 每页显示的记录数</span>
-topics = Topic.objects.all()
-paginator = Paginator(topics, limit)  <span class="comment"># 实例化一个分页对象</span>
-
-page = request.GET.get(<span class="string">'page'</span>)  <span class="comment"># 获取页码</span>
-<span class="keyword">try</span>:
-    topics = paginator.page(page)  <span class="comment"># 获取某页对应的记录</span>
-<span class="keyword">except</span> PageNotAnInteger:  <span class="comment"># 如果页码不是个整数</span>
-    topics = paginator.page(<span class="number">1</span>)  <span class="comment"># 取第一页的记录</span>
-    <span class="keyword">except</span> EmptyPage:  <span class="comment"># 如果页码太大，没有相应的记录</span>
-        topics = paginator.page(paginator.num_pages)  <span class="comment"># 取最后一页的记录</span>
-
-    <span class="keyword">return</span> render_to_response(<span class="string">'index.html'</span>, {<span class="string">'topics'</span>: topics})
-</code></pre><h3 id="模板中的相关操作">模板中的相关操作</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<h3 id="效果：">效果：</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png" class="img-shadow" style="display: block;margin: auto"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<p>在django中使用]]>
-    </summary>
-    
-      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
-    
-      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[初识NoSQL]]></title>
     <link href="http://python-ning.github.io/2016/04/08/good_article_collect_nosql/"/>
     <id>http://python-ning.github.io/2016/04/08/good_article_collect_nosql/</id>
@@ -593,6 +615,45 @@ Vermont <span class="keyword">Public</span> Radio
       <category term="NoSQL" scheme="http://python-ning.github.io/tags/NoSQL/"/>
     
       <category term="好文章收集" scheme="http://python-ning.github.io/categories/%E5%A5%BD%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Django(六)用django自带Paginator实现分页功能]]></title>
+    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
+    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
+    <published>2016-04-08T07:00:00.000Z</published>
+    <updated>2016-04-12T17:54:54.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。</p>
+<h3 id="在view-py中使用Paginator">在view.py中使用Paginator</h3><pre><code><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator, EmptyPage, PageNotAnInteger
+<span class="keyword">from</span> app.models <span class="keyword">import</span> Topic
+
+<span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>
+limit = <span class="number">3</span>  <span class="comment"># 每页显示的记录数</span>
+topics = Topic.objects.all()
+paginator = Paginator(topics, limit)  <span class="comment"># 实例化一个分页对象</span>
+
+page = request.GET.get(<span class="string">'page'</span>)  <span class="comment"># 获取页码</span>
+<span class="keyword">try</span>:
+    topics = paginator.page(page)  <span class="comment"># 获取某页对应的记录</span>
+<span class="keyword">except</span> PageNotAnInteger:  <span class="comment"># 如果页码不是个整数</span>
+    topics = paginator.page(<span class="number">1</span>)  <span class="comment"># 取第一页的记录</span>
+    <span class="keyword">except</span> EmptyPage:  <span class="comment"># 如果页码太大，没有相应的记录</span>
+        topics = paginator.page(paginator.num_pages)  <span class="comment"># 取最后一页的记录</span>
+
+    <span class="keyword">return</span> render_to_response(<span class="string">'index.html'</span>, {<span class="string">'topics'</span>: topics})
+</code></pre><h3 id="模板中的相关操作">模板中的相关操作</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="效果：">效果：</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png" class="img-shadow" style="display: block;margin: auto"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>在django中使用]]>
+    </summary>
+    
+      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
     
   </entry>
   
