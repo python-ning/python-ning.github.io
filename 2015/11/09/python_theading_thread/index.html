@@ -1,0 +1,1069 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='#' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="python ning's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="什么是多任务？现代操作系统比如Mac OS X，UNIX，Linux，Windows等，都是支持“多任务”的操作系统。什么叫“多任务”呢？简单地说，就是操作系统可以同时运行多个任务。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有3个任务正在运行。还有很多任务悄悄地在后台同时运行着，只是桌面上没有显示而已。
+什么是进程和线程？现在，多核CPU已经非">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的多线程和多进程">
+<meta property="og:url" content="http://python-ning.github.io/2015/11/09/python_theading_thread/index.html">
+<meta property="og:site_name" content="python ning's blog">
+<meta property="og:description" content="什么是多任务？现代操作系统比如Mac OS X，UNIX，Linux，Windows等，都是支持“多任务”的操作系统。什么叫“多任务”呢？简单地说，就是操作系统可以同时运行多个任务。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有3个任务正在运行。还有很多任务悄悄地在后台同时运行着，只是桌面上没有显示而已。
+什么是进程和线程？现在，多核CPU已经非">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/198750-106.jpg">
+<meta property="og:updated_time" content="2015-12-30T22:45:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python的多线程和多进程">
+<meta name="twitter:description" content="什么是多任务？现代操作系统比如Mac OS X，UNIX，Linux，Windows等，都是支持“多任务”的操作系统。什么叫“多任务”呢？简单地说，就是操作系统可以同时运行多个任务。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有3个任务正在运行。还有很多任务悄悄地在后台同时运行着，只是桌面上没有显示而已。
+什么是进程和线程？现在，多核CPU已经非">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/198750-106.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> Python的多线程和多进程 | python ning's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">python ning's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feeling">
+          <a href="/feeling" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            心情
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'CkyV4Ux3QZb6T9Hxonnh','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python的多线程和多进程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-09T00:00:00-08:00" content="2015-11-09">
+              2015-11-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/09/python_theading_thread/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/09/python_theading_thread/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/198750-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="什么是多任务？">什么是多任务？</h3><p>现代操作系统比如Mac OS X，UNIX，Linux，Windows等，都是支持“多任务”的操作系统。<br>什么叫“多任务”呢？简单地说，就是操作系统可以同时运行多个任务。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有3个任务正在运行。还有很多任务悄悄地在后台同时运行着，只是桌面上没有显示而已。</p>
+<h3 id="什么是进程和线程？">什么是进程和线程？</h3><p>现在，多核CPU已经非常普及了，但是，即使过去的单核CPU，也可以执行多任务。由于CPU执行代码都是顺序执行的，那么，单核CPU是怎么执行多任务的呢？<br>答案就是操作系统轮流让各个任务交替执行，任务1执行0.01秒，切换到任务2，任务2执行0.01秒，再切换到任务3，执行0.01秒……这样反复执行下去。表面上看，每个任务都是交替执行的，但是，由于CPU的执行速度实在是太快了，我们感觉就像所有任务都在同时执行一样。<br>真正的并行执行多任务只能在多核CPU上实现，但是，由于任务数量远远多于CPU的核心数量，所以，操作系统也会自动把很多任务轮流调度到每个核心上执行。<br>对于操作系统来说，一个任务就是一个进程（Process），比如打开一个浏览器就是启动一个浏览器进程，打开一个记事本就启动了一个记事本进程，打开两个记事本就启动了两个记事本进程，打开一个Word就启动了一个Word进程。<br>什么是线程？<br>有些进程还不止同时干一件事，比如Word，它可以同时进行打字、拼写检查、打印等事情。在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，我们把进程内的这些“子任务”称为线程（Thread）。<br>由于每个进程至少要干一件事，所以，一个进程至少有一个线程。当然，像Word这种复杂的进程可以有多个线程，多个线程可以同时执行，多线程的执行方式和多进程是一样的，也是由操作系统在多个线程之间快速切换，让每个线程都短暂地交替运行，看起来就像同时执行一样。当然，真正地同时执行多线程需要多核CPU才可能实现。<br>我们前面编写的所有的Python程序，都是执行单任务的进程，也就是只有一个线程。如果我们要同时执行多个任务怎么办？</p>
+<h3 id="如何执行多任务？">如何执行多任务？</h3><p>总结一下就是，多任务的实现有3种方式：</p>
+<ol>
+<li>多进程模式：是启动多个进程，每个进程虽然只有一个线程，但多个进程可以一块执行多个任务。</li>
+<li>多线程模式；是启动一个进程，在一个进程内启动多个线程，这样，多个线程也可以一块执行多个任务。</li>
+<li>多进程+多线程模式：是启动多个进程，每个进程再启动多个线程，这样同时执行的任务就更多了，当然这种模型更复杂，实际很少采用。</li>
+</ol>
+<p>同时执行多个任务通常各个任务之间大都是有关联的，而是需要相互通信和协调，有时，任务1必须暂停等待任务2完成后才能继续执行，有时，任务3和任务4又不能同时执行，所以，多进程和多线程的程序的复杂度要远远高于我们前面写的单进程单线程的程序。<br>因为复杂度高，调试困难，所以，不是迫不得已，我们也不想编写多任务。但是，有很多时候，没有多任务还真不行。想想在电脑上看电影，就必须由一个线程播放视频，另一个线程播放音频，否则，单线程实现的话就只能先把视频播放完再播放音频，或者先把音频播放完再播放视频，这显然是不行的。<br>Python既支持多进程，又支持多线程，我们会讨论如何编写这两种多任务程序。</p>
+<h3 id="多进程">多进程</h3><p>要让Python程序实现多进程（multiprocessing），我们先了解操作系统的相关知识。<br>Unix/Linux操作系统提供了一个<code style="color:red">fork()</code>系统调用，它非常特殊。普通的函数调用，调用一次，返回一次，但是<code style="color:red">fork()</code>调用一次，返回两次，因为操作系统自动把当前进程（称为父进程）复制了一份（称为子进程），然后，分别在父进程和子进程内返回。<br>子进程永远返回0，而父进程返回子进程的ID。这样做的理由是，一个父进程可以<code style="color:red">fork</code>出很多子进程，所以，父进程要记下每个子进程的ID，而子进程只需要调用getpid()就可以拿到父进程的ID。<br>Python的os模块封装了常见的系统调用，其中就包括<code style="color:red">fork</code>，可以在Python程序中轻松创建子进程：</p>
+<pre><code><span class="comment"># text.py</span>
+import os
+
+print(<span class="string">'Process (%s) start...'</span> % os.getpid())
+<span class="comment"># Only works on Unix/Linux/Mac:</span>
+pid = os.fork()
+<span class="keyword">if</span> pid == <span class="number">0</span><span class="symbol">:</span>
+    print(<span class="string">'I am child process (%s) and my parent is %s.'</span> % (os.getpid(), os.getpid()))
+<span class="symbol">else:</span>
+    print(<span class="string">'I (%s) just created a child process (%s).'</span> % (os.getpid(), pid))
+执行结果为：
+root<span class="variable">@ubuntu</span><span class="symbol">:~/Desktop</span><span class="comment"># python test.py</span>
+<span class="constant">Process</span> (<span class="number">12580</span>) start...
+<span class="constant">I</span> (<span class="number">12580</span>) just created a child process (<span class="number">12581</span>).
+<span class="constant">I</span> am child process (<span class="number">12581</span>) <span class="keyword">and</span> my parent is <span class="number">12580</span>.
+root<span class="variable">@ubuntu</span><span class="symbol">:~/Desktop</span><span class="comment"># </span>
+</code></pre><p>Python os模块包含普遍的操作系统功能。如果你希望你的程序能够与平台无关的话，这个模块是尤为重要的。<br>由于Windows没有fork调用，上面的代码在Windows上无法运行。<br>有了<code style="color:red">fork</code>调用，一个进程在接到新任务时就可以复制出一个子进程来处理新任务，常见的Apache服务器就是由父进程监听端口，每当有新的http请求时，就fork出子进程来处理新的http请求。</p>
+<p><strong>multiprocessing模块</strong><br>如果你打算编写多进程的服务程序，Unix/Linux无疑是正确的选择。由于Windows没有fork调用，难道在Windows上无法用Python编写多进程的程序？<br>由于Python是跨平台的，自然也应该提供一个跨平台的多进程支持。<code style="color:red">multiprocessing</code>模块就是跨平台版本的多进程模块。<br><code style="color:red">multiprocessing</code>模块提供了一个<code style="color:red">Process</code>类来代表一个进程对象，下面的例子演示了启动一个子进程并等待其结束：</p>
+<pre><code><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process
+<span class="keyword">import</span> os
+
+<span class="comment"># 子进程要执行的代码</span>
+<span class="function"><span class="keyword">def</span> <span class="title">run_proc</span><span class="params">(name)</span>:</span>
+    print(<span class="string">'Run child process %s (%s)...'</span> % (name, os.getpid()))
+
+<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:
+    print(<span class="string">'Parent process %s.'</span> % os.getpid())
+    p = Process(target=run_proc, args=(<span class="string">'test'</span>,))
+    print(<span class="string">'Child process will start.'</span>)
+    p.start()
+    p.join()
+    print(<span class="string">'Child process end.'</span>)
+运行结果为:    
+Parent process <span class="number">6944.</span>
+Child process will start.
+Run child process test (<span class="number">8588</span>)...
+Child process end.
+</code></pre><p>创建子进程时，只需要传入一个执行函数和函数的参数，创建一个<code style="color:red">Process</code>实例，用<code style="color:red">start()</code>方法启动，这样创建进程比<code style="color:red">fork()</code>还要简单。<br><code style="color:red">join()</code>方法可以等待子进程结束后再继续往下运行，通常用于进程间的同步。</p>
+<p><strong>Pool</strong></p>
+<p>如果要启动大量的子进程，可以用进程池的方式批量创建子进程：</p>
+<pre><code><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool
+<span class="keyword">import</span> os 
+<span class="keyword">import</span> time
+<span class="keyword">import</span> random
+
+<span class="function"><span class="keyword">def</span> <span class="title">long_time_task</span><span class="params">(name)</span>:</span>
+    print(<span class="string">'Run task %s (%s)...'</span> % (name, os.getpid()))
+    start = time.time()
+    time.sleep(random.random() * <span class="number">3</span>)
+    end = time.time()
+    print(<span class="string">'Task %s runs %0.2f seconds.'</span> % (name, (end - start)))
+
+<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:
+    print(<span class="string">'Parent process %s.'</span> % os.getpid())
+    p = Pool(<span class="number">4</span>)
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):
+        p.apply_async(long_time_task, args=(i,))
+    print(<span class="string">'Waiting for all subprocesses done...'</span>)
+    p.close()
+    p.join()
+    print(<span class="string">'All subprocesses done.'</span>)
+
+返回结果为：
+Parent process <span class="number">11384.</span>
+Waiting <span class="keyword">for</span> all subprocesses done...
+Run task <span class="number">3</span> (<span class="number">11444</span>)...
+Task <span class="number">3</span> runs <span class="number">1.52</span> seconds.
+Run task <span class="number">0</span> (<span class="number">11412</span>)...
+Task <span class="number">0</span> runs <span class="number">1.83</span> seconds.
+Run task <span class="number">2</span> (<span class="number">11432</span>)...
+Task <span class="number">2</span> runs <span class="number">1.20</span> seconds.
+Run task <span class="number">4</span> (<span class="number">11432</span>)...
+Task <span class="number">4</span> runs <span class="number">0.88</span> seconds.
+Run task <span class="number">1</span> (<span class="number">11404</span>)...
+Task <span class="number">1</span> runs <span class="number">2.85</span> seconds.
+All subprocesses done.
+</code></pre><p>代码解读：<br>对Pool对象调用join()方法会等待所有子进程执行完毕，调用<code style="color:red">join()</code>之前必须先调用<code style="color:red">close()</code>，调用<code style="color:red">close()</code>之后就不能继续添加新的<code style="color:red">Process</code>了。<br>请注意输出的结果，task 0，1，2，3是立刻执行的，而task 4要等待前面某个task完成后才执行，这是因为Pool的默认大小在我的电脑上是4，因此，最多同时执行4个进程。这是Pool有意设计的限制，并不是操作系统的限制。如果改成：<br>        p = Pool(5)<br>就可以同时跑5个进程。<br>由于Pool的默认大小是CPU的核数，如果你不幸拥有8核CPU，你要提交至少9个子进程才能看到上面的等待效果。</p>
+<p><strong>子进程</strong><br>很多时候，子进程并不是自身，而是一个外部进程。我们创建了子进程后，还需要控制子进程的输入和输出。<br><code style="color:red">subprocess</code>模块可以让我们非常方便地启动一个子进程，然后控制其输入和输出。<br>下面的例子演示了如何在Python代码中运行命令nslookup www.python.org，这和命令行直接运行的效果是一样的：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="title">import</span> subprocess
+
+print(<span class="string">'$ nslookup www.python.org'</span>)
+r = subprocess.call([<span class="string">'nslookup'</span>, <span class="string">'www.python.org'</span>])
+print(<span class="string">'Exit code:'</span>, r)
+
+运行结果为：
+root<span class="variable">@ubuntu</span>:~/Desktop<span class="comment"># python test.py</span>
+$ nslookup www.python.org
+Server:        <span class="number">127.0.1.1</span>
+Address:    <span class="number">127.0.1.1</span><span class="comment">#53</span>
+
+N<span class="built_in">on</span>-authoritative answer:
+www.python.org    canonical name = python.map.fastly.net.
+Name:    python.map.fastly.net
+Address: <span class="number">103.245.222.223</span>
+
+(<span class="string">'Exit code:'</span>, <span class="number">0</span>)
+</code></pre><p>如果子进程还需要输入，则可以通过<code style="color:red">communicate()</code>方法输入：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="keyword">import</span> subprocess
+
+<span class="built_in">print</span>(<span class="string">'$ nslookup'</span>)
+p = subprocess.Popen([<span class="string">'nslookup'</span>], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+output, err = p.communicate(b<span class="string">'set q=mx\npython.org\nexit\n'</span>)
+<span class="built_in">print</span>(output.decode(<span class="string">'utf-8'</span>))
+<span class="built_in">print</span>(<span class="string">'Exit code:'</span>, p.returncode)
+</code></pre><p>上面的代码相当于在命令行执行命令nslookup，然后手动输入：</p>
+<pre><code><span class="keyword">set</span> <span class="keyword">q</span>=mx
+<span class="keyword">python</span>.org
+<span class="keyword">exit</span>
+</code></pre><p>运行结果为：</p>
+<pre><code>root<span class="variable">@ubuntu</span>:~/Desktop# <span class="keyword">python</span> test.py
+$ nslookup
+Server:        <span class="number">127.0</span><span class="number">.1</span><span class="number">.1</span>
+Address:    <span class="number">127.0</span><span class="number">.1</span><span class="number">.1</span>#<span class="number">53</span>
+
+Non-authoritative answer:
+<span class="keyword">python</span>.org    mail exchanger = <span class="number">50</span> mail.<span class="keyword">python</span>.org.
+
+Authoritative answers can be found from:
+<span class="keyword">python</span>.org    nameserver = ns3.p11.dynect.net.
+<span class="keyword">python</span>.org    nameserver = ns1.p11.dynect.net.
+<span class="keyword">python</span>.org    nameserver = ns2.p11.dynect.net.
+<span class="keyword">python</span>.org    nameserver = ns4.p11.dynect.net.
+mail.<span class="keyword">python</span>.org    internet address = <span class="number">188.166</span><span class="number">.95</span><span class="number">.178</span>
+ns1.p11.dynect.net    internet address = <span class="number">208.78</span><span class="number">.70</span><span class="number">.11</span>
+ns2.p11.dynect.net    internet address = <span class="number">204.13</span><span class="number">.250</span><span class="number">.11</span>
+ns3.p11.dynect.net    internet address = <span class="number">208.78</span><span class="number">.71</span><span class="number">.11</span>
+ns4.p11.dynect.net    internet address = <span class="number">204.13</span><span class="number">.251</span><span class="number">.11</span>
+(<span class="string">'Exit code:'</span>, <span class="number">0</span>)
+</code></pre><h3 id="多线程">多线程</h3><p>多任务可以由多进程完成，也可以由一个进程内的多线程完成。<br>我们前面提到了进程是由若干线程组成的，一个进程至少有一个线程。<br>由于线程是操作系统直接支持的执行单元，因此，高级语言通常都内置多线程的支持，Python也不例外，并且，Python的线程是真正的Posix Thread，而不是模拟出来的线程。<br>Python的标准库提供了两个模块：_thread和threading，_thread是低级模块，threading是高级模块，对_thread进行了封装。绝大多数情况下，我们只需要使用threading这个高级模块。<br>启动一个线程就是把一个函数传入并创建Thread实例，然后调用<code style="color:red">start()</code>开始执行：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="keyword">import</span> time, threading
+
+<span class="comment"># 新线程执行的代码:</span>
+<span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">()</span>:</span>
+    print(<span class="string">'thread %s is running...'</span> % threading.current_thread().name)
+    n = <span class="number">0</span>
+    <span class="keyword">while</span> n &lt; <span class="number">5</span>:
+        n = n + <span class="number">1</span>
+        print(<span class="string">'thread %s &gt;&gt;&gt; %s'</span> % (threading.current_thread().name, n))
+        time.sleep(<span class="number">1</span>)
+    print(<span class="string">'thread %s ended.'</span> % threading.current_thread().name)
+
+print(<span class="string">'thread %s is running...'</span> % threading.current_thread().name)
+t = threading.Thread(target=loop, name=<span class="string">'LoopThread'</span>)
+t.start()
+t.join()
+print(<span class="string">'thread %s ended.'</span> % threading.current_thread().name)
+</code></pre><p>执行结果如下：</p>
+<pre><code><span class="keyword">thread</span> MainThread is running<span class="attribute">...</span>
+<span class="keyword">thread</span> LoopThread is running<span class="attribute">...</span>
+<span class="keyword">thread</span> LoopThread &gt;&gt;&gt; <span class="number">1</span>
+<span class="keyword">thread</span> LoopThread &gt;&gt;&gt; <span class="number">2</span>
+<span class="keyword">thread</span> LoopThread &gt;&gt;&gt; <span class="number">3</span>
+<span class="keyword">thread</span> LoopThread &gt;&gt;&gt; <span class="number">4</span>
+<span class="keyword">thread</span> LoopThread &gt;&gt;&gt; <span class="number">5</span>
+<span class="keyword">thread</span> LoopThread ended<span class="built_in">.
+</span><span class="keyword">thread</span> MainThread ended<span class="built_in">.</span>
+</code></pre><p>由于任何进程默认就会启动一个线程，我们把该线程称为主线程，主线程又可以启动新的线程，Python的threading模块有个<code style="color:red">current_thread()</code>函数，它永远返回当前线程的实例。主线程实例的名字叫MainThread，子线程的名字在创建时指定，我们用LoopThread命名子线程。名字仅仅在打印时用来显示，完全没有其他意义，如果不起名字Python就自动给线程命名为Thread-1，Thread-2……</p>
+<p><strong>Lock</strong></p>
+<p>多线程和多进程最大的不同在于，多进程中，同一个变量，各自有一份拷贝存在于每个进程中，互不影响，而多线程中，所有变量都由所有线程共享，所以，任何一个变量都可以被任何一个线程修改，因此，线程之间共享数据最大的危险在于多个线程同时改一个变量，把内容给改乱了。<br>来看看多个线程同时操作一个变量怎么把内容给改乱了：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="keyword">import</span> time, threading
+
+<span class="comment"># 假定这是你的银行存款:</span>
+balance = <span class="number">0</span>
+
+<span class="function"><span class="keyword">def</span> <span class="title">change_it</span><span class="params">(n)</span>:</span>
+    <span class="comment"># 先存后取，结果应该为0:</span>
+    <span class="keyword">global</span> balance
+    balance = balance + n
+    balance = balance - n
+
+<span class="function"><span class="keyword">def</span> <span class="title">run_thread</span><span class="params">(n)</span>:</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100000</span>):
+        change_it(n)
+
+t1 = threading.Thread(target=run_thread, args=(<span class="number">5</span>,))
+t2 = threading.Thread(target=run_thread, args=(<span class="number">8</span>,))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+print(balance)
+</code></pre><p>运行结果为：</p>
+<pre><code>-<span class="number">1586</span>
+</code></pre><p>我们定义了一个共享变量balance，初始值为0，并且启动两个线程，先存后取，理论上结果应该为0，但是，由于线程的调度是由操作系统决定的，当t1、t2交替执行时，只要循环次数足够多，balance的结果就不一定是0了。<br>原因是因为高级语言的一条语句在CPU执行时是若干条语句，即使一个简单的计算：</p>
+<pre><code><span class="keyword">balance </span>= <span class="keyword">balance </span>+ n
+</code></pre><p>也分两步：</p>
+<pre><code><span class="number">1.</span>计算balance + n，存入临时变量中；
+<span class="number">2.</span>将临时变量的值赋给balance。
+</code></pre><p>也就是可以看成：</p>
+<pre><code>x = <span class="keyword">balance </span>+ n
+<span class="keyword">balance </span>= x
+</code></pre><p>由于x是局部变量，两个线程各自都有自己的x，当代码正常执行时：</p>
+<pre><code>初始值 balance = <span class="number">0</span>
+
+t1: x1 = balance + <span class="number">5</span> <span class="preprocessor"># x1 = <span class="number">0</span> + <span class="number">5</span> = <span class="number">5</span></span>
+t1: balance = x1     <span class="preprocessor"># balance = <span class="number">5</span></span>
+t1: x1 = balance - <span class="number">5</span> <span class="preprocessor"># x1 = <span class="number">5</span> - <span class="number">5</span> = <span class="number">0</span></span>
+t1: balance = x1     <span class="preprocessor"># balance = <span class="number">0</span></span>
+
+t2: x2 = balance + <span class="number">8</span> <span class="preprocessor"># x2 = <span class="number">0</span> + <span class="number">8</span> = <span class="number">8</span></span>
+t2: balance = x2     <span class="preprocessor"># balance = <span class="number">8</span></span>
+t2: x2 = balance - <span class="number">8</span> <span class="preprocessor"># x2 = <span class="number">8</span> - <span class="number">8</span> = <span class="number">0</span></span>
+t2: balance = x2     <span class="preprocessor"># balance = <span class="number">0</span></span>
+
+结果 balance = <span class="number">0</span>
+</code></pre><p>但是t1和t2是交替运行的，如果操作系统以下面的顺序执行t1、t2：</p>
+<pre><code>初始值 balance = <span class="number">0</span>
+
+t1: x1 = balance + <span class="number">5</span>  <span class="preprocessor"># x1 = <span class="number">0</span> + <span class="number">5</span> = <span class="number">5</span></span>
+
+t2: x2 = balance + <span class="number">8</span>  <span class="preprocessor"># x2 = <span class="number">0</span> + <span class="number">8</span> = <span class="number">8</span></span>
+t2: balance = x2      <span class="preprocessor"># balance = <span class="number">8</span></span>
+
+t1: balance = x1      <span class="preprocessor"># balance = <span class="number">5</span></span>
+t1: x1 = balance - <span class="number">5</span>  <span class="preprocessor"># x1 = <span class="number">5</span> - <span class="number">5</span> = <span class="number">0</span></span>
+t1: balance = x1      <span class="preprocessor"># balance = <span class="number">0</span></span>
+
+t2: x2 = balance - <span class="number">8</span>  <span class="preprocessor"># x2 = <span class="number">0</span> - <span class="number">8</span> = -<span class="number">8</span></span>
+t2: balance = x2   <span class="preprocessor"># balance = -<span class="number">8</span></span>
+
+结果 balance = -<span class="number">8</span>
+</code></pre><p>究其原因，是因为修改balance需要多条语句，而执行这几条语句时，线程可能中断，从而导致多个线程把同一个对象的内容改乱了。</p>
+<p>两个线程同时一存一取，就可能导致余额不对，你肯定不希望你的银行存款莫名其妙地变成了负数，所以，我们必须确保一个线程在修改balance的时候，别的线程一定不能改。</p>
+<p>如果我们要确保balance计算正确，就要给<code style="color:red">change_it()</code>上一把锁，当某个线程开始执行<code style="color:red">change_it()</code>时，我们说，该线程因为获得了锁，因此其他线程不能同时执行change_it()，只能等待，直到锁被释放后，获得该锁以后才能改。由于锁只有一个，无论多少线程，同一时刻最多只有一个线程持有该锁，所以，不会造成修改的冲突。创建一个锁就是通过<code style="color:red">threading.Lock()</code>来实现：</p>
+<pre><code>balance = <span class="number">0</span>
+lock = threading.Lock()
+
+<span class="function"><span class="keyword">def</span> <span class="title">run_thread</span><span class="params">(n)</span>:</span>
+    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100000</span>):
+        <span class="comment"># 先要获取锁:</span>
+        lock.acquire()
+        <span class="keyword">try</span>:
+            <span class="comment"># 放心地改吧:</span>
+            change_it(n)
+        <span class="keyword">finally</span>:
+            <span class="comment"># 改完了一定要释放锁:</span>
+            lock.release()
+</code></pre><p>当多个线程同时执行<code style="color:red">lock.acquire()</code>时，只有一个线程能成功地获取锁，然后继续执行代码，其他线程就继续等待直到获得锁为止。</p>
+<p>获得锁的线程用完后一定要释放锁，否则那些苦苦等待锁的线程将永远等待下去，成为死线程。所以我们用try…finally来确保锁一定会被释放。</p>
+<p>锁的好处就是确保了某段关键代码只能由一个线程从头到尾完整地执行，坏处当然也很多，首先是阻止了多线程并发执行，包含锁的某段代码实际上只能以单线程模式执行，效率就大大地下降了。其次，由于可以存在多个锁，不同的线程持有不同的锁，并试图获取对方持有的锁时，可能会造成死锁，导致多个线程全部挂起，既不能执行，也无法结束，只能靠操作系统强制终止。</p>
+<p><strong>多核CPU</strong></p>
+<p>如果你不幸拥有一个多核CPU，你肯定在想，多核应该可以同时执行多个线程。<br>如果写一个死循环的话，会出现什么情况呢？<br>打开Mac OS X的Activity Monitor，或者Windows的Task Manager，都可以监控某个进程的CPU使用率。<br>我们可以监控到一个死循环线程会100%占用一个CPU。<br>如果有两个死循环线程，在多核CPU中，可以监控到会占用200%的CPU，也就是占用两个CPU核心。<br>要想把N核CPU的核心全部跑满，就必须启动N个死循环线程。<br>试试用Python写个死循环：</p>
+<pre><code><span class="keyword">import</span> threading, multiprocessing
+
+<span class="function"><span class="keyword">def</span> <span class="title">loop</span><span class="params">()</span>:</span>
+    x = <span class="number">0</span>
+    <span class="keyword">while</span> <span class="keyword">True</span>:
+        x = x ^ <span class="number">1</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> range(multiprocessing.cpu_count()):
+    t = threading.Thread(target=loop)
+    t.start()
+</code></pre><p>启动与CPU核心数量相同的N个线程，在4核CPU上可以监控到CPU占用率仅有102%，也就是仅使用了一核。<br>但是用C、C++或Java来改写相同的死循环，直接可以把全部核心跑满，4核就跑到400%，8核就跑到800%，为什么Python不行呢？<br>因为Python的线程虽然是真正的线程，但解释器执行代码时，有一个GIL锁：Global Interpreter Lock，任何Python线程执行前，必须先获得GIL锁，然后，每执行100条字节码，解释器就自动释放GIL锁，让别的线程有机会执行。这个GIL全局锁实际上把所有线程的执行代码都给上了锁，所以，多线程在Python中只能交替执行，即使100个线程跑在100核CPU上，也只能用到1个核。<br>GIL是Python解释器设计的历史遗留问题，通常我们用的解释器是官方实现的CPython，要真正利用多核，除非重写一个不带GIL的解释器。<br>所以，在Python中，可以使用多线程，但不要指望能有效利用多核。如果一定要通过多线程利用多核，那只能通过C扩展来实现，不过这样就失去了Python简单易用的特点。<br>不过，也不用过于担心，Python虽然不能利用多线程实现多核任务，但可以通过多进程实现多核任务。多个Python进程有各自独立的GIL锁，互不影响。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/05/python_copy and deepcopy/" rel="next" title="Python的深拷贝和浅拷贝">
+                <i class="fa fa-chevron-left"></i> Python的深拷贝和浅拷贝
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/13/python_built-in_function/" rel="prev" title="Python 的内建函数">
+                Python 的内建函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/09/python_theading_thread/"
+     data-title="Python的多线程和多进程"
+     data-content=""
+     data-url="http://python-ning.github.io/2015/11/09/python_theading_thread/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <br />
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/09/python_theading_thread/"
+           data-title="Python的多线程和多进程" data-url="http://python-ning.github.io/2015/11/09/python_theading_thread/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="python-ning" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">python-ning</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/python-ning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/pythonning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yuan-tong-tian" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.speedycloud.cn/" target="_blank">迅达云成</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devtan.xyz/" target="_blank">Dev-Tan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.liuwuba.com/" target="_blank">河间</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是多任务？"><span class="nav-number">1.</span> <span class="nav-text">什么是多任务？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是进程和线程？"><span class="nav-number">2.</span> <span class="nav-text">什么是进程和线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何执行多任务？"><span class="nav-number">3.</span> <span class="nav-text">如何执行多任务？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程"><span class="nav-number">4.</span> <span class="nav-text">多进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">5.</span> <span class="nav-text">多线程</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">python-ning</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"python-ning"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

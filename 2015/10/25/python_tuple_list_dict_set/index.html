@@ -1,0 +1,1069 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='#' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="python ning's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="list 列表Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：
+&amp;gt;&amp;gt;&amp;gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1],True]
+&amp;gt;&amp;gt;&amp;gt; test
+[&apos;string&apos;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的数据结构">
+<meta property="og:url" content="http://python-ning.github.io/2015/10/25/python_tuple_list_dict_set/index.html">
+<meta property="og:site_name" content="python ning's blog">
+<meta property="og:description" content="list 列表Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：
+&amp;gt;&amp;gt;&amp;gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1],True]
+&amp;gt;&amp;gt;&amp;gt; test
+[&apos;string&apos;,">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/135930-106.jpg">
+<meta property="og:updated_time" content="2015-12-30T22:43:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python的数据结构">
+<meta name="twitter:description" content="list 列表Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：
+&amp;gt;&amp;gt;&amp;gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1],True]
+&amp;gt;&amp;gt;&amp;gt; test
+[&apos;string&apos;,">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/135930-106.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> Python的数据结构 | python ning's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">python ning's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feeling">
+          <a href="/feeling" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            心情
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'CkyV4Ux3QZb6T9Hxonnh','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python的数据结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-10-25T00:00:00-07:00" content="2015-10-25">
+              2015-10-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/25/python_tuple_list_dict_set/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/25/python_tuple_list_dict_set/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/135930-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="list_列表">list 列表</h3><p>Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>],<span class="constant">True</span>]
+<span class="prompt">&gt;&gt;</span>&gt; test
+[<span class="string">'string'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>],<span class="constant">True</span>]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>可用len()函数获取列表的长度：</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">len</span><span class="params">(test)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="number">6</span>
+&gt;&gt;&gt;         
+</code></pre><p>用索引来访问list中每一个位置的元素，记得索引是从0开始的：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; b = test[<span class="number">0</span>]
+<span class="prompt">&gt;&gt;</span>&gt; b
+<span class="string">'string'</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>当索引超出了范围时，Python会报一个IndexError错误，所以，要确保索引不要越界，记得最后一个元素的索引是len(test) - 1。</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; b = test[<span class="number">5</span>]
+<span class="prompt">&gt;&gt;</span>&gt; b
+[<span class="string">'lists'</span>, <span class="number">1</span>]
+<span class="prompt">&gt;&gt;</span>&gt; 
+&gt;&gt;&gt; b = test[<span class="number">6</span>]
+
+<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
+  <span class="constant">File</span> <span class="string">"&lt;pyshell#156&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
+    b = test[<span class="number">6</span>]
+<span class="constant">IndexError</span><span class="symbol">:</span> list index out of range
+<span class="prompt">&gt;&gt;</span>&gt;         
+</code></pre><p>list是一个可变的有序表，所以，可以往list中追加元素到末尾：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; test.append(<span class="number">9</span>)
+<span class="prompt">&gt;&gt;</span>&gt; test
+[<span class="string">'string'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>], <span class="number">9</span>]
+<span class="prompt">&gt;&gt;</span>&gt;         
+</code></pre><p>也可以把元素插入到指定的位置，比如索引号为1的位置：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; test.insert(<span class="number">1</span>,<span class="string">'ning'</span>)
+<span class="prompt">&gt;&gt;</span>&gt; test
+[<span class="string">'string'</span>, <span class="string">'ning'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>要删除list末尾的元素，用pop()方法：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; test.pop()
+[<span class="string">'lists'</span>, <span class="number">1</span>]
+<span class="prompt">&gt;&gt;</span>&gt; test
+[<span class="string">'string'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>)]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>要删除指定位置的元素，用pop(i)方法，其中i是索引位置：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; test.pop(<span class="number">1</span>)
+<span class="number">1</span>
+<span class="prompt">&gt;&gt;</span>&gt; test
+[<span class="string">'string'</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">0</span>]=<span class="string">'ning'</span>
+<span class="prompt">&gt;&gt;</span>&gt; test
+[<span class="string">'ning'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="tuple_元组">tuple 元组</h3><p>另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改。<br>现在，test这个tuple不能变了，它也没有append()，insert()这样的方法。其他获取元素的方法和list是一样的，你可以正常地使用test[0]，test[-1]，但不能赋值成另外的元素。</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = (<span class="string">'chen'</span>,<span class="number">1</span>,<span class="constant">True</span>)
+<span class="prompt">&gt;&gt;</span>&gt; type(test)
+&lt;type <span class="string">'tuple'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">0</span>]
+<span class="string">'chen'</span>
+<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">1</span>]
+<span class="number">1</span>
+<span class="prompt">&gt;&gt;</span>&gt; test.append(<span class="string">'no'</span>)
+
+<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
+  <span class="constant">File</span> <span class="string">"&lt;pyshell#194&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
+    test.append(<span class="string">'no'</span>)
+<span class="constant">AttributeError</span><span class="symbol">:</span> <span class="string">'tuple'</span> object has no attribute <span class="string">'append'</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>不可变的tuple有什么意义？因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量用tuple。<br>tuple的陷阱：当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，如果要定义一个空的tuple，可以写成()，比如：</p>
+<pre><code>&gt;&gt;&gt; test = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)
+&gt;&gt;&gt; test
+(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)
+&gt;&gt;&gt; 
+
+&gt;&gt;&gt; test = ()
+&gt;&gt;&gt; test
+()
+&gt;&gt;&gt; 
+</code></pre><p>但是，要定义一个只有1个元素的tuple，如果你如下定义，那么他只是一个数字类型，并不是元组，这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。要想让他变成一个元组，就在1后边加个逗号(1,)来消除歧义就可以了：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = (<span class="number">1</span>)
+<span class="prompt">&gt;&gt;</span>&gt; test
+<span class="number">1</span>
+<span class="prompt">&gt;&gt;</span>&gt; type(test)
+&lt;type <span class="string">'int'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; 
+
+&gt;&gt;&gt; test = (<span class="number">1</span>,)
+<span class="prompt">&gt;&gt;</span>&gt; type(test)
+&lt;type <span class="string">'tuple'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; test
+(<span class="number">1</span>,)
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>最后再说一个让元组‘<strong style="color:red">可变</strong>’的方法</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = (<span class="string">'a'</span>,<span class="string">'b'</span>,[<span class="string">'hello'</span>,<span class="string">'world'</span>])
+<span class="prompt">&gt;&gt;</span>&gt; type(test)
+&lt;type <span class="string">'tuple'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">2</span>][<span class="number">1</span>] = <span class="string">'ni hao'</span>
+<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">2</span>][<span class="number">1</span>] = <span class="string">'shi jie'</span>
+<span class="prompt">&gt;&gt;</span>&gt; test
+(<span class="string">'a'</span>, <span class="string">'b'</span>, [<span class="string">'hello'</span>, <span class="string">'shi jie'</span>])
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>表面上看，tuple的元素确实变了，但其实变的不是tuple的元素，而是list的元素。tuple一开始指向的list并没有改成别的list，所以，tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向’a’，就不能改成指向’b’，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！</p>
+<p>理解了“指向不变”后，要创建一个内容也不变的tuple怎么做？那就必须保证tuple的每一个元素本身也不能变。</p>
+<h3 id="dict_字典">dict 字典</h3><p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。<br>举个例子，假设要根据员工的名字查找对应的电话号码，如果用list实现，需要两个list：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; employee = [<span class="string">'zhang san'</span>,<span class="string">'li si'</span>,<span class="string">'wang gang dan'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; phone = [<span class="number">521521521</span>,<span class="number">741741741</span>,<span class="number">888888888</span>]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>给定一个名字，要查找对应的电话号码，就先要在employee中找到对应的位置，再从phone取出对应的电话号码，list越长，耗时越长。<br>如果用dict实现，只需要一个“名字”-“电话号码”的对照表，直接根据名字查找成绩，无论这个表有多大，查找速度都不会变慢。用Python写一个dict如下：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
+<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'wang gang dan'</span>]
+<span class="number">888888888</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>为什么dict查找速度这么快？因为dict的实现原理和查字典是一样的。假设字典包含了1万个汉字，我们要查某一个字，一个办法是把字典从第一页往后翻，直到找到我们想要的字为止，这种方法就是在list中查找元素的方法，list越大，查找越慢。<br>第二种方法是先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。<br>dict就是第二种实现方式，给定一个名字，比如’wang gang dan’，dict在内部就可以直接计算出wang gang dan对应的存放成绩的“页码”，也就是888888888这个数字存放的内存地址，直接取出来，所以速度非常快。<br>你可以猜到，这种key-value存储方式，在放进去的时候，必须根据key算出value的存放位置，这样，取的时候才能根据key直接拿到value。<br>把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
+<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'python'</span>] = <span class="number">999999999</span>
+<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'python'</span>]
+<span class="number">999999999</span>
+<span class="prompt">&gt;&gt;</span>&gt; d
+{<span class="string">'python'</span><span class="symbol">:</span> <span class="number">999999999</span>, <span class="string">'zhang san'</span><span class="symbol">:</span> <span class="number">521521521</span>, <span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值覆盖掉：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
+<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'zhang san'</span>] = <span class="number">111111111</span>
+<span class="prompt">&gt;&gt;</span>&gt; d
+{<span class="string">'zhang san'</span><span class="symbol">:</span> <span class="number">111111111</span>, <span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
+<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'zhang san'</span>] = <span class="number">222222222</span>
+<span class="prompt">&gt;&gt;</span>&gt; d
+{<span class="string">'zhang san'</span><span class="symbol">:</span> <span class="number">222222222</span>, <span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>如果key不存在，dict就会报错：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
+<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'!@#$%^&amp;*'</span>]
+
+<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
+  <span class="constant">File</span> <span class="string">"&lt;pyshell#239&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
+    d[<span class="string">'!@#$%^&amp;*'</span>]
+<span class="constant">KeyError</span><span class="symbol">:</span> <span class="string">'!@#$%^&amp;*'</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>要避免key不存在的错误，有两种办法，一是通过in判断key是否存在：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
+<span class="prompt">&gt;&gt;</span>&gt; <span class="string">'!@#$%^&amp;*'</span> in d
+<span class="constant">False</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>通过dict提供的get方法，如果key不存在，可以返回None，或者自己指定的value：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
+<span class="prompt">&gt;&gt;</span>&gt; d.get(<span class="string">'!@#$%^&amp;*'</span>)
+<span class="prompt">&gt;&gt;</span>&gt;             <span class="comment"># 返回None的时候Python的交互式命令行不显示结果</span>
+<span class="prompt">&gt;&gt;</span>&gt; d.get(<span class="string">'!@#$%^&amp;*'</span>,<span class="number">1</span>)
+<span class="number">1</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>要删除一个key，用pop(key)方法，对应的value也会从dict中删除：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
+<span class="prompt">&gt;&gt;</span>&gt; d.pop(<span class="string">'zhang san'</span>)
+<span class="number">521521521</span>
+<span class="prompt">&gt;&gt;</span>&gt; d
+{<span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="set_集合">set 集合</h3><p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。</p>
+<p>要创建一个set，需要提供一个list作为输入集合：</p>
+<pre><code>&gt;&gt;&gt; test = <span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span></span>
+&gt;&gt;&gt; test
+<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span></span>
+&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(test)</span></span>
+&lt;type <span class="string">'set'</span>&gt;
+&gt;&gt;&gt; 
+</code></pre><p><strong style="color:red">注意，传入的参数[1, 2, 3]是一个list，而显示的{1, 2, 3}只是告诉你这个set内部有1，2，3这3个元素，显示的顺序也不表示set是有序的。</strong></p>
+<p>重复元素在set中自动被过滤：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = set([<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>])
+<span class="prompt">&gt;&gt;</span>&gt; test
+set([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>通过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果：</p>
+<pre><code>&gt;&gt;&gt; test = <span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span></span>
+&gt;&gt;&gt; test
+<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span></span>
+&gt;&gt;&gt; test.<span class="function"><span class="title">add</span><span class="params">(<span class="number">4</span>)</span></span>
+&gt;&gt;&gt; test
+<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span></span>
+&gt;&gt;&gt; test.<span class="function"><span class="title">add</span><span class="params">(<span class="number">4</span>)</span></span>
+&gt;&gt;&gt; test
+<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span></span>
+&gt;&gt;&gt; 
+</code></pre><p>通过remove(key)方法可以删除元素：</p>
+<pre><code>&gt;&gt;&gt; test = <span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span></span>
+&gt;&gt;&gt; test
+<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span></span>
+&gt;&gt;&gt; test.<span class="function"><span class="title">remove</span><span class="params">(<span class="number">3</span>)</span></span>
+&gt;&gt;&gt; test
+<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>])</span></span>
+&gt;&gt;&gt; 
+</code></pre><p>set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作：</p>
+<pre><code>&gt;&gt;&gt; <span class="built_in">test</span>1 = <span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])
+&gt;&gt;&gt; <span class="built_in">test</span>1
+<span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])
+&gt;&gt;&gt; <span class="built_in">test</span>2 = <span class="built_in">set</span>([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])
+&gt;&gt;&gt; <span class="built_in">test</span>2
+<span class="built_in">set</span>([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])
+&gt;&gt;&gt; <span class="built_in">test</span>1 &amp; <span class="built_in">test</span>2
+<span class="built_in">set</span>([<span class="number">2</span>, <span class="number">3</span>])
+&gt;&gt;&gt; <span class="built_in">test</span>1 | <span class="built_in">test</span>2
+<span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])
+&gt;&gt;&gt; 
+</code></pre><p>set和dict的唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象，因为无法判断两个可变对象是否相等，也就无法保证set内部“不会有重复元素”。试试把list放入set，看看是否会报错。</p>
+<pre><code>&gt;&gt;&gt; <span class="keyword">test</span> = <span class="keyword">set</span>([1,2,3,[4,5]])
+
+Traceback (most recent call last):
+  <span class="keyword">File</span> <span class="string">"&lt;pyshell#283&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;
+    <span class="keyword">test</span> = <span class="keyword">set</span>([1,2,3,[4,5]])
+TypeError: unhashable <span class="keyword">type</span>: '<span class="keyword">list</span>'
+&gt;&gt;&gt; 
+</code></pre><h3 id="字符串/元组/列表/字典互转">字符串/元组/列表/字典互转</h3><p>1、字典</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt;dicts = {<span class="string">'name'</span><span class="symbol">:</span> <span class="string">'Zara'</span>, <span class="string">'age'</span><span class="symbol">:</span> <span class="number">7</span>, <span class="string">'class'</span><span class="symbol">:</span> <span class="string">'First'</span>}
+</code></pre><p>字典转为字符串:</p>
+<pre><code>&gt;&gt;&gt;<span class="built_in">print</span> <span class="built_in">type</span>(str(dicts)), str(dicts)
+&lt;<span class="built_in">type</span> <span class="string">'str'</span>&gt; {<span class="string">'age'</span>: <span class="number">7</span>, <span class="string">'name'</span>: <span class="string">'Zara'</span>, <span class="string">'class'</span>: <span class="string">'First'</span>}
+</code></pre><p>字典可以转为元组：</p>
+<pre><code>&gt;&gt;&gt;print tuple<span class="list">(<span class="keyword">dicts</span>)</span>
+<span class="list">(<span class="quoted">'age</span>', <span class="quoted">'name</span>', <span class="quoted">'class</span>')</span>
+</code></pre><p>字典可以转为元组：</p>
+<pre><code>&gt;&gt;&gt;print tuple<span class="list">(<span class="keyword">dicts</span>.values<span class="list">()</span>)</span>
+<span class="list">(<span class="number">7</span>, <span class="quoted">'Zara</span>', <span class="quoted">'First</span>')</span>
+</code></pre><p>字典转为列表：</p>
+<pre><code>&gt;&gt;&gt;print <span class="function"><span class="title">list</span><span class="params">(dicts)</span></span>
+[<span class="string">'age'</span>, <span class="string">'name'</span>, <span class="string">'class'</span>]
+</code></pre><p>字典转为列表</p>
+<pre><code>&gt;&gt;&gt;print dicts.values
+&lt;built-<span class="keyword">in</span> <span class="keyword">method</span> values <span class="keyword">of</span> dict <span class="keyword">object</span> at <span class="number">0x0000000002E6D6A8</span>&gt;
+</code></pre><p>2、元组</p>
+<pre><code>&gt;&gt;&gt;tup=(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)
+</code></pre><p>元组转为字符串:</p>
+<pre><code>&gt;&gt;&gt;print tup.__str__()
+(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)
+</code></pre><p>元组转为列表：</p>
+<pre><code>&gt;&gt;&gt;print <span class="function"><span class="title">list</span><span class="params">(tup)</span></span>
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+</code></pre><p>元组不可以转为字典</p>
+<p>3、列表</p>
+<pre><code>&gt;&gt;&gt;nums=[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">20</span>];
+</code></pre><p>列表转为字符串：</p>
+<pre><code>&gt;&gt;&gt;print <span class="function"><span class="title">str</span><span class="params">(nums)</span></span>
+[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">20</span>]
+</code></pre><p>列表转为元组：</p>
+<pre><code>&gt;&gt;&gt;<span class="function">print <span class="title">tuple</span><span class="params">(nums)</span>
+<span class="params">(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">20</span>)</span></span>
+</code></pre><p>列表不可以转为字典</p>
+<p>4、字符串<br>字符串转为元组：</p>
+<pre><code>&gt;&gt;&gt;print tuple<span class="list">(<span class="keyword">eval</span><span class="list">(<span class="string">"(1,2,3)"</span>)</span>)</span>
+<span class="list">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span>
+</code></pre><p>字符串转为列表：</p>
+<pre><code>&gt;&gt;&gt;<span class="keyword">print</span> <span class="keyword">list</span>(<span class="keyword">eval</span>(<span class="string">"(1,2,3)"</span>))
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+</code></pre><p>字符串转为字典：</p>
+<pre><code>&gt;&gt;&gt;<span class="built_in">print</span> <span class="built_in">type</span>(<span class="built_in">eval</span>(<span class="string">"{'name':'ljq', 'age':24}"</span>))
+&lt;<span class="built_in">type</span> <span class="string">'dict'</span>&gt;
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/20/haml/" rel="next" title="HAML的语法（有点恶心）">
+                <i class="fa fa-chevron-left"></i> HAML的语法（有点恶心）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/29/ubuntu_update/" rel="prev" title="ubuntu apt-get update失败 解决方法">
+                ubuntu apt-get update失败 解决方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/10/25/python_tuple_list_dict_set/"
+     data-title="Python的数据结构"
+     data-content=""
+     data-url="http://python-ning.github.io/2015/10/25/python_tuple_list_dict_set/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <br />
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/25/python_tuple_list_dict_set/"
+           data-title="Python的数据结构" data-url="http://python-ning.github.io/2015/10/25/python_tuple_list_dict_set/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="python-ning" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">python-ning</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/python-ning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/pythonning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yuan-tong-tian" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.speedycloud.cn/" target="_blank">迅达云成</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devtan.xyz/" target="_blank">Dev-Tan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.liuwuba.com/" target="_blank">河间</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#list_列表"><span class="nav-number">1.</span> <span class="nav-text">list 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tuple_元组"><span class="nav-number">2.</span> <span class="nav-text">tuple 元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dict_字典"><span class="nav-number">3.</span> <span class="nav-text">dict 字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set_集合"><span class="nav-number">4.</span> <span class="nav-text">set 集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串/元组/列表/字典互转"><span class="nav-number">5.</span> <span class="nav-text">字符串/元组/列表/字典互转</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">python-ning</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"python-ning"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

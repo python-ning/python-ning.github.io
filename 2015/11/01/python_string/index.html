@@ -1,0 +1,1078 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='#' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="python ning's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="工作经常用到一些字符串的方法，借此机会也总结一下~~
+findfind方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。
+&amp;gt;&amp;gt;&amp;gt; a = &apos;test&apos;
+&amp;gt;&amp;gt;&amp;gt; a.find(&apos;s&apos;)
+2
+&amp;gt;&amp;gt;&amp;gt; 
+find方法其实和列表取步长的方法联用来截取某段需要的字符串。
+&amp;gt;&amp;gt;&amp;gt; a  =">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 字符串方法详解">
+<meta property="og:url" content="http://python-ning.github.io/2015/11/01/python_string/index.html">
+<meta property="og:site_name" content="python ning's blog">
+<meta property="og:description" content="工作经常用到一些字符串的方法，借此机会也总结一下~~
+findfind方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。
+&amp;gt;&amp;gt;&amp;gt; a = &apos;test&apos;
+&amp;gt;&amp;gt;&amp;gt; a.find(&apos;s&apos;)
+2
+&amp;gt;&amp;gt;&amp;gt; 
+find方法其实和列表取步长的方法联用来截取某段需要的字符串。
+&amp;gt;&amp;gt;&amp;gt; a  =">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/20741-106.jpg">
+<meta property="og:updated_time" content="2016-01-28T22:27:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 字符串方法详解">
+<meta name="twitter:description" content="工作经常用到一些字符串的方法，借此机会也总结一下~~
+findfind方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。
+&amp;gt;&amp;gt;&amp;gt; a = &apos;test&apos;
+&amp;gt;&amp;gt;&amp;gt; a.find(&apos;s&apos;)
+2
+&amp;gt;&amp;gt;&amp;gt; 
+find方法其实和列表取步长的方法联用来截取某段需要的字符串。
+&amp;gt;&amp;gt;&amp;gt; a  =">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/20741-106.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> Python 字符串方法详解 | python ning's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">python ning's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feeling">
+          <a href="/feeling" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            心情
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'CkyV4Ux3QZb6T9Hxonnh','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python 字符串方法详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-01T00:00:00-07:00" content="2015-11-01">
+              2015-11-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/01/python_string/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/01/python_string/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/20741-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>工作经常用到一些字符串的方法，借此机会也总结一下~~</p>
+<h3 id="find">find</h3><p>find方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = <span class="string">'test'</span>
+&gt;&gt;&gt; <span class="tag">a</span>.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'s'</span>)</span></span>
+<span class="number">2</span>
+&gt;&gt;&gt; 
+</code></pre><p>find方法其实和列表取步长的方法联用来截取某段需要的字符串。</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
+&gt;&gt;&gt; iwantstring = <span class="tag">a</span>[<span class="tag">a</span>.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'w'</span>)</span></span>:<span class="tag">a</span>.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'r'</span>)</span></span>]
+&gt;&gt;&gt; iwantstring
+<span class="string">'wo'</span>
+&gt;&gt;&gt;
+</code></pre><h3 id="join">join</h3><p>join方法是非常重要的字符串方法，它是split方法的逆方法，用来在队列中添加元素。<strong style="color:red; text-decoration:none;">注意：需要添加的队列元素都必须是字符串。</strong></p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; out = <span class="string">'+'</span>.join(test)
+<span class="prompt">&gt;&gt;</span>&gt; out
+<span class="string">'a+b+c+d'</span>
+</code></pre><h3 id="replace">replace</h3><p>replace方法返回某个字符串的所有匹配项均被替换之后得到的字符串。</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">replace</span><span class="params">(<span class="string">'l'</span>,<span class="string">'t'</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="string">'hetto wortd'</span>
+&gt;&gt;&gt; 
+</code></pre><h3 id="split">split</h3><p>这是个非常重要的字符串方法，它是join的逆方法，用来将字符串按指定字符串元素进行分割并返回列表。<strong style="color:red; text-decoration:none;">注意：如果不提供任何分隔符，程序会把所有空格作为分隔符（空格、制表、换行等）</strong></p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">split</span><span class="params">(<span class="string">'l'</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+[<span class="string">'he'</span>, <span class="string">''</span>, <span class="string">'o wor'</span>, <span class="string">'d'</span>]
+&gt;&gt;&gt; 
+</code></pre><h3 id="strip">strip</h3><p>strip方法返回去除两侧（不包含内部）空格的字符串</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = <span class="string">'   hello world    '</span>
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">strip</span><span class="params">()</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="string">'hello world'</span>
+&gt;&gt;&gt; 
+</code></pre><h3 id="translate">translate</h3><p>　　translate方法和replace方法一样，可以替换字符串中的某些部分，但是和前者不同的是，translate方法只处理单个字符。它的优势在于可以同时进行多个替换，有些时候比replace效率高得多。<br>　　在使用translate转换前，需要先完成一张转换表。转换表中是以某字符替换某字符的对应关系。因为这个表（事实上是字符串）有多达256个项目，我们还是不要自己写了，用string模块里面的maketrans函数就行了。</p>
+<p>maketrans函数接收两个参数：两个等长的字符串，表示第一个字符串中的每个字符都用第二个字符串中相同位置的字符替换。</p>
+<pre><code>&gt;&gt;&gt; from string import maketrans
+&gt;&gt;&gt; <span class="tag">table</span> = <span class="function"><span class="title">maketrans</span><span class="params">(<span class="string">'ho'</span>, <span class="string">'at'</span>)</span></span>
+</code></pre><p>创建这个表后，可以将它用作translate方法的参数，进行字符串的转换：</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">translate</span><span class="params">(table)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="string">'aellt wtrld'</span>
+</code></pre><p>translate的第二个参数是可选的，这个参数是用来指定需要删除的字符。</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">translate</span><span class="params">(table, <span class="string">' '</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="string">'aelltwtrld'</span>
+&gt;&gt;&gt; 
+</code></pre><h3 id="=_生成字符串变量">= 生成字符串变量</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt; test = <span class="string">'hello world'</span>
+<span class="prompt">&gt;&gt;</span>&gt; test
+<span class="string">'hello world'</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="len_字符串长度获取">len 字符串长度获取</h3><pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">len</span><span class="params">(a)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="number">11</span>
+&gt;&gt;&gt; 
+</code></pre><h3 id="+_连接字符串">+ 连接字符串</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt; a = <span class="string">'hello'</span>
+<span class="prompt">&gt;&gt;</span>&gt; b = <span class="string">' '</span>
+<span class="prompt">&gt;&gt;</span>&gt; c = <span class="string">'world'</span>
+<span class="prompt">&gt;&gt;</span>&gt; d = a+b+c
+<span class="prompt">&gt;&gt;</span>&gt; d
+<span class="string">'hello world'</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="cmp_比较字符串">cmp 比较字符串</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt; a = <span class="string">'hello'</span>
+<span class="prompt">&gt;&gt;</span>&gt; b = <span class="string">'world'</span>
+<span class="prompt">&gt;&gt;</span>&gt; c = cmp(a,b)
+<span class="prompt">&gt;&gt;</span>&gt; c
+-<span class="number">1</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="[]_截取字符串">[] 截取字符串</h3><p><strong style="color:red; text-decoration:none;">注意：一定要搞清楚下标是从0开始的，列表右边的元素是不被包含的</strong></p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt;a = <span class="string">'0123456789'</span>
+<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="number">0</span><span class="symbol">:</span><span class="number">3</span>] <span class="comment"># 截取第一位到第三位的字符</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'012'</span>
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="symbol">:</span>] <span class="comment"># 截取字符串的全部字符</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'0123456789'</span> 
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="number">6</span><span class="symbol">:</span>] <span class="comment"># 截取第七个字符到结尾</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'6789'</span> 
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="symbol">:-</span><span class="number">3</span>] <span class="comment"># 截取从头开始到倒数第三个字符之前</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'0123456'</span>
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="number">2</span>] <span class="comment"># 截取第三个字符</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'2'</span> 
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[-<span class="number">1</span>] <span class="comment"># 截取倒数第一个字符</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'9'</span> 
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="symbol">:</span><span class="symbol">:-</span><span class="number">1</span>] <span class="comment"># 创造一个与原字符串顺序相反的字符串</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'9876543210'</span> 
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[-<span class="number">3</span><span class="symbol">:-</span><span class="number">1</span>] <span class="comment"># 截取倒数第三位与倒数第一位之前的字符</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'78'</span> 
+
+<span class="prompt">&gt;&gt;</span>&gt;b = a[-<span class="number">3</span><span class="symbol">:</span>] <span class="comment"># 截取倒数第三位到结尾</span>
+<span class="prompt">&gt;&gt;</span>&gt;b
+<span class="string">'789'</span>
+</code></pre><h3 id="字符串中的搜索和替换">字符串中的搜索和替换</h3><pre><code>S.find(substr, [<span class="operator"><span class="keyword">start</span>, [<span class="keyword">end</span>]])   
+#返回S中出现<span class="keyword">substr</span>的第一个字母的标号，如果S中没有<span class="keyword">substr</span>则返回-<span class="number">1</span>。<span class="keyword">start</span>和<span class="keyword">end</span>作用就相当于在S[<span class="keyword">start</span>:<span class="keyword">end</span>]中搜索
+S.<span class="keyword">index</span>(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])   
+#与find()相同，只是在S中没有<span class="keyword">substr</span>时，会返回一个运行时错误
+S.rfind(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])   
+#返回S中最后出现的<span class="keyword">substr</span>的第一个字母的标号，如果S中没有<span class="keyword">substr</span>则返回-<span class="number">1</span>，也就是说从右边算起的第一次出现的<span class="keyword">substr</span>的首字母标号
+S.rindex(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])
+S.<span class="keyword">count</span>(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])    
+#计算<span class="keyword">substr</span>在S中出现的次数
+S.<span class="keyword">replace</span>(oldstr, newstr, [<span class="keyword">count</span>])    
+#把S中的oldstr替换为newstr，<span class="keyword">count</span>为替换次数。这是替换的通用形式，还有一些函数进行特殊字符的替换
+S.strip([chars]) 
+#把S中前后chars中有的字符全部去掉，可以理解为把S前后chars替换为<span class="keyword">None</span>
+S.lstrip([chars])
+S.rstrip([chars])
+S.expandtabs([tabsize])   
+#把S中的tab字符替换没空格，每个tab替换为tabsize个空格，默认是<span class="number">8</span>个</span>
+</code></pre><h3 id="字符串的分割和组合：">字符串的分割和组合：</h3><pre><code><span class="tag">S</span><span class="class">.split</span>(<span class="attr_selector">[sep, [maxsplit]</span>]) 
+# 以<span class="tag">sep</span>为分隔符，把<span class="tag">S</span>分成一个<span class="tag">list</span>。<span class="tag">maxsplit</span>表示分割的次数。默认的分割符为空白字符
+<span class="tag">S</span><span class="class">.rsplit</span>(<span class="attr_selector">[sep, [maxsplit]</span>])
+<span class="tag">S</span><span class="class">.splitlines</span>(<span class="attr_selector">[keepends]</span>) 
+# 把<span class="tag">S</span>按照行分割符分为一个<span class="tag">list</span>，<span class="tag">keepends</span>是一个<span class="tag">bool</span>值，如果为真每行后而会保留行分割符。
+<span class="tag">S</span><span class="class">.join</span>(<span class="tag">seq</span>) 
+# 把<span class="tag">seq</span>代表的序列──字符串序列，用<span class="tag">S</span>连接起来
+</code></pre><p>字符串的mapping，这一功能包含两个函数：<br>        String.maketrans(from, to) </p>
+<pre><code># 返回一个<span class="number">256</span>个字符组成的翻译表，其中<span class="keyword">from</span>中的字符被一一对应地转换成<span class="keyword">to</span>，所以<span class="keyword">from</span>和<span class="keyword">to</span>必须是等长的。
+S.translate(table[,deletechars]) 
+#  使用上面的函数产后的翻译表，把S进行翻译，并把deletechars中有的字符删掉。需要注意的是，如果S为unicode字符串，那么就不支持 deletechars参数，可以使用把某个字符翻译为None的方式实现相同的功能。此外还可以使用codecs模块的功能来创建更加功能强大的翻译 表。
+</code></pre><h3 id="字符串中字符大小写的变换：">字符串中字符大小写的变换：</h3><pre><code>S.<span class="function"><span class="title">lower</span><span class="params">()</span></span>   #小写
+S.<span class="function"><span class="title">upper</span><span class="params">()</span></span>   #大写
+S.<span class="function"><span class="title">swapcase</span><span class="params">()</span></span>   #大小写互换
+S.<span class="function"><span class="title">capitalize</span><span class="params">()</span></span>   #首字母大写
+String.<span class="function"><span class="title">capwords</span><span class="params">(S)</span></span>  #这是模块中的方法。它把S用<span class="function"><span class="title">split</span><span class="params">()</span></span>函数分开，然后用
+<span class="function"><span class="title">capitalize</span><span class="params">()</span></span>把首字母变成大写，最后用<span class="function"><span class="title">join</span><span class="params">()</span></span>合并到一起
+S.<span class="function"><span class="title">title</span><span class="params">()</span></span>    #只有首字母大写，其余为小写，模块中没有这个方法
+</code></pre><h3 id="字符串去空格及去指定字符">字符串去空格及去指定字符</h3><pre><code>去两边空格：<span class="built_in">str</span>.strip()
+去左空格：<span class="built_in">str</span>.lstrip()
+去右空格：<span class="built_in">str</span>.rstrip()
+去两边字符串：<span class="built_in">str</span>.strip(<span class="string">'d'</span>)，相应的也有lstrip，rstrip
+<span class="built_in">str</span>=<span class="string">' python String function '</span>
+<span class="built_in">print</span> <span class="string">'%s strip=%s'</span> % (<span class="built_in">str</span>,<span class="built_in">str</span>.strip())
+<span class="built_in">str</span>=<span class="string">'python String function'</span>
+<span class="built_in">print</span> <span class="string">'%s strip=%s'</span> % (<span class="built_in">str</span>,<span class="built_in">str</span>.strip(<span class="string">'d'</span>))
+</code></pre><h3 id="字符串编码和解码的函数：">字符串编码和解码的函数：</h3><pre><code>S.encode([encoding,[errors]]) 
+# 其中encoding可以有多种值，比如gb2312 gbk gb18030 bz2 zlib big5 bzse64等都支持。errors默认值为strict，意思是UnicodeError。可能的值还有'ignore', '<span class="operator"><span class="keyword">replace</span><span class="string">', '</span>xmlcharrefre
+S.<span class="keyword">encode</span>([<span class="keyword">encoding</span>,[<span class="keyword">errors</span>]]) 
+# 其中<span class="keyword">encoding</span>可以有多种值，比如gb2312 gbk gb18030 bz2 zlib big5 bzse64等都支持。<span class="keyword">errors</span>默认值为<span class="string">"strict"</span>，意思是UnicodeError。可能的值还有<span class="string">'ignore'</span>, <span class="string">'replace'</span>, <span class="string">'xmlcharrefreplace'</span>, <span class="string">'backslashreplace'</span> 和所有的通过codecs.register_error注册的值。这一部分内容涉及codecs模块，不是特明白
+S.<span class="keyword">decode</span>([<span class="keyword">encoding</span>,[<span class="keyword">errors</span>]])</span>
+</code></pre><h3 id="字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：">字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：</h3><pre><code>S.<span class="function"><span class="title">startwith</span><span class="params">(prefix[,start[,end]])</span></span> #是否以prefix开头
+S.<span class="function"><span class="title">endwith</span><span class="params">(suffix[,start[,end]])</span></span>  #以suffix结尾
+S.<span class="function"><span class="title">isalnum</span><span class="params">()</span></span>  #是否全是字母和数字，并至少有一个字符
+S.<span class="function"><span class="title">isalpha</span><span class="params">()</span></span>  #是否全是字母，并至少有一个字符
+S.<span class="function"><span class="title">isdigit</span><span class="params">()</span></span>  #是否全是数字，并至少有一个字符
+S.<span class="function"><span class="title">isspace</span><span class="params">()</span></span> #是否全是空白字符，并至少有一个字符
+S.<span class="function"><span class="title">islower</span><span class="params">()</span></span> #S中的字母是否全是小写
+S.<span class="function"><span class="title">isupper</span><span class="params">()</span></span> #S中的字母是否便是大写
+S.<span class="function"><span class="title">istitle</span><span class="params">()</span></span> #S是否是首字母大写的
+</code></pre><h3 id="字符串类型转换函数，这几个函数只在string模块中有：">字符串类型转换函数，这几个函数只在string模块中有：</h3><pre><code><span class="built_in">string</span>.atoi(s[,base])  
+<span class="preprocessor"># base默认为<span class="number">10</span>，如果为<span class="number">0</span>,那么s就可以是<span class="number">012</span>或<span class="number">0x23</span>这种形式的字符串，如果是<span class="number">16</span>那么s就只能是<span class="number">0x23</span>或<span class="number">0X12</span>这种形式的字符串</span>
+<span class="built_in">string</span>.atol(s[,base])  
+<span class="preprocessor"># 转成long</span>
+<span class="built_in">string</span>.atof(s[,base])  
+<span class="preprocessor"># 转成float</span>
+</code></pre><h3 id="python字符串与数字的转化">python字符串与数字的转化</h3><pre><code>数字变为字符串 str（）
+字符串变为数字 <span class="keyword">string</span>.atoi（s,[，<span class="keyword">base</span>]) <span class="comment">//base为进制基数</span>
+浮点数转换 <span class="keyword">string</span>.atof(s)
+</code></pre><h3 id="字符串在输出时的对齐：">字符串在输出时的对齐：</h3><pre><code>S.<span class="function"><span class="title">ljust</span><span class="params">(width,[fillchar])</span></span>   #输出<span class="attribute">width</span>个字符，S左对齐，不足部分用fillchar填充，默认的为空格。
+S.<span class="function"><span class="title">rjust</span><span class="params">(width,[fillchar])</span></span>    #右对齐
+S.<span class="function"><span class="title">center</span><span class="params">(width, [fillchar])</span></span>    #中间对齐
+S.<span class="function"><span class="title">zfill</span><span class="params">(width)</span></span>   #把S变成<span class="attribute">width</span>长，并在右对齐，不足部分用<span class="number">0</span>补足
+</code></pre><p> 字符串中的单引号，双引号用 \ 来转义。</p>
+<h3 id="把字符串转换成数字">把字符串转换成数字</h3><pre><code>int(<span class="string">'1234'</span>)
+string模块里有
+import string
+<span class="prompt">&gt;&gt;</span>&gt; a=<span class="string">"12345"</span>
+<span class="prompt">&gt;&gt;</span>&gt; import string
+<span class="prompt">&gt;&gt;</span>&gt; string.atoi(a)
+<span class="number">12345</span>
+<span class="prompt">&gt;&gt;</span>&gt; b=<span class="string">"123.678"</span>
+<span class="prompt">&gt;&gt;</span>&gt; string.atof(b)
+<span class="number">123.678</span>
+</code></pre><h3 id="textwrap_使用_textwrap_模块来格式化字符串的输出">textwrap 使用 textwrap 模块来格式化字符串的输出</h3><pre><code>s = <span class="string">"Look into my eyes, look into my eyes, the eyes, the eyes, \
+the eyes, not around the eyes, don't look around the eyes, \
+look into my eyes, you're under."</span>
+
+&gt;&gt;&gt; import textwrap
+&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">70</span>))
+Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes,
+<span class="keyword">not</span> <span class="keyword">around</span> <span class="keyword">the</span> eyes, don't look <span class="keyword">around</span> <span class="keyword">the</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes,
+you're under.
+
+&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">40</span>))
+Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes,
+<span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">not</span> <span class="keyword">around</span>
+<span class="keyword">the</span> eyes, don't look <span class="keyword">around</span> <span class="keyword">the</span> eyes,
+look <span class="keyword">into</span> <span class="keyword">my</span> eyes, you're under.
+
+&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">40</span>, initial_indent='    '))
+    Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span>
+eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">not</span>
+<span class="keyword">around</span> <span class="keyword">the</span> eyes, don't look <span class="keyword">around</span> <span class="keyword">the</span>
+eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes, you're under.
+
+&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">40</span>, subsequent_indent='    '))
+Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes,
+    <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">not</span>
+    <span class="keyword">around</span> <span class="keyword">the</span> eyes, don't look <span class="keyword">around</span>
+    <span class="keyword">the</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes, you're
+    under.
+</code></pre><p>textwrap 模块对于字符串打印是非常有用的，特别是当你希望输出自动匹配终端大小的时候。 你可以使用 os.get_terminal_size() 方法来获取终端的大小尺寸</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; import os
+<span class="prompt">&gt;&gt;</span>&gt; os.get_terminal_size().columns
+<span class="number">80</span>
+<span class="prompt">&gt;&gt;</span>&gt;
+</code></pre><p>fill() 方法接受一些其他可选参数来控制tab，语句结尾等。 参阅 textwrap.TextWrapper文档 获取更多内容。</p>
+<h3 id="在字符串中处理html和xml">在字符串中处理html和xml</h3><pre><code>你想将HTML或者<span class="built_in">XML</span>实体如 <span class="subst">&amp;</span>entity; 或 <span class="subst">&amp;</span><span class="variable">#code</span>; 替换为对应的文本。 再者，你需要转换文本中特定的字符(比如&lt;, &gt;, 或 <span class="subst">&amp;</span>)。
+</code></pre><p>解决方案</p>
+<p>如果你想替换文本字符串中的 ‘&lt;’ 或者 ‘&gt;’ ，使用 html.escape() 函数可以很容易的完成。比如：</p>
+<pre><code><span class="prompt">&gt;&gt;&gt; </span>s = <span class="string">'Elements are written as "&lt;tag&gt;text&lt;/tag&gt;".'</span>
+<span class="prompt">&gt;&gt;&gt; </span><span class="keyword">import</span> html
+<span class="prompt">&gt;&gt;&gt; </span>print(s)
+Elements are written <span class="keyword">as</span> <span class="string">"&lt;tag&gt;text&lt;/tag&gt;"</span>.
+<span class="prompt">&gt;&gt;&gt; </span>print(html.escape(s))
+Elements are written <span class="keyword">as</span> &amp;quot;&amp;lt;tag&amp;gt;text&amp;lt;/tag&amp;gt;&amp;quot;.
+
+<span class="prompt">&gt;&gt;&gt; </span><span class="comment"># Disable escaping of quotes</span>
+<span class="prompt">&gt;&gt;&gt; </span>print(html.escape(s, quote=<span class="keyword">False</span>))
+Elements are written <span class="keyword">as</span> <span class="string">"&amp;lt;tag&amp;gt;text&amp;lt;/tag&amp;gt;"</span>.
+&gt;&gt;&gt;
+</code></pre><p>如果你正在处理的是ASCII文本，并且想将非ASCII文本对应的编码实体嵌入进去， 可以给某些I/O函数传递参数 errors=’xmlcharrefreplace’ 来达到这个目。比如：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'Spicy Jalapeño'</span>
+<span class="prompt">&gt;&gt;</span>&gt; s.encode(<span class="string">'ascii'</span>, errors=<span class="string">'xmlcharrefreplace'</span>)
+b<span class="string">'Spicy Jalape&amp;#241;o'</span>
+<span class="prompt">&gt;&gt;</span>&gt;
+</code></pre><p>为了替换文本中的编码实体，你需要使用另外一种方法。 如果你正在处理HTML或者XML文本，试着先使用一个合适的HTML或者XML解析器。 通常情况下，这些工具会自动替换这些编码值，你无需担心。</p>
+<p>有时候，如果你接收到了一些含有编码值的原始文本，需要手动去做替换， 通常你只需要使用HTML或者XML解析器的一些相关工具函数/方法即可。比如：</p>
+<pre><code>&gt;&gt;&gt; s = <span class="string">'Spicy &amp;quot;Jalape&amp;#241;o&amp;quot.'</span>
+&gt;&gt;&gt; from <span class="tag">html</span><span class="class">.parser</span> import HTMLParser
+&gt;&gt;&gt; <span class="tag">p</span> = <span class="function"><span class="title">HTMLParser</span><span class="params">()</span></span>
+&gt;&gt;&gt; <span class="tag">p</span>.<span class="function"><span class="title">unescape</span><span class="params">(s)</span></span>
+<span class="string">'Spicy "Jalapeño".'</span>
+&gt;&gt;&gt;
+&gt;&gt;&gt; t = <span class="string">'The prompt is &amp;gt;&amp;gt;&amp;gt;'</span>
+&gt;&gt;&gt; from xml<span class="class">.sax</span><span class="class">.saxutils</span> import unescape
+&gt;&gt;&gt; <span class="function"><span class="title">unescape</span><span class="params">(t)</span></span>
+<span class="string">'The prompt is &gt;&gt;&gt;'</span>
+&gt;&gt;&gt;
+</code></pre><p>讨论</p>
+<p>在生成HTML或者XML文本的时候，如果正确的转换特殊标记字符是一个很容易被忽视的细节。 特别是当你使用 print() 函数或者其他字符串格式化来产生输出的时候。 使用像 html.escape() 的工具函数可以很容易的解决这类问题。</p>
+<p>如果你想以其他方式处理文本，还有一些其他的工具函数比如 xml.sax.saxutils.unescapge() 可以帮助你。 然而，你应该先调研清楚怎样使用一个合适的解析器。 比如，如果你在处理HTML或XML文本， 使用某个解析模块比如 html.parse 或 xml.etree.ElementTree 已经帮你自动处理了相关的<br>替换细节。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/01/python_PEP8/" rel="next" title="PEP8 Python 编码规范整理">
+                <i class="fa fa-chevron-left"></i> PEP8 Python 编码规范整理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/04/python_re/" rel="prev" title="Python正则表达式">
+                Python正则表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/01/python_string/"
+     data-title="Python 字符串方法详解"
+     data-content=""
+     data-url="http://python-ning.github.io/2015/11/01/python_string/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <br />
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/01/python_string/"
+           data-title="Python 字符串方法详解" data-url="http://python-ning.github.io/2015/11/01/python_string/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="python-ning" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">python-ning</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/python-ning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/pythonning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yuan-tong-tian" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.speedycloud.cn/" target="_blank">迅达云成</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devtan.xyz/" target="_blank">Dev-Tan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.liuwuba.com/" target="_blank">河间</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">2.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">3.</span> <span class="nav-text">replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split"><span class="nav-number">4.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strip"><span class="nav-number">5.</span> <span class="nav-text">strip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#translate"><span class="nav-number">6.</span> <span class="nav-text">translate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#=_生成字符串变量"><span class="nav-number">7.</span> <span class="nav-text">= 生成字符串变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#len_字符串长度获取"><span class="nav-number">8.</span> <span class="nav-text">len 字符串长度获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#+_连接字符串"><span class="nav-number">9.</span> <span class="nav-text">+ 连接字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmp_比较字符串"><span class="nav-number">10.</span> <span class="nav-text">cmp 比较字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#[]_截取字符串"><span class="nav-number">11.</span> <span class="nav-text">[] 截取字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串中的搜索和替换"><span class="nav-number">12.</span> <span class="nav-text">字符串中的搜索和替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的分割和组合："><span class="nav-number">13.</span> <span class="nav-text">字符串的分割和组合：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串中字符大小写的变换："><span class="nav-number">14.</span> <span class="nav-text">字符串中字符大小写的变换：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串去空格及去指定字符"><span class="nav-number">15.</span> <span class="nav-text">字符串去空格及去指定字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串编码和解码的函数："><span class="nav-number">16.</span> <span class="nav-text">字符串编码和解码的函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值："><span class="nav-number">17.</span> <span class="nav-text">字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串类型转换函数，这几个函数只在string模块中有："><span class="nav-number">18.</span> <span class="nav-text">字符串类型转换函数，这几个函数只在string模块中有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python字符串与数字的转化"><span class="nav-number">19.</span> <span class="nav-text">python字符串与数字的转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串在输出时的对齐："><span class="nav-number">20.</span> <span class="nav-text">字符串在输出时的对齐：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把字符串转换成数字"><span class="nav-number">21.</span> <span class="nav-text">把字符串转换成数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#textwrap_使用_textwrap_模块来格式化字符串的输出"><span class="nav-number">22.</span> <span class="nav-text">textwrap 使用 textwrap 模块来格式化字符串的输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在字符串中处理html和xml"><span class="nav-number">23.</span> <span class="nav-text">在字符串中处理html和xml</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">python-ning</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"python-ning"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

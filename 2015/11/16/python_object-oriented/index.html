@@ -1,0 +1,1018 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='#' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="python ning's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="面向对象与面向过程面向对象编程从某种程度上来说是从面向过程进化而来的一种编程方法，下面通过例子，对比： 
+面向过程：
+test_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+test_list2 = [2, 4, 6, 8, 10]
+lists = []
+for i in test_list1:
+    for j in test_list2:
+        if i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python面向对象编程">
+<meta property="og:url" content="http://python-ning.github.io/2015/11/16/python_object-oriented/index.html">
+<meta property="og:site_name" content="python ning's blog">
+<meta property="og:description" content="面向对象与面向过程面向对象编程从某种程度上来说是从面向过程进化而来的一种编程方法，下面通过例子，对比： 
+面向过程：
+test_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+test_list2 = [2, 4, 6, 8, 10]
+lists = []
+for i in test_list1:
+    for j in test_list2:
+        if i">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/290735-106.jpg">
+<meta property="og:updated_time" content="2015-12-30T22:45:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python面向对象编程">
+<meta name="twitter:description" content="面向对象与面向过程面向对象编程从某种程度上来说是从面向过程进化而来的一种编程方法，下面通过例子，对比： 
+面向过程：
+test_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+test_list2 = [2, 4, 6, 8, 10]
+lists = []
+for i in test_list1:
+    for j in test_list2:
+        if i">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/290735-106.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> Python面向对象编程 | python ning's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">python ning's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feeling">
+          <a href="/feeling" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            心情
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'CkyV4Ux3QZb6T9Hxonnh','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python面向对象编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-16T00:00:00-08:00" content="2015-11-16">
+              2015-11-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/16/python_object-oriented/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/16/python_object-oriented/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/290735-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="面向对象与面向过程">面向对象与面向过程</h3><p>面向对象编程从某种程度上来说是从面向过程进化而来的一种编程方法，下面通过例子，对比： </p>
+<p>面向过程：</p>
+<pre><code>test_list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+test_list2 = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]
+lists = []
+<span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> test_list1:
+    <span class="keyword">for</span> j <span class="keyword">in</span> test_list2:
+        <span class="keyword">if</span> <span class="tag">i</span> == j:
+            <span class="keyword">if</span> <span class="function"><span class="title">len</span><span class="params">(test_list1)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(test_list2)</span></span>:
+                lists.<span class="function"><span class="title">append</span><span class="params">(i)</span></span>
+            elif <span class="function"><span class="title">len</span><span class="params">(test_list2)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(test_list1)</span></span>:
+                lists.<span class="function"><span class="title">append</span><span class="params">(j)</span></span>
+print lists
+</code></pre><p>面向对象：</p>
+<pre><code>class BingJi:
+
+    def __init__(self, test_list1, test_list2):
+        self<span class="class">.test_list1</span> = test_list1
+        self<span class="class">.test_list2</span> = test_list2
+
+    def <span class="function"><span class="title">puls</span><span class="params">(self)</span></span>:
+        lists = []
+        <span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> self<span class="class">.test_list1</span>:
+            <span class="keyword">for</span> j <span class="keyword">in</span> self<span class="class">.test_list2</span>:
+                <span class="keyword">if</span> <span class="tag">i</span> == j:
+                    <span class="keyword">if</span> <span class="function"><span class="title">len</span><span class="params">(self.test_list1)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(self.test_list2)</span></span>:
+                        lists.<span class="function"><span class="title">append</span><span class="params">(i)</span></span>
+                    elif <span class="function"><span class="title">len</span><span class="params">(self.test_list2)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(self.test_list1)</span></span>:
+                        lists.<span class="function"><span class="title">append</span><span class="params">(j)</span></span>
+        return lists
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    test = <span class="function"><span class="title">BingJi</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>])</span></span>
+    print test.<span class="function"><span class="title">puls</span><span class="params">()</span></span>
+</code></pre><p>这是一个对两个列表取并集的功能的面向对象编程和面向过程编程，相信大家对此有些理解了，对于两者，他的操作对象主体是不同的，对于面向过程，他的操作主体是由函数或者过程进行加工和展现，对于面向对象，是在对象的方法(函数)中进行加工与展现的。也就是数据在对象之间进行传递和交互，最后仍然在对象的方法中进行加工与展现，说白了，面向对象呢，就是结构化了，有很多前辈跟我说这样一句话，每个函数只干一件事，就是对象中每个函数(方法)都去完成一项逻辑操作，当代码量很大时，便于维护与修改，想想看，当技术总监给你一个任务，让你去改某项功能时，如果是面向过程的，你就需要修改大量的代码，但如果是面向对象呢，你只需要修改部分函数(方法)的代码就可以了！</p>
+<h3 id="什么是对象？">什么是对象？</h3><p>自然界中，万物皆对象，你所看到的都是对象(是不是很开心，妈妈再也不催我相亲啦^-^)<br>编程中是计算机为解决某个领域问题所使用的事物(自然界中事物的模型化)<br>比如说人是一个对象，那么，人的眼睛，鼻子，嘴巴就是属性(特征)，吃，跑，走就是方法。在python中，类就是对象，以关键字class来定义一个类。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Test</span><span class="params">(object)</span>:</span>
+    <span class="keyword">pass</span>
+</code></pre><p>类的名字一定要首字母大写,这是代码规范，详情请看<a href="http://python-ning.github.io/2015/11/22/python_PEP8/">PEP8</a>，class后边的括号里是参数，如果有父类，可以写父类，默认参数object，或者直接就不写:</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:
+    <span class="typename">pass</span></span>
+</code></pre><h3 id="实例化">实例化</h3><p>实例化类就是建立真实事物，就好你有一套人民币模板，那你就可以印钞票了(当然不可以犯法哟$-$),那么每张钞票就是每次实例。<br>类实例化需要两个步骤：<br>1.调用__new__()方法创建实例，__new__()方法自动从object继承<br>2.调用__init__()方法对其初始化，__init__()方法在类中定义<br>这两个方法的的调用在类实例化的过程中是在背后默默进行的，我们是看不到他是什么时候调用的以及如何调用的，你实例化后自动在后台进行完了。</p>
+<h3 id="类的说明(docstring)">类的说明(docstring)</h3><p>当我们定义一个类的时候，肯定是有目的的，因此在定义类的时候一般给添加一个类的说明，一般紧跟类名行(hang)之后，以三引号包围的字符串。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+    <span class="string">'''
+    我是类的说明
+    '''</span>
+    <span class="keyword">pass</span>
+</code></pre><p>如何来查看类的说明：<br>可以通过help(实例名)或者实例名.__doc__来查看类的说明</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+    <span class="string">'''
+    我是类的说明
+    '''</span>
+    <span class="keyword">pass</span>
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    test = Test()
+    <span class="keyword">print</span> help(test)
+    <span class="keyword">print</span> test.__doc__
+</code></pre><h3 id="类的属性">类的属性</h3><h2 id="实例属性:">实例属性:</h2><p>类被实例化以后才会具有的属性叫做实例属性，直接使用即定义：self.&lt;属性名&gt;,self用来代表类的实例的：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
+        self.a = <span class="number">1</span>
+        self.b = <span class="number">10</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
+        <span class="keyword">print</span> <span class="string">'a:'</span>, self.a
+        <span class="keyword">print</span> <span class="string">'b:'</span>, self.b
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    test = Test()
+    test.method()
+</code></pre><p>在类的外面用实例名.属性名的方式定义和引用，一般不建议和使用这种方式，这种方式会导致程序混乱：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
+        self.a = <span class="number">1</span>
+        self.b = <span class="number">10</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
+        <span class="keyword">print</span> <span class="string">'a:'</span>, self.a
+        <span class="keyword">print</span> <span class="string">'b:'</span>, self.b
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    test = Test()
+    test.method()
+    test.size = <span class="string">'12'</span>
+    <span class="keyword">print</span> test.size
+</code></pre><p>相同类的实例其实例属性是不相关的：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
+        self.a = <span class="number">1</span>
+        self.b = <span class="number">10</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
+        <span class="keyword">print</span> <span class="string">'a:'</span>, self.a
+        <span class="keyword">print</span> <span class="string">'b:'</span>, self.b
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    test1 = Test()
+    test2 = Test()
+    test1.a = <span class="number">1000</span>
+    test2.a = <span class="number">9999</span>
+    <span class="keyword">print</span> <span class="string">'*'</span> * <span class="number">15</span> + <span class="string">'修改实例test1'</span> + <span class="string">'*'</span> * <span class="number">15</span>
+    test1.method()
+    <span class="keyword">print</span> <span class="string">'-'</span> * <span class="number">15</span> + <span class="string">'修改实例test2'</span> + <span class="string">'-'</span> * <span class="number">15</span>
+    test2.method()
+</code></pre><p>一般不建议在<strong>init</strong>()方法之外创建和初始化实例属性<br>也不推荐类外定义和修改，修改可以单独定义方法。(先将注释1打开运行看结果，再将注释2、3打开运行看结果)</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
+        self.a = <span class="number">1</span>
+        self.b = <span class="number">10</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
+        self.c = <span class="number">6666</span>
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    test = Test()
+    <span class="keyword">print</span> test.a
+    <span class="keyword">print</span> test.b
+    <span class="comment"># print test.c</span>
+    <span class="comment"># test.method()</span>
+    <span class="comment"># print test.c</span>
+</code></pre><h2 id="类属性">类属性</h2><p>类定义后就存在，并且不需要实例化就可以被调用，类属性使得相同类的不同示例共同持有相同变量</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+    cla = <span class="string">'ning'</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
+        self.a = <span class="number">1</span>
+        self.b = <span class="number">10</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
+        <span class="keyword">print</span> Test.cla
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    test = Test()
+    test.method()
+</code></pre><p>当在类外对类属性进行修改时，会同时影响每个实例的类属性：</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+class <span class="type">Test</span>:
+    cla = 'ning'
+
+    def __init__(self):
+        self.a = <span class="number">1</span>
+        self.b = <span class="number">10</span>
+
+    def <span class="keyword">method</span>(self):
+        print <span class="type">Test</span>.cla
+
+<span class="keyword">if</span> __name__ == '__main__':
+    test1 = <span class="type">Test</span>()
+    test1.<span class="keyword">method</span>()
+    test2 = <span class="type">Test</span>()
+    test2.<span class="keyword">method</span>()
+    <span class="type">Test</span>.cla = <span class="number">123</span>
+    test1.<span class="keyword">method</span>()
+    test2.<span class="keyword">method</span>()
+</code></pre><h2 id="私有属性">私有属性</h2><p>从上述来看，大家会想了，那我能在类外修改属性，是不是有点不安全？确实会有吧，那我们怎么解决呢，就是私有属性了，我们使用__开头的变量名加以标志，这样就只有类对象自己能访问了，或者使用_开头的变量名加以标志，不过这种感觉没啥用，就是给程序员自己看的，他加了一个_跟没加没区别，还是能在外边修改类属性。</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="comment"># coding:utf-8</span>
+class <span class="type">Test</span>:
+
+    def __init__(self):
+        self.__test = <span class="number">0</span>
+
+    def <span class="keyword">method</span>(self):
+        print self.__test
+
+<span class="keyword">if</span> __name__ == '__main__':
+    test = <span class="type">Test</span>()
+    test.<span class="keyword">method</span>()
+    test.__test = <span class="number">99</span>
+    test.<span class="keyword">method</span>()
+    <span class="comment"># print test.__test</span>
+</code></pre><p>当我运行被注释的这行代码时，会发现__test被修改了，变成了99，不是说不能修改吗？其实并没有修改私有属性__test，它其实并不是类里的那个类属性，我们说过，私有属性在类的外部是不能被修改的，在python内部，当你定义了__test这个私有属性后，python会自动对这个属性名进行修改，在外部已经看不到了，当我们在类外实例化修改的时候，他会在类内重新定义一个__test属性，所以他能修改了。</p>
+<h2 id="特殊属性">特殊属性</h2><p>类当中用来保存的元数据(元数据（Metadata），又称中介数据、中继数据，为描述数据的数据（data about data），主要是描述数据属性（property）的信息，用来支持如指示存储位置、历史数据、资源查找、文件记录等功能。)</p>
+<p>__doc__前边讲过<br>__name__类的名称<br>__dict__用来保存实例属性的所有属性名以及它的值的，类似一个字典。<br>__module__是用来保存他所在的模块名<br>__base__用来保存类的父类</p>
+<h3 id="面向对象的三大特点">面向对象的三大特点</h3><p>封装、继承、多态</p>
+<h3 id="什么是封装呢？为啥封装？">什么是封装呢？为啥封装？</h3><p>封装你就可以理解为打包程序代码，把什么打包呢？就是对象的方法和属性，就是把人的眼睛、鼻子、嘴巴等特征，以及吃、跑、走等方法进行打包。<br>那为啥要封装呢？我封装了我的代码，外界就只能使用他，而无法看到他以及改变他。哪个新闻联播主持人也不想被看到下身穿着大裤衩子直播~~</p>
+<h3 id="什么是继承，继承的好处是什么？">什么是继承，继承的好处是什么？</h3><p>继承呢，表面意思你可以这样理解，假如某建林持续多年成为某国首富，开心死了，那么，某达的财产就都让他的儿子某思聪继承了(这样说不会被打击报复吧，我只是一个穷屌丝-_-)，某建林创造的财富是不是某思聪拥有了？对，代码中，子类就继承了父类的方法和属性，实现了代码的重(chong)用。</p>
+<p>class </p>
+<h3 id="什么是多态？多态的好处？">什么是多态？多态的好处？</h3><p>多态呢，就是子类可以继承父类的方法和属性，还可以通过自定义去修改父类的属性和方法；同时呢，这里提及一个概念叫鸭子类型(duck typing),这个概念的名字来源于由James Whitcomb Riley提出的鸭子测试,当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子，在鸭子类型中，关注的不是类型本身，而是他是如何使用的，而有些语言是需要接口来实现的。</p>
+<p>累了  明天写</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/13/python_built-in_function/" rel="next" title="Python 的内建函数">
+                <i class="fa fa-chevron-left"></i> Python 的内建函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/17/python_modules_datetime/" rel="prev" title="Python datetime模块">
+                Python datetime模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/16/python_object-oriented/"
+     data-title="Python面向对象编程"
+     data-content=""
+     data-url="http://python-ning.github.io/2015/11/16/python_object-oriented/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <br />
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/16/python_object-oriented/"
+           data-title="Python面向对象编程" data-url="http://python-ning.github.io/2015/11/16/python_object-oriented/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="python-ning" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">python-ning</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/python-ning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/pythonning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yuan-tong-tian" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.speedycloud.cn/" target="_blank">迅达云成</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devtan.xyz/" target="_blank">Dev-Tan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.liuwuba.com/" target="_blank">河间</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象与面向过程"><span class="nav-number">1.</span> <span class="nav-text">面向对象与面向过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是对象？"><span class="nav-number">2.</span> <span class="nav-text">什么是对象？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例化"><span class="nav-number">3.</span> <span class="nav-text">实例化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的说明(docstring)"><span class="nav-number">4.</span> <span class="nav-text">类的说明(docstring)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的属性"><span class="nav-number">5.</span> <span class="nav-text">类的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例属性:"><span class="nav-number"></span> <span class="nav-text">实例属性:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类属性"><span class="nav-number"></span> <span class="nav-text">类属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有属性"><span class="nav-number"></span> <span class="nav-text">私有属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊属性"><span class="nav-number"></span> <span class="nav-text">特殊属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的三大特点"><span class="nav-number">1.</span> <span class="nav-text">面向对象的三大特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是封装呢？为啥封装？"><span class="nav-number">2.</span> <span class="nav-text">什么是封装呢？为啥封装？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是继承，继承的好处是什么？"><span class="nav-number">3.</span> <span class="nav-text">什么是继承，继承的好处是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是多态？多态的好处？"><span class="nav-number">4.</span> <span class="nav-text">什么是多态？多态的好处？</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">python-ning</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"python-ning"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[python ning's blog]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://python-ning.github.io/"/>
+  <updated>2016-05-14T22:14:50.000Z</updated>
+  <id>http://python-ning.github.io/</id>
+  
+  <author>
+    <name><![CDATA[python-ning]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[mac安装mysql]]></title>
+    <link href="http://python-ning.github.io/2016/05/14/mysql_mac_install_question/"/>
+    <id>http://python-ning.github.io/2016/05/14/mysql_mac_install_question/</id>
+    <published>2016-05-14T07:00:00.000Z</published>
+    <updated>2016-05-14T22:14:50.000Z</updated>
+    <content type="html"><![CDATA[<p>mac下安装mysql，遇到了一个小波折，折磨了我一天，最后百度翻了五页google了一页解决了，也借此机会总结一下。</p>
+<p>首先墨迹一下，不管什么语言，在程序员的路上，必须要学会自己搜答案，编程行业不像上学考试作弊，查答案不犯法，至于能不能查到正确答案就靠自己了，遇到问题先百度，再google，再bing等sov5.com听说也不错，曾经听一个大牛说过，以前编程问题没有地方可以搜，所以只能翻文档看书籍，也就只能这个专业的大学生入这行，感谢上天让我生在一个搜索引擎以及共享知识的互联网时代。</p>
+<p>你一定要不间断的看书，书不能听，而且一定要对没听说过的新技术信息有敏锐嗅觉（哪怕用不上还能吹牛逼不是）</p>
+<p>多跟大牛聊聊天，大牛的经验里处处是不平凡，他可能一些简单的问题忘记了，但是大牛都是脑子里有做道菜的全部步骤的。</p>
+<p><code style="color: red">注意</code> mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode</p>
+<p>mysql 在mac上安装有两种方式：</p>
+<h3 id="1-Homebrew安装mysql">1.Homebrew安装mysql</h3><p>Homebrew类似ubuntu系统的apt-get包管理，命令也基本一样。</p>
+<h2 id="安装Homebrew">安装Homebrew</h2><pre><code>ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span>
+</code></pre><h2 id="Homebrew基本命令">Homebrew基本命令</h2><pre><code>$ brew
+Example usage:
+ brew [info | home | options ] [FORMULA...]
+ brew install FORMULA...   <span class="comment">// 安装包</span>
+ brew uninstall FORMULA... <span class="comment">// 卸载包</span>
+ brew <span class="keyword">search</span> [foo]         <span class="comment">// 搜索包</span>
+ brew <span class="keyword">list</span> [FORMULA...]    <span class="comment">// 显示已经安装的软件列表</span>
+ brew <span class="keyword">update</span>               <span class="comment">// 更新brew</span>
+ brew upgrade [FORMULA...] <span class="comment">// 更新包，不跟包名就是更新所有包</span>
+ brew pin/unpin [FORMULA...]
+Troubleshooting:
+ brew doctor
+ brew install -vd FORMULA
+ brew [--env | --config]
+Brewing:
+ brew create [URL [--<span class="keyword">no</span>-fetch]]
+ brew <span class="keyword">edit</span> [FORMULA...]
+ <span class="keyword">open</span> https:<span class="comment">//github.com/Homebrew/homebrew/wiki/Formula-Cookbook</span>
+Further <span class="keyword">help</span>:
+ <span class="keyword">man</span> brew
+ brew home
+</code></pre><h2 id="安装mysql">安装mysql</h2><pre><code><span class="label">sudo</span> <span class="keyword">brew </span>install mysql
+</code></pre><h2 id="mysql启动，重启，关闭服务">mysql启动，重启，关闭服务</h2><pre><code><span class="label">sudo</span> <span class="keyword">brew </span>services start mysql
+<span class="label">sudo</span> <span class="keyword">brew </span>services restart mysql
+<span class="label">sudo</span> <span class="keyword">brew </span>services stop mysql
+</code></pre><h2 id="常遇问题1">常遇问题1</h2><p>当mysql安装好，启动了服务后，我们<code style="color: red">mysql -u root -p</code>(mysql默认密码为空)时，可能会出现以下报错</p>
+<pre><code>Error: Can't connect <span class="keyword">to</span> <span class="keyword">local</span> MySQL server <span class="keyword">through</span> socket '/tmp/mysql.sock' (<span class="number">111</span>)
+</code></pre><h2 id="解决办法1">解决办法1</h2><p>1.查找电脑上所有的mysql都在哪里</p>
+<pre><code>sudo <span class="built_in">find</span> / -<span class="built_in">name</span> mysql 
+</code></pre><p>2.找出mysql安装的目录，给权限</p>
+<pre><code><span class="tag">chown</span> <span class="tag">-R</span> <span class="tag">mysql</span><span class="pseudo">:mysql</span> <span class="tag">xxx</span>你的<span class="tag">mysql</span>目录<span class="tag">xxx</span>
+</code></pre><p>实在不知道，你就把所有搜出来的mysql目录文件都给权限，前提是你自己的测试开发环境，可别在服务器上这么搞。</p>
+<h3 id="2-dmg包双击安装">2.dmg包双击安装</h3><p>在mysql官网选downloads，选Community（社区版的意思），点这个<code style="color: red">MySQL Community Server (GPL)</code></p>
+<p>下载那个dmg后缀名的包下载下来点点点，下一步就好了，安装好以后他会给你个初始登陆密码记录下来，然后他会在你的设置里多一个mysql的图标，点击进入后可以开启关闭mysql服务</p>
+<p>基本就安装好了，也可能会有1遇到的问题，按上述方法改就好了。</p>
+<p>ps：贴图太麻烦，还有好多事要做，我要速度学成为大牛。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>mac下安装mysql，遇到了一个小波折，折磨了我一天，最后百度翻了五页google了一页解决了，也借此机会总结一下。</p>
+<p>首先墨迹一下，不管什么语言，在程序员的路上，必须要学会自己搜答案，编程行业不像上学考试作弊，查答案不犯法，至于能不能查到正确答案就靠自己了，]]>
+    </summary>
+    
+      <category term="mysql" scheme="http://python-ning.github.io/tags/mysql/"/>
+    
+      <category term="mysql" scheme="http://python-ning.github.io/categories/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[读改善python程序的91个建议总结]]></title>
+    <link href="http://python-ning.github.io/2016/04/18/reading_comprehension_python_1/"/>
+    <id>http://python-ning.github.io/2016/04/18/reading_comprehension_python_1/</id>
+    <published>2016-04-18T07:00:00.000Z</published>
+    <updated>2016-05-11T21:49:08.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="建议一_字符串格式化，让可读性高一些">建议一 字符串格式化，让可读性高一些</h3><pre><code><span class="built_in">print</span> <span class="string">'Hello %S'</span> %(<span class="string">'Chen'</span>,)
+=<span class="function">=&gt;</span> <span class="built_in">print</span> <span class="string">'Hello %(name)s!'</span> %{<span class="string">'name'</span>: <span class="string">'Chen'</span>}
+
+
+value = {<span class="string">'greet'</span>: <span class="string">'Hello world'</span>, <span class="string">'language'</span>: <span class="string">'Python'</span>}
+<span class="built_in">print</span> <span class="string">'%(greet)s from %(language)s.'</span> % value
+=<span class="function">=&gt;</span>  <span class="built_in">print</span> <span class="string">'{greet} from {language}'</span>.format(greet = <span class="string">'Hello world'</span>, language = Python<span class="string">''</span>)
+</code></pre><h3 id="建议二_命名规则">建议二 命名规则</h3><p>1.避免只用大小写来区分不同的对象<br>2.避免使用容易引起混淆的名称比如（0o混淆，l1混淆）<br>3.不要害怕过长的变量名。</p>
+<p>安装pep8</p>
+<pre><code>pip <span class="keyword">install</span> -U pep8
+</code></pre><p>检测代码</p>
+<pre><code>pep8 --first optparse<span class="class">.py</span> 
+</code></pre><p>显示详细不符合pep8的代码</p>
+<pre><code><span class="comment">pep8</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">show</span><span class="literal">-</span><span class="comment">source</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">show</span><span class="literal">-</span><span class="comment">pep8</span> <span class="comment">test</span><span class="string">.</span><span class="comment">py</span>
+</code></pre><h3 id="建议六_编写函数的4个原则">建议六 编写函数的4个原则</h3><p>1.函数设计要尽量短小，嵌套层次不宜过深，if elif while for 等循环判断的，最好能控制在3层以内。<br>2.函数声明应该做到合理、简单、易于使用，参数个数不宜过多，。<br>3.函数参数设计应该考虑向下兼容，比如一个函数，多加了一个参数，来记录功能的日志，要加一个默认参数，便于兼容。<br>4.一个函数只干一件事，尽量保证函数语句粒度的一致性，<br>python中函数设计的好习惯好包括：不要再函数中定义可变对象作为默认值，使用异常替换返回错误，保证通过单元测试等。</p>
+<h3 id="建议七_将常量集中到一个文件">建议七 将常量集中到一个文件</h3><p>通过命名风格来提醒使用者该变量代表的意义为常量，如常量名所有字母大写，用下划线连接各个单词，如MAX_OVERFLOW. 然而这种方式并没有实现真正的常量，其对应的值仍然可以改变，这只是一种约定俗成的风格。</p>
+<p>通过自定义的类实现常量功能。这要求符合”命名全部为大写”和”值一旦绑定便不可再修改”这两个条件。下面是一种较为常见的解决方法，他通过对常量对应的值进行修改时或者命名不符合规范时抛出异常来满足以上变量的两个条件。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">_const</span>:</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">ConstError</span><span class="params">(TypeError)</span>:</span> <span class="keyword">pass</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">ConstCaseerror</span><span class="params">(ConstError)</span>:</span> <span class="keyword">pass</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,name, value)</span>:</span>
+        <span class="keyword">if</span> self.__dict__.has_key(name):
+            <span class="keyword">raise</span> self.ConstError, <span class="string">"Can't change const.%s"</span> % name
+        <span class="keyword">if</span> <span class="keyword">not</span> name.isupper():
+            <span class="keyword">raise</span> self.ConstError, <span class="string">"const name '%s' is not all uppercase"</span> % name
+        self.__dict__[name] = value
+<span class="keyword">import</span> sys
+sys.modules[__name__] = _const()
+</code></pre><p>如果上面的代码对应的模块名为const，使用的时候只需要import const,便可以直接定义常量了， 如以下代码:</p>
+<pre><code><span class="keyword">import</span> <span class="keyword">const</span>
+<span class="keyword">const</span>.COMPANY = <span class="string">"IBM"</span>
+</code></pre><h3 id="利用assert语句来发现问题">利用assert语句来发现问题</h3><p>断言在很多语言中都存在，在python中的语法是：</p>
+<pre><code>assert expressio<span class="label">n1</span> [<span class="string">","</span> expressio<span class="label">n2</span>]
+</code></pre><p>其中计算expression1的值会返回True或者False， 当值为False的时候会引发AssertionError，而expression2是可选的，常用来传递具体的异常信息。</p>
+<p>python -O test.py 便可以禁用断言</p>
+<p>1.不要滥用，这是使用断言最基本的原则。<br>2.如果python本身的异常能够处理就不要再使用断言。<br>3.不要使用断言来检查用户的输入<br>4.在函数调用后，当需要确认返回值是否合理时可以使用断言<br>5.当条件是业务逻辑继续下去的先决条件时可以使用断言</p>
+<h3 id="建议九_数据交换值的时候不推荐使用中间变量">建议九 数据交换值的时候不推荐使用中间变量</h3><p>   c = a<br>   a = b<br>   b = c </p>
+<p>   ==&gt; a,b = b,a</p>
+<p>运行两者效率不一样：</p>
+<pre><code>In [<span class="number">1</span>]: from timeit import Timer
+
+In [<span class="number">2</span>]: <span class="function"><span class="title">Timer</span><span class="params">(<span class="string">'c = x;x=y;y=c'</span>,<span class="string">'x = 2; y=3'</span>)</span></span>
+Out[<span class="number">2</span>]: &lt;timeit<span class="class">.Timer</span> instance at <span class="number">0</span>x7f58a8273830&gt;
+
+In [<span class="number">3</span>]: <span class="function"><span class="title">Timer</span><span class="params">(<span class="string">'c = x;x=y;y=c'</span>,<span class="string">'x = 2; y=3'</span>)</span></span>.<span class="function"><span class="title">timeit</span><span class="params">()</span></span>
+Out[<span class="number">3</span>]: <span class="number">0.03874492645263672</span>
+
+In [<span class="number">4</span>]: <span class="function"><span class="title">Timer</span><span class="params">(<span class="string">'x,y = y,x'</span>, <span class="string">'x=2;y=3'</span>)</span></span>.<span class="function"><span class="title">timeit</span><span class="params">()</span></span>
+Out[<span class="number">4</span>]: <span class="number">0.03464508056640625</span>
+
+In [<span class="number">5</span>]: 
+</code></pre><h3 id="建议十_充分利用_Lazy_evaluation的特性">建议十 充分利用 Lazy evaluation的特性</h3><p>1.避免不必要的计算，带来性能上的提升，比如 if x and y ,在x为false的情况下y表达式的值不再计算，二对于if x or y, 当x的值为true的时候将直接返回,不再计算y的值。所以当我们循环一个比较大的数据，先从可能性比较高的一方去循环他，从而节省了时间，提高了效率</p>
+<ol>
+<li><p>节省空间，使得无限循环的数据结构成为可能。python中最典型的使用延迟计算的例子就是生成器表达式了，它仅在每次需要计算的时候通过yield产生所需要的元素。</p>
+<p> def fib():</p>
+<pre><code><span class="tag">a</span>, <span class="tag">b</span> = <span class="number">0</span>, <span class="number">1</span>
+while True:
+    yield <span class="tag">a</span> 
+    <span class="tag">a</span>, <span class="tag">b</span> = <span class="tag">b</span>, <span class="tag">a</span> + b
+</code></pre><blockquote>
+<blockquote>
+<blockquote>
+<p>from itertools import islice<br>print list(islice(fib(), 5))<br> [0, 1, 1, 2, 3]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<h3 id="建议12_不推荐使用type()">建议12 不推荐使用type()</h3><p>基于内建类型扩展的用户自定义类型，type()函数并不能准确返回结果。<br>这时候用 isinstance(object, classinfo)</p>
+<pre><code><span class="function"><span class="title">isinstance</span><span class="params">(<span class="number">2</span>, int)</span></span>
+</code></pre><h3 id="建议13_当涉及触发运算的时候尽量先将操作数转换为浮点类型再做运算">建议13 当涉及触发运算的时候尽量先将操作数转换为浮点类型再做运算</h3><h3 id="建议14_eval()不安全">建议14 eval()不安全</h3><pre><code>__import__(<span class="string">"os"</span>).<span class="function"><span class="title">system</span><span class="params">(<span class="string">"dir"</span>)</span></span>
+</code></pre><p>你的当前目录下的所有文件都出来了</p>
+<h3 id="建议15_is_和_“==”">建议15 is 和 “==”</h3><p>is的作用是用来检查对象的标识符是否一致的，也就是比较两个对象在内存中是否拥有同一块内存空间，它并不适合用来判断两个字符串是否相等；而”==”才是用来检验两个对象的值是否相等的，它实际调用内部<strong>eq</strong>()方法。</p>
+<h3 id="建议17_考虑兼容性，尽可能使用Unicode">建议17 考虑兼容性，尽可能使用Unicode</h3><p>Python内建的字符串有两种类型：str和Unicode，它们拥有共同的祖先basestring。其中Unicode是Python2.0中引入的一种新的数据类型，所有的Unicode字符串都是Unicode类型的实例。创建一个Unicode字符相对简单。</p>
+<p>因此要解决乱码问题可以使用Unicode作为中间介质来完成转换。首先需要对读入的字符用UTF-8进行解码，然后再用GBK进行编码。修改后的结果如下：</p>
+<pre><code>filehandle = <span class="function"><span class="title">open</span><span class="params">(<span class="string">"test.txt"</span>,<span class="string">'r'</span>)</span></span>
+print (filehandle.<span class="function"><span class="title">read</span><span class="params">()</span></span>.<span class="function"><span class="title">decode</span><span class="params">(<span class="string">"utf-8"</span>)</span></span>).<span class="function"><span class="title">encode</span><span class="params">(<span class="string">"gbk"</span>)</span></span>
+filehandle.<span class="function"><span class="title">close</span><span class="params">()</span></span>
+</code></pre><p>关于BOM：<br>Unicode存储有字节序的问题，例如“汉”字的Unicode编码是0X6C49，如果将6C写在前面，则为big endian，将49写在前面则成为little endian。UTF-16以两个字节为编码单元，在字符的传送过程中，为了标明字节的顺序，Unicode规范中推荐使用BOM（Byte Order Mark）：即在 UCS编码中用一个叫做ZERO WIDTH NO-BREAK SPACE的字符，它的编码是FEFF（该编码在UCS中不存在对应的字符），UCS规范建议在传输字节流前，先传输字符ZERO WIDTH NO-BREAK SPACE。这样如果接收者收到FEFF，就表明这个字节流是Big-Endian的；如果收到FFFE，就表明这个字节流是Little-Endian的。 UTF-8使用字节来编码，一般不需要BOM来表明字节顺序，但可以用BOM来表明编码方式。字符ZERO WIDTH NO-BREAK SPACE的UTF-8编码是EF BB BF。所以如果接收者收到以EF BB BF开头的字节流，就知道这是UTF-8编码了。</p>
+<p>示例二分析：Python中默认的编码是ASCII编码（这点可以通过sys.getdefaultencoding()来验证），所以unicodetest.py文件是以ASCII形式保存的，s是包含中文字符的普通字符串。当调用print方法输出的时候会隐式地进行从ASCII到系统默认编码（Windows上为CP936）的转换，中文字符并不是ASCII字符，而此时源文件中又未指定其他编码方式，Python解释器并不知道如何正确处理这种情况，便会抛出异常：SyntaxError: Non-ASCII character ‘\xd6’ in file unicodetest.py on line 1。因此，要避免这种错误需要在源文件中进行编码声明，声明可用正则表达式<br>“coding[:=]\s*([-\w.]+)”表示。一般来说进行源文件编码声明有以下3种方式：</p>
+<p>第一种声明方式：</p>
+<pre><code><span class="preprocessor"># coding=<span class="title">&lt;encoding name&gt;</span></span>
+</code></pre><p>第二种声明方式：</p>
+<pre><code><span class="shebang">#!/usr/bin/python</span>
+# -*- coding: &lt;encoding name&gt; -*-
+</code></pre><p>第三种声明方式：</p>
+<pre><code><span class="shebang">#!/usr/bin/python</span>
+# vim: set fileencoding=&lt;encoding name&gt; :
+</code></pre><h3 id="建议18：构建合理的包层次来管理module">建议18：构建合理的包层次来管理module</h3><p>什么是包呢？简单说包即是目录，但与普通目录不同，它除了包含常规的Python文件（也就是模块）以外，还包含一个<strong>init</strong>.py文件，同时它允许嵌套。包结构如下：<br>        Package/ <strong>init</strong>.py<br>        Module1.py<br>        Module2.py<br>        Subpackage/ <strong>init</strong>.py<br>        Module1.py<br>        Module2.py</p>
+<p>以下是一个可供参考的Python项目结构：</p>
+<pre><code>ProjectName/
+|<span class="string">---README
+</span>|<span class="string">----LICENSE
+</span>|<span class="string">----setup.py
+</span>|<span class="string">-----requirements.txt
+</span>|<span class="string">------sample/
+</span>|<span class="string">    </span>|<span class="string">----__init__.py
+</span>|<span class="string">    </span>|<span class="string">----core.py
+</span>|<span class="string">    </span>|<span class="string">----helpers.py
+</span>|<span class="string">------docs/
+</span>|<span class="string">    </span>|<span class="string">------conf.py
+</span>|<span class="string">    </span>|<span class="string">------index.rst
+</span>|<span class="string">------bin/
+</span>|<span class="string">------package/
+</span>|<span class="string">    </span>|<span class="string">-----__init__.py
+</span>|<span class="string">    </span>|<span class="string">-----subpackage/
+</span>|<span class="string">    </span>|<span class="string">------........
+</span>|<span class="string">------tests/
+</span>|<span class="string">    </span>|<span class="string">------test_basic.py
+</span>|<span class="string">    </span>|<span class="string">------test_advanced.py</span>
+</code></pre><h3 id="建议19：有节制地使用from…import语句">建议19：有节制地使用from…import语句</h3><p>在使用import的时候注意以下几点：<br>·一般情况下尽量优先使用import a形式，如访问B时需要使用a.B的形式。<br>·有节制地使用from a import B形式，可以直接访问B。<br>·尽量避免使用from a import *，因为这会污染命名空间，并且无法清晰地表示导入了哪些对象</p>
+<p>为什么在使用import的时候要注意以上几点呢？在回答这个问题之前先来简单了解一下Python的import机制。Python在初始化运行环境的时候会预先加载一批内建模块到内存中，这些模块相关的信息被存放在sys.modules中。读者导入sys模块后在Python解释器中输入sys.modules.items()便可显示所有预加载模块的相关信息。当加载一个模块的时候，解释器实际上要完成以下动作：<br>1）在sys.modules中进行搜索看看该模块是否已经存在，如果存在，则将其导入到当前局部命名空间，加载结束。<br>2）如果在sys.modules中找不到对应模块的名称，则为需要导入的模块创建一个字典对象，并将该对象信息插入sys.modules中。<br>3）加载前确认是否需要对模块对应的文件进行编译，如果需要则先进行编译。<br>4）执行动态加载，在当前模块的命名空间中执行编译后的字节码，并将其中所有的对象放入模块对应的字典中。</p>
+<h3 id="建议20：优先使用absolute_import来导入模块">建议20：优先使用absolute import来导入模块</h3><p>假设有如下文件结构，其中app/sub1/string.py中定义了一个lower()方法，那么当在mod1.py中import string之后再使用string.lower()方法时，到底引用的是sub1/string.py中的lower()方法，还是Python标准库中string里面的lower()方法呢？</p>
+<pre><code>app/
+__init__<span class="class">.py</span>
+sub1/
+__init__<span class="class">.py</span>
+mod1<span class="class">.py</span>
+string<span class="class">.py</span>
+sub2/
+__init__<span class="class">.py</span>
+mod2.py
+</code></pre><p>从程序的输出会发现，它引用的是app/sub1/string.py中的lower()方法。显然解释器默认先从当前目录下搜索对应的模块，当搜到string.py的时候便停止搜索进行动态加载。那么，如果要使用Python自带的string模块中的方法，该怎么实现呢？这就涉及absolute import和relative import相关的话题了。<br>在Python2.4以前默认为隐式的relative import，局部范围的模块将覆盖同名的全局范围的模块。如果要使用标注库中同名的模块，你不得不去深入考察sys.modules一番，显然这并不是一种非常友好的做法。Python2.5中后虽然默认的仍然是relative import，但它为absolute import提供了一种新的机制，在模块中使用from <strong>future</strong> import absolute_import 语句进行说明后再进行导入。同时它还通过点号提供了一种显式进行relative import的方法，“.”表示当前目录，“..”表示当前目录的上一层目录。例如想在mod1.py中导入string.py，可以使用from . import string，其中mod1所在的包层次结构为app.sub1.mod1，“.”表示app.sub1；如果想导入sub2/mo2.py可以使用from ..sub2 import mod2，“..”代表的是app。<br>但事情是不是就此结束了呢？远不止，使用显式relative import之后再运行程序一不小心你就有可能遇到这种错误“ValueError: Attempted relative import in non-package”。这是什么原因呢？这个问题产生的原因在于relative import使用模块的<strong>name</strong>属性来决定当前模块在包层次结构中的位置，如果当前的模块名称中不包含任何包的信息，那么它将默认为模块在包的顶层位置，而不管模块在文件系统中的实际位置。而在relative import的情形下，<strong>name</strong>会随着文件加载方式的不同而发生改变，上例中如在目录app/sub1/下运行Python mod1.py，会发现模块的<strong>name</strong>为<strong>main</strong>，但如果在目录app/sub1/下运行Python-m mod1.py，会发现<strong>name</strong>变为mod1。其中-m的作用是使得一个模块像脚本一样运行。而无论以何种方式加载，当在包的内部运行脚本的时候，包相关的结构信息都会丢失，默认当前脚本所在的位置为模块在包中的顶层位置，因此便会抛出异常。如果确实需要将模块当作脚本一样运行，解决方法之一是在包的顶层目录中加入参数-m运行该脚本，上例中如果要运行脚本mod1.py可以在app所在的目录的位置输入Python -m app.sub1.mod1。另一个解决这个问题的方法是利用Python2.6在模块中引入的<strong>package</strong>属性，设置<strong>package</strong>之后，解释器会根据<strong>package</strong>和<strong>name</strong>的值来确定包的层次结构。上面的例子中如果将mod1.py修改为以下形式便不会出现在包结构内运行模块对应的脚本时出错的情况了。</p>
+<pre><code><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span> and __package__ is None:
+import sys
+import os<span class="class">.path</span>
+sys<span class="class">.path</span>[<span class="number">0</span>] = os<span class="class">.path</span><span class="class">.abspath</span>(<span class="string">"./../../"</span>)
+print sys<span class="class">.path</span>[<span class="number">0</span>]
+import app<span class="class">.sub1</span>
+__package__ =  <span class="function"><span class="title">str</span><span class="params">(<span class="string">'app.sub1'</span>)</span></span>
+from . import string
+</code></pre><h3 id="建议26：_深入理解None，正确判断对象是否为空">建议26： 深入理解None，正确判断对象是否为空</h3><pre><code><span class="keyword">if</span> xxx <span class="keyword">is</span> <span class="keyword">not</span> None:
+    <span class="keyword">Do</span> something 
+<span class="keyword">else</span>：
+    <span class="keyword">Not</span> <span class="keyword">do</span> something 
+    上边会走到<span class="keyword">else</span>
+</code></pre><p>只有None == None是True， 其他像0，[], (),’’等都是False</p>
+<p>大多是情况下用</p>
+<pre><code><span class="keyword">if</span>(XXX): 
+    <span class="keyword">do</span> <span class="literal">or</span> <span class="literal">not</span> <span class="keyword">do</span> 
+</code></pre><h3 id="建议27_连接字符串用join比”+”好">建议27 连接字符串用join比”+”好</h3><p>效率要高</p>
+<h3 id="建议28_-format">建议28 .format</h3><pre><code><span class="type">In</span> [<span class="number">15</span>]: <span class="symbol">'adasd</span> asd <span class="keyword">as</span> asd  {<span class="number">0</span>} id {<span class="number">1</span>}<span class="char">'.format('</span>ning',<span class="symbol">'chen'</span>)
+<span class="type">Out</span>[<span class="number">15</span>]: <span class="symbol">'adasd</span> asd <span class="keyword">as</span> asd  ning id chen'
+</code></pre><h3 id="建议31_重点_记住函数传参既不是传值也不是传引用">建议31 重点 记住函数传参既不是传值也不是传引用</h3><p>python中的函数参数既不是传值也不是传引用，也不是可变对象传引用，不可变对象传值，正确的叫法应该是传对象(call by object)或者说传对象的引用(call-by-object-reference)。函数参数在传递的过程中将整个对象传入，对可变对象的修改在函数外部以及内部都可见，调用者和被调用者之间共享这个对象，二对于不可变对象，由于并不能真正被修改，因此，修改往往是通过生成一个新对象然后复制来实现。</p>
+<h3 id="建议36_掌握字符串的基本用法">建议36 掌握字符串的基本用法</h3><p>basestring 包括str 和 unicode</p>
+<p>字符串方法：</p>
+<pre><code><span class="function"><span class="title">isalnum</span><span class="params">()</span></span>
+<span class="function"><span class="title">isalpha</span><span class="params">()</span></span>
+<span class="function"><span class="title">isdigit</span><span class="params">()</span></span>
+<span class="function"><span class="title">islower</span><span class="params">()</span></span>
+<span class="function"><span class="title">isupper</span><span class="params">()</span></span>
+<span class="function"><span class="title">isspace</span><span class="params">()</span></span>
+<span class="function"><span class="title">istitle</span><span class="params">()</span></span>
+<span class="function"><span class="title">startswith</span><span class="params">()</span></span>
+<span class="function"><span class="title">endwith</span><span class="params">()</span></span>
+</code></pre><h3 id="建议14_eval()不安全-1">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-2">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-3">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-4">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-5">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-6">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-7">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-8">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-9">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-10">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-11">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-12">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-13">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-14">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-15">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-16">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-17">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-18">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-19">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-20">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-21">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-22">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-23">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-24">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-25">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-26">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-27">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-28">建议14 eval()不安全</h3><h3 id="建议14_eval()不安全-29">建议14 eval()不安全</h3>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="建议一_字符串格式化，让可读性高一些">建议一 字符串格式化，让可读性高一些</h3><pre><code><span class="built_in">print</span> <span class="string">'Hello %S'</span> %(<]]>
+    </summary>
+    
+      <category term="总结" scheme="http://python-ning.github.io/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[django(八)五步教你实现使用Nginx+uWSGI+Django方法部署Django程序(上)]]></title>
+    <link href="http://python-ning.github.io/2016/04/14/python_django_uwsgi/"/>
+    <id>http://python-ning.github.io/2016/04/14/python_django_uwsgi/</id>
+    <published>2016-04-14T07:00:00.000Z</published>
+    <updated>2016-04-14T17:49:14.000Z</updated>
+    <content type="html"><![CDATA[<p>Django的部署可以有很多方式，采用nginx+uwsgi的方式是其中比较常见的一种方式。</p>
+<p>在这种方式中，我们的通常做法是，将nginx作为服务器最前端，它将接收WEB的所有请求，统一管理请求。nginx把所有静态请求自己来处理（这是NGINX的强项）。然后，NGINX将所有非静态请求通过uwsgi传递给Django，由Django来进行处理，从而完成一次WEB请求。</p>
+<p>可见，uwsgi的作用就类似一个桥接器。起到桥梁的作用。不使用nginx，只使用uwsgi+django也是可以实现WEB服务的。uwsgi也可以直接处理WEB请求。</p>
+<p>为了完成上述的方式部署，我将分成两篇文章来分别进行阐述。</p>
+<pre><code>第一步先解决uwsgi与django的桥接。解决在没有nginx的情况下，如何使用uwsgi+DJANGO来实现一个简单的WEB服务器。
+
+第二步解决uwsgi与Nginx的桥接。通过nginx与uwsgi的桥接，打通nginx与django的连通，从而比较完美的实现django的部署。
+</code></pre><p>本文将分成五步来详细阐述uwsgi+django的部署方式。nginx+uwsgi+django的部署将在下一篇 文章中阐述。</p>
+<p>环境介绍</p>
+<pre><code>Ubuntu <span class="number">12.04</span><span class="number">.1</span> LTS
+django <span class="number">1.4</span><span class="number">.2</span>
+</code></pre><h3 id="安装uwsgi">安装uwsgi</h3><p>1.安装pip</p>
+<p>可以参考这篇文章：<a href="http://www.jsxubar.info/install-pip.html" target="_blank" rel="external">http://www.jsxubar.info/install-pip.html</a></p>
+<p>2.安装uwsgi</p>
+<p>$ export LDFLAGS=”-Xlinker –no-as-needed”<br>$ pip install uwsgi</p>
+<h3 id="测试uwsgi">测试uwsgi</h3><p>在你的机器上写一个test.py</p>
+<pre><code><span class="comment"># test.py</span>
+<span class="function"><span class="keyword">def</span> <span class="title">application</span><span class="params">(env, start_response)</span>:</span>
+    start_response(<span class="string">'200 OK'</span>, [(<span class="string">'Content-Type'</span>,<span class="string">'text/html'</span>)])
+    <span class="keyword">return</span> <span class="string">"Hello World"</span>
+</code></pre><p>然后执行shell命令：</p>
+<pre><code><span class="comment">uwsgi</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">http</span> <span class="comment">:8001</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">wsgi</span><span class="literal">-</span><span class="comment">file</span> <span class="comment">test</span><span class="string">.</span><span class="comment">py</span>
+</code></pre><p>访问网页：</p>
+<pre><code><span class="string">http:</span><span class="comment">//127.0.0.1:8001/</span>
+</code></pre><p>看在网页上是否有Hello World</p>
+<h3 id="配置django">配置django</h3><pre><code><span class="tag">NOTE</span>：
+请保证你的<span class="tag">django</span>项目是正常使用的。可以使用
+<span class="tag">python</span> <span class="tag">manage</span><span class="class">.py</span> <span class="tag">runserver</span> 0<span class="class">.0</span><span class="class">.0</span><span class="class">.0</span><span class="pseudo">:8002</span>
+来测试一下你的<span class="tag">django</span>项目是否能正常跑起来。
+请保证你的<span class="tag">django</span>程序已经关闭。
+</code></pre><p>编写django_wsgi.py文件，将其放在与文件manage.py同一个目录下。</p>
+<pre><code>注意： 编写文件时需要注意语句os.environ.setdefault。比如，如果你的项目为mysite，则你的语句应该是 os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"mysite.settings"</span>)<span class="preprocessor">
+
+    #!/usr/bin/env python</span><span class="preprocessor">
+    # coding: utf-8</span>
+
+    <span class="preprocessor"><span class="keyword">import</span> os</span>
+    <span class="preprocessor"><span class="keyword">import</span> sys</span><span class="preprocessor">
+
+    # 将系统的编码设置为UTF8</span>
+
+    reload(sys)
+    sys.setdefaultencoding(<span class="comment">'utf8')</span>
+
+    os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"mysite.settings"</span>)
+
+    from django.core.handlers.wsgi <span class="preprocessor"><span class="keyword">import</span> WSGIHandler</span>
+    application = WSGIHandler()
+</code></pre><p>连接django和uwsgi，实现简单的WEB服务器。</p>
+<p>我们假设你的Django项目的地址是/root/home/www/django_blog，</p>
+<p>然后，就可以执行以下命令：</p>
+<p>uwsgi –http :8000 –chdir /root/home/www/django_blog –module django_wsgi</p>
+<p>这样，你就可以在浏览器中访问你的Django程序了。所有的请求都是经过uwsgi传递给Django程序的。</p>
+<p>转载于<a href="http://www.django-china.cn/topic/101/" target="_blank" rel="external">django中国社区</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Django的部署可以有很多方式，采用nginx+uwsgi的方式是其中比较常见的一种方式。</p>
+<p>在这种方式中，我们的通常做法是，将nginx作为服务器最前端，它将接收WEB的所有请求，统一管理请求。nginx把所有静态请求自己来处理（这是NGINX的强项）。然后]]>
+    </summary>
+    
+      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[https工作原理]]></title>
+    <link href="http://python-ning.github.io/2016/04/13/good_article_collect_https/"/>
+    <id>http://python-ning.github.io/2016/04/13/good_article_collect_https/</id>
+    <published>2016-04-13T07:00:00.000Z</published>
+    <updated>2016-04-13T18:43:12.000Z</updated>
+    <content type="html"><![CDATA[<p>HTTPS其实是有两部分组成：HTTP + SSL/TLS，也就是在HTTP上又加了一层处理加密信息的模块。服务端和客户端的信息传输都会通过TLS进行加密，所以传输的数据都是加密后的数据</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/https.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="客户端发起HTTPS请求">客户端发起HTTPS请求</h3><p>这个没什么好说的，就是用户在浏览器里输入一个https网址，然后连接到server的443端口。</p>
+<h3 id="服务端的配置">服务端的配置</h3><p>采用HTTPS协议的服务器必须要有一套数字证书，如果没有请联系易维信客服购买全球信任的SSL证书，而使用受信任的CA签发的证书则不会弹出提示页面(GeoTrust,Symantec都是知名的CA机构)。这套证书其实就是一对公钥和私钥。如果对公钥和私钥不太理解，可以想象成一把钥匙和一个锁头，只是全世界只有你一个人有这把钥匙，你可以把锁头给别人，别人可以用这个锁把重要的东西锁起来，然后发给你，因为只有你一个人有这把钥匙，所以只有你才能看到被这把锁锁起来的东西。</p>
+<h3 id="传送证书">传送证书</h3><p>这个证书其实就是公钥，只是包含了很多信息，如证书的颁发机构，过期时间等等。</p>
+<h3 id="客户端解析证书">客户端解析证书</h3><p>这部分工作是有客户端的TLS来完成的，首先会验证公钥是否有效，比如颁发机构，过期时间等等，如果发现异常，则会弹出一个警告框，提示证书存在问题。如果证书没有问题，那么就生成一个随即值。然后用证书对该随机值进行加密。就好像上面说的，把随机值用锁头锁起来，这样除非有钥匙，不然看不到被锁住的内容。</p>
+<h3 id="传送加密信息">传送加密信息</h3><p>这部分传送的是用证书加密后的随机值，目的就是让服务端得到这个随机值，以后客户端和服务端的通信就可以通过这个随机值来进行加密解密了。</p>
+<h3 id="服务段解密信息">服务段解密信息</h3><p>服务端用私钥解密后，得到了客户端传过来的随机值(私钥)，然后把内容通过该值进行对称加密。所谓对称加密就是，将信息和私钥通过某种算法混合在一起，这样除非知道私钥，不然无法获取内容，而正好客户端和服务端都知道这个私钥，所以只要加密算法够彪悍，私钥够复杂，数据就够安全。</p>
+<h3 id="传输加密后的信息">传输加密后的信息</h3><p>这部分信息是服务段用私钥加密后的信息，可以在客户端被还原</p>
+<h3 id="客户端解密信息">客户端解密信息</h3><p>客户端用之前生成的私钥解密服务段传过来的信息，于是获取了解密后的内容。整个过程第三方即使监听到了数据，也束手无策。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>HTTPS其实是有两部分组成：HTTP + SSL/TLS，也就是在HTTP上又加了一层处理加密信息的模块。服务端和客户端的信息传输都会通过TLS进行加密，所以传输的数据都是加密后的数据</p>
+<p><img src="http://7xojjc.com1.z0.glb.]]>
+    </summary>
+    
+      <category term="https" scheme="http://python-ning.github.io/tags/https/"/>
+    
+      <category term="好文章收集" scheme="http://python-ning.github.io/categories/%E5%A5%BD%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Django(七)配置及使用富文本编辑器ckeditor]]></title>
+    <link href="http://python-ning.github.io/2016/04/12/python_django_blog_ckeditor/"/>
+    <id>http://python-ning.github.io/2016/04/12/python_django_blog_ckeditor/</id>
+    <published>2016-04-12T07:00:00.000Z</published>
+    <updated>2016-04-13T18:52:06.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/319037-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>当你想入门django的时候，一般大家都会选择搭建一个博客系统来学习django，而当你发现你写文章需要格式，需要样式，需要不仅仅是文字的时候，这时你就会需要到富文本编辑器，富文本编辑器包括kindeditor、ckeditor、uEditor等等。这里介绍一下ckeditor的配置和使用，他们大概的原理是一样的。</p>
+<h3 id="安装django-ckeditor">安装django-ckeditor</h3><p><code style="color: red">django-ckeditor</code>的下载地址：<a href="https://github.com/shaunsephton/django-ckeditor" target="_blank" rel="external">https://github.com/shaunsephton/django-ckeditor</a></p>
+<pre><code><span class="preprocessor"># 安装git 自行百度， 这里用的ubuntu14.04系统</span>
+git clone https:<span class="comment">//github.com/shaunsephton/django-ckeditor</span>
+<span class="preprocessor"># 打开你克隆下来的文件夹</span>
+cd django-ckeditor/
+<span class="preprocessor"># 运行下面的命令</span>
+python setup.py install
+</code></pre><h3 id="安装Pillow">安装Pillow</h3><p><code style="color: red">Pillow</code>是python的一个图像处理库，django-ckeditor需要依赖该库。最简单的安装方法，当然是使用pip，假设你装过pip，可以直接运行以下命令安装：</p>
+<pre><code>pip <span class="keyword">install</span> Pillow
+</code></pre><p>如果你不了解pip，可以参照：<a href="https://pypi.python.org/pypi/pip" target="_blank" rel="external">https://pypi.python.org/pypi/pip</a></p>
+<h3 id="配置你的django">配置你的django</h3><p>要使安装好的<code style="color: red">django-ckeditor</code>生效，你需要对你的django应用进行一系列配置。现在带大家走一遍，放轻松^_^</p>
+<p>1.在你的<code style="color: red">settings.py</code>文件中，将ckeditor添加到<code style="color: red">INATALLED_APPS</code>中。</p>
+<p>2.在你的<code style="color: red">settings.py</code>文件中，添加<code style="color: red">CKEDITOR_UPLOAD_PATH</code>配置项。</p>
+<pre><code>例如，我的是
+<span class="constant">MEDIA_URL</span> = <span class="string">"/media/"</span>
+<span class="constant">MEDIA_ROOT</span> = os.path.join(BASE_DIR, <span class="string">"media"</span>)
+<span class="constant">CKEDITOR_UPLOAD_PATH</span> = <span class="string">"article_images"</span>
+</code></pre><p><code style="color: red">CHEDITOR_UPLOAD_PATH</code>的作用是设定你通过ckeditor所上传的文件的存放目录。需要注意的是，这是一个相对路径，它相对与你设置的的<code style="color: red">MEDIA_ROOT</code>。<code style="color: red">django-ckeditor</code>默认使用django的后台文件存储系统，这需要你设置好<code style="color: red">MEDIA_ROOT</code>和<code style="color: red">MEDIA_URL</code>，如何设置超出了本文的范围，请自行查看django的官方文档，请务必确保这两个设置项是生效的，否则你将看不到你上传的文件。</p>
+<p>比如，我上传一张名为shiguang.gif的小图片，该图片将会被存储到：</p>
+<pre><code><span class="regexp">/my/</span>django<span class="regexp">/app/</span>root<span class="regexp">/media/</span>article_images<span class="regexp">/</span>
+</code></pre><p>3.在你django应用的的urls.py文件中，为ckeditor设置url：</p>
+<pre><code>url(<span class="string">r'^ckeditor/'</span>, include(<span class="string">'ckeditor_uploader.urls'</span>)),
+</code></pre><p>至此，你的ckeditor已经可以在django中正常使用了。</p>
+<p>需要指出的是：在开发阶段，这样设置settings.py已经足够了。但是，到了正式部署你的应用时，你需要设置好<code style="color: red">STATIC_ROOT和STATIC_URL</code>，并运行<code style="color: red">manage.py collectstatic</code>命令，该命令会将ckeditor相关的静态资源拷贝到你的工程下。</p>
+<h3 id="如何应用ckeditor">如何应用ckeditor</h3><p>django-ckeditor提供了两个类：<code style="color: red">RichTextField</code>和<code style="color: red">CKEditorWidget</code>，分别用于模型和表单。内容型网站通常在后台会有一个文章发布和编辑的界面，如果你想让该界面拥有一个富文本编辑器，只需按如下方式定义你的django模型：</p>
+<pre><code>from django<span class="class">.db</span> import models
+from ckeditor<span class="class">.fields</span> import RichTextField
+
+class <span class="function"><span class="title">Article</span><span class="params">(models.Model)</span></span>:
+    <span class="attribute">content</span> = <span class="function"><span class="title">RichTextField</span><span class="params">(<span class="string">'正文'</span>)</span></span>
+</code></pre><p>如果你在你的后台看到下图这样的界面，那么恭喜你，你初步成功了。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/qq20140625074502.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p><code style="color: red">RichTextField</code>是一个<code style="color: red">TextField</code>的子类，除了<code style="color: red">TextField</code>拥有所有参数外，还有自己的参数，这些参数中，软件作者的文档中只介绍了<code style="color: red">config_name</code>这个参数，其它的没有提及，虽然比较操蛋，但我们还是对作者贡献这个开源项目表示由衷的感谢。</p>
+<p>通过查看源代码，可以发现<code style="color: red">RichTextField</code>有<code style="color: red">config_name</code>、<code style="color: red">extra_plugins</code>、<code style="color: red">external_plugin_resources</code>三个额外的可选参数。<code style="color: red">extra_plugins</code>我将撰写专文，尽请期待。</p>
+<h3 id="进一步完善">进一步完善</h3><p>追求完美的你，此刻一定有诸多不满。ckeditor最重要的，当然是头部的工具栏了，但现在你看到的工具栏比较简陋。比如，你想调整文本的对其方式，你发现找不到对应的按钮。别急，往下看。</p>
+<p>django-ckeditor作者的文档中，提到了一个配置项：<code style="color: red">CKEDITOR_CONFIGS</code>。从作者的文档看来，似乎只要在settings.py中按如下方式配置，就可以拥有一个完整的、丰富工具栏：</p>
+<pre><code>CKEDITOR_CONFIGS = {
+    <span class="string">'default'</span>: {
+        <span class="string">'toolbar'</span>: <span class="string">'Full'</span>,
+        <span class="string">'height'</span>: <span class="number">300</span>,
+        <span class="string">'width'</span>: <span class="number">300</span>,
+    },
+}
+</code></pre><p>你失望地发现，宽度和高度确实起作用了，可工具栏的功能还是没多页没少：</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/qq20140625080916.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>怎么回事呢？如果你进行如下设置，你会发现工具栏里的按钮变少了：</p>
+<pre><code>CKEDITOR_CONFIGS = {
+    <span class="string">'default'</span>: {
+        <span class="string">'toolbar'</span>: <span class="string">'Basic'</span>
+    },
+}
+</code></pre><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/qq20140625081523.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>看来配置项“toolbar”这个参数是生效的，那问题出在哪了？别抓狂，不是说简洁就是美吗，呵呵。不过话虽如此，咱么还是去看看源码一探究竟吧。</p>
+<p>打开如下源文件：</p>
+<pre><code>your<span class="command">\python</span><span class="command">\path</span><span class="command">\Lib</span><span class="command">\site</span>-packages<span class="command">\django</span>_ckeditor_updated-4.2.8-py2.7.egg<span class="command">\ckeditor</span><span class="command">\widgets</span>.py
+</code></pre><p>可以发现如下代码：</p>
+<pre><code><span class="name">DEFAULT_CONFIG</span> = {
+    <span class="string">'skin'</span>: <span class="string">'moono'</span>,
+    <span class="string">'toolbar_Basic'</span>: [
+        [<span class="string">'Source'</span>, <span class="string">'-'</span>, <span class="string">'Bold'</span>, <span class="string">'Italic'</span>]
+    ],
+    <span class="string">'toolbar_Full'</span>: [
+        [<span class="string">'Styles'</span>, <span class="string">'Format'</span>, <span class="string">'Bold'</span>, <span class="string">'Italic'</span>, <span class="string">'Underline'</span>, <span class="string">'Strike'</span>, <span class="string">'SpellChecker'</span>, <span class="string">'Undo'</span>, <span class="string">'Redo'</span>],
+        [<span class="string">'Image'</span>, <span class="string">'Flash'</span>, <span class="string">'Table'</span>, <span class="string">'HorizontalRule'</span>],
+        [<span class="string">'TextColor'</span>, <span class="string">'BGColor'</span>],
+        [<span class="string">'Smiley'</span>, <span class="string">'SpecialChar'</span>], [<span class="string">'Source'</span>],
+    ],
+    <span class="string">'toolbar'</span>: <span class="string">'Full'</span>,
+    <span class="string">'height'</span>: <span class="number">291</span>,
+    <span class="string">'width'</span>: <span class="number">835</span>,
+    <span class="string">'filebrowserWindowWidth'</span>: <span class="number">940</span>,
+    <span class="string">'filebrowserWindowHeight'</span>: <span class="number">725</span>    
+}
+</code></pre><p>没错，问题就处在这里了。可以看到，默认的设置的确就是’toolbar’: ‘Full’,但是通过’toolbar_Full’这个key，作者阉割了工具栏的功能。</p>
+<p>找到的原因就好办了，接下来你只要在settings.py配置文件中，在<code style="color: red">CKEDITOR_CONFIGS</code>中加入你自己需要的工具栏按钮即可：</p>
+<pre><code><span class="name">CKEDITOR_CONFIGS</span> = {
+    <span class="string">'default'</span>: {
+        <span class="string">'toolbar'</span>: (
+            [<span class="string">'div'</span>,<span class="string">'Source'</span>,<span class="string">'-'</span>,<span class="string">'Save'</span>,<span class="string">'NewPage'</span>,<span class="string">'Preview'</span>,<span class="string">'-'</span>,<span class="string">'Templates'</span>], 
+            [<span class="string">'Cut'</span>,<span class="string">'Copy'</span>,<span class="string">'Paste'</span>,<span class="string">'PasteText'</span>,<span class="string">'PasteFromWord'</span>,<span class="string">'-'</span>,<span class="string">'Print'</span>,<span class="string">'SpellChecker'</span>,<span class="string">'Scayt'</span>], 
+            [<span class="string">'Undo'</span>,<span class="string">'Redo'</span>,<span class="string">'-'</span>,<span class="string">'Find'</span>,<span class="string">'Replace'</span>,<span class="string">'-'</span>,<span class="string">'SelectAll'</span>,<span class="string">'RemoveFormat'</span>], 
+            [<span class="string">'Form'</span>,<span class="string">'Checkbox'</span>,<span class="string">'Radio'</span>,<span class="string">'TextField'</span>,<span class="string">'Textarea'</span>,<span class="string">'Select'</span>,<span class="string">'Button'</span>, <span class="string">'ImageButton'</span>,<span class="string">'HiddenField'</span>], 
+            [<span class="string">'Bold'</span>,<span class="string">'Italic'</span>,<span class="string">'Underline'</span>,<span class="string">'Strike'</span>,<span class="string">'-'</span>,<span class="string">'Subscript'</span>,<span class="string">'Superscript'</span>], 
+            [<span class="string">'NumberedList'</span>,<span class="string">'BulletedList'</span>,<span class="string">'-'</span>,<span class="string">'Outdent'</span>,<span class="string">'Indent'</span>,<span class="string">'Blockquote'</span>], 
+            [<span class="string">'JustifyLeft'</span>,<span class="string">'JustifyCenter'</span>,<span class="string">'JustifyRight'</span>,<span class="string">'JustifyBlock'</span>], 
+            [<span class="string">'Link'</span>,<span class="string">'Unlink'</span>,<span class="string">'Anchor'</span>], 
+            [<span class="string">'Image'</span>,<span class="string">'Flash'</span>,<span class="string">'Table'</span>,<span class="string">'HorizontalRule'</span>,<span class="string">'Smiley'</span>,<span class="string">'SpecialChar'</span>,<span class="string">'PageBreak'</span>], 
+            [<span class="string">'Styles'</span>,<span class="string">'Format'</span>,<span class="string">'Font'</span>,<span class="string">'FontSize'</span>], 
+            [<span class="string">'TextColor'</span>,<span class="string">'BGColor'</span>], 
+            [<span class="string">'Maximize'</span>,<span class="string">'ShowBlocks'</span>,<span class="string">'-'</span>,<span class="string">'About'</span>, <span class="string">'pbckcode'</span>],
+        ),
+    }
+}
+</code></pre><p>当然，你可以注掉你不需要的功能，是丰是俭，全凭你做主！</p>
+<p>重启应用后，你可以看到：</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/qq20140625083707.png" class="img-shadow" style="display: block;margin: auto"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/319037-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>当你想入门djang]]>
+    </summary>
+    
+      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[初识NoSQL]]></title>
+    <link href="http://python-ning.github.io/2016/04/08/good_article_collect_nosql/"/>
+    <id>http://python-ning.github.io/2016/04/08/good_article_collect_nosql/</id>
+    <published>2016-04-08T07:00:00.000Z</published>
+    <updated>2016-04-09T00:29:04.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/318044-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>标签：</p>
+<p>NoSQL(NoSQL = Not Only SQL )，意即”不仅仅是SQL”。</p>
+<p>在现代的计算系统上每天网络上都会产生庞大的数据量。</p>
+<p>这些数据有很大一部分是由关系数据库管理系统（RDMBSs）来处理。 1970年 E.F.Codd’s提出的关系模型的论文 “A relational model of data for large shared data banks”，这使得数据建模和应用程序编程更加简单。<br>通过应用实践证明，关系模型是非常适合于客户服务器编程，远远超出预期的利益，今天它是结构化数据存储在网络和商务应用的主导技术。</p>
+<h3 id="NoSQL_简史">NoSQL 简史</h3><p>NoSQL一词最早出现于1998年，是Carlo Strozzi开发的一个轻量、开源、不提供SQL功能的关系数据库。</p>
+<p>2009年，Last.fm的Johan Oskarsson发起了一次关于分布式开源数据库的讨论[2]，来自Rackspace的Eric Evans再次提出了NoSQL的概念，这时的NoSQL主要指非关系型、分布式、不提供ACID的数据库设计模式。</p>
+<p>2009年在亚特兰大举行的”no:sql(east)”讨论会是一个里程碑，其口号是”select fun, profit from real_world where relational=false;”。因此，对NoSQL最普遍的解释是”非关联型的”，强调Key-Value Stores和文档数据库的优点，而不是单纯的反对RDBMS。</p>
+<p>NoSQL 是一项全新的数据库革命性运动，早期就有人提出，发展至2009年趋势越发高涨。NoSQL的拥护者们提倡运用非关系型的数据存储，相对于铺天盖地的关系型数据库运用，这一概念无疑是一种全新的思维的注入。</p>
+<h3 id="关系型数据库遵循ACID规则">关系型数据库遵循ACID规则</h3><p>事务在英文中是transaction，和现实世界中的交易很类似，它有如下四个特性：</p>
+<h2 id="1、A_(Atomicity)_原子性">1、A (Atomicity) 原子性</h2><p>原子性很容易理解，也就是说事务里的所有操作要么全部做完，要么都不做，事务成功的条件是事务里的所有操作都成功，只要有一个操作失败，整个事务就失败，需要回滚。<br>比如银行转账，从A账户转100元至B账户，分为两个步骤：1）从A账户取100元；2）存入100元至B账户。这两步要么一起完成，要么一起不完成，如果只完成第一步，第二步失败，钱会莫名其妙少了100元。</p>
+<h2 id="2、C_(Consistency)_一致性">2、C (Consistency) 一致性</h2><p>一致性也比较容易理解，也就是说数据库要一直处于一致的状态，事务的运行不会改变数据库原本的一致性约束。<br>例如现有完整性约束a+b=10，如果一个事务改变了a，那么必须得改变b，使得事务结束后依然满足a+b=10，否则事务失败。</p>
+<h2 id="3、I_(Isolation)_独立性">3、I (Isolation) 独立性</h2><p>所谓的独立性是指并发的事务之间不会互相影响，如果一个事务要访问的数据正在被另外一个事务修改，只要另外一个事务未提交，它所访问的数据就不受未提交事务的影响。<br>比如现有有个交易是从A账户转100元至B账户，在这个交易还未完成的情况下，如果此时B查询自己的账户，是看不到新增加的100元的。</p>
+<h2 id="4、D_(Durability)_持久性">4、D (Durability) 持久性</h2><p>持久性是指一旦事务提交后，它所做的修改将会永久的保存在数据库上，即使出现宕机也不会丢失。</p>
+<h3 id="分布式系统">分布式系统</h3><p>分布式系统（distributed system）由多台计算机和通信的软件组件通过计算机网络连接（本地网络或广域网）组成。<br>分布式系统是建立在网络之上的软件系统。正是因为软件的特性，所以分布式系统具有高度的内聚性和透明性。<br>因此，网络和分布式系统之间的区别更多的在于高层软件（特别是操作系统），而不是硬件。<br>分布式系统可以应用在在不同的平台上如：Pc、工作站、局域网和广域网上等。</p>
+<h2 id="分布式计算的优点">分布式计算的优点</h2><p>可靠性（容错） ：<br>分布式计算系统中的一个重要的优点是可靠性。一台服务器的系统崩溃并不影响到其余的服务器。<br>可扩展性：<br>在分布式计算系统可以根据需要增加更多的机器。<br>资源共享：<br>共享数据是必不可少的应用，如银行，预订系统。<br>灵活性：<br>由于该系统是非常灵活的，它很容易安装，实施和调试新的服务。<br>更快的速度：<br>分布式计算系统可以有多台计算机的计算能力，使得它比其他系统有更快的处理速度。<br>开放系统：<br>由于它是开放的系统，本地或者远程都可以访问到该服务。<br>更高的性能：<br>相较于集中式计算机网络集群可以提供更高的性能（及更好的性价比）。</p>
+<h2 id="分布式计算的缺点">分布式计算的缺点</h2><p>故障排除： ：<br>故障排除和诊断问题。<br>软件：<br>更少的软件支持是分布式计算系统的主要缺点。<br>网络：<br>网络基础设施的问题，包括：传输问题，高负载，信息丢失等。<br>安全性：<br>开发系统的特性让分布式计算系统存在着数据的安全性和共享的风险等问题。</p>
+<h3 id="什么是NoSQL?">什么是NoSQL?</h3><p>NoSQL，指的是非关系型的数据库。NoSQL有时也称作Not Only SQL的缩写，是对不同于传统的关系型数据库的数据库管理系统的统称。<br>NoSQL用于超大规模数据的存储。（例如谷歌或Facebook每天为他们的用户收集万亿比特的数据）。这些类型的数据存储不需要固定的模式，无需多余操作就可以横向扩展。</p>
+<h2 id="为什么使用NoSQL_?">为什么使用NoSQL ?</h2><p>今天我们可以通过第三方平台（如：Google,Facebook等）可以很容易的访问和抓取数据。用户的个人信息，社交网络，地理位置，用户生成的数据和用户操作日志已经成倍的增加。我们如果要对这些用户数据进行挖掘，那SQL数据库已经不适合这些应用了, NoSQL数据库的发展也却能很好的处理这些大的数据。</p>
+<h3 id="RDBMS_vs_NoSQL">RDBMS vs NoSQL</h3><h2 id="RDBMS">RDBMS</h2><pre><code>高度组织化结构化数据
+结构化查询语言（SQL） <span class="comment">(SQL)</span>
+数据和关系都存储在单独的表中。
+数据操纵语言，数据定义语言
+严格的一致性
+基础事务
+</code></pre><h2 id="NoSQL">NoSQL</h2><pre><code>代表着不仅仅是SQL
+没有声明性查询语言
+没有预定义的模式
+-<span class="ruby">键 - 值对存储，列存储，文档存储，图形数据库
+</span>最终一致性，而非ACID属性
+非结构化和不可预知的数据
+CAP定理
+高性能，高可用性和可伸缩性
+</code></pre><h2 id="CAP定理（CAP_theorem）">CAP定理（CAP theorem）</h2><p>在计算机科学中, CAP定理（CAP theorem）, 又被称作 布鲁尔定理（Brewer’s theorem）, 它指出对于一个分布式计算系统来说，不可能同时满足以下三点:<br>1.一致性(Consistency) (所有节点在同一时间具有相同的数据)<br>2.可用性(Availability) (保证每个请求不管成功或者失败都有响应)<br>3.分隔容忍(Partition tolerance) (系统中任意信息的丢失或失败不会影响系统的继续运作)<br>CAP理论的核心：一个分布式系统不可能同时很好的满足一致性，可用性和分区容错性这三个需求，最多只能同时较好的满足两个。</p>
+<p>因此，根据 CAP 原理将 NoSQL 数据库分成了满足 CA 原则、满足 CP 原则和满足 AP 原则三 大类：<br>CA - 单点集群，满足一致性，可用性的系统，通常在可扩展性上不太强大。<br>CP - 满足一致性，分区容忍必的系统，通常性能不是特别高。<br>AP - 满足可用性，分区容忍性的系统，通常可能对一致性要求低一些。 </p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/20160408111941080.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="NoSQL的优点/缺点">NoSQL的优点/缺点</h3><h2 id="优点:">优点:</h2><pre><code>高可扩展性
+分布式计算
+低成本
+架构的灵活性，半结构化数据
+没有复杂的关系
+</code></pre><h2 id="缺点:">缺点:</h2><pre><code>没有标准化
+有限的查询功能（到目前为止）
+最终一致是不直观的程序
+</code></pre><h3 id="BASE">BASE</h3><p>BASE：Basically Available, Soft-state, Eventually Consistent。 由 Eric Brewer 定义。<br>CAP理论的核心是：一个分布式系统不可能同时很好的满足一致性，可用性和分区容错性这三个需求，最多只能同时较好的满足两个。<br>BASE是NoSQL数据库通常对可用性及一致性的弱要求原则:<br>1.Basically Availble –基本可用<br>2.Soft-state –软状态/柔性事务。 “Soft state” 可以理解为”无连接”的, 而 “Hard state” 是”面向连接”的<br>3.Eventual Consistency –最终一致性 最终一致性， 也是是 ACID 的最终目的。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/20160408111956018.png" class="img-shadow" style="display: block;margin: auto"><br><img src="http://7xojjc.com1.z0.glb.clouddn.com/20160408112008565.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="谁在使用NoSQL">谁在使用NoSQL</h3><p>现在已经有很多公司使用了 NoSQL：</p>
+<pre><code>Google
+Facebook
+Mozilla
+Adobe
+Foursquare
+LinkedIn
+Digg
+McGraw-Hill Education
+Vermont <span class="keyword">Public</span> Radio
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/318044-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>标签：</p>
+<p]]>
+    </summary>
+    
+      <category term="NoSQL" scheme="http://python-ning.github.io/tags/NoSQL/"/>
+    
+      <category term="好文章收集" scheme="http://python-ning.github.io/categories/%E5%A5%BD%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Django(六)用django自带Paginator实现分页功能]]></title>
+    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
+    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
+    <published>2016-04-08T07:00:00.000Z</published>
+    <updated>2016-04-12T17:54:54.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。</p>
+<h3 id="在view-py中使用Paginator">在view.py中使用Paginator</h3><pre><code><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator, EmptyPage, PageNotAnInteger
+<span class="keyword">from</span> app.models <span class="keyword">import</span> Topic
+
+<span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>
+limit = <span class="number">3</span>  <span class="comment"># 每页显示的记录数</span>
+topics = Topic.objects.all()
+paginator = Paginator(topics, limit)  <span class="comment"># 实例化一个分页对象</span>
+
+page = request.GET.get(<span class="string">'page'</span>)  <span class="comment"># 获取页码</span>
+<span class="keyword">try</span>:
+    topics = paginator.page(page)  <span class="comment"># 获取某页对应的记录</span>
+<span class="keyword">except</span> PageNotAnInteger:  <span class="comment"># 如果页码不是个整数</span>
+    topics = paginator.page(<span class="number">1</span>)  <span class="comment"># 取第一页的记录</span>
+    <span class="keyword">except</span> EmptyPage:  <span class="comment"># 如果页码太大，没有相应的记录</span>
+        topics = paginator.page(paginator.num_pages)  <span class="comment"># 取最后一页的记录</span>
+
+    <span class="keyword">return</span> render_to_response(<span class="string">'index.html'</span>, {<span class="string">'topics'</span>: topics})
+</code></pre><h3 id="模板中的相关操作">模板中的相关操作</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="效果：">效果：</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png" class="img-shadow" style="display: block;margin: auto"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>在django中使用]]>
+    </summary>
+    
+      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[python 文件操作]]></title>
+    <link href="http://python-ning.github.io/2016/02/02/python_IO/"/>
+    <id>http://python-ning.github.io/2016/02/02/python_IO/</id>
+    <published>2016-02-02T08:00:00.000Z</published>
+    <updated>2016-02-03T23:59:48.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="正常打开文件读取">正常打开文件读取</h3><p>f = open(‘/root/Desktop/test/chen.txt’,’rt’)</p>
+<p>open()内建函数，第一个参数是文件绝对路径，第二个是对文件操作的权限</p>
+<p>r<br>以读方式打开文件，可读取文件信息。</p>
+<p>w<br>以写方式打开文件，可向文件写入信息。如文件存在，则清空该文件，再写入新内容</p>
+<p>a<br>以追加模式打开文件（即一打开文件，文件指针自动移到文件末尾），如果文件不存在则创建</p>
+<p>r+<br>以读写方式打开文件，可对文件进行读和写操作。</p>
+<p>w+<br>消除文件内容，然后以读写方式打开文件。</p>
+<p>a+<br>以读写方式打开文件，并把文件指针移到文件尾。</p>
+<p>b<br>以二进制模式打开文件，而不是以文本模式。该模式只对Windows或Dos有效，类Unix的文件是用二进制模式进行操作的。</p>
+<h3 id="with">with</h3><pre><code>with <span class="function"><span class="title">open</span><span class="params">(<span class="string">'somefile.txt'</span>, <span class="string">'rt'</span>)</span></span> as f:
+    data = f.<span class="function"><span class="title">read</span><span class="params">()</span></span>
+</code></pre><p>为了写入一个文本文件，使用带有 wt 模式的 open() 函数， 如果之前文件内容存在则清除并覆盖掉。如下所示:</p>
+<pre><code><span class="comment"># Write chunks of text data</span>
+<span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'somefile.txt'</span>, <span class="string">'wt'</span>) <span class="keyword">as</span> f:
+    f.<span class="built_in">write</span>(text1)
+    f.<span class="built_in">write</span>(text2)
+    ...
+
+<span class="comment"># Redirected print statement</span>
+<span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'somefile.txt'</span>, <span class="string">'wt'</span>) <span class="keyword">as</span> f:
+    print(line1, <span class="built_in">file</span>=f)
+    print(line2, <span class="built_in">file</span>=f)
+    ...
+</code></pre><p>如果是在已存在文件中添加内容，使用模式为 at 的 open() 函数</p>
+<p>文件的读写操作默认使用系统编码，可以通过调用 sys.getdefaultencoding() 来得到。 在大多数机器上面都是utf-8编码。如果你已经知道你要读写的文本是其他编码方式， 那么可以通过传递一个可选的 encoding 参数给open()函数。如下所示：</p>
+<pre><code><span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'somefile.txt'</span>, <span class="string">'rt'</span>, encoding=<span class="string">'latin-1'</span>) <span class="keyword">as</span> f:
+    ...
+</code></pre><p>Python支持非常多的文本编码。几个常见的编码是ascii, latin-1, utf-8和utf-16。 在web应用程序中通常都使用的是UTF-8。 ascii对应从U+0000到U+007F范围内的7位字符。 latin-1是字节0-255到U+0000至U+00FF范围内Unicode字符的直接映射。 当读取一个未知编码的文本时使用latin-1编码永远不会产生解码错误。 使用latin-1编码读取一个文件的时候也许不能产生完全正确的文本解码数据， 但是它也能从中提取出足够多的有用数据。同时，如果你之后将数据回写回去，原先的数据还是会保留的。</p>
+<h3 id="file">file</h3><pre><code>print <span class="function"><span class="title">file</span><span class="params">(<span class="string">'/root/Desktop/test/chen.txt'</span>, <span class="string">'rt'</span>)</span></span>.<span class="function"><span class="title">read</span><span class="params">()</span></span>
+</code></pre><h3 id="file与open_区别">file与open 区别</h3><p>python3没有file了，基本这俩一样</p>
+<h3 id="什么是IO？">什么是IO？</h3><p>i就是input输入,O就是output输出,一起就是基本输入输出设备<br>I/O也就是输入输出地址。每个设备都会有一个专用的I/O地址，用来处理自己的输入输出信息。I/O地址绝对不能重复，如果两个设备的I/O地址有冲突，系统硬件就不能正常工作。以Windows XP操作系统为例，查看一个设备所占用的I/O地址的方法是：在系统桌面中选择“我的电脑”，单击鼠标右键，选择“属性”，在弹出的“系统属性”对话框中选择“硬件”，单击“设备管理器”按钮，弹出一个“设备管理器”窗口，在设备列表中双击要查看的I/O地址设备类型，然后双击具体的设备名称，在弹出对话框的“资源”选项卡中就可以看到该设备所占用的I/O地址了。在“资源设置”区域，可以看到显卡占用的I/O地址。 </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="正常打开文件读取">正常打开文件读取</h3><p>f = open(‘/root/Desktop/test/chen.txt’,’rt’)</p>
+<p>open()内建函数，第一个参数是文件绝对路径，第二个是对文件操作的权限</p>
+<p>r<br>以读方式打]]>
+    </summary>
+    
+      <category term="python" scheme="http://python-ning.github.io/tags/python/"/>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[python图片小爬虫]]></title>
+    <link href="http://python-ning.github.io/2016/02/01/python_scrapy_img/"/>
+    <id>http://python-ning.github.io/2016/02/01/python_scrapy_img/</id>
+    <published>2016-02-01T08:00:00.000Z</published>
+    <updated>2016-02-01T20:07:28.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/89403-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>最近没活了，简单复习下爬虫，就去爬了下煎蛋网的妹子图和糗事百科的图片，<br>python做爬虫和模拟登陆来说最适合不过了，除了各种强大的库，也只需很少的代码量就能完成功能。</p>
+<h3 id="我理解的python爬虫">我理解的python爬虫</h3><p>我理解的python爬虫，利用urllib2(自带库) 、httplib(httplib是一个相对底层的http请求模块，urlib就是基于httplib封装的)、requests(我个人喜欢用这个)等库去发送http请求，然后将请求到的html页面，或者ajax返回的xml、json或者js等进行解析，用pyquery(我个人喜欢用这个)、BeautifulSoup(from bs4 import BeautifulSoup一般这么引用)、lxml(解析xml)、xpath(没怎么用过)、HTMLParser(from html.parser import HTMLParser一般这么引用)等</p>
+<h3 id="http协议">http协议</h3><p>你一定要对http协议有了解，在此基础上对网页进行解析，其实说白了就是拿一些网页信息进行解析</p>
+<h3 id="模拟登陆">模拟登陆</h3><p>在抓取网页的基础上，我们要做一个模拟人去做用户登录，然后去拿我的订单号啊等等的就是模拟登陆，基本是加入post中的data信息去做登陆。</p>
+<h3 id="robots协议">robots协议</h3><p>Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。<br>        <a href="https://www.baidu.com/robots.txt" target="_blank" rel="external">https://www.baidu.com/robots.txt</a><br>我在任何web官网的url后边+/robots.txt就可看到每个官网允许或者不允许爬的内容,也没啥用，让你不爬你就不爬啊。</p>
+<h3 id="煎蛋网妹子图爬虫实例：">煎蛋网妹子图爬虫实例：</h3><pre><code>import requests
+from pyquery import PyQuery as pq
+import <span class="keyword">time</span>
+
+<span class="keyword">for</span> page in range(<span class="number">1720</span>, <span class="number">1501</span>, -<span class="number">1</span>):
+    url = <span class="string">"http://jandan.net/ooxx/page-<span class="variable">%s</span>#comments"</span> % page
+    headers = {
+        <span class="string">'Accept'</span>: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'</span>,
+        <span class="string">'Accept-Encoding'</span>: <span class="string">'gzip, deflate, sdch'</span>,
+        <span class="string">'Accept-Language'</span>: <span class="string">'zh-CN,zh;q=0.8'</span>,
+        <span class="string">'Host'</span>: <span class="string">'jandan.net'</span>,
+        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36'</span>
+        <span class="comment"># 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/47.0.2526.73 Chrome/47.0.2526.73 Safari/537.36'</span>
+        <span class="comment"># 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'</span>
+        <span class="comment"># 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'</span>
+    }
+    <span class="keyword">time</span>.<span class="keyword">sleep</span>(<span class="number">2</span>)
+    response = requests.session().get(url, headers=headers, timeout=<span class="number">50</span>, verify=False)
+    <span class="keyword">print</span> response
+
+    b = p<span class="string">q(response.content)</span>
+    path = b(<span class="string">'div[class="text"] p'</span>)
+    img = path(<span class="string">'img'</span>)
+    <span class="keyword">for</span> i in img:
+        <span class="keyword">time</span>.<span class="keyword">sleep</span>(<span class="number">1</span>)
+        img_url = i.<span class="keyword">values</span>()[<span class="number">0</span>].decode(<span class="string">'utf-8'</span>)
+        filename = img_url.<span class="keyword">split</span>(<span class="string">'/'</span>)[-<span class="number">1</span>]
+        <span class="keyword">print</span> img_url, <span class="string">'-'</span> * <span class="number">30</span>, filename
+        r = requests.get(img_url, stream=True).content
+        file(<span class="string">'/root/Desktop/testpachong/MM/page%s_img%s'</span> %
+             (page, filename), <span class="string">'a'</span>).<span class="keyword">write</span>(r)
+        <span class="keyword">print</span> page
+<span class="keyword">print</span> <span class="string">'done'</span>
+<span class="comment"># JanDanWangMeiZiTu</span>
+</code></pre><h3 id="糗事百科图片实例：">糗事百科图片实例：</h3><pre><code><span class="comment"># coding:utf-8</span>
+import re
+import urllib
+import urllib2
+
+<span class="operator">a</span> = <span class="number">1</span>
+<span class="keyword">for</span> page <span class="operator">in</span> xrange(<span class="number">1</span>, <span class="number">36</span>):
+    <span class="operator">a</span> += <span class="number">1</span>
+    url = <span class="string">'http://www.qiushibaike.com/imgrank/page/%s'</span> % page
+
+    headers = {
+        <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36'</span>
+    }
+    request = urllib2.Request(url, headers=headers)
+    response = urllib2.urlopen(request)
+    html = response.<span class="built_in">read</span>().decode(<span class="string">'utf-8'</span>)
+    imglist = re.findall(<span class="string">'img src="(.*?)\.jpg"'</span>, html)
+    i = <span class="number">1</span>
+    <span class="keyword">for</span> img <span class="operator">in</span> imglist:
+        i += <span class="number">1</span>
+        imgfile = urllib.urlopen(img + <span class="string">'.jpg'</span>)
+        <span class="built_in">file</span>(<span class="string">'/root/Desktop/testpachong/QiuShiBaiKe/page%s_img%s.jpg'</span> % (page, i), <span class="string">'wb'</span>).<span class="built_in">write</span>(imgfile.<span class="built_in">read</span>())
+</code></pre><p>python爬虫还有个scrapy框架：听说比较强悍，回头瞅瞅</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/89403-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>最近没活了，简单复习下]]>
+    </summary>
+    
+      <category term="爬虫" scheme="http://python-ning.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[全栈工程师眼中的HTTP]]></title>
+    <link href="http://python-ning.github.io/2016/01/18/good_article_collect_http/"/>
+    <id>http://python-ning.github.io/2016/01/18/good_article_collect_http/</id>
+    <published>2016-01-18T08:00:00.000Z</published>
+    <updated>2016-01-18T18:53:46.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="HTTP简介">HTTP简介</h3><p>超文本传输协议（HyperText Transfer Protocol，HTTP）是互联网上应用最为广泛的一种网络协议。设计HTTP的最初目的是提供一种发布和接收HTML页面的方法。OSI模型1义了整个世界计算机相互连接的标准，总共分为7层，其中最上层（也就是第7层）就是应用层，HTTP、HTTPS、FTP、TELNET、SSH、SMTP和POP3都属于应用层。这是软件工程师最关心的一层。</p>
+<p>SI模型越靠近底层，就越接近硬件。在HTTP协议中，并没有规定必须使用它或它支持的层。事实上，HTTP可以在任何互联网协议或其他网络上实现。HTTP假定其下层协议提供可靠的传输，因此，任何能够提供这种保证的协议都可以被其使用，也就是其在TCP/IP协议族使用TCP作为其传输层。</p>
+<p>OSI模型，图片来自维基百科。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/P072.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="关于HTTP版本">关于HTTP版本</h3><p>HTTP已经演化出了很多版本，它们中的大部分都是向下兼容的。客户端在请求的开始告诉服务器它采用的协议版本号，而后者则在响应中采用相同或者更早的协议版本。</p>
+<p>当前应用最广泛的HTTP版本为HTTP/1.1，它自从1999年发布以来，距写作本书时已有16年的时间。比起HTTP/1，它增加了几个重要特性，比如缓存处理（在下一章介绍）和持续连接，以及其他一些性能优化。</p>
+<p>2015年2月，HTTP/2正式发布。新的HTTP版本有一些重大更新，除了一如既往地向下兼容HTTP/1以外，还有一些优化，比如减小网络传输延迟，并简化服务器向浏览器传输内容的过程。主流的服务器（Apache、Nginx等）和浏览器（Firefox、Chrome、Safari以及iOS和Android的浏览器等）的最新版都已经支持HTTP/2，剩下的就需要网站管理员把服务器升级到最新版了。</p>
+<h3 id="例子">例子</h3><p>下面是一个HTTP客户端与服务器之间会话的例子，运行于www.google.com，端口80。<br>客户端首先发出请求。</p>
+<pre><code>GET / HTTP/<span class="number">1.1</span>
+Host:www<span class="class">.google</span><span class="class">.com</span>
+</code></pre><p>第一行指定方法、资源路径、协议版本。当然这是一个简化后的例子，实际请求中还会有当前Google登录账户的cookie、HTTPS头、浏览器接受何种类型的压缩格式和UA2代码等。<br>服务器随之应答。</p>
+<pre><code>HTTP/<span class="number">1.1</span> <span class="number">200</span> OK
+Content-Length: <span class="number">3059</span>
+Server: GWS/<span class="number">2.0</span>
+Date: Mon, <span class="number">20</span> Apr <span class="number">2015</span> <span class="number">20</span>:<span class="number">30</span>:<span class="number">45</span> GMT
+Content-Type: text/html
+Cache-control: <span class="keyword">private</span>
+Set-cookie: PREF=ID=<span class="number">73</span>d4aef52e57bae9:TM=<span class="number">1042253044</span>:LM=<span class="number">1042253044</span>:S= SMCc_HRPCQiqy
+X9j; expires=Sun, <span class="number">17</span>-Jan-<span class="number">2038</span> <span class="number">19</span>:<span class="number">14</span>:<span class="number">07</span> GMT; path=/; domain=.google.com
+Connection: keep-alive
+</code></pre><p>在这一串HTTPS头之后，会紧跟着一个空行，然后是HTML格式的文本组成的Google主页。<br>介绍完关于HTTP的基本知识，我们来分别看看前端工程师和后台工程师分别是怎样看待这个最熟悉的小伙伴的。</p>
+<h3 id="前端视角">前端视角</h3><p>前端工程师的职责之一是，让网站又快又好地展现在用户的浏览器中。<br>从这个角度来说，对HTTP的理解是这样的：打开HttpWatch3，然后随意访问一个网站。HttpWatch会按照浏览器请求的次序，列出打开这个网站的时候发生的请求细节。</p>
+<p>1.发出的请求列表。<br>2.每个请求的开始时间。<br>3.每个请求从开始到结束花费的时间。<br>4.每个请求的类型（比如是文本、CSS、JS，还是图片或者字体等）。<br>5.每个请求的状态码（比如是200、还是from cache、304、404等）。<br>6.每个请求产生的流量消耗。<br>7.每个请求gzip4压缩前的体积，以及在本地gzip解压后的体积。</p>
+<p>通过查看站点的HTTP请求信息，可以得到很多优化信息。每一个前端工程师都知道的基本优化方法是：尽量减少同一域下的HTTP请求数，以及尽量减少每一个资源的体积。</p>
+<h3 id="尽量减少同一域下的HTTP请求数">尽量减少同一域下的HTTP请求数</h3><p>浏览器常常限定了对同一域名发起的并发连接数的上限。IE6/7和Firefox2的设计规则是，同时只能对一个域名发起两个并发连接。新版本的各种浏览器普遍把这一上限设定为4至8个。如果浏览器需要对某个域进行更多的连接，则需要在用完了当前连接之后，重复使用或者重新建立TCP连接。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/P075.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>QQ空间的CSS贴图由程序自动生成，保证最佳的图片质量、最合理的图片摆放和最小的体积。</p>
+<p>由于浏览器针对资源的域名限制并发连接数，而不是针对浏览器地址栏中的页面域名，所以很多静态资源可以放在其他域名下（不同的子域名也被认为是不同的域名）。如果您只有一台服务器，可以把这些不同的域名同时指向一个IP，也就提高了对这台服务器的并发连接数限制（不过要小心服务器压力过大）。</p>
+<p>把静态资源放在非主域名下，这种做法除了可以增加浏览器并发，还有一个好处是，减少HTTP请求中携带的不必要的cookie数据。cookie是某些网站为了辨别用户身份而储存在用户浏览器中的数据。cookie的作用域是整个域名，也就是说如果某个cookie存放在google.com域名下，那么对于google.com域名下的所有HTTP请求头都会带上cookie数据。如果Google把所有的资源都放在google.com下，那么所有资源的请求都会带上cookie数据。对于静态资源来说，这是毫无必要的，因为这对带宽和链接速度都造成了影响。所以我们一般把静态资源放在单独的域名下。</p>
+<p>除此之外，前端工程师经常做的优化是合并同一域名下的资源，比如把多个CSS合并为一个CSS，或者将图片组合为CSS贴图。6</p>
+<p>还有一些优化建议是省掉不必要的HTTP请求，比如内嵌小型CSS、内嵌小型JavaScript、设置缓存，以及减少重定向。这些做法虽然各不相同，但是如果了解HTTP请求的过程，就知道这些优化方法的最终目的都是最大化利用有限的请求数。</p>
+<h3 id="尽量减少每一个资源的体积">尽量减少每一个资源的体积</h3><p>我们不光要限制请求数，还要尽量减少每一个资源的体积。因为资源的体积越大，在传输中消耗的流量就越多，等待时间也越久。</p>
+<p>在面试应聘者的时候，我会问的一个基础题目是“常用的图片格式有哪些，它们的使用场景是什么”。如果能选择合适的图片格式，就能够用更小的体积，达到更好的显示效果。对图片格式的敏感，能反映出工程师对带宽和速度的不懈追求。</p>
+<p>此外，对于比较大的文本资源，必须开启gzip压缩。因为gzip对于含有重复“单词”的文本文件，压缩率非常高，能有效提高传输过程。</p>
+<p>对于一个CSS资源的请求耗时，我想说明两个细节。</p>
+<p>1.这个CSS资源请求的体积是36.4KB（这是gzip压缩过的体积），解压缩之后，CSS内容实际上是263KB，可以算出压缩后体积是原来的13.8%。<br>2.整个连接的建立花费了30%的时间，发出请求到等待收到第一个字节回复花费了20%的时间，下载CSS资源的内容花费了50%的时间。</p>
+<p>如果没有设置gzip，下载这个CSS文件会需要好几倍的时间。</p>
+<h3 id="后台视角">后台视角</h3><p>前端工程师对HTTP的关注点在于尽量减少同一域下的HTTP请求数，以及尽量减少每一个资源的体积。与之不同，后台工程师对于HTTP的关注在于让服务器尽快响应请求，以及减少请求对服务器的开销。</p>
+<p>后台工程师知道，浏览器限定对某个域的并发连接数，很大程度上是浏览器对服务器的一种保护行为。浏览器作为一种善意的客户端，为了保护服务器不被大量的并发请求弄得崩溃，才限定了对同一个域的最大并发连接数。而一些“恶意”的客户端，比如一些下载软件，它作为一个HTTP协议客户端，不考虑到服务器的压力，而发起大量的并发请求（虽然用户感觉到下载速度很快），但是由于它违反了规则，所以经常被服务器端“防范”和屏蔽。</p>
+<p>那么为什么服务器对并发请求数这么敏感？</p>
+<p>虽然服务器的多个进程看上去是在同时运行，但是对于单核CPU的架构来说，实际上是计算机系统同一段时间内，以进程的形式，将多个程序加载到存储器中，并借由时间共享，以在一个处理器上表现出同时运行的感觉。由于在操作系统中，生成进程、销毁进程、进程间切换都很消耗CPU和内存，因此当负载高时，性能会明显降低。</p>
+<h3 id="提高服务器的请求处理能力">提高服务器的请求处理能力</h3><p>在早期系统中（如Linux 2.4以前），进程是基本运作单位。在支持线程的系统（Linux2.6）中，线程才是基本的运作单位，而进程只是线程的容器。由于线程开销明显小于进程，而且部分资源还可以共享，因此效率较高。</p>
+<p>Apache是市场份额最大的服务器，超过50%的网站运行在Apache上。Apache 通过模块化的设计来适应各种环境，其中一个模块叫做多处理模块（MPM），专门用来处理多请求的情况。Apache安装在不同系统上的时候会调用不同的默认MPM，我们不用关心具体的细节，只需要了解Unix上默认的MPM是prefork。为了优化，我们可以改成worker模式。</p>
+<p>prefork和worker模式的最大区别就是，prefork的一个进程维持一个连接，而worker的一个线程维持一个连接。所以prefork更稳定但内存消耗也更大，worker没有那么稳定，因为很多连接的线程共享一个进程，当一个线程崩溃的时候，整个进程和所有线程一起死掉。但是worker的内存使用要比prefork低得多，所以很适合用在高HTTP请求的服务器上。</p>
+<p>近年来Nginx越来越受到市场的青睐。在高连接并发的情况下，Nginx是Apache服务器不错的替代品或者补充：一方面是Nginx更加轻量级，占用更少的资源和内存；另一方面是Nginx 处理请求是异步非阻塞的，而Apache 则是阻塞型的，在高并发下Nginx 能保持低资源、低消耗和高性能。</p>
+<p>由于Apache和Nginx各有所长，所以经常的搭配是Nginx处理前端并发，Apache处理后台请求。</p>
+<p>值得一提的是，新秀Node.js也是采用基于事件的异步非阻塞方式处理请求，所以在处理高并发请求上有天然的优势。</p>
+<h3 id="DDoS攻击">DDoS攻击</h3><p>DDoS是Distributed Denial of Service的缩写，DDoS攻击翻译成中文就是“分布式拒绝服务”攻击。</p>
+<p>简单来说，就是黑客入侵并控制了大量用户的计算机（俗称“肉鸡”），然后在这些计算机上安装了DDoS攻击软件。我们知道浏览器作为一种“善意”的客户端，限制了HTTP并发连接数。但是DDoS就没有这样的道德准则，每一个DDoS攻击客户端都可以自由设置TCP/IP并发连接数，并且连接上服务器之后，它不会马上断开连接，而是保持这个连接一段时间，直到同时连接的数量大于最大连接数，才断开之前的连接。</p>
+<p>就这样，攻击者通过海量的请求，让目标服务器瘫痪，无法响应正常的用户请求，以此达到攻击的效果。</p>
+<p>对于这样的攻击，几乎没有什么特别好的防护方法。除了增加带宽和提高服务器能同时接纳的客户数，另一种方法就是让首页静态化。DDoS攻击者喜欢攻击的页面一般是会对数据库进行写操作的页面，这样的页面无法静态化，服务器更容易宕机。DDoS攻击者一般不会攻击静态化的页面或者图片，因为静态资源对服务器压力小，而且能够部署在CDN上。</p>
+<p>这里介绍的只是最简单的TCP/IP攻击，而DDoS是一个概称，具体来说，有各种攻击方式，比如CC攻击、SYN攻击、NTP攻击、TCP攻击和DNS攻击等。</p>
+<h3 id="BigPipe">BigPipe</h3><p>前端跟后端在HTTP上也能有交集，BigPipe就是一个例子。<br>现有的HTTP数据请求流程是：客户端建立连接，服务器同意连接，客户端发起请求，服务器返回数据，客户端接受并处理数据。这个处理流程有两个问题。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/6_1.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>现有的阻塞模型，黄色代表服务器生成页面，白色代表网络传输，紫色代表浏览器渲染页面。</p>
+<p>第一，HTTP协议的底层是TCP/IP，而TCP/IP规定3次握手才建立一次连接。每一个新增的请求都要重新建立TCP/IP连接，从而消耗服务器的资源，并且浪费连接时间。对于几种不同的服务器程序（Apache、Nginx和Node.js等），所消耗的内存和CPU资源也不太一样，但是新的连接无法避免，没有从本质上解决问题。</p>
+<p>第二个问题是，在现有的阻塞模型中，服务器计算生成页面需要时间。等服务器完全生成好整个页面，才开始网络传输，网络传输也需要时间。整个页面都完全传输到浏览器中之后，在浏览器中最后渲染还是需要时间。三者是阻塞式的，每一个环节都在等上一个环节100%完成才开始。页面作为一个整体，需要完整地经历3个阶段才能出现在浏览器中，效率很低。</p>
+<p>BigPipe是Facebook公司科学家Changhao Jiang发明的一种非阻塞式模型，这种模型能完美解决上面的两个问题。</p>
+<p>通俗来解释，BigPipe首先把HTML页面分为很多部分，然后在服务器和浏览器之间建立一条管道（BigPipe就是“大管道”的意思），HTML的不同部分可以源源不断地从服务器传输到浏览器。BigPipe首先输送的内容是框架性HTML结构，这个框架结构可能会定义每个Pagelet模块的位置和宽高，但是这些pagelet都是空的，就像只有钢筋混泥土骨架的毛坯房。</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/6_2.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>BigPipe页面的渲染流程。<br>服务器传输完框架性HTML结构之后，对浏览器说：“我这个请求还没结束，我们保持这个连接不要断开，不过您可以先用我给您的这部分来渲染。”<br>所以浏览器就开始渲染这个“不完整的HTML”，毛坯房页面很快出现在用户眼前，具体的页面模块都显示“正在加载”。<br>接下来管道里源源不断地传输过来很多模块，这时候最开始加载在服务器中的JS代码开始工作，它会负责把每一个模块依次渲染到页面上。<br>在用户的感知上，页面非常快地出现在眼前，但是所有的模块都显示正在加载中，然后主要的区域（比如重要的用户动态）优先出现，接下来是logo、边栏和各种挂件等。<br>为什么BigPipe能够让服务器对浏览器说“我这个请求还没结束，我们保持这个连接不要断开”呢？答案是HTTP1.1的分块传输编码。<br>HTTP 1.1引入分块传输编码，允许服务器为动态生成的内容维持HTTP持久链接。如果一个HTTP消息（请求消息或应答消息）的Transfer-Encoding消息头的值为chunked，那么消息体由数量不确定的块组成——也就是说想发送多少块就发送多少块——并以最后一个大小为0的块为结束。<br>实现这个架构需要深刻理解HTTP 1.1的规则，而且要有前端的知识。在我看来，这就是一个极佳的全栈工程师改变世界的例子。<br>截止写书时，Chrome、Safari和Opera已经支持HTTP/2并默认开启，它允许服务器向浏览器“推送”内容。也就是说，返回的条目数可以比请求的条目数多，这样服务器可以在一开始就推送所有它认为浏览器“应该需要”的资源，而不需要浏览器接受并解析完HTML页面才开始请求下载CSS、JavaScript等。而且，后面的请求可以复用之前已经建立的底层连接。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="HTTP简介">HTTP简介</h3><p>超文本传输协议（HyperText Transfer Protocol，HTTP）是互联网上应用最为广泛的一种网络协议。设计HTTP的最初目的是提供一种发布和接收HTML页面的方法。OSI模型1义了整个世界计算机相互连接]]>
+    </summary>
+    
+      <category term="http" scheme="http://python-ning.github.io/tags/http/"/>
+    
+      <category term="好文章收集" scheme="http://python-ning.github.io/categories/%E5%A5%BD%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/"/>
+    
+  </entry>
+  
+</feed>

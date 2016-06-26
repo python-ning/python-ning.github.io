@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html class="theme-next use-motion theme-next-mist"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+  <meta name="google-site-verification" content="SnGYMHWtEs8xhCFNFdPa2M63uP7SC2bNalHTEHUiaKU">
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="index.styl_files/jquery.css">
+
+
+
+
+  
+    <link href="index.styl_files/css.css" rel="stylesheet" type="text/css">
+  
+
+
+<link rel="stylesheet" type="text/css" href="index.styl_files/font-awesome.css">
+
+<link rel="stylesheet" type="text/css" href="index.styl_files/main.css">
+
+
+    <meta name="description" content="伍翀的个人技术博客">
+
+
+
+    <meta name="author" content="WuChong">
+
+
+
+  <meta name="keywords" content="Hexo,Jacman,">
+
+
+
+  <link rel="alternate" href="http://wuchong.me/atom.xml" title="Jark's Blog" type="application/atom+xml">
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://wuchong.me/favicon.ico?v=0.4.5.2">
+
+
+<meta name="description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。
+然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为 Hexo 主题添加多种图片样式">
+<meta property="og:url" content="http://wuchong.me/blog/2014/12/13/hexo-theme-creating-image-styles/index.html">
+<meta property="og:site_name" content="Jark's Blog">
+<meta property="og:description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。
+然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/81b78497jw1en8b95t5kmj203j00u743.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/81b78497jw1en8cj4beb9j20s80b8adb.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/81b78497jw1en8cj55warj20se0avgoh.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/81b78497jw1en8cj4r4bij20sl0krn4x.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg">
+<meta property="og:updated_time" content="2015-03-19T03:33:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为 Hexo 主题添加多种图片样式">
+<meta name="twitter:description" content="为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。
+然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。">
+
+
+<script src="index.styl_files/st.js" async=""></script><script src="index.styl_files/hm.js"></script><script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 为 Hexo 主题添加多种图片样式 | Jark's Blog </title>
+<script charset="UTF-8" src="index.styl_files/embed.js" id="duoshuo-script" async="" type="text/javascript"></script><link href="index.styl_files/new_embed-8628524621adce36c5b73fa8d89c8258.css" type="text/css" rel="stylesheet"><style type="text/css">.st-install-8Exkz7xsCTJyyCHiK9TY .st-ui-result .st-ui-type-heading { color:#0089d7 !important }
+.st-install-8Exkz7xsCTJyyCHiK9TY .st-ui-result em {font-style:normal; font-weight:bold; background-color:#f6fcfe !important}</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">.fancybox-margin{margin-right:17px;}</style><link href="index.styl_files/embed.css" rel="stylesheet" type="text/css"></head>
+
+<body style="padding-right: 320px;" class="" itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans"><div style="display: none;" id="MathJax_Message"></div>
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a style="opacity: 1;" href="http://wuchong.me/" class="brand" rel="start">
+      <span class="logo-line-before"><i style="transform: translateX(100%);" class=""></i></span>
+      <span style="opacity: 1; top: 0px;" class="site-title">Jark's Blog</span>
+      <span class="logo-line-after"><i style="transform: translateX(-100%);" class=""></i></span>
+    </a>
+  </div>
+  <p style="opacity: 1; top: 0px;" class="site-subtitle">当你的才华还撑不起你的野心时，你就应该静下心来学习。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li style="opacity: 1; transform: translateY(0px);" class="menu-item menu-item-home">
+          <a href="http://wuchong.me/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li style="opacity: 1; transform: translateY(0px);" class="menu-item menu-item-archives">
+          <a href="http://wuchong.me/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li style="opacity: 1; transform: translateY(0px);" class="menu-item menu-item-tags">
+          <a href="http://wuchong.me/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li style="opacity: 1; transform: translateY(0px);" class="menu-item menu-item-about">
+          <a href="http://wuchong.me/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input autocapitalize="off" autocorrect="off" autocomplete="off" id="st-search-input" class="st-search-input st-default-search-input" type="text">
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '8Exkz7xsCTJyyCHiK9TY','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article style="opacity: 1; display: block; transform: translateY(0px);" class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                为 Hexo 主题添加多种图片样式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2014-12-13T20:11:56+08:00" content="2014-12-13">
+              2014-12-13
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="http://wuchong.me/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="http://wuchong.me/blog/2014/12/13/hexo-theme-creating-image-styles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="blog/2014/12/13/hexo-theme-creating-image-styles/" itemprop="commentsCount">35条评论</span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+      <div class="post-body">
+    
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><a rel="group" class="fancybox" href="http://ww4.sinaimg.cn/large/81b78497jw1en8b95t5kmj203j00u743.jpg"><img src="index.styl_files/81b78497jw1en8b95t5kmj203j00u743.jpg" class="img-logo"></a></p>
+<p>为一篇博客添加相关的图片可以快速吸引读者的目光，也能帮助读者理解文章概要，尤其是在写技术博客或是某些很复杂的东西时。</p>
+<p>然而，Hexo 主题一般只提供一种默认的图片样式，包括 Jacman。所以，我为 Jacman 实现了几种常见的图片样式。这里我会展示这几种图片样式以及其实现方法。</p>
+<a id="more"></a>
+<h2 id="主题图片">主题图片</h2><p>我比较喜欢像<a href="http://www.36kr.com/" target="_blank" rel="external">36氪</a>那样，一篇文章带一张相关图片。图片能传达的信息永远比文字丰富。当浏览文章列表时，除了标题最吸引人的自然就属文章主题图片了。</p>
+<p>所以为了方便使用，我创建了一个图片样式叫<code>img-topic</code>，大概是长这样子的。</p>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/index.styl</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="class">.img-topic</span></span><br><span class="line">  <span class="tag">max-width</span>: 300<span class="tag">px</span>;</span><br><span class="line">  <span class="tag">max-height</span>: 1800<span class="tag">px</span>;</span><br><span class="line">  <span class="tag">display</span>: <span class="tag">block</span> ;</span><br><span class="line">  <span class="tag">margin-left</span>: <span class="class">.7em</span>;</span><br><span class="line">  <span class="tag">margin-right</span>: <span class="class">.7em</span>;</span><br><span class="line">  <span class="tag">padding</span>: 0;</span><br><span class="line">  <span class="tag">float</span>: <span class="tag">right</span>;</span><br><span class="line">  <span class="tag">clear</span>: <span class="tag">right</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>在博客中，我更希望主题图片居右，并且点进文章正文后该图片不会显示。我们可以使用HTML语法插入图片。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">&lt;img src="图片路径" class="img-topic" /&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>这儿是一张使用<code>img-topic</code>样式后的效果图。</p>
+<p><a rel="group" class="fancybox" href="http://ww2.sinaimg.cn/large/81b78497jw1en8cj4beb9j20s80b8adb.jpg"><img src="index.styl_files/81b78497jw1en8cj4beb9j20s80b8adb.jpg" alt="img-topic效果图"></a></p>
+<h2 id="Logo_图片">Logo 图片</h2><p>Logo 图片可以快速定义一篇文章的主题。与主题图片非常类似，只不过 Logo  图片放置的是 Logo ，而且一般比主题图片要小。类似的，Logo 图片也是居右，并且在文章正文中不会显示。</p>
+<p>关于<code>img-logo</code>的样式如下</p>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/index.styl</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="class">.img-logo</span> </span><br><span class="line">  <span class="tag">max-width</span>: 180<span class="tag">px</span>;</span><br><span class="line">  <span class="tag">max-height</span>: 96<span class="tag">px</span>;</span><br><span class="line">  <span class="tag">display</span>: <span class="tag">block</span>;</span><br><span class="line">  <span class="tag">margin-right</span>: <span class="class">.7em</span>;</span><br><span class="line">  <span class="tag">margin-left</span>: <span class="class">.7em</span>;</span><br><span class="line">  <span class="tag">padding</span>: 0;</span><br><span class="line">  <span class="tag">float</span>: <span class="tag">right</span>;</span><br><span class="line">  <span class="tag">clear</span>: <span class="tag">right</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>使用HTML语法插入图片</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">&lt;img src="图片路径" class="img-logo" /&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>效果如下图：</p>
+<p><a rel="group" class="fancybox" href="http://ww4.sinaimg.cn/large/81b78497jw1en8cj55warj20se0avgoh.jpg"><img src="index.styl_files/81b78497jw1en8cj55warj20se0avgoh.jpg" alt="img-logo效果图"></a></p>
+<h2 id="居中图片">居中图片</h2><p>有网友抱怨 Jacman 的图片只能居左，他喜欢让图片居中却不知道该怎么做。为此，我也创建了一个图片样式叫<code>img-center</code>，所需的代码很短。</p>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/article.styl</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="class">.img-center</span></span><br><span class="line">  <span class="tag">display</span>: <span class="tag">block</span> ;</span><br><span class="line">  <span class="tag">margin</span>: <span class="tag">auto</span>;</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="阴影图片">阴影图片</h2><p>有时候添加的图片可能会与文章背景混淆，使得读者看不清到底哪部分是图片哪部分是文章。使用<code>img-shadow</code>为图片添加边角阴影可以更加凸显图片的位置，也能更美观。</p>
+<figure class="highlight css"><figcaption><span>/themes/jacman/source/css/_partial/article.styl</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="class">.img-shadow</span></span><br><span class="line">  <span class="tag">box-shadow</span>: 0 0 2<span class="tag">px</span> 3<span class="tag">px</span> <span class="id">#ddd</span>;</span><br></pre></td></tr></tbody></table></figure>
+<p>使用HTML语法插入图片</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">&lt;img src="http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg" class="img-shadow" /&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p><a rel="group" class="fancybox" href="http://ww1.sinaimg.cn/large/81b78497jw1enhkcat9mqj20go06g0sy.jpg"><img src="index.styl_files/81b78497jw1enhkcat9mqj20go06g0sy.jpg" class="img-shadow"></a></p>
+<h2 id="画廊图片">画廊图片</h2><p>Hexo 中提供了一种文章类别叫<code>photo</code>，Jacman 也为这种文章设计了图片浏览方式。具体效果可以看这篇 <a href="http://wuchong.me/jacman/gallery/">Demo</a> 。<code>photo</code>类文章的写法可以看 <a href="https://raw.githubusercontent.com/wuchong/jacman/site/source/_posts/gallery.md" target="_blank" rel="external">Demo Sample</a>。</p>
+<p><a rel="group" class="fancybox" href="http://ww3.sinaimg.cn/large/81b78497jw1en8cj4r4bij20sl0krn4x.jpg"><img src="index.styl_files/81b78497jw1en8cj4r4bij20sl0krn4x.jpg" alt="photo文章效果图"></a></p>
+<h2 id="图片备注">图片备注</h2><p>Jacman 中可以方便地为图片提供备注。</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">![添加你的备注](http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg)</span><br></pre></td></tr></tbody></table></figure>
+<p>效果就如下图，在图片左下方会显示关于图片的描述。</p>
+<p><a rel="group" class="fancybox" href="http://ww1.sinaimg.cn/mw690/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg"><img src="index.styl_files/81b78497jw1emfgts2pt4j21hc0u0k1c.jpg" alt="添加你的备注"></a></p>
+<p>OK，就这么多了，希望大家喜欢。如果嫌折腾麻烦，欢迎使用最新版的 <a href="https://github.com/wuchong/jacman" target="_blank" rel="external">Jacman</a>，可以直接使用以上定义的样式！</p>
+<p><em>PS:有任何关于 Hexo 的问题，欢迎来 <a href="https://coderq.com/c/tech/hexo" target="_blank" rel="external">Hexo 中文社区</a> 咨询。</em></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="http://wuchong.me/tags/Hexo/" rel="tag">#Hexo</a>
+          
+            <a href="http://wuchong.me/tags/Jacman/" rel="tag">#Jacman</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="http://wuchong.me/blog/2014/11/20/how-to-use-jacman/" rel="next" title="如何使用 Jacman 主题">
+                <i class="fa fa-chevron-left"></i> 如何使用 Jacman 主题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="http://wuchong.me/blog/2014/12/18/hexo-blog-to-coding/" rel="prev" title="托管 Hexo 博客到 Coding">
+                托管 Hexo 博客到 Coding <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div id="ds-share" class="ds-share flat" data-thread-key="blog/2014/12/13/hexo-theme-creating-image-styles/" data-title="为 Hexo 主题添加多种图片样式" data-content="（分享自 @黑桃夹克）" data-url="http://wuchong.me/blog/2014/12/13/hexo-theme-creating-image-styles/">
+  <div id="ds-reset" class="ds-share-inline">
+    <ul class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more flat" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      <li><a class="ds-twitter flat" href="javascript:void(0);" data-service="twitter">Twitter</a></li>
+      <li><a class="ds-facebook flat" href="javascript:void(0);" data-service="facebook">Facebook</a></li>
+
+    </ul>
+    <div style="display: none;" class="ds-share-icons-more"><div class="ds-share-icons"> <div class="ds-share-icons-inner"> <ul class="ds-share-icons-16">  <li> <a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">新浪微博</a> </li>  <li> <a class="ds-qzone flat" href="javascript:void(0);" data-service="qzone">QQ空间</a> </li>  <li> <a class="ds-sohu flat" href="javascript:void(0);" data-service="sohu">搜狐微博</a> </li>  <li> <a class="ds-renren flat" href="javascript:void(0);" data-service="renren">人人网</a> </li>  <li> <a class="ds-netease flat" href="javascript:void(0);" data-service="netease">undefined</a> </li>  <li> <a class="ds-qqt flat" href="javascript:void(0);" data-service="qqt">腾讯微博</a> </li>  <li> <a class="ds-kaixin flat" href="javascript:void(0);" data-service="kaixin">开心网</a> </li>  <li> <a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣网</a> </li>  <li> <a class="ds-qq flat" href="javascript:void(0);" data-service="qq">QQ</a> </li>  <li> <a class="ds-meilishuo flat" href="javascript:void(0);" data-service="meilishuo">undefined</a> </li>  <li> <a class="ds-mogujie flat" href="javascript:void(0);" data-service="mogujie">undefined</a> </li>  <li> <a class="ds-baidu flat" href="javascript:void(0);" data-service="baidu">百度</a> </li>  <li> <a class="ds-taobao flat" href="javascript:void(0);" data-service="taobao">undefined</a> </li>  <li> <a class="ds-google flat" href="javascript:void(0);" data-service="google">谷歌</a> </li>  <li> <a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a> </li>  <li> <a class="ds-diandian flat" href="javascript:void(0);" data-service="diandian">undefined</a> </li>  <li> <a class="ds-huaban flat" href="javascript:void(0);" data-service="huaban">undefined</a> </li>  <li> <a class="ds-duitang flat" href="javascript:void(0);" data-service="duitang">undefined</a> </li>  <li> <a class="ds-youdao flat" href="javascript:void(0);" data-service="youdao">undefined</a> </li>  <li> <a class="ds-pengyou flat" href="javascript:void(0);" data-service="pengyou">undefined</a> </li>  <li> <a class="ds-facebook flat" href="javascript:void(0);" data-service="facebook">Facebook</a> </li>  <li> <a class="ds-twitter flat" href="javascript:void(0);" data-service="twitter">Twitter</a> </li>  <li> <a class="ds-linkedin flat" href="javascript:void(0);" data-service="linkedin">Linkedin</a> </li>  <li> <a class="ds-msn flat" href="javascript:void(0);" data-service="msn">undefined</a> </li>  </ul> </div> <div class="ds-share-icons-footer">多说分享插件</div></div></div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="ds-thread" class="ds-thread" data-thread-key="blog/2014/12/13/hexo-theme-creating-image-styles/" data-title="为 Hexo 主题添加多种图片样式" data-url="http://wuchong.me/blog/2014/12/13/hexo-theme-creating-image-styles/">
+              <div id="ds-reset"><div class="ds-meta"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"><span class="ds-highlight">4</span> 人喜欢</span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc ds-current">最新</a><a class="ds-order-asc">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">35</span>条评论</a></li> <li class="ds-tab"><a class="ds-comments-tab-weibo" href="javascript:void(0);"><span class="ds-highlight">3</span>条新浪微博</a></li> </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6214416556282086145"><div class="ds-post-self" data-post-id="6214416556282086145" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="14170879"><a rel="nofollow author" target="_blank" href="http://weibo.com/adairjun" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=14170879';" title="adairjun"><img src="index.styl_files/1_006.jpg" alt="adairjun"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/adairjun" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=14170879';" rel="nofollow" target="_blank" data-user-id="14170879">adairjun</a></div><p>请问博主，就像你这个图片当中的“阅读更多”和“暂无评论”是怎么弄出来的？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-11-07T22:30:06+08:00" title="2015年11月7日 下午10:30:06">11月7日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="6215066280605516546"><div class="ds-post-self" data-post-id="6215066280605516546" data-thread-id="1316637686471066735" data-root-id="6214416556282086145" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p>使用的jacman主题，主题自带这个功能了</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-11-09T16:31:22+08:00" title="2015年11月9日 下午4:31:22">11月9日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="6209856208401482498"><div class="ds-post-self" data-post-id="6209856208401482498" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="13967924"><a rel="nofollow author" target="_blank" href="http://weibo.com/2389780804" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13967924';" title="木木牛奶"><img src="index.styl_files/1_003.jpg" alt="木木牛奶"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2389780804" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13967924';" rel="nofollow" target="_blank" data-user-id="13967924">木木牛奶</a></div><p>next主题应该怎么添加呢</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-10-26T15:33:38+08:00" title="2015年10月26日 下午3:33:38">10月26日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6207880832683688706"><div class="ds-post-self" data-post-id="6207880832683688706" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="12069316"><a rel="nofollow author" target="_blank" href="http://t.qq.com/y1225825277" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=12069316';" title="吴东霖"><img src="index.styl_files/50_002.jpg" alt="吴东霖"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/y1225825277" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=12069316';" rel="nofollow" target="_blank" data-user-id="12069316">吴东霖</a></div><p>请问博主为什么我的img-topic用不用都没有效果，图片一直是在中间的，改动img-topic文件也没有变化</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-10-21T07:48:10+08:00" title="2015年10月21日 上午7:48:10">10月21日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6206075039453889282"><div class="ds-post-self" data-post-id="6206075039453889282" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="13548838"><a rel="nofollow author" target="_blank" href="http://t.qq.com/chenqi_280385556" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13548838';" title="彩虹直至黑白"><img src="index.styl_files/100.png" alt="彩虹直至黑白"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/chenqi_280385556" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13548838';" rel="nofollow" target="_blank" data-user-id="13548838">彩虹直至黑白</a></div><p>good,文章我拿走了~ <img src="index.styl_files/heia_org.gif" alt="[偷笑]" title="[偷笑]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-10-16T11:00:46+08:00" title="2015年10月16日 上午11:00:46">10月16日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471067031"><div class="ds-post-self" data-post-id="1316637686471067031" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="13678581"><a rel="nofollow author" target="_blank" href="http://weibo.com/2358067707" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13678581';" title="怀颂"><img src="index.styl_files/1.gif" alt="怀颂"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/2358067707" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13678581';" rel="nofollow" target="_blank" data-user-id="13678581">怀颂</a></div><p>Hi,hexo默认的主题怎么做画廊</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-09-29T22:12:57+08:00" title="2015年9月29日 下午10:12:57">9月29日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471067019"><div class="ds-post-self" data-post-id="1316637686471067019" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="13591569"><a rel="nofollow author" target="_blank" href="http://t.qq.com/wantorange" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13591569';" title="Smile_day"><img src="index.styl_files/100.jpg" alt="Smile_day"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/wantorange" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=13591569';" rel="nofollow" target="_blank" data-user-id="13591569">Smile_day</a></div><p>请问博主，网站标签上的logo（即浏览器标签上title左边的logo）是怎么设置的，比如你的黑桃♠</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-09-21T13:44:10+08:00" title="2015年9月21日 下午1:44:10">9月21日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066910"><div class="ds-post-self" data-post-id="1316637686471066910" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="10345167"><a rel="nofollow author" target="_blank" href="http://t.qq.com/renzhengzhi" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=10345167';" title="云上太阳"><img src="index.styl_files/noavatar_default.png" alt="云上太阳"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/renzhengzhi" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=10345167';" rel="nofollow" target="_blank" data-user-id="10345167">云上太阳</a></div><p>请问标签云怎么配置呢</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-07-26T23:43:08+08:00" title="2015年7月26日 下午11:43:08">7月26日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066774"><div class="ds-post-self" data-post-id="1316637686471066774" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="9702100"><a rel="nofollow author" target="_blank" href="http://weibo.com/kaihana" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=9702100';" title="东邪他爹"><img src="index.styl_files/1_002.jpg" alt="东邪他爹"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/kaihana" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=9702100';" rel="nofollow" target="_blank" data-user-id="9702100">东邪他爹</a></div><p>请问，图片居中怎么添加备注？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-05-17T23:14:18+08:00" title="2015年5月17日 下午11:14:18">5月17日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1316637686471066784"><div class="ds-post-self" data-post-id="1316637686471066784" data-thread-id="1316637686471066735" data-root-id="1316637686471066774" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066784" data-parent-id="1316637686471066774">回复 东邪他爹: </a>目前不支持又居中又添加备注...</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-05-21T20:13:13+08:00" title="2015年5月21日 下午8:13:13">5月21日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="1316637686471066724"><div class="ds-post-self" data-post-id="1316637686471066724" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="4583764"><a rel="nofollow author" target="_blank" href="http://weibo.com/3173290371" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4583764';" title="戴嘉乐_DancersDelight_乐乐"><img src="index.styl_files/1_005.jpg" alt="戴嘉乐_DancersDelight_乐乐"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/3173290371" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4583764';" rel="nofollow" target="_blank" data-user-id="4583764">戴嘉乐_DancersDelight_乐乐</a></div><p>想问一下博主大神，首页站展开式开启和设置read more后，渲染出的前端模版没法显示“read more”这个按钮，博文都是以全文的形式显示，不知道是什么问题？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-04-27T10:49:19+08:00" title="2015年4月27日 上午10:49:19">4月27日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1316637686471066726"><div class="ds-post-self" data-post-id="1316637686471066726" data-thread-id="1316637686471066735" data-root-id="1316637686471066724" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066726" data-parent-id="1316637686471066724">回复 戴嘉乐_DancersDelight_乐乐: </a>用&lt;!--more--&gt;截取摘要</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-04-27T13:48:59+08:00" title="2015年4月27日 下午1:48:59">4月27日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066732"><div class="ds-post-self" data-post-id="1316637686471066732" data-thread-id="1316637686471066735" data-root-id="1316637686471066724" data-source="duoshuo"><div class="ds-avatar" data-user-id="4583764"><a rel="nofollow author" target="_blank" href="http://weibo.com/3173290371" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4583764';" title="戴嘉乐_DancersDelight_乐乐"><img src="index.styl_files/1_005.jpg" alt="戴嘉乐_DancersDelight_乐乐"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/3173290371" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4583764';" rel="nofollow" target="_blank" data-user-id="4583764">戴嘉乐_DancersDelight_乐乐</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066732" data-parent-id="1316637686471066726">回复 黑桃夹克: </a>谢谢博主，问题解决了。<br>打算在博主的主题上进行改进，这几天我会在github上给博主pull request！<br>这是我自己的博客：<a href="" target="_blank">http://www.daijiale.cn，很佩服博主，期待和博主的技术交流！ <img src="index.styl_files/hufen_org.gif" alt="[互粉]" title="[互粉]" class="ds-smiley">  <img src="index.styl_files/kl_org.gif" alt="[可怜]" title="[可怜]" class="ds-smiley"> </a></p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-04-28T16:15:46+08:00" title="2015年4月28日 下午4:15:46">4月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066901"><div class="ds-post-self" data-post-id="1316637686471066901" data-thread-id="1316637686471066735" data-root-id="1316637686471066724" data-source="duoshuo"><div class="ds-avatar"><img src="index.styl_files/noavatar_default.png" alt="newliferen"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">newliferen</span></div><p><a class="ds-comment-context" data-post-id="1316637686471066901" data-parent-id="1316637686471066732">回复 戴嘉乐_DancersDelight_乐乐: </a>你好，你的主题是在哪里下载的，可以分享一下吗？谢谢。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-07-23T10:50:03+08:00" title="2015年7月23日 上午10:50:03">7月23日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066902"><div class="ds-post-self" data-post-id="1316637686471066902" data-thread-id="1316637686471066735" data-root-id="1316637686471066724" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066902" data-parent-id="1316637686471066901">回复 newliferen: </a><a href="https://github.com/wuchong/jacman" target="_blank">https://github.com/wuchong/jacman</a></p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-07-24T19:05:28+08:00" title="2015年7月24日 下午7:05:28">7月24日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="1316637686471066530"><div class="ds-post-self" data-post-id="1316637686471066530" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="11056189"><a rel="nofollow author" target="_blank" href="http://t.qq.com/H455272698" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=11056189';" title="D.B Murphy"><img src="index.styl_files/50.jpg" alt="D.B Murphy"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/H455272698" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=11056189';" rel="nofollow" target="_blank" data-user-id="11056189">D.B Murphy</a></div><p>我想问下  你是怎么在markdown里把class加上的？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-03-10T21:48:13+08:00" title="2015年3月10日 下午9:48:13">3月10日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1316637686471066532"><div class="ds-post-self" data-post-id="1316637686471066532" data-thread-id="1316637686471066735" data-root-id="1316637686471066530" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066532" data-parent-id="1316637686471066530">回复 D.B Murphy: </a>markdown 支持HTML标签</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-03-12T10:55:06+08:00" title="2015年3月12日 上午10:55:06">3月12日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="1316637686471066464"><div class="ds-post-self" data-post-id="1316637686471066464" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="9702100"><a rel="nofollow author" target="_blank" href="http://weibo.com/kaihana" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=9702100';" title="东邪他爹"><img src="index.styl_files/1_002.jpg" alt="东邪他爹"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/kaihana" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=9702100';" rel="nofollow" target="_blank" data-user-id="9702100">东邪他爹</a></div><p>我现在用的是以前版本的Jacman，请问作者怎么升级？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-07T00:16:04+08:00" title="2015年2月7日 上午12:16:04">2月7日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1316637686471066465"><div class="ds-post-self" data-post-id="1316637686471066465" data-thread-id="1316637686471066735" data-root-id="1316637686471066464" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066465" data-parent-id="1316637686471066464">回复 东邪他爹: </a>如果没做过改动的话，可以重新clone。 做过改动的话，就进入到 jacman目录，git update 就行。 记住先备份你的 jacman 目录下_config.yml 文件。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-07T08:30:44+08:00" title="2015年2月7日 上午8:30:44">2月7日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066644"><div class="ds-post-self" data-post-id="1316637686471066644" data-thread-id="1316637686471066735" data-root-id="1316637686471066464" data-source="duoshuo"><div class="ds-avatar" data-user-id="9702100"><a rel="nofollow author" target="_blank" href="http://weibo.com/kaihana" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=9702100';" title="东邪他爹"><img src="index.styl_files/1_002.jpg" alt="东邪他爹"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/kaihana" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=9702100';" rel="nofollow" target="_blank" data-user-id="9702100">东邪他爹</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066644" data-parent-id="1316637686471066465">回复 黑桃夹克: </a>git update？没有这个命令。不好意思，git不精通</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-04-04T15:33:50+08:00" title="2015年4月4日 下午3:33:50">4月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066646"><div class="ds-post-self" data-post-id="1316637686471066646" data-thread-id="1316637686471066735" data-root-id="1316637686471066464" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066646" data-parent-id="1316637686471066644">回复 东邪他爹: </a>如果是在windows下，先下个 Git for Windows:  <a href="http://msysgit.github.io/" target="_blank">http://msysgit.github.io/</a></p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-04-05T23:17:15+08:00" title="2015年4月5日 下午11:17:15">4月5日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="1316637686471066442"><div class="ds-post-self" data-post-id="1316637686471066442" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="index.styl_files/noavatar_default.png" alt="J-Cn"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">J-Cn</span></div><p>采用landscape-plus的话，怎么让首页展示图片而文章内容不展示呢。<br><br>我已经添加了img-topic，并且用标签添加图片，但是进到文章里还是会显示。<br>能帮忙看一下landscape-plus怎么改吗</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-03T21:41:28+08:00" title="2015年2月3日 下午9:41:28">2月3日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1316637686471066446"><div class="ds-post-self" data-post-id="1316637686471066446" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066446" data-parent-id="1316637686471066442">回复 J-Cn: </a>我是通过CSS，使得img-topic在文章里不显示的。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-04T18:35:50+08:00" title="2015年2月4日 下午6:35:50">2月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066448"><div class="ds-post-self" data-post-id="1316637686471066448" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar"><img src="index.styl_files/noavatar_default.png" alt="J-Cn"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">J-Cn</span></div><p><a class="ds-comment-context" data-post-id="1316637686471066448" data-parent-id="1316637686471066446">回复 黑桃夹克: </a>我在文章里添加了图片后，第一次进入文章，图片正常显示。<br>但是在文章页面按F5刷新后，会重复出现图片。不知道你有没有遇到过。<br>如果有，麻烦告诉一下^_^<br><br>没遇到也不要紧，我自己再看看</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-04T20:44:39+08:00" title="2015年2月4日 下午8:44:39">2月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066449"><div class="ds-post-self" data-post-id="1316637686471066449" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar"><img src="index.styl_files/noavatar_default.png" alt="J-Cn"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">J-Cn</span></div><p><a class="ds-comment-context" data-post-id="1316637686471066449" data-parent-id="1316637686471066446">回复 黑桃夹克: </a>好像是因为article-gallery-photos，我再看看。解决了再跟你说哈</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-04T20:47:40+08:00" title="2015年2月4日 下午8:47:40">2月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066450"><div class="ds-post-self" data-post-id="1316637686471066450" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar"><img src="index.styl_files/noavatar_default.png" alt="J-Cn"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">J-Cn</span></div><p><a class="ds-comment-context" data-post-id="1316637686471066450" data-parent-id="1316637686471066446">回复 黑桃夹克: </a>重复图片的问题找出原因了，交给原作者了。<br><br>我按你说的添加img-topic，但是进入文章后，图片还是存在。<br>而我看你的，图片在首页的时候display是为block<br>而进到文章里则变成了none<br><br>能跟我说一下原理吗？因为我用的主题和你的不一样，所以估计不能直接使用你给的CSS。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-04T21:34:55+08:00" title="2015年2月4日 下午9:34:55">2月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066451"><div class="ds-post-self" data-post-id="1316637686471066451" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar"><img src="index.styl_files/noavatar_default.png" alt="J-Cn"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">J-Cn</span></div><p><a class="ds-comment-context" data-post-id="1316637686471066451" data-parent-id="1316637686471066446">回复 黑桃夹克: </a>另外，你的返回顶部这个功能也很有用呢。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-04T21:40:20+08:00" title="2015年2月4日 下午9:40:20">2月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066452"><div class="ds-post-self" data-post-id="1316637686471066452" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066452" data-parent-id="1316637686471066450">回复 J-Cn: </a>改的这段代码： <a href="https://github.com/wuchong/jacman/commit/dabee7a5306bea79e979c602ffbe170d18df0f92" target="_blank">https://github.com/wuchong/jacman/commit/dabee7a5306bea79e979c602ffbe170d18df0f92</a></p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-05T10:29:07+08:00" title="2015年2月5日 上午10:29:07">2月5日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066455"><div class="ds-post-self" data-post-id="1316637686471066455" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar" data-user-id="958359"><a rel="nofollow author" target="_blank" href="http://www.zlv.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=958359';" title="Jeremy He"><img src="index.styl_files/1_007.jpg" alt="Jeremy He"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.zlv.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=958359';" rel="nofollow" target="_blank" data-user-id="958359">Jeremy He</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066455" data-parent-id="1316637686471066452">回复 黑桃夹克: </a>嗯。感谢回复～～<br>不过我用昨晚用另一种方式解决了，改起来比较麻烦，但是用起来会方便一点。<br><a href="https://github.com/JeremyHe-cn/landscape-plus/commit/928a935ba8e8c96935732dd18a05fe777d982291" target="_blank">https://github.com/JeremyHe-cn/landscape-plus/commit/928a935ba8e8c96935732dd18a05fe777d982291</a><br><br><a href="https://github.com/JeremyHe-cn/landscape-plus/commit/7f6909614587cd1cc82176374dfadad9e0208c9d" target="_blank">https://github.com/JeremyHe-cn/landscape-plus/commit/7f6909614587cd1cc82176374dfadad9e0208c9d</a></p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-05T17:40:02+08:00" title="2015年2月5日 下午5:40:02">2月5日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066461"><div class="ds-post-self" data-post-id="1316637686471066461" data-thread-id="1316637686471066735" data-root-id="1316637686471066442" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066461" data-parent-id="1316637686471066455">回复 Jeremy He: </a>Good!</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-05T23:00:01+08:00" title="2015年2月5日 下午11:00:01">2月5日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="1316637686471066441"><div class="ds-post-self" data-post-id="1316637686471066441" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="10719714"><a rel="nofollow author" target="_blank" href="http://weibo.com/3199156894" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=10719714';" title="Print_8023_to_u"><img src="index.styl_files/1_008.jpg" alt="Print_8023_to_u"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/3199156894" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=10719714';" rel="nofollow" target="_blank" data-user-id="10719714">Print_8023_to_u</a></div><p>请问一下我想在文章中插入自己截的图片，应该怎么做呢</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-03T16:00:45+08:00" title="2015年2月3日 下午4:00:45">2月3日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1316637686471066445"><div class="ds-post-self" data-post-id="1316637686471066445" data-thread-id="1316637686471066735" data-root-id="1316637686471066441" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066445" data-parent-id="1316637686471066441">回复 Print_8023_to_u: </a>将图片上传到新浪图床或者七牛存储，使用外链的形式在文章中引用。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-04T18:35:25+08:00" title="2015年2月4日 下午6:35:25">2月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="1316637686471066457"><div class="ds-post-self" data-post-id="1316637686471066457" data-thread-id="1316637686471066735" data-root-id="1316637686471066441" data-source="duoshuo"><div class="ds-avatar" data-user-id="958359"><a rel="nofollow author" target="_blank" href="http://www.zlv.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=958359';" title="Jeremy He"><img src="index.styl_files/1_007.jpg" alt="Jeremy He"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.zlv.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=958359';" rel="nofollow" target="_blank" data-user-id="958359">Jeremy He</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066457" data-parent-id="1316637686471066445">回复 黑桃夹克: </a>也可以直接上传到github或者gitcafe,然后以raw文件进行引用。国内使用gitcafe应该会快一点</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-02-05T17:41:17+08:00" title="2015年2月5日 下午5:41:17">2月5日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li><li class="ds-post" data-post-id="1316637686471066356"><div class="ds-post-self" data-post-id="1316637686471066356" data-thread-id="1316637686471066735" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="7847198"><a rel="nofollow author" target="_blank" href="http://www.taohi.net/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=7847198';" title="taohi"><img src="index.styl_files/1_004.jpg" alt="taohi"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://www.taohi.net/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=7847198';" rel="nofollow" target="_blank" data-user-id="7847198">taohi</a></div><p>Hi，img-topic 和img-logo我这没效果。怎么启用呢？<br>我试了img-center和img-shadow是有效果的。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-01-14T19:25:23+08:00" title="2015年1月14日 下午7:25:23">1月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div><ul class="ds-children"><li class="ds-post" data-post-id="1316637686471066357"><div class="ds-post-self" data-post-id="1316637686471066357" data-thread-id="1316637686471066735" data-root-id="1316637686471066356" data-source="duoshuo"><div class="ds-avatar" data-user-id="4141040"><a rel="nofollow author" target="_blank" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" title="黑桃夹克"><img src="index.styl_files/1.jpg" alt="黑桃夹克"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://wuchong.me/" onclick="this.href='http://wuchong.duoshuo.com/user-url/?user_id=4141040';" rel="nofollow" target="_blank" data-user-id="4141040">黑桃夹克</a></div><p><a class="ds-comment-context" data-post-id="1316637686471066357" data-parent-id="1316637686471066356">回复 taohi: </a>img-topic 和img-logo 必须在启用首页为展开式才行，并且只有在首页才可见，文章页面不可见。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-01-14T23:23:04+08:00" title="2015年1月14日 下午11:23:04">1月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul></li></ul><div style="display: none;" class="ds-paginator"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-toolbar"><div class="ds-account-control"><span class="ds-icon ds-icon-settings"></span> <span>帐号管理</span><ul><li><a class="ds-bind-more" href="javascript:void(0);" style="border-top: none">绑定更多</a></li><li><a target="_blank" href="http://duoshuo.com/settings/">设置</a></li><li><a rel="nofollow" href="http://wuchong.duoshuo.com/logout/" style="border-bottom: none">登出</a></li></ul></div><div class="ds-visitor"><a class="ds-visitor-name" href="http://t.qq.com/chennam8023ni" target="_blank">python宁</a><a style="display: none;" class="ds-unread-comments-count" href="javascript:void(0);" title="你没有新回复">0</a></div></div><div class="ds-replybox"><a class="ds-avatar" href="http://duoshuo.com/settings/avatar/" target="_blank" title="设置头像"><img src="index.styl_files/100_002.png" alt="python宁"></a><form method="post"><input name="thread_id" value="1316637686471066735" type="hidden">
+<input name="parent_id" value="" type="hidden">
+<input name="nonce" value="5649a5961ddf4" type="hidden"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"><input id="ds-sync-checkbox" name="repost" value="" type="checkbox"> <label for="ds-sync-checkbox">分享到:</label><a href="javascript:void(0)" class="ds-service-icon-grey ds-qqt" data-service="qqt" title="腾讯微博"></a><a href="javascript:void(0)" class="ds-service-icon-grey ds-qzone" data-service="qzone" title="QQ空间"></a></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a><a class="ds-toolbar-button ds-add-image" title="插入图片"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">Jark's blog正在使用多说</a></p></div></div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span style="top: 5px; transform: rotateZ(-45deg); width: 100%;" class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span style="opacity: 0;" class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span style="top: -5px; transform: rotateZ(45deg); width: 100%;" class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside style="display: block; width: 320px;" id="sidebar" class="sidebar sidebar-active">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul style="opacity: 1; display: block; transform: translateX(0px);" class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section style="opacity: 0; display: none; transform: translateY(0px);" class="site-overview sidebar-panel sidebar-panel-active">
+        <div style="opacity: 1; display: block; transform: translateX(0px);" class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="index.styl_files/default_avatar.jpg" alt="WuChong" itemprop="image">
+          <p class="site-author-name" itemprop="name">WuChong</p>
+        </div>
+        <p style="opacity: 1; display: block; transform: translateX(0px);" class="site-description motion-element" itemprop="description">伍翀的个人技术博客</p>
+        <nav style="opacity: 1; display: block; transform: translateX(0px);" class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="http://wuchong.me/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="http://wuchong.me/categories">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">分类</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="http://wuchong.me/tags">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div style="opacity: 1; display: block; transform: translateX(0px);" class="feed-link motion-element">
+            <a href="http://wuchong.me/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div style="opacity: 1; display: block; transform: translateX(0px);" class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchong" target="_blank">
+                  <i class="fa fa-github fa-fw"></i> GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/jarkwu" target="_blank">
+                  <i class="fa fa-twitter fa-fw"></i> Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wuchong1014" target="_blank">
+                  <i class="fa fa-weibo fa-fw"></i> Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/wuchong1014" target="_blank">
+                  <i class="fa fa-douban fa-fw"></i> DouBan
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/jark" target="_blank">
+                  <i class="fa fa-zhihu fa-fw"></i> ZhiHu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div style="opacity: 1; display: block; transform: translateX(0px);" class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="index.styl_files/cc-by-nc-sa.svg" alt="Creative Commons">
+            </a>
+          </div>
+        
+
+        <div style="opacity: 1; display: block; transform: translateX(0px);" class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://zipperary.com/" target="_blank">Zippera's Blog</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section style="opacity: 1; display: block; transform: translateX(0px) translateY(0px);" class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div style="opacity: 0;" class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2 active active-current"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E5%9B%BE%E7%89%87"><span class="nav-number">1.</span> <span class="nav-text">主题图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logo_%E5%9B%BE%E7%89%87"><span class="nav-number">2.</span> <span class="nav-text">Logo 图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%85%E4%B8%AD%E5%9B%BE%E7%89%87"><span class="nav-number">3.</span> <span class="nav-text">居中图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B4%E5%BD%B1%E5%9B%BE%E7%89%87"><span class="nav-number">4.</span> <span class="nav-text">阴影图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%BB%E5%BB%8A%E5%9B%BE%E7%89%87"><span class="nav-number">5.</span> <span class="nav-text">画廊图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E5%A4%87%E6%B3%A8"><span class="nav-number">6.</span> <span class="nav-text">图片备注</span></a></li></ol></div>
+            
+          </div>
+          <div style="opacity: 0;" class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright">
+  
+  ©  2013 - 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WuChong</span>
+</div>
+
+<div class="powered-by">
+  <a class="theme-link" href="#">python-ning</a>
+</div>
+
+<div class="theme-info">
+  
+  <a class="theme-link" href="#">
+    
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="index.styl_files/index.js"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wuchong"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+
+    
+  
+  
+  <script type="text/javascript" src="index.styl_files/jquery.js"></script>
+  <script type="text/javascript" src="index.styl_files/fancy-box.js"></script>
+
+
+  <script type="text/javascript" src="index.styl_files/helpers.js"></script>
+  
+
+  <script type="text/javascript" src="index.styl_files/velocity_002.js"></script>
+  <script type="text/javascript" src="index.styl_files/velocity.js"></script>
+
+  <script type="text/javascript" src="index.styl_files/motion_global.js" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="index.styl_files/nav-toggle.js"></script>
+  <script type="text/javascript" src="index.styl_files/fastclick.js"></script>
+
+  
+  
+<script type="text/javascript" src="index.styl_files/bootstrap.js" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      isMobile() && FastClick.attach(document.body);
+
+      // Define Motion Sequence.
+      motionIntegrator
+        .add(motionMiddleWares.logo)
+        .add(motionMiddleWares.menu)
+        .add(motionMiddleWares.backToTop)
+        .add(motionMiddleWares.postList)
+        .add(motionMiddleWares.sidebar);
+
+      // Bootstrap Motion.
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+  <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="index.styl_files/MathJax.js"></script>
+    <script type="text/javascript" src="index.styl_files/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="index.styl_files/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+
+
+<div id="st-injected-content" data-st-install-key="8Exkz7xsCTJyyCHiK9TY" class="st-injected-content-generated st-install-8Exkz7xsCTJyyCHiK9TY">
+<div class="st-ui-embed st-search-chrome-overlay-output st-search-escape-hide-outputs st-search-zoom-on-mobile" style="display: none;">
+    <div class="st-ui-overlay st-search-hide-outputs"></div>
+  <!-- Swiftype input and results overlay -->
+  <div class="st-ui-container st-ui-container-overlay  st-ui-injected-overlay-container ">
+    <!-- HEADER -->
+    <div class="st-ui-container-header_bar st-position-container">
+        <section class="st-ui-header">
+          <form>
+            <input autocapitalize="off" autocorrect="off" autocomplete="off" class="st-default-search-input st-search-set-focus" placeholder="Search this site" id="st-overlay-search-input" type="text">
+          </form>
+          <span class="st-ui-search-icon"></span>
+
+            <a class="st-ui-close-button st-search-hide-outputs">Close</a>
+
+            <a class="st-ui-stamp" href="https://swiftype.com/" target="_blank">search by swiftype</a>
+        </section>
+    </div>
+
+    <!-- LEFT SIDEBAR -->
+    <div class="st-ui-container-left_sidebar st-position-container">
+      <div class="st-ui-injected-search-controls">
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="st-ui-container-right_sidebar st-position-container">
+      <div class="st-ui-injected-container-right_sidebar">
+        <div class="st-ui-injected-search-controls">
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMARY CONTENT -->
+    <div class="st-ui-container-primary_content st-position-container">
+        <section style="display: none;" class="st-ui-slide-autocomplete st-autocomplete-keyboard-navigable st-autocomplete-transient-on-select-and-results" data-st-target-element="#st-overlay-search-input" data-st-active-query-class="active">
+          <span class="st-ui-type-heading-small">suggested results</span>
+          <div class="st-autocomplete-results"><div style="display: none;" class="st-query-present"></div></div>
+        </section>
+
+        <section class="st-ui-content st-search-results"><div class="st-query-not-present">
+          <span class="st-ui-fallback"></span>
+        </div><div style="display: none;" class="st-query-present"></div></section>
+
+      <section class="st-ui-no-results st-search-suggestions"><div class="st-query-not-present">
+      </div></section>
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <div class="st-ui-container-footer_bar st-position-container">
+      <section class="st-ui-footer">
+          <span class="st-ui-search-summary st-search-summary"></span>
+        <span class="st-ui-pagination st-search-pagination"></span>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="st-default-autocomplete" data-st-target-element=".st-default-search-input" style="display: none; position: absolute; top: 49px; left: 0px; z-index: 999999;">
+  <div class="st-autocomplete-results st-ui-autocomplete"><div style="display: none;" class="st-query-present"></div></div>
+</div>
+</div><div style="top: 24px; right: 24px; display: none;" id="ds-notify"><div id="ds-reset"><a class="ds-logo" href="http://duoshuo.com/" target="_blank" title="多说"></a><ul class="ds-notify-unread"><li style="display:none;"><a data-type="unread-comments" href="javascript:void(0);">你有undefined条新回复</a></li><li style="display:none;"><a data-type="unread-notifications" href="javascript:void(0);">你有undefined条系统消息</a></li></ul></div></div></body></html>

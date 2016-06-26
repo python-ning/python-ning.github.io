@@ -1,0 +1,1179 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='#' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="python ning's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="Python内建了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，最好的方法就是去看官方文档，并去查看源码来查看他的是实现原理以便于更好得理解。这里介绍一些常用的内置函数。
+abs函数绝对值的函数
+&amp;gt;&amp;gt;&amp;gt; b = abs(-12)
+&amp;gt;&amp;gt;&amp;gt; b
+12
+&amp;gt;&amp;gt;&amp;gt; b = abs(12)
+&amp;gt;&amp;gt;&amp;gt; b
+12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 的内建函数">
+<meta property="og:url" content="http://python-ning.github.io/2015/11/13/python_built-in_function/index.html">
+<meta property="og:site_name" content="python ning's blog">
+<meta property="og:description" content="Python内建了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，最好的方法就是去看官方文档，并去查看源码来查看他的是实现原理以便于更好得理解。这里介绍一些常用的内置函数。
+abs函数绝对值的函数
+&amp;gt;&amp;gt;&amp;gt; b = abs(-12)
+&amp;gt;&amp;gt;&amp;gt; b
+12
+&amp;gt;&amp;gt;&amp;gt; b = abs(12)
+&amp;gt;&amp;gt;&amp;gt; b
+12">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/58561-106.jpg">
+<meta property="og:updated_time" content="2016-01-13T18:52:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 的内建函数">
+<meta name="twitter:description" content="Python内建了很多有用的函数，我们可以直接调用。要调用一个函数，需要知道函数的名称和参数，最好的方法就是去看官方文档，并去查看源码来查看他的是实现原理以便于更好得理解。这里介绍一些常用的内置函数。
+abs函数绝对值的函数
+&amp;gt;&amp;gt;&amp;gt; b = abs(-12)
+&amp;gt;&amp;gt;&amp;gt; b
+12
+&amp;gt;&amp;gt;&amp;gt; b = abs(12)
+&amp;gt;&amp;gt;&amp;gt; b
+12">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/58561-106.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> Python 的内建函数 | python ning's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">python ning's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feeling">
+          <a href="/feeling" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            心情
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'CkyV4Ux3QZb6T9Hxonnh','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python 的内建函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-13T00:00:00-08:00" content="2015-11-13">
+              2015-11-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/13/python_built-in_function/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/13/python_built-in_function/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/58561-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>Python内建了很多有用的函数，我们可以直接调用。<br>要调用一个函数，需要知道函数的名称和参数，最好的方法就是去看官方文档，并去查看源码来查看他的是实现原理以便于更好得理解。<br>这里介绍一些常用的内置函数。</p>
+<h3 id="abs函数">abs函数</h3><p>绝对值的函数</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">abs</span><span class="params">(-<span class="number">12</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="number">12</span>
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">abs</span><span class="params">(<span class="number">12</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="number">12</span>
+&gt;&gt;&gt; 
+</code></pre><p>可以在交互式命令行通过help（内置函数）来查看的方法和参数。</p>
+<pre><code>&gt;&gt;&gt; help(<span class="built_in">abs</span>)
+Help on built-<span class="type">in</span> <span class="function"><span class="keyword">function</span></span> <span class="built_in">abs</span> <span class="type">in</span> <span class="keyword">module</span> __builtin__:
+
+<span class="built_in">abs</span>(...)
+    <span class="built_in">abs</span>(<span class="keyword">number</span>) -&gt; <span class="keyword">number</span>
+
+    <span class="keyword">Return</span> the absolute <span class="keyword">value</span> of the argument.
+
+&gt;&gt;&gt; 
+</code></pre><h3 id="max函数和min函数">max函数和min函数</h3><pre><code>&gt;&gt;&gt; b = max(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)
+&gt;&gt;&gt; b
+<span class="number">6</span>
+&gt;&gt;&gt; b = min(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)
+&gt;&gt;&gt; b
+<span class="number">1</span>
+&gt;&gt;&gt; 
+</code></pre><h3 id="数据类型转换的函数">数据类型转换的函数</h3><pre><code>&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(<span class="string">'3'</span>)</span></span>
+&lt;type <span class="string">'str'</span>&gt;
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">int</span><span class="params">(<span class="string">'3'</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="number">3</span>
+&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(b)</span></span>
+&lt;type <span class="string">'int'</span>&gt;
+&gt;&gt;&gt;         
+
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">float</span><span class="params">(<span class="number">3.1415926</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="number">3.1415926</span>
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">float</span><span class="params">(<span class="number">3</span>)</span></span>
+&gt;&gt;&gt;<span class="tag">b</span> 
+<span class="number">3.0</span>
+
+&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(<span class="number">3</span>)</span></span>
+&lt;type <span class="string">'int'</span>&gt;
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">str</span><span class="params">(<span class="number">3</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+<span class="string">'3'</span>
+&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(b)</span></span>
+&lt;type <span class="string">'str'</span>&gt;
+&gt;&gt;&gt; 
+
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="number">0</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+False
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="number">1</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+True
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="string">''</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+False
+&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="string">'a'</span>)</span></span>
+&gt;&gt;&gt; <span class="tag">b</span>
+True
+&gt;&gt;&gt; 
+</code></pre><h3 id="cmp函数">cmp函数</h3><p>如果x &lt; y ,返回负数；x == y, 返回0；x &gt; y,返回正数</p>
+<pre><code>&gt;&gt;&gt; cmp(<span class="number">1</span>,<span class="number">2</span>)
+-<span class="number">1</span>
+&gt;&gt;&gt; cmp(<span class="number">2</span>,<span class="number">1</span>)
+<span class="number">1</span>
+&gt;&gt;&gt; 
+</code></pre><h3 id="dir([object])">dir([object])</h3><p>1、不带参数时，返回当前范围内的变量、方法和定义的类型列表；<br>2、带参数时，返回参数的属性、方法列表。<br>3、如果参数包含方法__dir__()，该方法将被调用。当参数为实例时。<br>4、如果参数不包含__dir__()，该方法将最大限度地收集参数信息</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; dir()
+[<span class="string">'__builtins__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__name__'</span>, <span class="string">'__package__'</span>, <span class="string">'b'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; dir(str)
+[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>, <span class="string">'__contains__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getitem__'</span>, <span class="string">'__getnewargs__'</span>, <span class="string">'__getslice__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__le__'</span>, <span class="string">'__len__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__mod__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__rmod__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'_formatter_field_name_split'</span>, <span class="string">'_formatter_parser'</span>, <span class="string">'capitalize'</span>, <span class="string">'center'</span>, <span class="string">'count'</span>, <span class="string">'decode'</span>, <span class="string">'encode'</span>, <span class="string">'endswith'</span>, <span class="string">'expandtabs'</span>, <span class="string">'find'</span>, <span class="string">'format'</span>, <span class="string">'index'</span>, <span class="string">'isalnum'</span>, <span class="string">'isalpha'</span>, <span class="string">'isdigit'</span>, <span class="string">'islower'</span>, <span class="string">'isspace'</span>, <span class="string">'istitle'</span>, <span class="string">'isupper'</span>, <span class="string">'join'</span>, <span class="string">'ljust'</span>, <span class="string">'lower'</span>, <span class="string">'lstrip'</span>, <span class="string">'partition'</span>, <span class="string">'replace'</span>, <span class="string">'rfind'</span>, <span class="string">'rindex'</span>, <span class="string">'rjust'</span>, <span class="string">'rpartition'</span>, <span class="string">'rsplit'</span>, <span class="string">'rstrip'</span>, <span class="string">'split'</span>, <span class="string">'splitlines'</span>, <span class="string">'startswith'</span>, <span class="string">'strip'</span>, <span class="string">'swapcase'</span>, <span class="string">'title'</span>, <span class="string">'translate'</span>, <span class="string">'upper'</span>, <span class="string">'zfill'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="eval函数">eval函数</h3><p>eval()函数十分强大，官方demo解释为：将字符串str当成有效的表达式来求值并返回计算结果。</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; a = <span class="string">"[[1,2], [3,4], [5,6], [7,8], [9,0]]"</span>
+<span class="prompt">&gt;&gt;</span>&gt; type(a)
+&lt;type <span class="string">'str'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; b = eval(a)
+<span class="prompt">&gt;&gt;</span>&gt; b
+[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>], [<span class="number">9</span>, <span class="number">0</span>]]
+<span class="prompt">&gt;&gt;</span>&gt; type(b)
+&lt;type <span class="string">'list'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; 
+
+&gt;&gt;&gt; a = <span class="string">"{'hello':'world', 1:2}"</span>
+<span class="prompt">&gt;&gt;</span>&gt; type(a)
+&lt;type <span class="string">'str'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; b = eval(a)
+<span class="prompt">&gt;&gt;</span>&gt; b
+{<span class="number">1</span><span class="symbol">:</span> <span class="number">2</span>, <span class="string">'hello'</span><span class="symbol">:</span> <span class="string">'world'</span>}
+<span class="prompt">&gt;&gt;</span>&gt; type(b)
+&lt;type <span class="string">'dict'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; 
+
+&gt;&gt;&gt; a = <span class="string">'(1,2,3,4,5,6,7,8,9)'</span>
+<span class="prompt">&gt;&gt;</span>&gt; type(a)
+&lt;type <span class="string">'str'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt; b = eval(a)
+<span class="prompt">&gt;&gt;</span>&gt; b
+(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)
+<span class="prompt">&gt;&gt;</span>&gt; type(b)
+&lt;type <span class="string">'tuple'</span>&gt;
+<span class="prompt">&gt;&gt;</span>&gt;
+</code></pre><p><strong style="color:red">虽然强大，但是安全性不高</strong></p>
+<h3 id="filter(function,_iterable)">filter(function, iterable)</h3><p>构造一个序列，等价于[ item for item in iterable if function(item)]<br>1、参数function：返回值为True或False的函数，可以为None<br>2、参数iterable：序列或可迭代对象<br>filter函数会对指定序列执行过滤操作。<br>filter函数的定义：<br>        filter(function or None, sequence) -&gt; list, tuple, or string<br>function是一个谓词函数，接受一个参数，返回布尔值True或False。<br>filter函数会对序列参数sequence中的每个元素调用function函数，最后返回的结果包含调用结果为True的元素。<br>返回值的类型和参数sequence的类型相同</p>
+<pre><code>&gt;&gt;&gt; def fun(num):
+    <span class="keyword">if</span> <span class="number">3</span>&lt;num&lt;<span class="number">6</span>:
+        <span class="keyword">return</span> num
+
+
+&gt;&gt;&gt; lists = [<span class="number">12</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">56</span>,<span class="number">66</span>,<span class="number">774</span>,<span class="number">5</span>,<span class="number">2</span>]
+&gt;&gt;&gt; <span class="literal">result</span> = filter(fun,lists)
+&gt;&gt;&gt; <span class="literal">result</span>
+[<span class="number">4</span>, <span class="number">5</span>]
+&gt;&gt;&gt; 
+</code></pre><h3 id="repr()函数">repr()函数</h3><p>将一个对象变幻为可打印的格式</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'hello world'</span>
+<span class="prompt">&gt;&gt;</span>&gt; b = repr(s)
+<span class="prompt">&gt;&gt;</span>&gt; b
+<span class="string">"'hello world'"</span>
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>python str和repr的区别：<br>尽管str(),repr()和<code>运算在特性和功能方面都非常相似，事实上repr()和</code>做的是完全一样的事情，它们返回的是一个对象的“官方”字符串表示，也就是说绝大多数情况下可以通过求值运算（使用内建函数eval()）重新得到该对象。</p>
+<p>但str()则有所不同，str()致力于生成一个对象的可读性好的字符串表示，它的返回结果通常无法用于eval()求值，但很适合用于print语句输出。需要再次提醒的是，并不是所有repr()返回的字符串都能够用 eval()内建函数得到原来的对象。 也就是说 repr() 输出对 Python比较友好，而str()的输出对用户比较友好。<br>虽然如此，很多情况下这三者的输出仍然都是完全一样的。 大家可以看下下面的代码，来进行对比：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'Hello, world.'</span>
+<span class="prompt">&gt;&gt;</span>&gt; str(s)
+<span class="string">'Hello, world.'</span>
+<span class="prompt">&gt;&gt;</span>&gt; repr(s)
+<span class="string">"'Hello, world.'"</span>
+<span class="prompt">&gt;&gt;</span>&gt; str(<span class="number">0</span>.<span class="number">1</span>)
+<span class="string">'0.1'</span>
+<span class="prompt">&gt;&gt;</span>&gt; repr(<span class="number">0</span>.<span class="number">1</span>)
+<span class="string">'0.10000000000000001'</span>
+<span class="prompt">&gt;&gt;</span>&gt; x = <span class="number">10</span> * <span class="number">3.25</span>
+<span class="prompt">&gt;&gt;</span>&gt; y = <span class="number">200</span> * <span class="number">200</span>
+<span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'The value of x is '</span> + repr(x) + <span class="string">', and y is '</span> + repr(y) + <span class="string">'...'</span>
+<span class="prompt">&gt;&gt;</span>&gt; print s
+<span class="constant">The</span> value of x is <span class="number">32.5</span>, <span class="keyword">and</span> y is <span class="number">40000</span>...
+<span class="prompt">&gt;&gt;</span>&gt; <span class="comment"># The repr() of a string adds string quotes and backslashes:</span>
+... hello = <span class="string">'hello, world\n'</span>
+<span class="prompt">&gt;&gt;</span>&gt; hellos = repr(hello)
+<span class="prompt">&gt;&gt;</span>&gt; print hellos
+<span class="string">'hello, world\n'</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="comment"># The argument to repr() may be any Python object:</span>
+... repr((x, y, (<span class="string">'spam'</span>, <span class="string">'eggs'</span>)))
+<span class="string">"(32.5, 40000, ('spam', 'eggs'))"</span>
+</code></pre><h3 id="super(type[,_object-or-type])函数">super(type[, object-or-type])函数</h3><p><strong>普通继承</strong></p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">FooParent</span><span class="params">(object)</span>:</span> 
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
+        self.parent = <span class="string">'I\'m the parent.'</span> 
+        <span class="keyword">print</span> <span class="string">'Parent'</span> 
+
+    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
+        <span class="keyword">print</span> message, <span class="string">'from Parent'</span> 
+
+<span class="class"><span class="keyword">class</span> <span class="title">FooChild</span><span class="params">(FooParent)</span>:</span> 
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
+        FooParent.__init__(self) 
+        <span class="keyword">print</span> <span class="string">'Child'</span> 
+
+    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
+        FooParent.bar(self,message) 
+        <span class="keyword">print</span> <span class="string">'Child bar function.'</span> 
+        <span class="keyword">print</span> self.parent 
+
+<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>: 
+    fooChild = FooChild() 
+    fooChild.bar(<span class="string">'HelloWorld'</span>)  
+</code></pre><p><strong>super继承</strong></p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">FooParent</span><span class="params">(object)</span>:</span> 
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
+        self.parent = <span class="string">'I\'m the parent.'</span> 
+        <span class="keyword">print</span> <span class="string">'Parent'</span> 
+
+    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
+        <span class="keyword">print</span> message,<span class="string">'from Parent'</span> 
+
+<span class="class"><span class="keyword">class</span> <span class="title">FooChild</span><span class="params">(FooParent)</span>:</span> 
+    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
+        super(FooChild,self).__init__() 
+        <span class="keyword">print</span> <span class="string">'Child'</span> 
+
+    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
+        super(FooChild, self).bar(message) 
+        <span class="keyword">print</span> <span class="string">'Child bar fuction'</span> 
+        <span class="keyword">print</span> self.parent 
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>: 
+    fooChild = FooChild() 
+    fooChild.bar(<span class="string">'HelloWorld'</span>)
+</code></pre><p>程序运行结果相同，为：</p>
+<pre><code>Parent
+Child
+HelloWorld <span class="keyword">from</span> Parent
+Child bar fuction
+I<span class="comment">'m the parent.</span>
+</code></pre><p>从运行结果上看，普通继承和super继承是一样的。但是其实它们的内部运行机制不一样，这一点在多重继承时体现得很明显。在super机制里可以保证公共父类仅被执行一次，至于执行的顺序，是按照mro进行的（E.<strong>mro</strong>）。<br>注意super继承只能用于新式类，用于经典类时就会报错。<br>新式类：必须有继承的类，如果没什么想继承的，那就继承object<br>经典类：没有父类，如果此时调用super就会出现错误：『super() argument 1 must be type, not classobj</p>
+<h3 id="isinstance()函数">isinstance()函数</h3><p>isinstance(object, classinfo)<br>判断实例是否是这个类或者object是变量  </p>
+<p>classinfo 是类型(tuple,dict,int,float)<br>判断变量是否是这个类型 </p>
+<pre><code><span class="prompt">&gt;&gt;&gt; </span>num = <span class="number">10</span>    <span class="comment"># 定义一个变量为整数10</span>
+<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">function</span><span class="params">()</span>:</span>    <span class="comment"># 定义一个叫function的函数，不做任何操作</span>
+    <span class="keyword">pass</span>
+
+<span class="prompt">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">()</span>:</span>    <span class="comment"># 定义一个叫test的类，不做任何操作</span>
+    <span class="keyword">pass</span>
+
+<span class="prompt">&gt;&gt;&gt; </span>isinstance(num,int)    <span class="comment"># 判断num是不是整型</span>
+<span class="keyword">True</span>
+<span class="prompt">&gt;&gt;&gt; </span>isinstance(num,(int,str))    <span class="comment"># 判断num是不是整型或者字符串</span>
+<span class="keyword">True</span>
+<span class="prompt">&gt;&gt;&gt; </span>isinstance(num,(float,str))    <span class="comment"># 判断num是不是整型或者浮点型</span>
+<span class="keyword">False</span>
+<span class="prompt">&gt;&gt;&gt; </span>isinstance(function,object)    <span class="comment"># 判断function是不是一个对象</span>
+<span class="keyword">True</span>
+<span class="prompt">&gt;&gt;&gt; </span>isinstance(function,int)    <span class="comment"># 判断function是不是一个整型</span>
+<span class="keyword">False</span>
+<span class="prompt">&gt;&gt;&gt; </span>isinstance(test,object)    <span class="comment"># 判断test是不是一个对象</span>
+<span class="keyword">True</span>
+<span class="prompt">&gt;&gt;&gt; </span>isinstance(test,str)    <span class="comment"># 判断test是不是一个字符串</span>
+<span class="keyword">False</span>
+<span class="prompt">&gt;&gt;&gt; </span>
+</code></pre><h3 id="map()函数">map()函数</h3><p>map函数会根据提供的函数对指定序列做映射。<br>map函数的定义：</p>
+<pre><code>map(<span class="function"><span class="keyword">function</span></span>, <span class="keyword">sequence</span>[, <span class="keyword">sequence</span>, ...]) -&gt; list
+</code></pre><p>通过定义可以看到，这个函数的第一个参数是一个函数，剩下的参数是一个或多个序列，返回值是一个集合。<br>function可以理解为是一个一对一或多对一函数，map的作用是以参数序列中的每一个元素调用function函数，返回包含每次function函数返回值的list。<br>比如要对一个序列中的每个元素进行平方运算：</p>
+<pre><code>&gt;&gt;&gt;<span class="built_in">map</span>(lambda x: x ** <span class="number">2</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])
+</code></pre><p>返回结果为：</p>
+<pre><code>&gt;&gt;&gt;[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>]
+</code></pre><p>在参数存在多个序列时，会依次以每个序列中相同位置的元素做参数调用function函数。<br>比如要对两个序列中的元素依次求和。</p>
+<pre><code>&gt;&gt;&gt;<span class="built_in">map</span>(lambda x, y: x + y, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>])
+</code></pre><p>map返回的list中第一个元素为，参数序列1的第一个元素加参数序列2中的第一个元素(1 + 2)，<br>list中的第二个元素为，参数序列1中的第二个元素加参数序列2中的第二个元素(3 + 4)，<br>依次类推，最后的返回结果为：</p>
+<pre><code>&gt;&gt;&gt;[<span class="number">3</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>, <span class="number">19</span>]
+</code></pre><p>要注意function函数的参数数量，要和map中提供的集合数量相匹配。<br>如果集合长度不相等，会以最小长度对所有集合进行截取。<br>当函数为None时，操作和zip相似：</p>
+<pre><code>&gt;&gt;&gt;<span class="built_in">map</span>(None, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>])
+</code></pre><p>返回结果为：</p>
+<pre><code>&gt;&gt;&gt;[(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">4</span>), (<span class="number">5</span>, <span class="number">6</span>), (<span class="number">7</span>, <span class="number">8</span>), (<span class="number">9</span>, <span class="number">10</span>)]
+</code></pre><h3 id="reduce()函数">reduce()函数</h3><p>reduce函数，reduce函数会对参数序列中元素进行累积。<br>reduce函数的定义：<br>reduce(function, sequence[, initial]) -&gt; value<br>function参数是一个有两个参数的函数，reduce依次从sequence中取一个元素，和上一次调用function的结果做参数再次调用function。<br>第一次调用function时，如果提供initial参数，会以sequence中的第一个元素和initial作为参数调用function，否则会以序列sequence中的前两个元素做参数调用function。</p>
+<pre><code>&gt;&gt;&gt;reduce(lambda x, y: x + y, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], <span class="number">1</span>)    <span class="preprocessor"># (  (((((<span class="number">1</span>+<span class="number">2</span>)+<span class="number">3</span>)+<span class="number">4</span>)+<span class="number">5</span>)+<span class="number">6</span>)  ) </span>
+&gt;&gt;&gt;<span class="number">21</span>
+&gt;&gt;&gt;reduce(lambda x, y: x + y, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])
+&gt;&gt;&gt;<span class="number">20</span>
+</code></pre><p><strong style="color:red">注意function函数不能为None。</strong></p>
+<h3 id="zip()函数">zip()函数</h3><p>zip函数接受任意多个（包括0个和1个）序列作为参数，返回一个tuple列表</p>
+<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+&gt;&gt;&gt; y = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+&gt;&gt;&gt; z = [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]
+&gt;&gt;&gt; xyz = zip(x,y,z)
+&gt;&gt;&gt; xyz
+[(<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>), (<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>), (<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>)]
+&gt;&gt;&gt;
+</code></pre><p>如果集合长度不相等，会以最小长度对所有集合进行截取</p>
+<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+&gt;&gt;&gt; y = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]
+&gt;&gt;&gt; xy = zip(x, y)
+&gt;&gt;&gt; xy
+[(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">5</span>), (<span class="number">3</span>, <span class="number">6</span>)]
+</code></pre><p><strong>当只有一个参数时</strong></p>
+<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+&gt;&gt;&gt; x = zip(x)
+&gt;&gt;&gt; x
+[(<span class="number">1</span>,), (<span class="number">2</span>,), (<span class="number">3</span>,)]
+</code></pre><p><strong>当没有参数时</strong></p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; x = zip()
+<span class="prompt">&gt;&gt;</span>&gt; x
+[]
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p><strong>来看这一个例子：</strong></p>
+<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+&gt;&gt;&gt; y = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+&gt;&gt;&gt; z = [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+&gt;&gt;&gt; xyz = zip(x,y,z)
+&gt;&gt;&gt; xyz
+[(<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>), (<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>), (<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>)]
+&gt;&gt;&gt; u = zip(*xyz)
+&gt;&gt;&gt; u
+[(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>), (<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)]
+&gt;&gt;&gt; 
+</code></pre><p>一般认为这是一个unzip的过程，它的运行机制是这样的：<br>在运行zip(<em>xyz)之前，xyz的值是：[(1, 4, 7), (2, 5, 8), (3, 6, 9)]<br>那么，zip(</em>xyz) 等价于 zip((1, 4, 7), (2, 5, 8), (3, 6, 9))<br>所以，运行结果是：[(1, 2, 3), (4, 5, 6), (7, 8, 9)]<br><strong style="color:red">注：在函数调用中使用*list/tuple的方式表示将list/tuple分开，作为位置参数传递给对应函数（前提是对应函数支持不定个数的位置参数）</strong></p>
+<p><strong>又一个例子：</strong></p>
+<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]
+&gt;&gt;&gt; r = zip(*[x]*<span class="number">3</span>)
+&gt;&gt;&gt; r
+[(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>)]
+&gt;&gt;&gt; 
+</code></pre><p>它的运行机制是这样的：<br>[x]生成一个列表的列表，它只有一个元素x<br>[x] * 3生成一个列表的列表，它有3个元素，[x, x, x]<br>zip(* [x] * 3)的意思就明确了，zip(x, x, x)</p>
+<h3 id="sort()和sorted()函数">sort()和sorted()函数</h3><p>sort(list[cmp=None[, key=None[, reverse=False]]])<br>sorted(iterable[,cmp=None,[,key=None[,reverse=True]]])</p>
+<p>两者都是用于排序的bif(built-in-function)内建函数，区别在于sort()没有返回值，而且sort()内只能传一个list参数,其他可迭代对象不可以，并且它是把list(列表)原地排序，也就是使用后并不是返回一个有序的序列副本，而是把当前序列变得有序，而sorted()参数可以传所有的iterable(可迭代对象)，并且，他会通过排序后返回一个新的序列。相比之下，sorted更强大。</p>
+<p><strong>list.sort()举例：</strong></p>
+<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = [<span class="number">9</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">47</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>]
+&gt;&gt;&gt; <span class="tag">a</span>.<span class="function"><span class="title">sort</span><span class="params">()</span></span>
+&gt;&gt;&gt; <span class="tag">a</span>
+[<span class="number">3</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">47</span>]
+&gt;&gt;&gt; <span class="tag">a</span> = <span class="string">'chen'</span>
+&gt;&gt;&gt; <span class="tag">a</span>.<span class="function"><span class="title">sort</span><span class="params">()</span></span>
+Traceback (most recent call last):
+  File <span class="string">"&lt;pyshell#4&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;
+    <span class="tag">a</span>.<span class="function"><span class="title">sort</span><span class="params">()</span></span>
+AttributeError: <span class="string">'str'</span> <span class="tag">object</span> has no attribute <span class="string">'sort'</span>
+&gt;&gt;&gt; 
+</code></pre><p><strong>sorted(iterable)举例：</strong></p>
+<pre><code>&gt;&gt;&gt; a = [<span class="number">9</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">47</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>]
+&gt;&gt;&gt; sorted(a)
+[<span class="number">3</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">47</span>]
+&gt;&gt;&gt; 
+</code></pre><p>可选的参数有三个，cmp、key和reverse。<br>1)cmp指定一个定制的比较函数，这个函数接收两个参数（iterable的元素），如果第一个参数小于第二个参数，返回一个负数；如果第一个参数等于第二个参数，返回零；如果第一个参数大于第二个参数，返回一个正数。默认值为None。<br>2)key指定一个接收一个参数的函数，这个函数用于从每个元素中提取一个用于比较的关键字。默认值为None。<br>3)reverse是一个布尔值。如果设置为True，列表元素将被倒序排列。<br>通常来说，key和reverse比一个等价的cmp函数处理速度要快。这是因为对于每个列表元素，cmp都会被调用多次，而key和reverse只被调用一次。</p>
+<p><strong>cmp参数举例(cmp参数可以和lambda函数一起使用)：</strong></p>
+<pre><code>&gt;&gt;&gt; L = [(<span class="string">'b'</span>,<span class="number">2</span>),(<span class="string">'a'</span>,<span class="number">1</span>),(<span class="string">'c'</span>,<span class="number">3</span>),(<span class="string">'d'</span>,<span class="number">4</span>)]
+&gt;&gt;&gt; sorted(L, cmp=lambda x,y:cmp(x[<span class="number">1</span>],y[<span class="number">1</span>]))
+[(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'b'</span>, <span class="number">2</span>), (<span class="string">'c'</span>, <span class="number">3</span>), (<span class="string">'d'</span>, <span class="number">4</span>)]
+&gt;&gt;&gt; 
+</code></pre><p><strong>key举例：</strong></p>
+<pre><code>&gt;&gt;&gt; L = [(<span class="string">'b'</span>,<span class="number">2</span>),(<span class="string">'a'</span>,<span class="number">1</span>),(<span class="string">'c'</span>,<span class="number">3</span>),(<span class="string">'d'</span>,<span class="number">4</span>)]
+&gt;&gt;&gt; sorted(L, key=lambda x:x[<span class="number">1</span>])
+[(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'b'</span>, <span class="number">2</span>), (<span class="string">'c'</span>, <span class="number">3</span>), (<span class="string">'d'</span>, <span class="number">4</span>)]
+&gt;&gt;&gt; 
+</code></pre><p><strong>reverse举例：</strong></p>
+<pre><code>&gt;&gt;&gt; L = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>]
+&gt;&gt;&gt; sorted(L)
+[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+&gt;&gt;&gt; sorted(L,reverse=True)
+[<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]
+&gt;&gt;&gt; 
+</code></pre><h3 id="enumerate()函数">enumerate()函数</h3><p>一般情况下对一个列表或数组既要遍历索引又要遍历元素时，就可以用这个函数。<br>一般我们要循环列表或数组的索引和元素时，可以这样：</p>
+<pre><code>&gt;&gt;&gt; lis = [<span class="string">'chen'</span>,<span class="string">'ning'</span>,<span class="string">'love'</span>,<span class="string">'python'</span>]
+&gt;&gt;&gt; <span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> <span class="function"><span class="title">range</span><span class="params">(<span class="number">0</span>,len(lis)</span></span>):
+    print <span class="tag">i</span>,lis[i]
+
+
+<span class="number">0</span> chen
+<span class="number">1</span> ning
+<span class="number">2</span> love
+<span class="number">3</span> python
+&gt;&gt;&gt; 
+</code></pre><p>但是这种方法有些累赘，使用 内置<code style="color:red">enumerrate</code>函数会有更加直接，优美的做法，先看看<code style="color:red">enumerate</code>的定义：</p>
+<pre><code><span class="function"><span class="keyword">def</span> <span class="title">enumerate</span> <span class="params">(collection )</span>:</span>
+    <span class="string">'Generates an indexed series:  (0,coll[0]), (1,coll[1]) ...'</span>      
+     i = <span class="number">0</span>
+     it = iter (collection )
+     <span class="keyword">while</span> <span class="number">1</span> :
+     <span class="keyword">yield</span> (i , it . next ())
+     i += <span class="number">1</span>
+</code></pre><p><code style="color:red">enumerate</code>会将数组或列表组成一个索引序列。使我们再获取索引和索引内容的时候更加方便如下：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; lis = [<span class="string">'chen'</span>,<span class="string">'ning'</span>,<span class="string">'love'</span>,<span class="string">'python'</span>]
+<span class="prompt">&gt;&gt;</span>&gt; for index,text in enumerate(lis)<span class="symbol">:</span>
+    print index,text
+
+
+<span class="number">0</span> chen
+<span class="number">1</span> ning
+<span class="number">2</span> love
+<span class="number">3</span> python
+<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><p>在 cookbook里介绍，如果你要计算文件的行数，可以这样写：</p>
+<pre><code>count = len <span class="list">(<span class="keyword">open</span> <span class="list">(<span class="keyword">thefilepath</span> , ‘ rU ’ )</span>. readlines <span class="list">()</span>)</span>
+</code></pre><p>前面这种方法简单，但是可能比 较慢，当文件比较大时甚至不能工作，下面这种循环读取的方法更合适些。</p>
+<pre><code><span class="keyword">Count</span> = - 1
+<span class="keyword">For</span> <span class="keyword">count</span> , <span class="keyword">line</span> <span class="keyword">in</span> enumerate (<span class="keyword">open</span> (thefilepath , ‘ <span class="keyword">rU</span> ’ ))：
+    Pass
+<span class="keyword">Count</span> += 1
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/09/python_theading_thread/" rel="next" title="Python的多线程和多进程">
+                <i class="fa fa-chevron-left"></i> Python的多线程和多进程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/16/python_object-oriented/" rel="prev" title="Python面向对象编程">
+                Python面向对象编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/13/python_built-in_function/"
+     data-title="Python 的内建函数"
+     data-content=""
+     data-url="http://python-ning.github.io/2015/11/13/python_built-in_function/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <br />
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/13/python_built-in_function/"
+           data-title="Python 的内建函数" data-url="http://python-ning.github.io/2015/11/13/python_built-in_function/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="python-ning" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">python-ning</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/python-ning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/pythonning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yuan-tong-tian" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.speedycloud.cn/" target="_blank">迅达云成</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devtan.xyz/" target="_blank">Dev-Tan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.liuwuba.com/" target="_blank">河间</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#abs函数"><span class="nav-number">1.</span> <span class="nav-text">abs函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max函数和min函数"><span class="nav-number">2.</span> <span class="nav-text">max函数和min函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型转换的函数"><span class="nav-number">3.</span> <span class="nav-text">数据类型转换的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmp函数"><span class="nav-number">4.</span> <span class="nav-text">cmp函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dir([object])"><span class="nav-number">5.</span> <span class="nav-text">dir([object])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval函数"><span class="nav-number">6.</span> <span class="nav-text">eval函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter(function,_iterable)"><span class="nav-number">7.</span> <span class="nav-text">filter(function, iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#repr()函数"><span class="nav-number">8.</span> <span class="nav-text">repr()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super(type[,_object-or-type])函数"><span class="nav-number">9.</span> <span class="nav-text">super(type[, object-or-type])函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isinstance()函数"><span class="nav-number">10.</span> <span class="nav-text">isinstance()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map()函数"><span class="nav-number">11.</span> <span class="nav-text">map()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce()函数"><span class="nav-number">12.</span> <span class="nav-text">reduce()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip()函数"><span class="nav-number">13.</span> <span class="nav-text">zip()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sort()和sorted()函数"><span class="nav-number">14.</span> <span class="nav-text">sort()和sorted()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enumerate()函数"><span class="nav-number">15.</span> <span class="nav-text">enumerate()函数</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">python-ning</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"python-ning"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

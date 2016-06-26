@@ -1,0 +1,1343 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='#' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="django," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="python ning's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="模型是你的的数据的唯一的/权威的信息源。它包含你所储存数据的必要字段和行为。通常，每个模型对应数据库中唯一的一张表。这里主要处理的是你的数据库的内容，数据库建表主要是在这里，每个类就是一个表。
+每个模型都是django.db.models.Model 的一个Python 子类。模型的每个属性都表示数据库中的一个字段。Django 提供一套自动生成的用于数据库访问的API。
+简短的例子这个例子定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django(三)models模型层">
+<meta property="og:url" content="http://python-ning.github.io/2015/12/23/python_django_models/index.html">
+<meta property="og:site_name" content="python ning's blog">
+<meta property="og:description" content="模型是你的的数据的唯一的/权威的信息源。它包含你所储存数据的必要字段和行为。通常，每个模型对应数据库中唯一的一张表。这里主要处理的是你的数据库的内容，数据库建表主要是在这里，每个类就是一个表。
+每个模型都是django.db.models.Model 的一个Python 子类。模型的每个属性都表示数据库中的一个字段。Django 提供一套自动生成的用于数据库访问的API。
+简短的例子这个例子定义">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/70043-106.jpg">
+<meta property="og:updated_time" content="2015-12-30T22:48:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django(三)models模型层">
+<meta name="twitter:description" content="模型是你的的数据的唯一的/权威的信息源。它包含你所储存数据的必要字段和行为。通常，每个模型对应数据库中唯一的一张表。这里主要处理的是你的数据库的内容，数据库建表主要是在这里，每个类就是一个表。
+每个模型都是django.db.models.Model 的一个Python 子类。模型的每个属性都表示数据库中的一个字段。Django 提供一套自动生成的用于数据库访问的API。
+简短的例子这个例子定义">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/70043-106.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> django(三)models模型层 | python ning's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">python ning's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feeling">
+          <a href="/feeling" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            心情
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'CkyV4Ux3QZb6T9Hxonnh','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                django(三)models模型层
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-23T00:00:00-08:00" content="2015-12-23">
+              2015-12-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/23/python_django_models/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/python_django_models/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/70043-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
+<p>模型是你的的数据的唯一的/权威的信息源。它包含你所储存数据的必要字段和行为。通常，每个模型对应数据库中唯一的一张表。<br>这里主要处理的是你的数据库的内容，数据库建表主要是在这里，每个类就是一个表。</p>
+<p>每个模型都是django.db.models.Model 的一个Python 子类。<br>模型的每个属性都表示数据库中的一个字段。<br>Django 提供一套自动生成的用于数据库访问的API。</p>
+<h3 id="简短的例子">简短的例子</h3><p>这个例子定义一个Person模型，它有first_name 和last_name 两个属性：</p>
+<pre><code># models.py
+from django.db import models
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+first_name和last_name是模型的两个字段。每个字段都被指定成一个类属性，每个属性映射到一个数据库的列。
+
+上面的Person 模型会在数据库中创建这样一张表：
+
+<span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> myapp_person (
+    <span class="string">"id"</span> <span class="built_in">serial</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> PRIMARY <span class="keyword">KEY</span>,
+    <span class="string">"first_name"</span> <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,
+    <span class="string">"last_name"</span> <span class="built_in">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>
+);</span>
+</code></pre><p><strong style="color:orange">注意事项</strong><br>这个表的名称myapp_person，是根据 模型中的元数据自动生成的，也可以覆写为别的名称。<br>id 字段是自动添加的，但这个行为可以被重写。<br>这个例子中的CREATE TABLE SQL 语句使用PostgreSQL 语法格式，要注意的是Django 会根据设置文件中指定的数据库类型来使用相应的SQL语句。</p>
+<h3 id="使用模型">使用模型</h3><p>定义好模型之后，接下来你需要告诉Django 使用这些模型。你要做的就是修改配置文件中的INSTALLED_APPS 设置，在其中添加models.py所在应用的名称。<br>例如，如果你的应用的模型位于myapp.models模块（manage.py startapp 脚本为一个应用创建的包结构），INSTALLED_APPS部分看上去应该是：</p>
+<pre><code><span class="title">INSTALLED_APPS</span> = (
+    <span class="comment">#...</span>
+    <span class="string">'myapp'</span>,
+    <span class="comment">#...</span>
+)
+</code></pre><p>当你在<code style="color:red">INSTALLED_APPS</code>中添加新的应用名时，请确保运行命令<code style="color:red">manage.py migrate</code>，可以事先使用<code style="color:red">manage.py makemigrations</code>给应用生成迁移脚本。</p>
+<h3 id="字段">字段</h3><p>模型中不可或缺且最为重要的，就是字段集，它是一组数据库字段的列表。字段被指定为类属性。 要注意选择的字段名称不要和模型 API 冲突，比如<code style="color:red">clean</code>、<code style="color:red">save</code> 或者<code style="color:red">delete</code>。<br>例如：</p>
+<pre><code><span class="preprocessor"># models.py</span>
+<span class="preprocessor"># encoding: utf-8</span>
+<span class="title">from</span> django.db <span class="import"><span class="keyword">import</span> models</span>
+<span class="class">
+<span class="keyword">class</span> <span class="type">Musician</span><span class="container">(<span class="title">models</span>.<span class="type">Model</span>)</span>:
+    first_name = models.<span class="type">CharField</span><span class="container">(<span class="title">max_length</span>=50)</span> # max_length是为字段指定最大长度
+    last_name = models.<span class="type">CharField</span><span class="container">(<span class="title">max_length</span>=50)</span> # 字符串字段
+    instrument = models.<span class="type">CharField</span><span class="container">(<span class="title">max_length</span>=100)</span>
+
+<span class="keyword">class</span> <span class="type">Album</span><span class="container">(<span class="title">models</span>.<span class="type">Model</span>)</span>:
+    artist = models.<span class="type">ForeignKey</span><span class="container">(<span class="type">Musician</span>)</span> # 外键字段
+    name = models.<span class="type">CharField</span><span class="container">(<span class="title">max_length</span>=100)</span>
+    release_date = models.<span class="type">DateField</span><span class="container">()</span> # 时间字段
+    num_stars = models.<span class="type">IntegerField</span><span class="container">()</span> # 整数字段</span>
+</code></pre><h3 id="字段类型">字段类型</h3><p>模型中的每个字段都是 Field 子类的某个实例。Django 根据字段类的类型确定以下信息：<br>数据库当中的列类型 (比如: <code style="color:red">INTEGER</code>, <code style="color:red">VARCHAR</code>)。<br>渲染表单时使用的默认HTML 部件（例如，&lt;\input type=”text”&gt;&lt;\select&gt;）。<br>最低限度的验证需求，它被用在 Django 管理站点和自动生成的表单中。<br>Django 自带数十种内置的字段类型；如果内置类型仍不能满足你的要求，你可以自由地编写符合你要求的字段类型，这里介绍一些常用的字段类型：</p>
+<pre><code>BooleanField 布尔字段
+CharField 字符串字段
+TimeField 时间字段
+DateField 日期字段
+DateTimeField 日期时间字段
+EmailField 邮件字段
+FileField 文件字段
+ImageField 图片字段
+IntegerField 整数字段
+TextField 文本字段
+URLField URL路径字段
+ForeignKey 外键字段
+OneToOneField 一对一关系字段
+M<span class="literal">any</span>ToM<span class="literal">any</span>Field 多对多关系字段
+OneToM<span class="literal">any</span>Field 一对多关系字段
+</code></pre><h3 id="字段选项">字段选项</h3><p>每个字段有一些特有的参数，例如，<code style="color:red">CharField</code>（和它的派生类）需要max_length 参数来指定<code style="color:red">VARCHAR</code>数据库字段的大小。<br>还有一些适用于所有字段的通用参数。 这些参数在参考中有详细定义，这里我们只简单介绍一些最常用的：</p>
+<h2 id="null">null</h2><p>如果为<code style="color:red">True</code>，Django 将用<code style="color:red">NULL</code> 来在数据库中存储空值。 默认值是 <code style="color:red">False</code>.</p>
+<h2 id="blank">blank</h2><p>如果为True，该字段允许不填。默认为<code style="color:red">False</code>。</p>
+<p>要注意，这与 <code style="color:red">null</code> 不同。<code style="color:red">null</code>纯粹是数据库范畴的，而 <code style="color:red">blank</code> 是数据验证范畴的。如果一个字段的<code style="color:red">blank=True</code>，表单的验证将允许该字段是空值。如果字段的<code style="color:red">blank=False</code>，该字段就是必填的。</p>
+<h2 id="choices">choices</h2><p>由二元组组成的一个可迭代对象（例如，列表或元组），用来给字段提供选择项。 如果设置了<code style="color:red">choices</code> ，默认的表单将是一个选择框而不是标准的文本框，而且这个选择框的选项就是<code style="color:red">choices</code> 中的选项。</p>
+<p>这是一个关于 choices 列表的例子：</p>
+<pre><code>YEAR_IN_SCHOOL_CHOICES = <span class="list">(
+    <span class="list">(<span class="quoted">'FR</span>', <span class="quoted">'Freshman</span>')</span>,
+    <span class="list">(<span class="quoted">'SO</span>', <span class="quoted">'Sophomore</span>')</span>,
+    <span class="list">(<span class="quoted">'JR</span>', <span class="quoted">'Junior</span>')</span>,
+    <span class="list">(<span class="quoted">'SR</span>', <span class="quoted">'Senior</span>')</span>,
+    <span class="list">(<span class="quoted">'GR</span>', <span class="quoted">'Graduate</span>')</span>,
+)</span>
+</code></pre><p>每个元组中的第一个元素，是存储在数据库中的值；第二个元素是在管理界面或 <code style="color:red">ModelChoiceField</code> 中用作显示的内容。 在一个给定的 model 类的实例中，想得到某个 choices 字段的显示值，就调用 <code style="color:red">get_FOO_display</code> 方法(这里的 FOO 就是 choices 字段的名称 )。例如：</p>
+<pre><code><span class="comment"># models.py</span>
+from django.db import models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Person</span>(<span class="title">models</span>.<span class="title">Model</span>):</span>
+    <span class="constant">SHIRT_SIZES</span> = (
+        (<span class="string">'S'</span>, <span class="string">'Small'</span>),
+        (<span class="string">'M'</span>, <span class="string">'Medium'</span>),
+        (<span class="string">'L'</span>, <span class="string">'Large'</span>),
+    )
+    name = models.<span class="constant">CharField</span>(max_length=<span class="number">60</span>)
+    shirt_size = models.<span class="constant">CharField</span>(max_length=<span class="number">1</span>, choices=<span class="constant">SHIRT_SIZES</span>)
+
+<span class="prompt">&gt;&gt;</span>&gt; p = <span class="constant">Person</span>(name=<span class="string">"Fred Flintstone"</span>, shirt_size=<span class="string">"L"</span>)
+<span class="prompt">&gt;&gt;</span>&gt; p.save()
+<span class="prompt">&gt;&gt;</span>&gt; p.shirt_size
+<span class="string">'L'</span>
+<span class="prompt">&gt;&gt;</span>&gt; p.get_shirt_size_display()
+<span class="string">'Large'</span>
+</code></pre><h2 id="default">default</h2><p>字段的默认值。可以是一个值或者可调用对象。如果可调用 ，每有新对象被创建它都会被调用。</p>
+<h2 id="help_text">help_text</h2><p>表单部件额外显示的帮助内容。即使字段不在表单中使用，它对生成文档也很有用。</p>
+<h2 id="primary_key">primary_key</h2><p>如果为True，那么这个字段就是模型的主键。<br>如果你没有指定任何一个字段的<code style="color:red">primary_key=True</code>，Django 就会自动添加一个<code style="color:red">IntegerField</code> 字段做为主键，所以除非你想覆盖默认的主键行为，否则没必要设置任何一个字段的<code style="color:red">primary_key=True</code>。详见自增主键字段。</p>
+<p>主键字段是只读的。如果你在一个已存在的对象上面更改主键的值并且保存，一个新的对象将会在原有对象之外创建出来。例如：</p>
+<pre><code><span class="comment"># models.py</span>
+<span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Fruit</span><span class="params">(models.Model)</span>:</span>
+    name = models.CharField(max_length=<span class="number">100</span>, primary_key=<span class="keyword">True</span>)
+
+<span class="prompt">&gt;&gt;&gt; </span>fruit = Fruit.objects.create(name=<span class="string">'Apple'</span>)
+<span class="prompt">&gt;&gt;&gt; </span>fruit.name = <span class="string">'Pear'</span>
+<span class="prompt">&gt;&gt;&gt; </span>fruit.save()
+<span class="prompt">&gt;&gt;&gt; </span>Fruit.objects.values_list(<span class="string">'name'</span>, flat=<span class="keyword">True</span>)
+[<span class="string">'Apple'</span>, <span class="string">'Pear'</span>]
+</code></pre><h2 id="unique">unique</h2><p>如果该值设置为<code style="color:red">True</code>, 这个数据字段的值在整张表中必须是唯一的<br>再说一次，这些仅仅是常用字段的简短介绍， 要了解详细内容,请查看django官方文档。</p>
+<h3 id="自增主键字段">自增主键字段</h3><p>默认情况下，Django 会给每个模型添加下面这个字段：</p>
+<pre><code>id = models.<span class="function"><span class="title">AutoField</span><span class="params">(primary_key=True)</span></span>
+</code></pre><p>这是一个自增主键字段。<br>如果你想指定一个自定义主键字段，只要在某个字段上指定 <code style="color:red">primary_key=True</code> 即可。如果 Django 看到你显式地设置了 <code style="color:red">Field.primary_key</code>，就不会自动添加 id 列。<br>每个模型只能有一个字段指定<code style="color:red">primary_key=True</code>（无论是显式声明还是自动添加）。</p>
+<h3 id="字段的自述名">字段的自述名</h3><p>除<code style="color:red">ForeignKey</code>、<code style="color:red">ManyToManyField</code> 和 <code style="color:red">OneToOneField</code> 之外，每个字段类型都接受一个可选的位置参数 —— 字段的自述名。如果没有给定自述名，Django 将根据字段的属性名称自动创建自述名 —— 将属性名称的下划线替换成空格。<br>在这个例子中，自述名是 “<code style="color:red">person’s first name</code>“：</p>
+<pre><code>first_name = models.<span class="function"><span class="title">CharField</span><span class="params">(<span class="string">"person's first name"</span>, max_length=<span class="number">30</span>)</span></span>
+</code></pre><p>在这个例子中，自述名是  “<code style="color:red">first name</code>“：</p>
+<pre><code>first_name = models.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">30</span>)</span></span>
+</code></pre><p><code style="color:red">ForeignKey</code>、<code style="color:red">ManyToManyField</code> 和 <code style="color:red">OneToOneField</code>都要求第一个参数是一个模型类，所以要使用 <code style="color:red">verbose_name</code> 关键字参数才能指定自述名：</p>
+<pre><code>poll = models.<span class="function"><span class="title">ForeignKey</span><span class="params">(Poll, verbose_name=<span class="string">"the related poll"</span>)</span></span>
+sites = models.<span class="function"><span class="title">ManyToManyField</span><span class="params">(Site, verbose_name=<span class="string">"list of sites"</span>)</span></span>
+place = models.<span class="function"><span class="title">OneToOneField</span><span class="params">(Place, verbose_name=<span class="string">"related place"</span>)</span></span>
+</code></pre><p>习惯上，<code style="color:red">verbose_name</code> 的首字母不用大写。Django 在必要的时候会自动大写首字母。</p>
+<h3 id="关系">关系</h3><p>显然，关系数据库的威力体现在表之间的相互关联。 Django 提供了三种最常见的数据库关系：多对一(many-to-one)，多对多(many-to-many)，一对一(one-to-one)。</p>
+<h2 id="多对一关系">多对一关系</h2><p>Django 使用 <code style="color:red">django.db.models.ForeignKey</code> 定义多对一关系。和使用其它字段类型一样：在模型当中把它做为一个类属性包含进来。<br><code style="color:red">ForeignKey</code> 需要一个位置参数：与该模型关联的类。<br>比如，一辆Car(汽车)有一个Manufacturer(制造商) —— 但是一个Manufacturer(制造商) 生产很多Car(汽车)，每一辆Car(汽车) 只能有一个Manufacturer(制造商) —— 使用下面的定义：</p>
+<pre><code><span class="comment"># models.py</span>
+<span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Manufacturer</span><span class="params">(models.Model)</span>:</span>
+    <span class="comment"># ...</span>
+    <span class="keyword">pass</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Car</span><span class="params">(models.Model)</span>:</span>
+    manufacturer = models.ForeignKey(Manufacturer)
+    <span class="comment"># ...</span>
+</code></pre><p>你还可以创建递归的关联关系（对象和自己进行多对一关联）和 与尚未定义的模型的关联关系.<br>建议你用被关联的模型的小写名称做为ForeignKey 字段的名字（例如，上面manufacturer）。当然，你也可以起别的名字。例如：</p>
+<p>class Car(models.Model):<br>    company_that_makes_it = models.ForeignKey(Manufacturer)</p>
+<pre><code><span class="preprocessor"># ...</span>
+</code></pre><p>另见<br><code style="color:red">ForeignKey</code> 字段还接受许多别的参数，在模型字段参考有详细介绍。这些选项帮助定义关联关系应该如何工作；它们都是可选的参数。</p>
+<h2 id="多对多关系">多对多关系</h2><p><code style="color:red">ManyToManyField</code> 用来定义多对多关系，用法和其他Field 字段类型一样：在模型中做为一个类属性包含进来。<br><code style="color:red">ManyToManyField</code> 需要一个位置参数：和该模型关联的类。<br>例如，一个Pizza(披萨)可以有多种Topping(馅料) —— 一种Topping(馅料) 可以位于多个Pizza(披萨)上，而且每个Pizza(披萨) 也可以有多种Topping(馅料) —— 如下展示：</p>
+<pre><code><span class="comment"># models.py</span>
+<span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Topping</span><span class="params">(models.Model)</span>:</span>
+    <span class="comment"># ...</span>
+    <span class="keyword">pass</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Pizza</span><span class="params">(models.Model)</span>:</span>
+    <span class="comment"># ...</span>
+    toppings = models.ManyToManyField(Topping)
+</code></pre><p>和使用<code style="color:red">ForeignKey</code> 一样，你也可以创建递归的关联关系（对象与自己的多对多关联）和与尚未定义关系的模型的关联关系。<br>建议你以被关联模型名称的复数形式做为ManyToManyField 的名字（例如上例中的toppings）。<br>在哪个模型中设置 <code style="color:red">ManyToManyField</code> 并不重要，在两个模型中任选一个即可 —— 不要两个模型都设置。<br>通常，<code style="color:red">ManyToManyField</code> 实例应该位于可以编辑的表单中。在上面的例子中，toppings(馅料) 位于Pizza(披萨) 中（而不是在 Topping 里面设置pizzas 的 ManyToManyField 字段），因为设想一个Pizza 有多种Topping 比一个Topping 位于多个Pizza 上要更加自然。按照上面的方式，在Pizza 的表单中将允许用户选择不同的Toppings。</p>
+<p>另见<br>完整的示例参见多对多关系模型示例。<br><code style="color:red">ManyToManyField</code> 字段还接受别的参数,这些选项帮助定义关系应该如何工作；它们都是可选的。<br>多对多关系中的其他字段<br>处理类似搭配 pizza 和 topping 这样简单的多对多关系时，使用标准的<code style="color:red">ManyToManyField</code>  就可以了。但是，有时你可能需要关联数据到两个模型之间的关系上。<br>例如，有这样一个应用，它记录音乐家所属的音乐小组。我们可以用一个ManyToManyField 表示小组和成员之间的多对多关系。但是，有时你可能想知道更多成员关系的细节，比如成员是何时加入小组的。<br>对于这些情况，Django 允许你指定一个模型来定义多对多关系。 你可以将其他字段放在中介模型里面。源模型的<code style="color:red">ManyToManyField</code> 字段将使用<code style="color:red">through</code> 参数指向中介模型。对于上面的音乐小组的例子，代码如下：</p>
+<pre><code><span class="comment"># models.py</span>
+<span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span>
+    name = models.CharField(max_length=<span class="number">128</span>)
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>              <span class="comment"># __unicode__ on Python 2</span>
+        <span class="keyword">return</span> self.name
+
+<span class="class"><span class="keyword">class</span> <span class="title">Group</span><span class="params">(models.Model)</span>:</span>
+    name = models.CharField(max_length=<span class="number">128</span>)
+    members = models.ManyToManyField(Person, through=<span class="string">'Membership'</span>)
+
+    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>              <span class="comment"># __unicode__ on Python 2</span>
+        <span class="keyword">return</span> self.name
+
+<span class="class"><span class="keyword">class</span> <span class="title">Membership</span><span class="params">(models.Model)</span>:</span>
+    person = models.ForeignKey(Person)
+    group = models.ForeignKey(Group)
+    date_joined = models.DateField()
+    invite_reason = models.CharField(max_length=<span class="number">64</span>)
+</code></pre><p>在设置中介模型时，要显式指定外键并关联到多对多关系涉及的模型。这个显式声明定义两个模型之间是如何关联的。</p>
+<p>中介模型有一些限制：<br>中介模型必须有且只有一个外键到源模型（上面例子中的Group），或者你必须使用<code style="color:red">ManyToManyField.through_fields</code> 显式指定Django 应该使用的外键。如果你的模型中存在不止一个外键，并且through_fields没有指定，将会触发一个无效的错误。 对目标模型的外键有相同的限制（上面例子中的 Person）。<br>对于通过中介模型与自己进行多对多关联的模型，允许存在到同一个模型的两个外键，但它们将被作为多对多关联关系的两个（不同的）方面。如果有超过 两个外键，同样你必须像上面一样指定through_fields，否则将引发一个验证错误。<br>使用中介模型定义与自身的多对多关系时，你必须设置 <code style="color:red">symmetrical=False</code></p>
+<p><code style="color:red">Changed in Django 1.7:</code><br>在Django 1.6 及之前的版本中，中介模型禁止包含多于一个的外键。<br>既然你已经设置好ManyToManyField 来使用中介模型（在这个例子中就是Membership），接下来你要开始创建多对多关系。你要做的就是创建中介模型的实例：</p>
+<pre><code>&gt;&gt;&gt; ringo = Person.objects.create(name=<span class="string">"Ringo Starr"</span>)
+&gt;&gt;&gt; paul = Person.objects.create(name=<span class="string">"Paul McCartney"</span>)
+&gt;&gt;&gt; beatles = Group.objects.create(name=<span class="string">"The Beatles"</span>)
+&gt;&gt;&gt; m1 = Membership(person=ringo, group=beatles,
+...     date_joined=date(<span class="number">1962</span>, <span class="number">8</span>, <span class="number">16</span>),
+...     invite_reason=<span class="string">"Needed a new drummer."</span>)
+&gt;&gt;&gt; m1.save()
+&gt;&gt;&gt; beatles.members.all()
+<span class="annotation">[&lt;Person: Ringo Starr&gt;]</span>
+&gt;&gt;&gt; ringo.group_set.all()
+<span class="annotation">[&lt;Group: The Beatles&gt;]</span>
+&gt;&gt;&gt; m2 = Membership.objects.create(person=paul, group=beatles,
+...     date_joined=date(<span class="number">1960</span>, <span class="number">8</span>, <span class="number">1</span>),
+...     invite_reason=<span class="string">"Wanted to form a band."</span>)
+&gt;&gt;&gt; beatles.members.all()
+<span class="annotation">[&lt;Person: Ringo Starr&gt;, &lt;Person: Paul McCartney&gt;]</span>
+</code></pre><p>与普通的多对多字段不同，你不能使用add、 create和赋值语句（比如，beatles.members = […]）来创建关系：</p>
+<pre><code><span class="comment"># THIS WILL NOT WORK</span>
+<span class="prompt">&gt;&gt;</span>&gt; beatles.members.add(john)
+<span class="comment"># NEITHER WILL THIS</span>
+<span class="prompt">&gt;&gt;</span>&gt; beatles.members.create(name=<span class="string">"George Harrison"</span>)
+<span class="comment"># AND NEITHER WILL THIS</span>
+<span class="prompt">&gt;&gt;</span>&gt; beatles.members = [john, paul, ringo, george]
+</code></pre><p>为什么不能这样做？ 这是因为你不能只创建 Person和 Group之间的关联关系，你还要指定 Membership模型中所需要的所有信息；而简单的add、create 和赋值语句是做不到这一点的。所以它们不能在使用中介模型的多对多关系中使用。此时，唯一的办法就是创建中介模型的实例。</p>
+<p>remove()方法被禁用也是出于同样的原因。但是clear() 方法却是可用的。它可以清空某个实例所有的多对多关系：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; <span class="comment"># Beatles have broken up</span>
+<span class="prompt">&gt;&gt;</span>&gt; beatles.members.clear()
+<span class="prompt">&gt;&gt;</span>&gt; <span class="comment"># Note that this deletes the intermediate model instances</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">Membership</span>.objects.all()
+[]
+</code></pre><p>通过创建中介模型的实例来建立对多对多关系后，你就可以执行查询了。 和普通的多对多字段一样，你可以直接使用被关联模型的属性进行查询：</p>
+<pre><code># Find all the groups <span class="keyword">with</span> a <span class="keyword">member</span> whose name starts <span class="keyword">with</span> 'Paul'
+&gt;&gt;&gt; Group.objects.filter(members__name__startswith='Paul')
+<span class="annotation">[&lt;Group: The Beatles&gt;]</span>
+</code></pre><p>如果你使用了中介模型，你也可以利用中介模型的属性进行查询：</p>
+<pre><code><span class="comment"># Find all the members of the Beatles that joined after 1 Jan 1961</span>
+<span class="prompt">&gt;&gt;&gt; </span>Person.objects.filter(
+<span class="prompt">... </span>    group__name=<span class="string">'The Beatles'</span>,
+<span class="prompt">... </span>    membership__date_joined__gt=date(<span class="number">1961</span>,<span class="number">1</span>,<span class="number">1</span>))
+[&lt;Person: Ringo Starr]
+</code></pre><p>如果你需要访问一个成员的信息，你可以直接获取Membership模型：</p>
+<pre><code>&gt;&gt;&gt; ringos_membership = Membership<span class="class">.objects</span><span class="class">.get</span>(group=beatles, person=ringo)
+&gt;&gt;&gt; ringos_membership<span class="class">.date_joined</span>
+datetime.<span class="function"><span class="title">date</span><span class="params">(<span class="number">1962</span>, <span class="number">8</span>, <span class="number">16</span>)</span></span>
+&gt;&gt;&gt; ringos_membership<span class="class">.invite_reason</span>
+<span class="string">'Needed a new drummer.'</span>
+</code></pre><p>另一种获取相同信息的方法是，在Person对象上查询多对多反转关系：</p>
+<pre><code>&gt;&gt;&gt; ringos_membership = ringo<span class="class">.membership_set</span><span class="class">.get</span>(group=beatles)
+&gt;&gt;&gt; ringos_membership<span class="class">.date_joined</span>
+datetime.<span class="function"><span class="title">date</span><span class="params">(<span class="number">1962</span>, <span class="number">8</span>, <span class="number">16</span>)</span></span>
+&gt;&gt;&gt; ringos_membership<span class="class">.invite_reason</span>
+<span class="string">'Needed a new drummer.'</span>
+</code></pre><h2 id="一对一关系">一对一关系</h2><p><code style="color:red">OneToOneField</code>用来定义一对一关系。 用法和其他字段类型一样：在模型里面做为类属性包含进来。</p>
+<p>当某个对象想扩展自另一个对象时，最常用的方式就是在这个对象的主键上添加一对一关系。<br><code style="color:red">OneToOneField</code>要一个位置参数：与模型关联的类。<br>例如，你想建一个“places” 数据库，里面有一些常用的字段，比如address、 phone number 等等。 接下来，如果你想在Place 数据库的基础上建立一个Restaurant 数据库，而不想将已有的字段复制到Restaurant模型，那你可以在 Restaurant 添加一个OneToOneField 字段，这个字段指向Place（因为Restaurant 本身就是一个Place；事实上，在处理这个问题的时候，你应该使用一个典型的 继承，它隐含一个一对一关系)。<br><code style="color:red">OneToOneField</code>字段也接受一个特定的可选的<code style="color:red">parent_link</code>参数。<br>在以前的版本中，OneToOneField 字段会自动变成模型 的主键。不过现在已经不这么做了(不过要是你愿意的话，你仍可以传递 primary_key参数来创建主键字段)。所以一个 模型 中可以有多个OneToOneField 字段。</p>
+<h3 id="跨文件的模型">跨文件的模型</h3><p>访问其他应用的模型是非常容易的。 在文件顶部你定义模型的地方，导入相关的模型来实现它。然后，无论在哪里需要的话，都可以引用它。例如：</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+<span class="keyword">from</span> geography.models <span class="keyword">import</span> ZipCode
+
+<span class="class"><span class="keyword">class</span> <span class="title">Restaurant</span><span class="params">(models.Model)</span>:</span>
+    <span class="comment"># ...</span>
+    zip_code = models.ForeignKey(ZipCode)
+</code></pre><h3 id="字段命名的限制">字段命名的限制</h3><p>Django 对字段的命名只有两个限制：</p>
+<pre><code>字段的名称不能是Python 保留的关键字，因为这将导致一个Python 语法错误。例如：
+
+<span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span>
+    <span class="keyword">pass</span> = models.IntegerField() <span class="comment"># 'pass' is a reserved word!</span>
+
+由于Django 查询语法的工作方式，字段名称中连续的下划线不能超过一个。例如：
+
+<span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(models.Model)</span>:</span>
+    foo__bar = models.IntegerField() <span class="comment"># 'foo__bar' has two underscores!</span>
+</code></pre><p>这些限制有变通的方法，因为没有要求字段名称必须与数据库的列名匹配。参 db_column 选项。</p>
+<p>SQL 的保留字例如join、where 和select，可以用作模型的字段名，因为Django 会对底层的SQL 查询语句中的数据库表名和列名进行转义。 它根据你的数据库引擎使用不同的引用语法。<br>自定义字段类型¶</p>
+<p>如果已有的模型字段都不合适，或者你想用到一些很少见的数据库列类型的优点，你可以创建你自己的字段类型。创建你自己的字段在编写自定义的模型字段中有完整讲述。</p>
+<h3 id="元选项">元选项</h3><p>使用内部的class Meta 定义模型的元数据，例如：</p>
+<pre><code>from django<span class="class">.db</span> import models
+
+class <span class="function"><span class="title">Ox</span><span class="params">(models.Model)</span></span>:
+    horn_length = models.<span class="function"><span class="title">IntegerField</span><span class="params">()</span></span>
+
+    class Meta:
+        ordering = [<span class="string">"horn_length"</span>]
+        verbose_name_plural = <span class="string">"oxen"</span>
+</code></pre><p>模型元数据是“任何不是字段的数据”，比如排序选项（ordering），数据表名（db_table）或者人类可读的单复数名称（verbose_name 和verbose_name_plural）。在模型中添加class Meta是完全可选的，所有选项都不是必须的。</p>
+<p>所有元选项的完整列表可以在模型选项参考找到。</p>
+<h3 id="模型的属性">模型的属性</h3><p>objects<br>    模型最重要的属性是Manager。它是Django 模型进行数据库查询操作的接口，并用于从数据库获取实例。如果没有自定义Manager，则默认的名称为objects。Managers 只能通过模型类访问，而不能通过模型实例访问。</p>
+<h3 id="模型的方法">模型的方法</h3><p>可以在模型上定义自定义的方法来给你的对象添加自定义的“底层”功能。Manager 方法用于“表范围”的事务，模型的方法应该着眼于特定的模型实例。</p>
+<p>这是一个非常有价值的技术，让业务逻辑位于同一个地方 —— 模型中。</p>
+<p>例如，下面的模型具有一些自定义的方法：</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span>
+    first_name = models.CharField(max_length=<span class="number">50</span>)
+    last_name = models.CharField(max_length=<span class="number">50</span>)
+    birth_date = models.DateField()
+
+    <span class="function"><span class="keyword">def</span> <span class="title">baby_boomer_status</span><span class="params">(self)</span>:</span>
+        <span class="string">"Returns the person's baby-boomer status."</span>
+        <span class="keyword">import</span> datetime
+        <span class="keyword">if</span> self.birth_date &lt; datetime.date(<span class="number">1945</span>, <span class="number">8</span>, <span class="number">1</span>):
+            <span class="keyword">return</span> <span class="string">"Pre-boomer"</span>
+        <span class="keyword">elif</span> self.birth_date &lt; datetime.date(<span class="number">1965</span>, <span class="number">1</span>, <span class="number">1</span>):
+            <span class="keyword">return</span> <span class="string">"Baby boomer"</span>
+        <span class="keyword">else</span>:
+            <span class="keyword">return</span> <span class="string">"Post-boomer"</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">_get_full_name</span><span class="params">(self)</span>:</span>
+        <span class="string">"Returns the person's full name."</span>
+        <span class="keyword">return</span> <span class="string">'%s %s'</span> % (self.first_name, self.last_name)
+    full_name = property(_get_full_name)
+</code></pre><p>这个例子中的最后一个方法是一个property。</p>
+<p>模型实例参考 具有一个完整的为模型自动生成的方法 列表。你可以覆盖它们 —— 参见下文覆盖模型预定义的方法 —— 但是有些方法你会始终想要重新定义：</p>
+<pre><code>__str__<span class="literal">()</span> (<span class="type">Python</span> <span class="number">3</span>)
+    <span class="type">Python</span> <span class="number">3</span> equivalent <span class="keyword">of</span> __unicode__<span class="literal">()</span>.
+__unicode__<span class="literal">()</span> (<span class="type">Python</span> <span class="number">2</span>)
+</code></pre><p>一个Python的特殊方法（magic method)，返回对象的字符串表达式(unicode格式）当模型实例需要强制转换并显示为普通的字符串时，Python 和Django 将使用这个方法。最明显是在交互式控制台或者管理站点显示一个对象的时候。</p>
+<p>你将永远想要定义这个方法；默认的方法几乎没有意义。<br>get_absolute_url()</p>
+<p>它告诉Django 如何计算一个对象的URL。Django 在它的管理站点中使用到这个方法，在其它任何需要计算一个对象的URL 时也将用到。</p>
+<p>任何具有唯一标识自己的URL 的对象都应该定义这个方法。</p>
+<p>覆盖预定义的模型方法¶</p>
+<p>还有另外一部分封装数据库行为的模型方法，你可能想要自定义它们。特别是，你将要经常改变save() 和delete() 的工作方式。</p>
+<p>你可以自由覆盖这些方法（和其它任何模型方法）来改变它们的行为。</p>
+<p>覆盖内建模型方法的一个典型的使用场景是，你想在保存一个对象时做一些其它事情。例如（参见save() 中关于它接受的参数的文档）：</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Blog</span><span class="params">(models.Model)</span>:</span>
+    name = models.CharField(max_length=<span class="number">100</span>)
+    tagline = models.TextField()
+
+    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self, *args, **kwargs)</span>:</span>
+        do_something()
+        super(Blog, self).save(*args, **kwargs) <span class="comment"># Call the "real" save() method.</span>
+        do_something_else()
+</code></pre><p>你还可以阻止保存：</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Blog</span><span class="params">(models.Model)</span>:</span>
+    name = models.CharField(max_length=<span class="number">100</span>)
+    tagline = models.TextField()
+
+    <span class="function"><span class="keyword">def</span> <span class="title">save</span><span class="params">(self, *args, **kwargs)</span>:</span>
+        <span class="keyword">if</span> self.name == <span class="string">"Yoko Ono's blog"</span>:
+            <span class="keyword">return</span> <span class="comment"># Yoko shall never have her own blog!</span>
+        <span class="keyword">else</span>:
+            super(Blog, self).save(*args, **kwargs) <span class="comment"># Call the "real" save() method.</span>
+</code></pre><p>必须要记住调用超类的方法—— super(Blog, self).save(<em>args, *</em>kwargs) —— 来确保对象被保存到数据库中。如果你忘记调用超类的这个方法，默认的行为将不会发生且数据库不会有任何改变。</p>
+<p>还要记住传递参数给这个模型方法 —— 即<em>args, **kwargs。 Django 未来将一直会扩展内建模型方法的功能并添加新的参数。如果在你的方法定义中使用</em>args, **kwargs，将保证你的代码自动支持这些新的参数。</p>
+<p>批量操作中被覆盖的模型方法不会被调用</p>
+<p>注意，当使用查询集批量删除对象时，将不会为每个对象调用delete() 方法。为确保自定义的删除逻辑得到执行，你可以使用pre_delete 和/或post_delete 信号。</p>
+<p>不幸的是，当批量creating 或updating 对象时没有变通方法，因为不会调用save()、pre_save和 post_save。</p>
+<h3 id="执行自定义的SQL">执行自定义的SQL</h3><p>另外一个常见的需求是在模型方法和模块级别的方法中编写自定义的SQL 语句。关于使用原始SQL 语句的更多细节，参见使用原始 SQL 的文档。</p>
+<h3 id="模型继承">模型继承</h3><p>Django 中的模型继承与 Python 中普通类继承方式几乎完全相同，但是本页头部列出的模型基本的要求还是要遵守。这表示自定义的模型类应该继承django.db.models.Model。</p>
+<p>你唯一需要作出的决定就是你是想让父模型具有它们自己的数据库表，还是让父模型只持有一些共同的信息而这些信息只有在子模型中才能看到。</p>
+<p>在Django 中有3种风格的继承。</p>
+<pre><code>通常，你只想使用父类来持有一些信息，你不想在每个子模型中都敲一遍。这个类永远不会单独使用，所以你使用抽象基类。
+如果你继承一个已经存在的模型且想让每个模型具有它自己的数据库表，那么应该使用多表继承。
+最后，如果你只是想改变模块Python 级别的行为，而不用修改模型的字段，你可以使用代理模型。
+</code></pre><h3 id="抽象基类">抽象基类</h3><p>当你想将一些常见信息存储到很多model的时候，抽象化类是十分有用的。你编写完基类之后，在 Meta类中设置 abstract=True ，该类就不能创建任何数据表。取而代之的是，当它被用来作为一个其他model的基础类时，它将被加入那一子类中。如果抽象化基础类和它的子类有相同的项，那么将会出现error（并且Django将返回一个exception）。</p>
+<p>一个例子</p>
+<pre><code>from django<span class="class">.db</span> import models
+
+class <span class="function"><span class="title">CommonInfo</span><span class="params">(models.Model)</span></span>:
+    name = models.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">100</span>)</span></span>
+    age = models.<span class="function"><span class="title">PositiveIntegerField</span><span class="params">()</span></span>
+
+    class Meta:
+        abstract = True
+
+class <span class="function"><span class="title">Student</span><span class="params">(CommonInfo)</span></span>:
+    home_group = models.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">5</span>)</span></span>
+</code></pre><p>Student 模型将有三个项：name, age 和 home_group。CommonInfo 模型无法像一般的Django模型一样使用，因为它是一个抽象化基础类。它无法生成数据表单或者管理器，并且不能实例化或者储存。</p>
+<p>对很多用户来说, 这种类型的模型继承就是你想要的。它提供一种在 Python 语言层级上提取公共信息的方式，但在数据库层级上，各个子类仍然只创建一个数据库表。</p>
+<h3 id="元_继承">元 继承</h3><p>当一个抽象类被创建的时候, Django会自动把你在基类中定义的 Meta 作为子类的一个属性。如果子类没有声明自己的Meta 类, 他将会继承父类的Meta. 如果子类想要扩展父类  的，可以继承父类的 Meta 即可，例如</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">CommonInfo</span><span class="params">(models.Model)</span>:</span>
+    <span class="comment"># ...</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        abstract = <span class="keyword">True</span>
+        ordering = [<span class="string">'name'</span>]
+
+<span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(CommonInfo)</span>:</span>
+    <span class="comment"># ...</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span><span class="params">(CommonInfo.Meta)</span>:</span>
+        db_table = <span class="string">'student_info'</span>
+</code></pre><p>继承时，Django 会对基类的 Meta类做一个调整：在安装 Meta属性之前，Django 会设置 abstract=False。这意味着抽象基类的子类不会自动变成抽象类。 当然，你可以让一个抽象类继承另一个抽象基类，不过每次都要显式地设置 abstract=True。</p>
+<p>对于抽象基类而言，有些属性放在  Meta 内嵌类里面是没有意义的。例如，包含 db_table将意味着所有的子类(是指那些没有指定自己的 Meta 类的子类)都使用同一张数据表，一般来说，这并不是我们想要的。<br>小心使用 related_name¶</p>
+<p>如果你在 ForeignKey或  ManyToManyField字段上使用  related_name属性，你必须总是为该字段指定一个唯一的反向名称。但在抽象基类上这样做就会引发一个很严重的问题。因为 Django 会将基类字段添加到每个子类当中，而每个子类的字段属性值都完全相同 (这里面就包括related_name)。</p>
+<p>当你在(且仅在)抽象基类中使用 related_name 时，如果想绕过这个问题，名称中就要包含’%(app_label)s’和 ‘%(class)s’。</p>
+<p>‘%(class)s’ 会替换为子类的小写加下划线格式的名称，字段在子类中使用。<br>‘%(app_label)s’ 会替换为应用的小写加下划线格式的名称，应用包含子类。每个安装的应用名称都应该是唯一的，而且应用里每个模型类的名称也应该是唯一的，所以产生的名称应该彼此不同。</p>
+<p>例如，假设有一个app叫做common/models.py：</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Base</span><span class="params">(models.Model)</span>:</span>
+    m2m = models.ManyToManyField(OtherModel, related_name=<span class="string">"%(app_label)s_%(class)s_related"</span>)
+
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        abstract = <span class="keyword">True</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">ChildA</span><span class="params">(Base)</span>:</span>
+    <span class="keyword">pass</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">ChildB</span><span class="params">(Base)</span>:</span>
+    <span class="keyword">pass</span>
+
+以及另一个应用 rare/models.py：
+
+<span class="keyword">from</span> common.models <span class="keyword">import</span> Base
+
+<span class="class"><span class="keyword">class</span> <span class="title">ChildB</span><span class="params">(Base)</span>:</span>
+    <span class="keyword">pass</span>
+</code></pre><p>ChildA.m2m 字段的反向名称是 childa_related，而 ChildB.m2m 字段的反向名称是 childb_related。这取决于你如何使用  ‘%(class)s’ 和’%(app_label)s来构造你的反向名称。如果你没有这样做，Django 就会在验证 model (或运行 migrate) 时抛出错误。</p>
+<p>如果你没有在抽象基类中为某个关联字段定义 related_name 属性，那么默认的反向名称就是子类名称加上’_set’，它能否正常工作取决于你是否在子类中定义了同名字段。例如，在上面的代码中，如果去掉 related_name属性，在 ChildA中，m2m 字段的反向名称就是 childa_set；而 ChildB的 m2m 字段的反向名称就是 childb_set。<br>多表继承¶</p>
+<p>这是 Django 支持的第二种继承方式。使用这种继承方式时，同一层级下的每个子 model 都是一个真正意义上完整的 model 。 每个子 model 都有专属的数据表，都可以查询和创建数据表。 继承关系在子 model 和它的每个父类之间都添加一个链接 (通过一个自动创建的 OneToOneField来实现)。 例如：</p>
+<pre><code>from django<span class="class">.db</span> import models
+
+class <span class="function"><span class="title">Place</span><span class="params">(models.Model)</span></span>:
+    name = models.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">50</span>)</span></span>
+    <span class="tag">address</span> = models.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">80</span>)</span></span>
+
+class <span class="function"><span class="title">Restaurant</span><span class="params">(Place)</span></span>:
+    serves_hot_dogs = models.<span class="function"><span class="title">BooleanField</span><span class="params">(default=False)</span></span>
+    serves_pizza = models.<span class="function"><span class="title">BooleanField</span><span class="params">(default=False)</span></span>
+</code></pre><p>Place里面的所有字段在 Restaurant中也是有效的，只不过数据保存在另外一张数据表当中。所以下面两个语句都是可以运行的：</p>
+<pre><code>&gt;&gt;&gt; Place<span class="class">.objects</span><span class="class">.filter</span>(name=<span class="string">"Bob's Cafe"</span>)
+&gt;&gt;&gt; Restaurant<span class="class">.objects</span><span class="class">.filter</span>(name=<span class="string">"Bob's Cafe"</span>)
+</code></pre><p>如果你有一个 Place ，它同时也是一个 Restaurant， 那么你可以使用子 model 的小写形式从 Place 对象中获得与其对应的 Restaurant对象：</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; p = <span class="constant">Place</span>.objects.get(id=<span class="number">12</span>)
+<span class="comment"># If p is a Restaurant object, this will give the child class:</span>
+<span class="prompt">&gt;&gt;</span>&gt; p.restaurant
+&lt;<span class="constant">Restaurant</span><span class="symbol">:</span> ...&gt;
+</code></pre><p>但是，如果上例中的 p 并不是  Restaurant (比如它仅仅只是 Place对象，或者它是其他类的父类)，那么在引用 p.restaurant就会抛出Restaurant.DoesNotExist 异常。</p>
+<h3 id="多表继承中的Meta">多表继承中的Meta</h3><p>在多表继承中，子类继承父类的 Meta类是没什么意义的。所有的 Meta 选项已经对父类起了作用，再次使用只会起反作用。(这与使用抽象基类的情况正好相反，因为抽象基类并没有属于它自己的内容)</p>
+<p>所以子 model 并不能访问它父类的 Meta 类。但是在某些受限的情况下，子类可以从父类继承某些 Meta ：如果子类没有指定 ordering属性或 get_latest_by 属性，它就会从父类中继承这些属性。</p>
+<p>如果父类有了排序设置，而你并不想让子类有任何排序设置，你就可以显式地禁用排序：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">ChildModel</span><span class="params">(ParentModel)</span>:</span>
+    <span class="comment"># ...</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        <span class="comment"># Remove parent's ordering effect</span>
+        ordering = []
+</code></pre><h3 id="继承与反向关联">继承与反向关联</h3><p>因为多表继承使用了一个隐含的 OneToOneField来链接子类与父类，所以象上例那样，你可以用父类来指代子类。但是这个 OnetoOneField 字段默认的 related_name 值与 ForeignKey 和 ManyToManyField 默认的反向名称相同。如果你与其他 model 的子类做多对一或是多对多关系，你就必须在每个多对一和多对多字段上强制指定 related_name。如果你没这么做，Django 就会在你运行 验证(validation)  时抛出异常。</p>
+<p>例如，仍以上面 Place类为例，我们创建一个带有 ManyToManyField字段的子类：</p>
+<pre><code>class <span class="function"><span class="title">Supplier</span><span class="params">(Place)</span></span>:
+    customers = models.<span class="function"><span class="title">ManyToManyField</span><span class="params">(Place)</span></span>
+</code></pre><p>这会产生一个错误：</p>
+<pre><code><span class="type">Reverse</span> query name <span class="keyword">for</span> <span class="symbol">'Supplier</span>.customers' clashes <span class="keyword">with</span> reverse query
+name <span class="keyword">for</span> <span class="symbol">'Supplier</span>.place_ptr'.
+
+<span class="type">HINT</span>: <span class="type">Add</span> <span class="keyword">or</span> change a related_name argument <span class="keyword">to</span> the definition <span class="keyword">for</span>
+<span class="symbol">'Supplier</span>.customers' <span class="keyword">or</span> <span class="symbol">'Supplier</span>.place_ptr'.
+</code></pre><p>像下面那样，向customers字段中添加related_name可以解决这个错误：models.ManyToManyField(Place, related_name=’provider’)。</p>
+<h3 id="指定链接父类的字段">指定链接父类的字段</h3><p>之前我们提到，Django 会自动创建一个 OneToOneField字段将子类链接至非抽象的父 model 。如果你想指定链接父类的属性名称，你可以创建你自己的 OneToOneField字段并设置 parent_link=True ，从而使用该字段链接父类。</p>
+<h3 id="代理模型">代理模型</h3><p>使用  多表继承时，model 的每个子类都会创建一张新数据表，通常情况下，这正是我们想要的操作。这是因为子类需要一个空间来存储不包含在基类中的字段数据。 但有时，你可能只想更改 model 在 Python 层的行为实现。比如：更改默认的 manager ，或是添加一个新方法。</p>
+<p>而这，正是代理 model 继承方式要做的：为原始 model 创建一个代理 。你可以创建，删除，更新代理 model 的实例，而且所有的数据都可以像使用原始 model 一样被保存。 不同之处在于：你可以在代理 model 中改变默认的排序设置和默认的 manager ，更不会对原始 model 产生影响。</p>
+<p>声明代理 model 和声明普通 model 没有什么不同。 设置Meta类中 proxy 的值为 True，就完成了对代理 model 的声明。</p>
+<p>举个例子，假设你想给 Person 模型添加一个方法。你可以这样做：</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(models.Model)</span>:</span>
+    first_name = models.CharField(max_length=<span class="number">30</span>)
+    last_name = models.CharField(max_length=<span class="number">30</span>)
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyPerson</span><span class="params">(Person)</span>:</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        proxy = <span class="keyword">True</span>
+
+    <span class="function"><span class="keyword">def</span> <span class="title">do_something</span><span class="params">(self)</span>:</span>
+        <span class="comment"># ...</span>
+        <span class="keyword">pass</span>
+</code></pre><p>MyPerson类和它的父类 Person 操作同一个数据表。特别的是，Person 的任何实例也可以通过 MyPerson访问，反之亦然：</p>
+<pre><code>&gt;&gt;&gt; <span class="tag">p</span> = Person<span class="class">.objects</span><span class="class">.create</span>(first_name=<span class="string">"foobar"</span>)
+&gt;&gt;&gt; MyPerson<span class="class">.objects</span><span class="class">.get</span>(first_name=<span class="string">"foobar"</span>)
+&lt;MyPerson: foobar&gt;
+</code></pre><p>你也可以使用代理 model 给 model 定义不同的默认排序设置。 你可能并不想每次都给Person模型排序，但是使用代理的时候总是按照last_name属性排序。这非常容易：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">OrderedPerson</span><span class="params">(Person)</span>:</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        ordering = [<span class="string">"last_name"</span>]
+        proxy = <span class="keyword">True</span>
+</code></pre><p>现在，普通的Person查询时无序的，而 OrderedPerson查询会按照last_name排序。</p>
+<h3 id="查询集始终返回请求的模型">查询集始终返回请求的模型</h3><p>也就是说，没有办法让DJango在查询Person对象时返回MyPerson对象。Person 对象的查询集会返回相同类型的对象。代理对象的要点是：它会使用依赖于原生Person的代码，而你可以使用你添加进来的扩展对象（它不会依赖其它任何代码）。而并不是将Person模型（或者其它）在所有地方替换为其它你自己创建的模型。</p>
+<h3 id="基类的限制">基类的限制</h3><p>代理 模型必须继承自一个非抽象基类。 你不能继承自多个非抽象基类，这是因为一个代理 model 不能连接不同的数据表。 代理 model 也可以继承任意多个抽象基类，但前提是它们没有 定义任何 model 字段。<br>代理模型的管理器¶</p>
+<p>如果你没有在代理 模型中定义任何 管理器 ，代理模型就会从父类中继承 管理器 。 如果你在代理 模型中定义了一个 管理器 ，它就会变成默认的管理器 ，不过定义在父类中的管理器仍然有效。</p>
+<p>继续上面的例子，当你查询Person模型的时候，你可以改变默认 管理器，例如：</p>
+<pre><code><span class="keyword">from</span> django.db <span class="keyword">import</span> models
+
+<span class="class"><span class="keyword">class</span> <span class="title">NewManager</span><span class="params">(models.Manager)</span>:</span>
+    <span class="comment"># ...</span>
+    <span class="keyword">pass</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyPerson</span><span class="params">(Person)</span>:</span>
+    objects = NewManager()
+
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        proxy = <span class="keyword">True</span>
+</code></pre><p>如果你想要向代理中添加新的管理器，而不是替换现有的默认管理器，你可以使用自定义管理器管理器文档中描述的技巧：创建一个含有新的管理器的基类，并继承时把他放在主基类的后面：</p>
+<pre><code><span class="comment"># Create an abstract class for the new manager.</span>
+<span class="class"><span class="keyword">class</span> <span class="title">ExtraManagers</span><span class="params">(models.Model)</span>:</span>
+    secondary = NewManager()
+
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        abstract = <span class="keyword">True</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyPerson</span><span class="params">(Person, ExtraManagers)</span>:</span>
+    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
+        proxy = <span class="keyword">True</span>
+</code></pre><p>你可能不需要经常这样做，但这样做是可行的。</p>
+<h3 id="代理_模型与非托管_模型之间的差异">代理 模型与非托管 模型之间的差异</h3><p>代理 model 继承看上去和使用Meta类中的 managed 属性的非托管 model 非常相似。但两者并不相同，你应当考虑选用哪种方案。</p>
+<p>一个不同之处是你可以在Meta.managed=False的 model 中定义字段(事实上，是必须指定，除非你真的想得到一个空 model )。在创建非托管 model 时要谨慎设置Meta.db_table ，这是因为创建的非托管 model 映射某个已存在的 model ，并且有自己的方法。因此，如果你要保证这两个 model 同步并对程序进行改动，那么就会变得繁冗而脆弱。</p>
+<p>另一个不同之处是两者对 管理器的处理方式不同。 代理 model 要与它所代理的 model 行为相似，所以代理 model 要继承父 model 的 managers ，包括它的默认 manager 。 但在普通的多表继承中，子类不能继承父类的 manager ，这是因为在处理非基类字段时，父类的 manager 未必适用。 后一种情况在 管理器文档有详细介绍。</p>
+<p>我们实现了这两种特性之后，曾尝试把两者结合到一起。 结果证明，宏观的继承关系和微观的 管理器揉在一起，不仅导致 API 复杂难用，而且还难以理解。 由于任何场合下都可能需要这两个选项，所以目前二者仍是各自独立使用的。</p>
+<p>所以，一般规则是：</p>
+<p>如果你要借鉴一个已有的 模型或数据表，且不想涉及所有的原始数据表的列，那就令 Meta.managed=False。通常情况下，对模型数据库创建视图和表格不需要由 Django 控制时，就使用这个选项。<br>如果你想对 model 做 Python 层级的改动，又想保留字段不变，那就令 Meta.proxy=True。因此在数据保存时，代理 model 相当于完全复制了原始 模型的存储结构。</p>
+<h3 id="多重继承">多重继承</h3><p>就像Python的子类那样，DJango的模型可以继承自多个父类模型。切记一般的Python名称解析规则也会适用。出现特定名称的第一个基类(比如Meta)是所使用的那个。例如，这意味着如果多个父类含有 Meta类，只有第一个会被使用，剩下的会忽略掉。</p>
+<p>一般来说，你并不需要继承多个父类。多重继承主要对“mix-in”类有用：向每个继承mix-in的类添加一个特定的、额外的字段或者方法。你应该尝试将你的继承关系保持得尽可能简洁和直接，这样你就不必费很大力气来弄清楚某段特定的信息来自哪里。<br>Changed in Django 1.7.</p>
+<p>Django 1.7之前，继承多个含有id主键字段的模型不会抛出异常，但是会导致数据丢失。例如，考虑这些模型（由于id字段的冲突，它们不再有效）：</p>
+<pre><code>class <span class="function"><span class="title">Article</span><span class="params">(models.Model)</span></span>:
+    headline = models.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">50</span>)</span></span>
+    <span class="tag">body</span> = models.<span class="function"><span class="title">TextField</span><span class="params">()</span></span>
+
+class <span class="function"><span class="title">Book</span><span class="params">(models.Model)</span></span>:
+    title = models.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">50</span>)</span></span>
+
+class <span class="function"><span class="title">BookReview</span><span class="params">(Book, Article)</span></span>:
+    pass
+</code></pre><p>这段代码展示了如何创建子类的对象，并覆写之前创建的父类对象中的值。</p>
+<pre><code><span class="prompt">&gt;&gt;</span>&gt; article = <span class="constant">Article</span>.objects.create(headline=<span class="string">'Some piece of news.'</span>)
+<span class="prompt">&gt;&gt;</span>&gt; review = <span class="constant">BookReview</span>.objects.create(
+...     headline=<span class="string">'Review of Little Red Riding Hood.'</span>,
+...     title=<span class="string">'Little Red Riding Hood'</span>)
+<span class="prompt">&gt;&gt;</span>&gt;
+&gt;&gt;&gt; assert <span class="constant">Article</span>.objects.get(pk=article.pk).headline == article.headline
+<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
+  <span class="constant">File</span> <span class="string">"&lt;console&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
+<span class="constant">AssertionError</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="comment"># the "Some piece of news." headline has been overwritten.</span>
+<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">Article</span>.objects.get(pk=article.pk).headline
+<span class="string">'Review of Little Red Riding Hood.'</span>
+</code></pre><p>你可以在模型基类中使用显式的AutoField来合理使用多重继承：</p>
+<pre><code>class <span class="function"><span class="title">Article</span><span class="params">(models.Model)</span></span>:
+    article_id = models.<span class="function"><span class="title">AutoField</span><span class="params">(primary_key=True)</span></span>
+    ...
+
+class <span class="function"><span class="title">Book</span><span class="params">(models.Model)</span></span>:
+    book_id = models.<span class="function"><span class="title">AutoField</span><span class="params">(primary_key=True)</span></span>
+    ...
+
+class <span class="function"><span class="title">BookReview</span><span class="params">(Book, Article)</span></span>:
+    pass
+</code></pre><p>或者是使用一个父类来持有AutoField：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Piece</span><span class="params">(models.Model)</span>:</span>
+    <span class="keyword">pass</span>
+
+<span class="class"><span class="keyword">class</span> <span class="title">Article</span><span class="params">(Piece)</span>:</span>
+    ...
+
+<span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(Piece)</span>:</span>
+    ...
+
+<span class="class"><span class="keyword">class</span> <span class="title">BookReview</span><span class="params">(Book, Article)</span>:</span>
+    <span class="keyword">pass</span>
+
+Field name “hiding” <span class="keyword">is</span> <span class="keyword">not</span> permitted
+</code></pre><p>普通的 Python 类继承允许子类覆盖父类的任何属性。 但在 Django 中，重写 Field实例是不允许的(至少现在还不行)。如果基类中有一个 author字段，你就不能在子类中创建任何名为 author的字段。</p>
+<p>重写父类的字段会导致很多麻烦，比如：初始化实例(指定在 Model.<strong>init</strong> 中被实例化的字段) 和序列化。而普通的 Python 类继承机制并不能处理好这些特性。所以 Django 的继承机制被设计成与 Python 有所不同，这样做并不是随意而为的。</p>
+<p>这些限制仅仅针对做为属性使用的 Field实例，并不是针对 Python 属性，Python 属性仍是可以被重写的。 在 Python 看来，上面的限制仅仅针对字段实例的名称：如果你手动指定了数据库的列名称，那么在多重继承中，你就可以在子类和某个祖先类当中使用同一个列名称。(因为它们使用的是两个不同数据表的字段)。</p>
+<p>如果你在任何一个祖先类中重写了某个 model 字段，Django 都会抛出 FieldError异常。</p>
+<p><strong style="color:red">django太大，时间太少，以后不出这个了，django没法去简单讲，往深了讲，就不如自己看文档了，以后就把django的一些功能写写</strong></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django/" rel="tag">#django</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/22/python_django_settings/" rel="next" title="django(二)settings配置">
+                <i class="fa fa-chevron-left"></i> django(二)settings配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/24/python_django_user_login_register_logout/" rel="prev" title="Django(四)注册登录注销">
+                Django(四)注册登录注销 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/12/23/python_django_models/"
+     data-title="django(三)models模型层"
+     data-content=""
+     data-url="http://python-ning.github.io/2015/12/23/python_django_models/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <br />
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/12/23/python_django_models/"
+           data-title="django(三)models模型层" data-url="http://python-ning.github.io/2015/12/23/python_django_models/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="python-ning" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">python-ning</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/python-ning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/pythonning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yuan-tong-tian" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.speedycloud.cn/" target="_blank">迅达云成</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devtan.xyz/" target="_blank">Dev-Tan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.liuwuba.com/" target="_blank">河间</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简短的例子"><span class="nav-number">1.</span> <span class="nav-text">简短的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用模型"><span class="nav-number">2.</span> <span class="nav-text">使用模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段"><span class="nav-number">3.</span> <span class="nav-text">字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段类型"><span class="nav-number">4.</span> <span class="nav-text">字段类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段选项"><span class="nav-number">5.</span> <span class="nav-text">字段选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blank"><span class="nav-number"></span> <span class="nav-text">blank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#choices"><span class="nav-number"></span> <span class="nav-text">choices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#default"><span class="nav-number"></span> <span class="nav-text">default</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#help_text"><span class="nav-number"></span> <span class="nav-text">help_text</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#primary_key"><span class="nav-number"></span> <span class="nav-text">primary_key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unique"><span class="nav-number"></span> <span class="nav-text">unique</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自增主键字段"><span class="nav-number">1.</span> <span class="nav-text">自增主键字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段的自述名"><span class="nav-number">2.</span> <span class="nav-text">字段的自述名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系"><span class="nav-number">3.</span> <span class="nav-text">关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多对一关系"><span class="nav-number"></span> <span class="nav-text">多对一关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多对多关系"><span class="nav-number"></span> <span class="nav-text">多对多关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一对一关系"><span class="nav-number"></span> <span class="nav-text">一对一关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跨文件的模型"><span class="nav-number">1.</span> <span class="nav-text">跨文件的模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段命名的限制"><span class="nav-number">2.</span> <span class="nav-text">字段命名的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元选项"><span class="nav-number">3.</span> <span class="nav-text">元选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型的属性"><span class="nav-number">4.</span> <span class="nav-text">模型的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型的方法"><span class="nav-number">5.</span> <span class="nav-text">模型的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行自定义的SQL"><span class="nav-number">6.</span> <span class="nav-text">执行自定义的SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型继承"><span class="nav-number">7.</span> <span class="nav-text">模型继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象基类"><span class="nav-number">8.</span> <span class="nav-text">抽象基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元_继承"><span class="nav-number">9.</span> <span class="nav-text">元 继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多表继承中的Meta"><span class="nav-number">10.</span> <span class="nav-text">多表继承中的Meta</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承与反向关联"><span class="nav-number">11.</span> <span class="nav-text">继承与反向关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定链接父类的字段"><span class="nav-number">12.</span> <span class="nav-text">指定链接父类的字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模型"><span class="nav-number">13.</span> <span class="nav-text">代理模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询集始终返回请求的模型"><span class="nav-number">14.</span> <span class="nav-text">查询集始终返回请求的模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基类的限制"><span class="nav-number">15.</span> <span class="nav-text">基类的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理_模型与非托管_模型之间的差异"><span class="nav-number">16.</span> <span class="nav-text">代理 模型与非托管 模型之间的差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重继承"><span class="nav-number">17.</span> <span class="nav-text">多重继承</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">python-ning</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"python-ning"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
