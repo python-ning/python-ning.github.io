@@ -59,12 +59,12 @@
 用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：a) 非负数在前，负数在后；b) 非负数部分按照从小到大排序；c) 负数部分按从大到小排序。如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python面试题精选">
-<meta property="og:url" content="http://python-ning.github.io/2016/01/10/python_interview_questions/index.html">
+<meta property="og:url" content="http://python-ning.github.io/2016/06/27/python_interview_questions/index.html">
 <meta property="og:site_name" content="python ning's blog">
 <meta property="og:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
 用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：a) 非负数在前，负数在后；b) 非负数部分按照从小到大排序；c) 负数部分按从大到小排序。如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg">
-<meta property="og:updated_time" content="2016-01-13T18:44:00.000Z">
+<meta property="og:updated_time" content="2016-06-27T18:50:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python面试题精选">
 <meta name="twitter:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
@@ -271,8 +271,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-10T00:00:00-08:00" content="2016-01-10">
-              2016-01-10
+            <time itemprop="dateCreated" datetime="2016-06-27T00:00:00-07:00" content="2016-06-27">
+              2016-06-27
             </time>
           </span>
 
@@ -297,8 +297,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/10/python_interview_questions/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/10/python_interview_questions/" itemprop="commentsCount"></span>
+                <a href="/2016/06/27/python_interview_questions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/27/python_interview_questions/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,7 +323,7 @@
 <pre><code><span class="prompt">&gt;&gt;</span>&gt; foo = [-<span class="number">5</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">4</span>,<span class="number">9</span>,-<span class="number">4</span>,-<span class="number">20</span>,-<span class="number">2</span>,<span class="number">8</span>,<span class="number">2</span>,-<span class="number">4</span>]
 <span class="prompt">&gt;&gt;</span>&gt; sorted(foo, key=lambda <span class="symbol">x:</span> (x&gt;=<span class="number">0</span> and -abs(<span class="number">1</span>/float(x+<span class="number">1</span>)) or abs(x)))
 [<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, -<span class="number">2</span>, -<span class="number">4</span>, -<span class="number">4</span>, -<span class="number">5</span>, -<span class="number">20</span>]
-<span class="prompt">&gt;&gt;</span>&gt; 
+<span class="prompt">&gt;&gt;</span>&gt;
 </code></pre><h3 id="给出用递归的方式求斐波那契数列的第n项的方法：">给出用递归的方式求斐波那契数列的第n项的方法：</h3><p>（斐波那契数列指的是这样一个数列0，1，1，2，3，5，8，13，21，34，55，89，144，233，377，…）<br>特别指出：第0项是0，第1项是第一个1。这个数列从第2项开始，每一项都等于前两项之和。</p>
 <p>解答：</p>
 <pre><code><span class="comment"># test.py</span>
@@ -351,7 +351,7 @@
 <span class="number">9</span>
 &gt;&gt;&gt; <span class="tag">b</span>
 <span class="number">1</span>
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </code></pre><h3 id="Python是如何进行内存管理的？">Python是如何进行内存管理的？</h3><p>解答:从三个方面来说,一对象的引用计数机制,二垃圾回收机制,三内存池机制<br><strong>一、对象的引用计数机制</strong><br>python内部使用引用计数，来保持追踪内存中的对象，所有对象都有引用计数。<br>引用计数增加的情况：<br>1，一个对象分配一个新名称<br>2，将其放入一个容器中（如列表、元组或字典）<br>引用计数减少的情况：<br>1，使用del语句对对象别名显示的销毁<br>2，引用超出作用域或被重新赋值<br>sys.getrefcount( )函数可以获得对象的当前引用计数<br>多数情况下，引用计数比你猜测得要大得多。对于不可变数据（如数字和字符串），解释器会在程序的不同部分共享内存，以便节约内存。<br><strong>二、垃圾回收</strong><br>1，当一个对象的引用计数归零时，它将被垃圾收集机制处理掉。<br>2，当两个对象a和b相互引用时，del语句可以减少a和b的引用计数，并销毁用于引用底层对象的名称。然而由于每个对象都包含一个对其他对象的应用，因此引用计数不会归零，对象也不会销毁。（从而导致内存泄露）。为解决这一问题，解释器会定期执行一个循环检测器，搜索不可访问对象的循环并删除它们。<br><strong>三、内存池机制</strong><br>Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统。<br>1，Pymalloc机制。为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。<br>2，Python中所有小于256个字节的对象都使用pymalloc实现的分配器，而大的对象则使用系统的malloc。<br>3，对于Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。</p>
 <h3 id="什么是lambda函数？它有什么好处?">什么是lambda函数？它有什么好处?</h3><p>解答：</p>
 <p>lambda 表达式，通常是在需要一个函数，但是又不想费神去命名一个函数的场合下使用，也就是指匿名函数<br>lambda函数：首要用途是指短小的回调函数</p>
@@ -362,6 +362,31 @@
 <pre><code>with <span class="function"><span class="title">open</span><span class="params">(<span class="string">'C:\Users\test\Desktop\\chen.txt'</span>, <span class="string">'a'</span>)</span></span> as f:
     <span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> listt:
         f.<span class="function"><span class="title">write</span><span class="params">(i + <span class="string">'\n'</span>)</span></span>
+</code></pre><h3 id="写一个装饰器，计算这个函数运行了多长事件？">写一个装饰器，计算这个函数运行了多长事件？</h3><pre><code><span class="keyword">import</span> time
+<span class="keyword">from</span> functools <span class="keyword">import</span> wraps
+<span class="keyword">import</span> random
+
+
+<span class="function"><span class="keyword">def</span> <span class="title">fn_timer</span><span class="params">(function)</span>:</span>
+<span class="decorator">    @wraps(function)</span>
+    <span class="function"><span class="keyword">def</span> <span class="title">function_timer</span><span class="params">(*args, **kwargs)</span>:</span>
+        t0 = time.time()
+        result = function(*args, **kwargs)
+        t1 = time.time()
+        <span class="keyword">print</span> (<span class="string">"Total time running %s: %s seconds"</span> %
+               (function.func_name, str(t1-t0))
+               )
+        <span class="keyword">return</span> result
+    <span class="keyword">return</span> function_timer
+
+
+<span class="decorator">@fn_timer</span>
+<span class="function"><span class="keyword">def</span> <span class="title">random_sort</span><span class="params">(n)</span>:</span>
+    <span class="keyword">return</span> sorted([random.random() <span class="keyword">for</span> i <span class="keyword">in</span> range(n)])
+
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    random_sort(<span class="number">2000000</span>)
 </code></pre></span>
       
     </div>
@@ -379,17 +404,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/05/javascript_clipboard_js/" rel="next" title="clipboard.js(实现点击按钮复制文本内容)">
-                <i class="fa fa-chevron-left"></i> clipboard.js(实现点击按钮复制文本内容)
+              <a href="/2016/05/14/mysql_mac_install_question/" rel="next" title="mac安装mysql">
+                <i class="fa fa-chevron-left"></i> mac安装mysql
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/18/good_article_collect_http_get_post/" rel="prev" title="GET请求和POST请求的区别">
-                GET请求和POST请求的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -404,10 +425,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/10/python_interview_questions/"
+        <div class="ds-share flat" data-thread-key="2016/06/27/python_interview_questions/"
      data-title="python面试题精选"
      data-content=""
-     data-url="http://python-ning.github.io/2016/01/10/python_interview_questions/">
+     data-url="http://python-ning.github.io/2016/06/27/python_interview_questions/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -439,8 +460,8 @@
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/10/python_interview_questions/"
-           data-title="python面试题精选" data-url="http://python-ning.github.io/2016/01/10/python_interview_questions/">
+      <div class="ds-thread" data-thread-key="2016/06/27/python_interview_questions/"
+           data-title="python面试题精选" data-url="http://python-ning.github.io/2016/06/27/python_interview_questions/">
       </div>
     
   </div>
@@ -578,7 +599,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序："><span class="nav-number">1.</span> <span class="nav-text">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给出用递归的方式求斐波那契数列的第n项的方法："><span class="nav-number">2.</span> <span class="nav-text">给出用递归的方式求斐波那契数列的第n项的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求大于正整数n的最小质数"><span class="nav-number">3.</span> <span class="nav-text">求大于正整数n的最小质数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在不声明新变量的情况下，让变量a和变量b的值互换？"><span class="nav-number">4.</span> <span class="nav-text">在不声明新变量的情况下，让变量a和变量b的值互换？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python是如何进行内存管理的？"><span class="nav-number">5.</span> <span class="nav-text">Python是如何进行内存管理的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是lambda函数？它有什么好处?"><span class="nav-number">6.</span> <span class="nav-text">什么是lambda函数？它有什么好处?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在有一个文件url-txt，每一行都是一个网站名（例如：map-baidu-com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www-”，以“-com”或者”-edu”或者”-gov”作结尾的web域名，然后输出到另一个文件中"><span class="nav-number">7.</span> <span class="nav-text">现在有一个文件url.txt，每一行都是一个网站名（例如：map.baidu.com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www.”，以“.com”或者”.edu”或者”.gov”作结尾的web域名，然后输出到另一个文件中</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序："><span class="nav-number">1.</span> <span class="nav-text">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给出用递归的方式求斐波那契数列的第n项的方法："><span class="nav-number">2.</span> <span class="nav-text">给出用递归的方式求斐波那契数列的第n项的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求大于正整数n的最小质数"><span class="nav-number">3.</span> <span class="nav-text">求大于正整数n的最小质数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在不声明新变量的情况下，让变量a和变量b的值互换？"><span class="nav-number">4.</span> <span class="nav-text">在不声明新变量的情况下，让变量a和变量b的值互换？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python是如何进行内存管理的？"><span class="nav-number">5.</span> <span class="nav-text">Python是如何进行内存管理的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是lambda函数？它有什么好处?"><span class="nav-number">6.</span> <span class="nav-text">什么是lambda函数？它有什么好处?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在有一个文件url-txt，每一行都是一个网站名（例如：map-baidu-com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www-”，以“-com”或者”-edu”或者”-gov”作结尾的web域名，然后输出到另一个文件中"><span class="nav-number">7.</span> <span class="nav-text">现在有一个文件url.txt，每一行都是一个网站名（例如：map.baidu.com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www.”，以“.com”或者”.edu”或者”.gov”作结尾的web域名，然后输出到另一个文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个装饰器，计算这个函数运行了多长事件？"><span class="nav-number">8.</span> <span class="nav-text">写一个装饰器，计算这个函数运行了多长事件？</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
