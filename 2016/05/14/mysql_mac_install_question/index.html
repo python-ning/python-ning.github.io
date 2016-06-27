@@ -55,19 +55,28 @@
 
 
 
-<meta name="description" content="mac下安装mysql，遇到了一个小波折，折磨了我一天，最后百度翻了五页google了一页解决了，也借此机会总结一下。
-首先墨迹一下，不管什么语言，在程序员的路上，必须要学会自己搜答案，编程行业不像上学考试作弊，查答案不犯法，至于能不能查到正确答案就靠自己了，遇到问题先百度，再google，再bing等sov5.com听说也不错，曾经听一个大牛说过，以前编程问题没有地方可以搜，所以只能翻文档看书籍">
+<meta name="description" content="mac下安装mysql，遇到了一个小波折，折磨了我一天，解决了，也借此机会总结一下。
+注意 mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode
+mysql 在mac上安装有两种方式：
+1.Homebrew安装mysqlHomebrew类似ubuntu系统的apt-get包管理，命令也基本一样。
+安装Homebrewruby -e &quot;$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac安装mysql">
 <meta property="og:url" content="http://python-ning.github.io/2016/05/14/mysql_mac_install_question/index.html">
 <meta property="og:site_name" content="python ning's blog">
-<meta property="og:description" content="mac下安装mysql，遇到了一个小波折，折磨了我一天，最后百度翻了五页google了一页解决了，也借此机会总结一下。
-首先墨迹一下，不管什么语言，在程序员的路上，必须要学会自己搜答案，编程行业不像上学考试作弊，查答案不犯法，至于能不能查到正确答案就靠自己了，遇到问题先百度，再google，再bing等sov5.com听说也不错，曾经听一个大牛说过，以前编程问题没有地方可以搜，所以只能翻文档看书籍">
-<meta property="og:updated_time" content="2016-05-14T22:14:50.000Z">
+<meta property="og:description" content="mac下安装mysql，遇到了一个小波折，折磨了我一天，解决了，也借此机会总结一下。
+注意 mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode
+mysql 在mac上安装有两种方式：
+1.Homebrew安装mysqlHomebrew类似ubuntu系统的apt-get包管理，命令也基本一样。
+安装Homebrewruby -e &quot;$">
+<meta property="og:updated_time" content="2016-06-27T22:43:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac安装mysql">
-<meta name="twitter:description" content="mac下安装mysql，遇到了一个小波折，折磨了我一天，最后百度翻了五页google了一页解决了，也借此机会总结一下。
-首先墨迹一下，不管什么语言，在程序员的路上，必须要学会自己搜答案，编程行业不像上学考试作弊，查答案不犯法，至于能不能查到正确答案就靠自己了，遇到问题先百度，再google，再bing等sov5.com听说也不错，曾经听一个大牛说过，以前编程问题没有地方可以搜，所以只能翻文档看书籍">
+<meta name="twitter:description" content="mac下安装mysql，遇到了一个小波折，折磨了我一天，解决了，也借此机会总结一下。
+注意 mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode
+mysql 在mac上安装有两种方式：
+1.Homebrew安装mysqlHomebrew类似ubuntu系统的apt-get包管理，命令也基本一样。
+安装Homebrewruby -e &quot;$">
 
 
 
@@ -315,10 +324,7 @@
       
 
       
-        <span itemprop="articleBody"><p>mac下安装mysql，遇到了一个小波折，折磨了我一天，最后百度翻了五页google了一页解决了，也借此机会总结一下。</p>
-<p>首先墨迹一下，不管什么语言，在程序员的路上，必须要学会自己搜答案，编程行业不像上学考试作弊，查答案不犯法，至于能不能查到正确答案就靠自己了，遇到问题先百度，再google，再bing等sov5.com听说也不错，曾经听一个大牛说过，以前编程问题没有地方可以搜，所以只能翻文档看书籍，也就只能这个专业的大学生入这行，感谢上天让我生在一个搜索引擎以及共享知识的互联网时代。</p>
-<p>你一定要不间断的看书，书不能听，而且一定要对没听说过的新技术信息有敏锐嗅觉（哪怕用不上还能吹牛逼不是）</p>
-<p>多跟大牛聊聊天，大牛的经验里处处是不平凡，他可能一些简单的问题忘记了，但是大牛都是脑子里有做道菜的全部步骤的。</p>
+        <span itemprop="articleBody"><p>mac下安装mysql，遇到了一个小波折，折磨了我一天，解决了，也借此机会总结一下。</p>
 <p><code style="color: red">注意</code> mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode</p>
 <p>mysql 在mac上安装有两种方式：</p>
 <h3 id="1-Homebrew安装mysql">1.Homebrew安装mysql</h3><p>Homebrew类似ubuntu系统的apt-get包管理，命令也基本一样。</p>
@@ -351,7 +357,7 @@ Further <span class="keyword">help</span>:
 </code></pre><h2 id="常遇问题1">常遇问题1</h2><p>当mysql安装好，启动了服务后，我们<code style="color: red">mysql -u root -p</code>(mysql默认密码为空)时，可能会出现以下报错</p>
 <pre><code>Error: Can't connect <span class="keyword">to</span> <span class="keyword">local</span> MySQL server <span class="keyword">through</span> socket '/tmp/mysql.sock' (<span class="number">111</span>)
 </code></pre><h2 id="解决办法1">解决办法1</h2><p>1.查找电脑上所有的mysql都在哪里</p>
-<pre><code>sudo <span class="built_in">find</span> / -<span class="built_in">name</span> mysql 
+<pre><code>sudo <span class="built_in">find</span> / -<span class="built_in">name</span> mysql
 </code></pre><p>2.找出mysql安装的目录，给权限</p>
 <pre><code><span class="tag">chown</span> <span class="tag">-R</span> <span class="tag">mysql</span><span class="pseudo">:mysql</span> <span class="tag">xxx</span>你的<span class="tag">mysql</span>目录<span class="tag">xxx</span>
 </code></pre><p>实在不知道，你就把所有搜出来的mysql目录文件都给权限，前提是你自己的测试开发环境，可别在服务器上这么搞。</p>
