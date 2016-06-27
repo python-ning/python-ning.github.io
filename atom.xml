@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-06-27T18:52:36.000Z</updated>
+  <updated>2016-06-27T22:40:31.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://python-ning.github.io/2016/06/27/python_interview_questions/"/>
     <id>http://python-ning.github.io/2016/06/27/python_interview_questions/</id>
     <published>2016-06-27T07:00:00.000Z</published>
-    <updated>2016-06-27T18:52:36.000Z</updated>
+    <updated>2016-06-27T22:40:31.000Z</updated>
     <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~</p>
 <h3 id="用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</h3><p>a) 非负数在前，负数在后；<br>b) 非负数部分按照从小到大排序；<br>c) 负数部分按从大到小排序。<br>如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]<br>希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]</p>
 <p>解答：</p>
@@ -65,7 +65,7 @@
 <pre><code>with <span class="function"><span class="title">open</span><span class="params">(<span class="string">'C:\Users\test\Desktop\\chen.txt'</span>, <span class="string">'a'</span>)</span></span> as f:
     <span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> listt:
         f.<span class="function"><span class="title">write</span><span class="params">(i + <span class="string">'\n'</span>)</span></span>
-</code></pre><h3 id="写一个装饰器，计算这个函数运行了多长事件？">写一个装饰器，计算这个函数运行了多长事件？</h3><pre><code><span class="keyword">import</span> time
+</code></pre><h3 id="写一个装饰器，计算这个函数运行了多长时间？">写一个装饰器，计算这个函数运行了多长时间？</h3><pre><code><span class="keyword">import</span> time
 <span class="keyword">from</span> functools <span class="keyword">import</span> wraps
 <span class="keyword">import</span> random
 
@@ -88,6 +88,12 @@
 
 <span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
     random_sort(<span class="number">2000000</span>)
+</code></pre><h3 id="django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？">django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？</h3><pre><code># django查询方法
+<span class="keyword">query</span> = Author.objects.filter(first_name__in=[<span class="string">"chen"</span>, <span class="string">"ning"</span>])
+
+# Q查询
+<span class="keyword">query</span> = Author.objects.filter(<span class="literal">Q</span>(first_name__contains=<span class="string">"chen"</span>) | <span class="literal">Q</span>(first_name__contains=<span class="string">"ning"</span>))
+<span class="keyword">query</span> = Author.objects.filter(<span class="literal">Q</span>(first_name=<span class="string">"chen"</span>) | <span class="literal">Q</span>(first_name=<span class="string">"ning"</span>))
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>小癖好~爱做面试题，感觉每次]]>

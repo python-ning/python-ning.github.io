@@ -64,7 +64,7 @@
 <meta property="og:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
 用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：a) 非负数在前，负数在后；b) 非负数部分按照从小到大排序；c) 负数部分按从大到小排序。如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg">
-<meta property="og:updated_time" content="2016-06-27T18:52:36.000Z">
+<meta property="og:updated_time" content="2016-06-27T22:40:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python面试题精选">
 <meta name="twitter:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
@@ -362,7 +362,7 @@
 <pre><code>with <span class="function"><span class="title">open</span><span class="params">(<span class="string">'C:\Users\test\Desktop\\chen.txt'</span>, <span class="string">'a'</span>)</span></span> as f:
     <span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> listt:
         f.<span class="function"><span class="title">write</span><span class="params">(i + <span class="string">'\n'</span>)</span></span>
-</code></pre><h3 id="写一个装饰器，计算这个函数运行了多长事件？">写一个装饰器，计算这个函数运行了多长事件？</h3><pre><code><span class="keyword">import</span> time
+</code></pre><h3 id="写一个装饰器，计算这个函数运行了多长时间？">写一个装饰器，计算这个函数运行了多长时间？</h3><pre><code><span class="keyword">import</span> time
 <span class="keyword">from</span> functools <span class="keyword">import</span> wraps
 <span class="keyword">import</span> random
 
@@ -385,6 +385,12 @@
 
 <span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
     random_sort(<span class="number">2000000</span>)
+</code></pre><h3 id="django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？">django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？</h3><pre><code># django查询方法
+<span class="keyword">query</span> = Author.objects.filter(first_name__in=[<span class="string">"chen"</span>, <span class="string">"ning"</span>])
+
+# Q查询
+<span class="keyword">query</span> = Author.objects.filter(<span class="literal">Q</span>(first_name__contains=<span class="string">"chen"</span>) | <span class="literal">Q</span>(first_name__contains=<span class="string">"ning"</span>))
+<span class="keyword">query</span> = Author.objects.filter(<span class="literal">Q</span>(first_name=<span class="string">"chen"</span>) | <span class="literal">Q</span>(first_name=<span class="string">"ning"</span>))
 </code></pre></span>
       
     </div>
@@ -597,7 +603,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序："><span class="nav-number">1.</span> <span class="nav-text">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给出用递归的方式求斐波那契数列的第n项的方法："><span class="nav-number">2.</span> <span class="nav-text">给出用递归的方式求斐波那契数列的第n项的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求大于正整数n的最小质数"><span class="nav-number">3.</span> <span class="nav-text">求大于正整数n的最小质数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在不声明新变量的情况下，让变量a和变量b的值互换？"><span class="nav-number">4.</span> <span class="nav-text">在不声明新变量的情况下，让变量a和变量b的值互换？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python是如何进行内存管理的？"><span class="nav-number">5.</span> <span class="nav-text">Python是如何进行内存管理的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是lambda函数？它有什么好处?"><span class="nav-number">6.</span> <span class="nav-text">什么是lambda函数？它有什么好处?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在有一个文件url-txt，每一行都是一个网站名（例如：map-baidu-com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www-”，以“-com”或者”-edu”或者”-gov”作结尾的web域名，然后输出到另一个文件中"><span class="nav-number">7.</span> <span class="nav-text">现在有一个文件url.txt，每一行都是一个网站名（例如：map.baidu.com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www.”，以“.com”或者”.edu”或者”.gov”作结尾的web域名，然后输出到另一个文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个装饰器，计算这个函数运行了多长事件？"><span class="nav-number">8.</span> <span class="nav-text">写一个装饰器，计算这个函数运行了多长事件？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序："><span class="nav-number">1.</span> <span class="nav-text">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给出用递归的方式求斐波那契数列的第n项的方法："><span class="nav-number">2.</span> <span class="nav-text">给出用递归的方式求斐波那契数列的第n项的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求大于正整数n的最小质数"><span class="nav-number">3.</span> <span class="nav-text">求大于正整数n的最小质数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在不声明新变量的情况下，让变量a和变量b的值互换？"><span class="nav-number">4.</span> <span class="nav-text">在不声明新变量的情况下，让变量a和变量b的值互换？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python是如何进行内存管理的？"><span class="nav-number">5.</span> <span class="nav-text">Python是如何进行内存管理的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是lambda函数？它有什么好处?"><span class="nav-number">6.</span> <span class="nav-text">什么是lambda函数？它有什么好处?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在有一个文件url-txt，每一行都是一个网站名（例如：map-baidu-com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www-”，以“-com”或者”-edu”或者”-gov”作结尾的web域名，然后输出到另一个文件中"><span class="nav-number">7.</span> <span class="nav-text">现在有一个文件url.txt，每一行都是一个网站名（例如：map.baidu.com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www.”，以“.com”或者”.edu”或者”.gov”作结尾的web域名，然后输出到另一个文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个装饰器，计算这个函数运行了多长时间？"><span class="nav-number">8.</span> <span class="nav-text">写一个装饰器，计算这个函数运行了多长时间？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？"><span class="nav-number">9.</span> <span class="nav-text">django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
