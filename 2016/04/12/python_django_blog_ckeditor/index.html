@@ -323,96 +323,96 @@
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/319037-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
 <p>当你想入门django的时候，一般大家都会选择搭建一个博客系统来学习django，而当你发现你写文章需要格式，需要样式，需要不仅仅是文字的时候，这时你就会需要到富文本编辑器，富文本编辑器包括kindeditor、ckeditor、uEditor等等。这里介绍一下ckeditor的配置和使用，他们大概的原理是一样的。</p>
-<h3 id="安装django-ckeditor">安装django-ckeditor</h3><p><code style="color: red">django-ckeditor</code>的下载地址：<a href="https://github.com/shaunsephton/django-ckeditor" target="_blank" rel="external">https://github.com/shaunsephton/django-ckeditor</a></p>
-<pre><code><span class="preprocessor"># 安装git 自行百度， 这里用的ubuntu14.04系统</span>
-git clone https:<span class="comment">//github.com/shaunsephton/django-ckeditor</span>
-<span class="preprocessor"># 打开你克隆下来的文件夹</span>
+<h3 id="安装django-ckeditor"><a href="#安装django-ckeditor" class="headerlink" title="安装django-ckeditor"></a>安装django-ckeditor</h3><p><code style="color: red">django-ckeditor</code>的下载地址：<a href="https://github.com/shaunsephton/django-ckeditor" target="_blank" rel="external">https://github.com/shaunsephton/django-ckeditor</a></p>
+<pre><code># 安装git 自行百度， 这里用的ubuntu14.04系统
+git clone https://github.com/shaunsephton/django-ckeditor
+# 打开你克隆下来的文件夹
 cd django-ckeditor/
-<span class="preprocessor"># 运行下面的命令</span>
+# 运行下面的命令
 python setup.py install
-</code></pre><h3 id="安装Pillow">安装Pillow</h3><p><code style="color: red">Pillow</code>是python的一个图像处理库，django-ckeditor需要依赖该库。最简单的安装方法，当然是使用pip，假设你装过pip，可以直接运行以下命令安装：</p>
-<pre><code>pip <span class="keyword">install</span> Pillow
+</code></pre><h3 id="安装Pillow"><a href="#安装Pillow" class="headerlink" title="安装Pillow"></a>安装Pillow</h3><p><code style="color: red">Pillow</code>是python的一个图像处理库，django-ckeditor需要依赖该库。最简单的安装方法，当然是使用pip，假设你装过pip，可以直接运行以下命令安装：</p>
+<pre><code>pip install Pillow
 </code></pre><p>如果你不了解pip，可以参照：<a href="https://pypi.python.org/pypi/pip" target="_blank" rel="external">https://pypi.python.org/pypi/pip</a></p>
-<h3 id="配置你的django">配置你的django</h3><p>要使安装好的<code style="color: red">django-ckeditor</code>生效，你需要对你的django应用进行一系列配置。现在带大家走一遍，放轻松^_^</p>
+<h3 id="配置你的django"><a href="#配置你的django" class="headerlink" title="配置你的django"></a>配置你的django</h3><p>要使安装好的<code style="color: red">django-ckeditor</code>生效，你需要对你的django应用进行一系列配置。现在带大家走一遍，放轻松^_^</p>
 <p>1.在你的<code style="color: red">settings.py</code>文件中，将ckeditor添加到<code style="color: red">INATALLED_APPS</code>中。</p>
 <p>2.在你的<code style="color: red">settings.py</code>文件中，添加<code style="color: red">CKEDITOR_UPLOAD_PATH</code>配置项。</p>
 <pre><code>例如，我的是
-<span class="constant">MEDIA_URL</span> = <span class="string">"/media/"</span>
-<span class="constant">MEDIA_ROOT</span> = os.path.join(BASE_DIR, <span class="string">"media"</span>)
-<span class="constant">CKEDITOR_UPLOAD_PATH</span> = <span class="string">"article_images"</span>
+MEDIA_URL = &quot;/media/&quot;
+MEDIA_ROOT = os.path.join(BASE_DIR, &quot;media&quot;)
+CKEDITOR_UPLOAD_PATH = &quot;article_images&quot;
 </code></pre><p><code style="color: red">CHEDITOR_UPLOAD_PATH</code>的作用是设定你通过ckeditor所上传的文件的存放目录。需要注意的是，这是一个相对路径，它相对与你设置的的<code style="color: red">MEDIA_ROOT</code>。<code style="color: red">django-ckeditor</code>默认使用django的后台文件存储系统，这需要你设置好<code style="color: red">MEDIA_ROOT</code>和<code style="color: red">MEDIA_URL</code>，如何设置超出了本文的范围，请自行查看django的官方文档，请务必确保这两个设置项是生效的，否则你将看不到你上传的文件。</p>
 <p>比如，我上传一张名为shiguang.gif的小图片，该图片将会被存储到：</p>
-<pre><code><span class="regexp">/my/</span>django<span class="regexp">/app/</span>root<span class="regexp">/media/</span>article_images<span class="regexp">/</span>
+<pre><code>/my/django/app/root/media/article_images/
 </code></pre><p>3.在你django应用的的urls.py文件中，为ckeditor设置url：</p>
-<pre><code>url(<span class="string">r'^ckeditor/'</span>, include(<span class="string">'ckeditor_uploader.urls'</span>)),
+<pre><code>url(r&apos;^ckeditor/&apos;, include(&apos;ckeditor_uploader.urls&apos;)),
 </code></pre><p>至此，你的ckeditor已经可以在django中正常使用了。</p>
 <p>需要指出的是：在开发阶段，这样设置settings.py已经足够了。但是，到了正式部署你的应用时，你需要设置好<code style="color: red">STATIC_ROOT和STATIC_URL</code>，并运行<code style="color: red">manage.py collectstatic</code>命令，该命令会将ckeditor相关的静态资源拷贝到你的工程下。</p>
-<h3 id="如何应用ckeditor">如何应用ckeditor</h3><p>django-ckeditor提供了两个类：<code style="color: red">RichTextField</code>和<code style="color: red">CKEditorWidget</code>，分别用于模型和表单。内容型网站通常在后台会有一个文章发布和编辑的界面，如果你想让该界面拥有一个富文本编辑器，只需按如下方式定义你的django模型：</p>
-<pre><code>from django<span class="class">.db</span> import models
-from ckeditor<span class="class">.fields</span> import RichTextField
+<h3 id="如何应用ckeditor"><a href="#如何应用ckeditor" class="headerlink" title="如何应用ckeditor"></a>如何应用ckeditor</h3><p>django-ckeditor提供了两个类：<code style="color: red">RichTextField</code>和<code style="color: red">CKEditorWidget</code>，分别用于模型和表单。内容型网站通常在后台会有一个文章发布和编辑的界面，如果你想让该界面拥有一个富文本编辑器，只需按如下方式定义你的django模型：</p>
+<pre><code>from django.db import models
+from ckeditor.fields import RichTextField
 
-class <span class="function"><span class="title">Article</span><span class="params">(models.Model)</span></span>:
-    <span class="attribute">content</span> = <span class="function"><span class="title">RichTextField</span><span class="params">(<span class="string">'正文'</span>)</span></span>
+class Article(models.Model):
+    content = RichTextField(&apos;正文&apos;)
 </code></pre><p>如果你在你的后台看到下图这样的界面，那么恭喜你，你初步成功了。</p>
 <p><img src="http://7xojjc.com1.z0.glb.clouddn.com/qq20140625074502.png" class="img-shadow" style="display: block;margin: auto"></p>
 <p><code style="color: red">RichTextField</code>是一个<code style="color: red">TextField</code>的子类，除了<code style="color: red">TextField</code>拥有所有参数外，还有自己的参数，这些参数中，软件作者的文档中只介绍了<code style="color: red">config_name</code>这个参数，其它的没有提及，虽然比较操蛋，但我们还是对作者贡献这个开源项目表示由衷的感谢。</p>
 <p>通过查看源代码，可以发现<code style="color: red">RichTextField</code>有<code style="color: red">config_name</code>、<code style="color: red">extra_plugins</code>、<code style="color: red">external_plugin_resources</code>三个额外的可选参数。<code style="color: red">extra_plugins</code>我将撰写专文，尽请期待。</p>
-<h3 id="进一步完善">进一步完善</h3><p>追求完美的你，此刻一定有诸多不满。ckeditor最重要的，当然是头部的工具栏了，但现在你看到的工具栏比较简陋。比如，你想调整文本的对其方式，你发现找不到对应的按钮。别急，往下看。</p>
+<h3 id="进一步完善"><a href="#进一步完善" class="headerlink" title="进一步完善"></a>进一步完善</h3><p>追求完美的你，此刻一定有诸多不满。ckeditor最重要的，当然是头部的工具栏了，但现在你看到的工具栏比较简陋。比如，你想调整文本的对其方式，你发现找不到对应的按钮。别急，往下看。</p>
 <p>django-ckeditor作者的文档中，提到了一个配置项：<code style="color: red">CKEDITOR_CONFIGS</code>。从作者的文档看来，似乎只要在settings.py中按如下方式配置，就可以拥有一个完整的、丰富工具栏：</p>
 <pre><code>CKEDITOR_CONFIGS = {
-    <span class="string">'default'</span>: {
-        <span class="string">'toolbar'</span>: <span class="string">'Full'</span>,
-        <span class="string">'height'</span>: <span class="number">300</span>,
-        <span class="string">'width'</span>: <span class="number">300</span>,
+    &apos;default&apos;: {
+        &apos;toolbar&apos;: &apos;Full&apos;,
+        &apos;height&apos;: 300,
+        &apos;width&apos;: 300,
     },
 }
 </code></pre><p>你失望地发现，宽度和高度确实起作用了，可工具栏的功能还是没多页没少：</p>
 <p><img src="http://7xojjc.com1.z0.glb.clouddn.com/qq20140625080916.png" class="img-shadow" style="display: block;margin: auto"></p>
 <p>怎么回事呢？如果你进行如下设置，你会发现工具栏里的按钮变少了：</p>
 <pre><code>CKEDITOR_CONFIGS = {
-    <span class="string">'default'</span>: {
-        <span class="string">'toolbar'</span>: <span class="string">'Basic'</span>
+    &apos;default&apos;: {
+        &apos;toolbar&apos;: &apos;Basic&apos;
     },
 }
 </code></pre><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/qq20140625081523.png" class="img-shadow" style="display: block;margin: auto"></p>
 <p>看来配置项“toolbar”这个参数是生效的，那问题出在哪了？别抓狂，不是说简洁就是美吗，呵呵。不过话虽如此，咱么还是去看看源码一探究竟吧。</p>
 <p>打开如下源文件：</p>
-<pre><code>your<span class="command">\python</span><span class="command">\path</span><span class="command">\Lib</span><span class="command">\site</span>-packages<span class="command">\django</span>_ckeditor_updated-4.2.8-py2.7.egg<span class="command">\ckeditor</span><span class="command">\widgets</span>.py
+<pre><code>your\python\path\Lib\site-packages\django_ckeditor_updated-4.2.8-py2.7.egg\ckeditor\widgets.py
 </code></pre><p>可以发现如下代码：</p>
-<pre><code><span class="name">DEFAULT_CONFIG</span> = {
-    <span class="string">'skin'</span>: <span class="string">'moono'</span>,
-    <span class="string">'toolbar_Basic'</span>: [
-        [<span class="string">'Source'</span>, <span class="string">'-'</span>, <span class="string">'Bold'</span>, <span class="string">'Italic'</span>]
+<pre><code>DEFAULT_CONFIG = {
+    &apos;skin&apos;: &apos;moono&apos;,
+    &apos;toolbar_Basic&apos;: [
+        [&apos;Source&apos;, &apos;-&apos;, &apos;Bold&apos;, &apos;Italic&apos;]
     ],
-    <span class="string">'toolbar_Full'</span>: [
-        [<span class="string">'Styles'</span>, <span class="string">'Format'</span>, <span class="string">'Bold'</span>, <span class="string">'Italic'</span>, <span class="string">'Underline'</span>, <span class="string">'Strike'</span>, <span class="string">'SpellChecker'</span>, <span class="string">'Undo'</span>, <span class="string">'Redo'</span>],
-        [<span class="string">'Image'</span>, <span class="string">'Flash'</span>, <span class="string">'Table'</span>, <span class="string">'HorizontalRule'</span>],
-        [<span class="string">'TextColor'</span>, <span class="string">'BGColor'</span>],
-        [<span class="string">'Smiley'</span>, <span class="string">'SpecialChar'</span>], [<span class="string">'Source'</span>],
+    &apos;toolbar_Full&apos;: [
+        [&apos;Styles&apos;, &apos;Format&apos;, &apos;Bold&apos;, &apos;Italic&apos;, &apos;Underline&apos;, &apos;Strike&apos;, &apos;SpellChecker&apos;, &apos;Undo&apos;, &apos;Redo&apos;],
+        [&apos;Image&apos;, &apos;Flash&apos;, &apos;Table&apos;, &apos;HorizontalRule&apos;],
+        [&apos;TextColor&apos;, &apos;BGColor&apos;],
+        [&apos;Smiley&apos;, &apos;SpecialChar&apos;], [&apos;Source&apos;],
     ],
-    <span class="string">'toolbar'</span>: <span class="string">'Full'</span>,
-    <span class="string">'height'</span>: <span class="number">291</span>,
-    <span class="string">'width'</span>: <span class="number">835</span>,
-    <span class="string">'filebrowserWindowWidth'</span>: <span class="number">940</span>,
-    <span class="string">'filebrowserWindowHeight'</span>: <span class="number">725</span>    
+    &apos;toolbar&apos;: &apos;Full&apos;,
+    &apos;height&apos;: 291,
+    &apos;width&apos;: 835,
+    &apos;filebrowserWindowWidth&apos;: 940,
+    &apos;filebrowserWindowHeight&apos;: 725    
 }
 </code></pre><p>没错，问题就处在这里了。可以看到，默认的设置的确就是’toolbar’: ‘Full’,但是通过’toolbar_Full’这个key，作者阉割了工具栏的功能。</p>
 <p>找到的原因就好办了，接下来你只要在settings.py配置文件中，在<code style="color: red">CKEDITOR_CONFIGS</code>中加入你自己需要的工具栏按钮即可：</p>
-<pre><code><span class="name">CKEDITOR_CONFIGS</span> = {
-    <span class="string">'default'</span>: {
-        <span class="string">'toolbar'</span>: (
-            [<span class="string">'div'</span>,<span class="string">'Source'</span>,<span class="string">'-'</span>,<span class="string">'Save'</span>,<span class="string">'NewPage'</span>,<span class="string">'Preview'</span>,<span class="string">'-'</span>,<span class="string">'Templates'</span>], 
-            [<span class="string">'Cut'</span>,<span class="string">'Copy'</span>,<span class="string">'Paste'</span>,<span class="string">'PasteText'</span>,<span class="string">'PasteFromWord'</span>,<span class="string">'-'</span>,<span class="string">'Print'</span>,<span class="string">'SpellChecker'</span>,<span class="string">'Scayt'</span>], 
-            [<span class="string">'Undo'</span>,<span class="string">'Redo'</span>,<span class="string">'-'</span>,<span class="string">'Find'</span>,<span class="string">'Replace'</span>,<span class="string">'-'</span>,<span class="string">'SelectAll'</span>,<span class="string">'RemoveFormat'</span>], 
-            [<span class="string">'Form'</span>,<span class="string">'Checkbox'</span>,<span class="string">'Radio'</span>,<span class="string">'TextField'</span>,<span class="string">'Textarea'</span>,<span class="string">'Select'</span>,<span class="string">'Button'</span>, <span class="string">'ImageButton'</span>,<span class="string">'HiddenField'</span>], 
-            [<span class="string">'Bold'</span>,<span class="string">'Italic'</span>,<span class="string">'Underline'</span>,<span class="string">'Strike'</span>,<span class="string">'-'</span>,<span class="string">'Subscript'</span>,<span class="string">'Superscript'</span>], 
-            [<span class="string">'NumberedList'</span>,<span class="string">'BulletedList'</span>,<span class="string">'-'</span>,<span class="string">'Outdent'</span>,<span class="string">'Indent'</span>,<span class="string">'Blockquote'</span>], 
-            [<span class="string">'JustifyLeft'</span>,<span class="string">'JustifyCenter'</span>,<span class="string">'JustifyRight'</span>,<span class="string">'JustifyBlock'</span>], 
-            [<span class="string">'Link'</span>,<span class="string">'Unlink'</span>,<span class="string">'Anchor'</span>], 
-            [<span class="string">'Image'</span>,<span class="string">'Flash'</span>,<span class="string">'Table'</span>,<span class="string">'HorizontalRule'</span>,<span class="string">'Smiley'</span>,<span class="string">'SpecialChar'</span>,<span class="string">'PageBreak'</span>], 
-            [<span class="string">'Styles'</span>,<span class="string">'Format'</span>,<span class="string">'Font'</span>,<span class="string">'FontSize'</span>], 
-            [<span class="string">'TextColor'</span>,<span class="string">'BGColor'</span>], 
-            [<span class="string">'Maximize'</span>,<span class="string">'ShowBlocks'</span>,<span class="string">'-'</span>,<span class="string">'About'</span>, <span class="string">'pbckcode'</span>],
+<pre><code>CKEDITOR_CONFIGS = {
+    &apos;default&apos;: {
+        &apos;toolbar&apos;: (
+            [&apos;div&apos;,&apos;Source&apos;,&apos;-&apos;,&apos;Save&apos;,&apos;NewPage&apos;,&apos;Preview&apos;,&apos;-&apos;,&apos;Templates&apos;], 
+            [&apos;Cut&apos;,&apos;Copy&apos;,&apos;Paste&apos;,&apos;PasteText&apos;,&apos;PasteFromWord&apos;,&apos;-&apos;,&apos;Print&apos;,&apos;SpellChecker&apos;,&apos;Scayt&apos;], 
+            [&apos;Undo&apos;,&apos;Redo&apos;,&apos;-&apos;,&apos;Find&apos;,&apos;Replace&apos;,&apos;-&apos;,&apos;SelectAll&apos;,&apos;RemoveFormat&apos;], 
+            [&apos;Form&apos;,&apos;Checkbox&apos;,&apos;Radio&apos;,&apos;TextField&apos;,&apos;Textarea&apos;,&apos;Select&apos;,&apos;Button&apos;, &apos;ImageButton&apos;,&apos;HiddenField&apos;], 
+            [&apos;Bold&apos;,&apos;Italic&apos;,&apos;Underline&apos;,&apos;Strike&apos;,&apos;-&apos;,&apos;Subscript&apos;,&apos;Superscript&apos;], 
+            [&apos;NumberedList&apos;,&apos;BulletedList&apos;,&apos;-&apos;,&apos;Outdent&apos;,&apos;Indent&apos;,&apos;Blockquote&apos;], 
+            [&apos;JustifyLeft&apos;,&apos;JustifyCenter&apos;,&apos;JustifyRight&apos;,&apos;JustifyBlock&apos;], 
+            [&apos;Link&apos;,&apos;Unlink&apos;,&apos;Anchor&apos;], 
+            [&apos;Image&apos;,&apos;Flash&apos;,&apos;Table&apos;,&apos;HorizontalRule&apos;,&apos;Smiley&apos;,&apos;SpecialChar&apos;,&apos;PageBreak&apos;], 
+            [&apos;Styles&apos;,&apos;Format&apos;,&apos;Font&apos;,&apos;FontSize&apos;], 
+            [&apos;TextColor&apos;,&apos;BGColor&apos;], 
+            [&apos;Maximize&apos;,&apos;ShowBlocks&apos;,&apos;-&apos;,&apos;About&apos;, &apos;pbckcode&apos;],
         ),
     }
 }
@@ -436,8 +436,8 @@ class <span class="function"><span class="title">Article</span><span class="para
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/08/python_django_paginator/" rel="next" title="Django(六)用django自带Paginator实现分页功能">
-                <i class="fa fa-chevron-left"></i> Django(六)用django自带Paginator实现分页功能
+              <a href="/2016/04/08/good_article_collect_nosql/" rel="next" title="初识NoSQL">
+                <i class="fa fa-chevron-left"></i> 初识NoSQL
               </a>
             
           </div>

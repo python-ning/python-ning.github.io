@@ -324,19 +324,19 @@ DoesNotExist异常的基类；对ObjectDoesNotExist的try/except会为所有">
 
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/305370-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<h3 id="Django异常">Django异常</h3><p>DJango会抛出一些它自己的异常，以及<code style="color: red">Python</code>的标准异常。</p>
-<h3 id="Django核心异常">Django核心异常</h3><p>Django核心异常类定义在<code style="color: red">django.core.exceptions</code>中。</p>
-<h2 id="ObjectDoesNotExist">ObjectDoesNotExist</h2><pre><code>_exception _ObjectDoesNotExist<span class="string">[source]</span>
+<h3 id="Django异常"><a href="#Django异常" class="headerlink" title="Django异常"></a>Django异常</h3><p>DJango会抛出一些它自己的异常，以及<code style="color: red">Python</code>的标准异常。</p>
+<h3 id="Django核心异常"><a href="#Django核心异常" class="headerlink" title="Django核心异常"></a>Django核心异常</h3><p>Django核心异常类定义在<code style="color: red">django.core.exceptions</code>中。</p>
+<h2 id="ObjectDoesNotExist"><a href="#ObjectDoesNotExist" class="headerlink" title="ObjectDoesNotExist"></a>ObjectDoesNotExist</h2><pre><code>_exception _ObjectDoesNotExist[source]
 </code></pre><p><code style="color: red">DoesNotExist</code>异常的基类；对<code style="color: red">ObjectDoesNotExist</code>的try/except会为所有模型捕获到所有DoesNotExist 异常。</p>
-<h2 id="FieldDoesNotExist">FieldDoesNotExist</h2><pre><code>_exception _FieldDoesNotExist<span class="string">[source]</span>
+<h2 id="FieldDoesNotExist"><a href="#FieldDoesNotExist" class="headerlink" title="FieldDoesNotExist"></a>FieldDoesNotExist</h2><pre><code>_exception _FieldDoesNotExist[source]
 </code></pre><p>当被请求的字段在模型或模型的父类中不存在时，<code style="color: red">FieldDoesNotExist</code>异常由模型的 <code style="color: red">_meta.get_field()</code>方法抛出。</p>
-<pre><code>Changed <span class="keyword">in</span> Django <span class="number">1.8</span>:
+<pre><code>Changed in Django 1.8:
 </code></pre><p>之前的版本中，异常只在<code style="color: red">django.db.models.fields</code>中定义，并不是公共API的一部分。</p>
-<h2 id="MultipleObjectsReturned">MultipleObjectsReturned</h2><pre><code>_exception _MultipleObjectsReturned<span class="string">[source]</span>
+<h2 id="MultipleObjectsReturned"><a href="#MultipleObjectsReturned" class="headerlink" title="MultipleObjectsReturned"></a>MultipleObjectsReturned</h2><pre><code>_exception _MultipleObjectsReturned[source]
 </code></pre><p><code style="color: red">MultipleObjectsReturned</code>异常由查询产生，当预期只有一个对象，但是有多个对象返回的时候。这个异常的一个基础版本在<code style="color: red">django.core.exceptions</code>中提供。每个模型类都包含一个它的子类版本，它可以用于定义返回多个对象的特定的对象类型。</p>
-<h2 id="SuspiciousOperation">SuspiciousOperation</h2><pre><code>_exception _SuspiciousOperation<span class="string">[source]</span>
+<h2 id="SuspiciousOperation"><a href="#SuspiciousOperation" class="headerlink" title="SuspiciousOperation"></a>SuspiciousOperation</h2><pre><code>_exception _SuspiciousOperation[source]
 </code></pre><p>当用户进行的操作在安全方面可疑的时候，抛出<code style="color: red">SuspiciousOperation</code>异常，<br>例如篡改会话cookie。<code style="color: red">SuspiciousOperation</code>的子类包括：</p>
-<pre><code><span class="title">DisallowedHost</span>
+<pre><code>DisallowedHost
 
 DisallowedModelAdminLookup
 
@@ -352,15 +352,15 @@ SuspiciousMultipartForm
 
 SuspiciousSession
 </code></pre><p>如果<code style="color: red">SuspiciousOperation</code>异常到达了<code style="color: red">WSGI</code>处理器层，它会在Error层记录，并导致<code style="color: red">HttpResponseBadRequest</code>异常。 </p>
-<h2 id="PermissionDenied">PermissionDenied</h2><pre><code>_exception _PermissionDenied<span class="string">[source]</span>
+<h2 id="PermissionDenied"><a href="#PermissionDenied" class="headerlink" title="PermissionDenied"></a>PermissionDenied</h2><pre><code>_exception _PermissionDenied[source]
 </code></pre><p><code style="color: red">PermissionDenied</code>异常当用户不被允许来执行请求的操作时产生。</p>
-<h2 id="ViewDoesNotExist">ViewDoesNotExist</h2><pre><code>_exception _ViewDoesNotExist<span class="string">[source]</span>
+<h2 id="ViewDoesNotExist"><a href="#ViewDoesNotExist" class="headerlink" title="ViewDoesNotExist"></a>ViewDoesNotExist</h2><pre><code>_exception _ViewDoesNotExist[source]
 </code></pre><p>当所请求的视图不存在时，<code style="color: red">ViewDoesNotExist</code> 异常由 <code style="color: red">django.core.urlresolvers</code>产生。</p>
-<h2 id="MiddlewareNotUsed">MiddlewareNotUsed</h2><pre><code>_exception _MiddlewareNotUsed<span class="string">[source]</span>
+<h2 id="MiddlewareNotUsed"><a href="#MiddlewareNotUsed" class="headerlink" title="MiddlewareNotUsed"></a>MiddlewareNotUsed</h2><pre><code>_exception _MiddlewareNotUsed[source]
 </code></pre><p>当中间件没有在服务器配置中出现时，产生<code style="color: red">MiddlewareNotUsed</code>异常。</p>
-<h2 id="ImproperlyConfigured">ImproperlyConfigured</h2><pre><code>_exception _ImproperlyConfigured<span class="string">[source]</span>
+<h2 id="ImproperlyConfigured"><a href="#ImproperlyConfigured" class="headerlink" title="ImproperlyConfigured"></a>ImproperlyConfigured</h2><pre><code>_exception _ImproperlyConfigured[source]
 </code></pre><p>DJango配置不当时产生<code style="color: red">ImproperlyConfigured</code>异常 – 例如，settings.py中的值不正确或者不可解析。</p>
-<h2 id="FieldError">FieldError</h2><pre><code>_exception _FieldError<span class="string">[source]</span>
+<h2 id="FieldError"><a href="#FieldError" class="headerlink" title="FieldError"></a>FieldError</h2><pre><code>_exception _FieldError[source]
 </code></pre><p><code style="color: red">FieldError</code>异常当模型字段上出现问题时产生。它会由以下原因造成：</p>
 <pre><code>模型中的字段与抽象基类中相同名称的字段冲突。
 
@@ -374,19 +374,19 @@ SuspiciousSession
 
 字段名称不可用。
 
-查询包含了无效的 order<span class="number">_</span><span class="annotation">by</span>参数。
-</code></pre><h2 id="ValidationError">ValidationError</h2><pre><code>_exception _ValidationError<span class="string">[source]</span>
+查询包含了无效的 order_by参数。
+</code></pre><h2 id="ValidationError"><a href="#ValidationError" class="headerlink" title="ValidationError"></a>ValidationError</h2><pre><code>_exception _ValidationError[source]
 </code></pre><p>当表单或模型字段验证失败时抛出<code style="color: red">ValidationError</code>异常。关于验证的更多信息，请见<em>表单字段验证</em>, <em>模型字段验证</em> 和 <em>验证器参考</em>。</p>
 <pre><code>NON_FIELD_ERRORS
 </code></pre><p>在表单或者模型中不属于特定字段的<code style="color: red">ValidationError</code> 被归类为<code style="color: red">NON_FIELD_ERRORS</code>。This constant is used as a key in dictionaries that otherwise map fields to their respective list of errors.</p>
-<h3 id="URL解析器异常">URL解析器异常</h3><p>URL解析器异常定义在<code style="color: red">django.core.urlresolvers</code>中。</p>
-<h2 id="Resolver404">Resolver404</h2><pre><code>_exception _Resolver404<span class="string">[source]</span>
+<h3 id="URL解析器异常"><a href="#URL解析器异常" class="headerlink" title="URL解析器异常"></a>URL解析器异常</h3><p>URL解析器异常定义在<code style="color: red">django.core.urlresolvers</code>中。</p>
+<h2 id="Resolver404"><a href="#Resolver404" class="headerlink" title="Resolver404"></a>Resolver404</h2><pre><code>_exception _Resolver404[source]
 </code></pre><p>当向 <code style="color: red">resolve()</code> 传递的路径不映射到视图的时候，<code style="color: red">Resolver404</code>异常由<code style="color: red">django.core.urlresolvers.resolve()</code>产生。 它是 django.http.Http404的子类。</p>
-<h2 id="NoReverseMatch">NoReverseMatch</h2><pre><code>_exception _NoReverseMatch<span class="string">[source]</span>
+<h2 id="NoReverseMatch"><a href="#NoReverseMatch" class="headerlink" title="NoReverseMatch"></a>NoReverseMatch</h2><pre><code>_exception _NoReverseMatch[source]
 </code></pre><p>当你的<code style="color: red">URLconf</code>中的一个匹配的URL不能基于提供的参数识别时，<code style="color: red">NoReverseMatch</code> 异常由 <code style="color: red">django.core.urlresolvers</code> 产生。</p>
-<h3 id="Database_Exceptions">Database Exceptions</h3><p>数据库异常由<code style="color: red">django.db</code>导入。</p>
+<h3 id="Database-Exceptions"><a href="#Database-Exceptions" class="headerlink" title="Database Exceptions"></a>Database Exceptions</h3><p>数据库异常由<code style="color: red">django.db</code>导入。</p>
 <p>Django封装了标准的数据库异常，以便确保你的Django代码拥有这些类的通用实现。</p>
-<pre><code><span class="title">_exception</span> _Error
+<pre><code>_exception _Error
 
 _exception _InterfaceError
 
@@ -405,20 +405,20 @@ _exception _ProgrammingError
 _exception _NotSupportedError
 </code></pre><p>Django数据库异常的包装器的行为和底层的数据库异常一样。详见PEP 249，Python 数据库 API 说明 v2.0。</p>
 <p>按照 PEP 3134，<code style="color: red">__cause__</code>属性会在原生（底层）的数据库异常中设置，允许访问所提供的任何附加信息。（注意这一属性在Python 2和 3下面都可用，虽然 PEP 3134通常只用于Python 3。）</p>
-<pre><code>_exception _models.<span class="escape">`P</span>rotectedError`
+<pre><code>_exception _models.`ProtectedError`
 </code></pre><p>使用<code style="color: red">django.db.models.PROTECT</code>时，抛出异常来阻止所引用对象的删除。<code style="color: red">models.</code>ProtectedError is a subclass of IntegrityError.</p>
-<h3 id="Http异常">Http异常</h3><p>HTTP异常由<code style="color: red">django.http</code>导入。</p>
-<h2 id="UnreadablePostError">UnreadablePostError</h2><pre><code><span class="title">_exception</span> _UnreadablePostError
+<h3 id="Http异常"><a href="#Http异常" class="headerlink" title="Http异常"></a>Http异常</h3><p>HTTP异常由<code style="color: red">django.http</code>导入。</p>
+<h2 id="UnreadablePostError"><a href="#UnreadablePostError" class="headerlink" title="UnreadablePostError"></a>UnreadablePostError</h2><pre><code>_exception _UnreadablePostError
 </code></pre><p>用户取消上传时抛出<code style="color: red">UnreadablePostError</code>异常。</p>
-<h3 id="事务异常">事务异常</h3><p>事务异常定义在<code style="color: red">django.db.transaction</code>中。</p>
-<h2 id="TransactionManagementError">TransactionManagementError</h2><pre><code>_exception _TransactionManagementError<span class="string">[source]</span>
+<h3 id="事务异常"><a href="#事务异常" class="headerlink" title="事务异常"></a>事务异常</h3><p>事务异常定义在<code style="color: red">django.db.transaction</code>中。</p>
+<h2 id="TransactionManagementError"><a href="#TransactionManagementError" class="headerlink" title="TransactionManagementError"></a>TransactionManagementError</h2><pre><code>_exception _TransactionManagementError[source]
 </code></pre><p>对于数据库事务相关的任何问题，抛出<code style="color: red">TransactionManagementError</code>异常。</p>
-<h3 id="测试框架异常">测试框架异常</h3><p>由DJango django.test 包提供的异常。</p>
-<h2 id="RedirectCycleError">RedirectCycleError</h2><pre><code>_exception _client<span class="built_in">.</span><span class="string">`RedirectCycleError`</span>
+<h3 id="测试框架异常"><a href="#测试框架异常" class="headerlink" title="测试框架异常"></a>测试框架异常</h3><p>由DJango django.test 包提供的异常。</p>
+<h2 id="RedirectCycleError"><a href="#RedirectCycleError" class="headerlink" title="RedirectCycleError"></a>RedirectCycleError</h2><pre><code>_exception _client.`RedirectCycleError`
 
-<span class="literal">New</span> <span class="keyword">in</span> Django <span class="number">1.8</span><span class="subst">\</span><span class="built_in">.</span>
+New in Django 1.8\.
 </code></pre><p>当测试客户端检测到重定向的循环或者过长的链时，抛出<code style="color: red">RedirectCycleError</code>异常。</p>
-<h3 id="Python异常">Python异常</h3><p><code style="color: red">Django</code>在适当的时候也会抛出<code style="color: red">Python</code>的内建异常。</p>
+<h3 id="Python异常"><a href="#Python异常" class="headerlink" title="Python异常"></a>Python异常</h3><p><code style="color: red">Django</code>在适当的时候也会抛出<code style="color: red">Python</code>的内建异常。</p>
 </span>
       
     </div>
@@ -635,7 +635,7 @@ _exception _NotSupportedError
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Django异常"><span class="nav-number">1.</span> <span class="nav-text">Django异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django核心异常"><span class="nav-number">2.</span> <span class="nav-text">Django核心异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ObjectDoesNotExist"><span class="nav-number"></span> <span class="nav-text">ObjectDoesNotExist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FieldDoesNotExist"><span class="nav-number"></span> <span class="nav-text">FieldDoesNotExist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MultipleObjectsReturned"><span class="nav-number"></span> <span class="nav-text">MultipleObjectsReturned</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SuspiciousOperation"><span class="nav-number"></span> <span class="nav-text">SuspiciousOperation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PermissionDenied"><span class="nav-number"></span> <span class="nav-text">PermissionDenied</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewDoesNotExist"><span class="nav-number"></span> <span class="nav-text">ViewDoesNotExist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MiddlewareNotUsed"><span class="nav-number"></span> <span class="nav-text">MiddlewareNotUsed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ImproperlyConfigured"><span class="nav-number"></span> <span class="nav-text">ImproperlyConfigured</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FieldError"><span class="nav-number"></span> <span class="nav-text">FieldError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ValidationError"><span class="nav-number"></span> <span class="nav-text">ValidationError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URL解析器异常"><span class="nav-number">1.</span> <span class="nav-text">URL解析器异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resolver404"><span class="nav-number"></span> <span class="nav-text">Resolver404</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoReverseMatch"><span class="nav-number"></span> <span class="nav-text">NoReverseMatch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Database_Exceptions"><span class="nav-number">1.</span> <span class="nav-text">Database Exceptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http异常"><span class="nav-number">2.</span> <span class="nav-text">Http异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UnreadablePostError"><span class="nav-number"></span> <span class="nav-text">UnreadablePostError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务异常"><span class="nav-number">1.</span> <span class="nav-text">事务异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransactionManagementError"><span class="nav-number"></span> <span class="nav-text">TransactionManagementError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试框架异常"><span class="nav-number">1.</span> <span class="nav-text">测试框架异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RedirectCycleError"><span class="nav-number"></span> <span class="nav-text">RedirectCycleError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python异常"><span class="nav-number">1.</span> <span class="nav-text">Python异常</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Django异常"><span class="nav-number">1.</span> <span class="nav-text">Django异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django核心异常"><span class="nav-number">2.</span> <span class="nav-text">Django核心异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ObjectDoesNotExist"><span class="nav-number"></span> <span class="nav-text">ObjectDoesNotExist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FieldDoesNotExist"><span class="nav-number"></span> <span class="nav-text">FieldDoesNotExist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MultipleObjectsReturned"><span class="nav-number"></span> <span class="nav-text">MultipleObjectsReturned</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SuspiciousOperation"><span class="nav-number"></span> <span class="nav-text">SuspiciousOperation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PermissionDenied"><span class="nav-number"></span> <span class="nav-text">PermissionDenied</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewDoesNotExist"><span class="nav-number"></span> <span class="nav-text">ViewDoesNotExist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MiddlewareNotUsed"><span class="nav-number"></span> <span class="nav-text">MiddlewareNotUsed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ImproperlyConfigured"><span class="nav-number"></span> <span class="nav-text">ImproperlyConfigured</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FieldError"><span class="nav-number"></span> <span class="nav-text">FieldError</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ValidationError"><span class="nav-number"></span> <span class="nav-text">ValidationError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URL解析器异常"><span class="nav-number">1.</span> <span class="nav-text">URL解析器异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resolver404"><span class="nav-number"></span> <span class="nav-text">Resolver404</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoReverseMatch"><span class="nav-number"></span> <span class="nav-text">NoReverseMatch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Database-Exceptions"><span class="nav-number">1.</span> <span class="nav-text">Database Exceptions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http异常"><span class="nav-number">2.</span> <span class="nav-text">Http异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UnreadablePostError"><span class="nav-number"></span> <span class="nav-text">UnreadablePostError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务异常"><span class="nav-number">1.</span> <span class="nav-text">事务异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TransactionManagementError"><span class="nav-number"></span> <span class="nav-text">TransactionManagementError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试框架异常"><span class="nav-number">1.</span> <span class="nav-text">测试框架异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RedirectCycleError"><span class="nav-number"></span> <span class="nav-text">RedirectCycleError</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python异常"><span class="nav-number">1.</span> <span class="nav-text">Python异常</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

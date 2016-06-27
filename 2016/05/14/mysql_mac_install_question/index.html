@@ -59,7 +59,7 @@
 注意 mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode
 mysql 在mac上安装有两种方式：
 1.Homebrew安装mysqlHomebrew类似ubuntu系统的apt-get包管理，命令也基本一样。
-安装Homebrewruby -e &quot;$">
+安装Homebrewruby -e &amp;q">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac安装mysql">
 <meta property="og:url" content="http://python-ning.github.io/2016/05/14/mysql_mac_install_question/index.html">
@@ -68,7 +68,7 @@ mysql 在mac上安装有两种方式：
 注意 mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode
 mysql 在mac上安装有两种方式：
 1.Homebrew安装mysqlHomebrew类似ubuntu系统的apt-get包管理，命令也基本一样。
-安装Homebrewruby -e &quot;$">
+安装Homebrewruby -e &amp;q">
 <meta property="og:updated_time" content="2016-06-27T22:43:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac安装mysql">
@@ -76,7 +76,7 @@ mysql 在mac上安装有两种方式：
 注意 mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode
 mysql 在mac上安装有两种方式：
 1.Homebrew安装mysqlHomebrew类似ubuntu系统的apt-get包管理，命令也基本一样。
-安装Homebrewruby -e &quot;$">
+安装Homebrewruby -e &amp;q">
 
 
 
@@ -327,41 +327,41 @@ mysql 在mac上安装有两种方式：
         <span itemprop="articleBody"><p>mac下安装mysql，遇到了一个小波折，折磨了我一天，解决了，也借此机会总结一下。</p>
 <p><code style="color: red">注意</code> mac上一定要安装xcode，哪怕你不是ios开发工程师也是要安装的，因为在苹果上开发大多数操作都要依赖xcode</p>
 <p>mysql 在mac上安装有两种方式：</p>
-<h3 id="1-Homebrew安装mysql">1.Homebrew安装mysql</h3><p>Homebrew类似ubuntu系统的apt-get包管理，命令也基本一样。</p>
-<h2 id="安装Homebrew">安装Homebrew</h2><pre><code>ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span>
-</code></pre><h2 id="Homebrew基本命令">Homebrew基本命令</h2><pre><code>$ brew
+<h3 id="1-Homebrew安装mysql"><a href="#1-Homebrew安装mysql" class="headerlink" title="1.Homebrew安装mysql"></a>1.Homebrew安装mysql</h3><p>Homebrew类似ubuntu系统的apt-get包管理，命令也基本一样。</p>
+<h2 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h2><pre><code>ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre><h2 id="Homebrew基本命令"><a href="#Homebrew基本命令" class="headerlink" title="Homebrew基本命令"></a>Homebrew基本命令</h2><pre><code>$ brew
 Example usage:
  brew [info | home | options ] [FORMULA...]
- brew install FORMULA...   <span class="comment">// 安装包</span>
- brew uninstall FORMULA... <span class="comment">// 卸载包</span>
- brew <span class="keyword">search</span> [foo]         <span class="comment">// 搜索包</span>
- brew <span class="keyword">list</span> [FORMULA...]    <span class="comment">// 显示已经安装的软件列表</span>
- brew <span class="keyword">update</span>               <span class="comment">// 更新brew</span>
- brew upgrade [FORMULA...] <span class="comment">// 更新包，不跟包名就是更新所有包</span>
+ brew install FORMULA...   // 安装包
+ brew uninstall FORMULA... // 卸载包
+ brew search [foo]         // 搜索包
+ brew list [FORMULA...]    // 显示已经安装的软件列表
+ brew update               // 更新brew
+ brew upgrade [FORMULA...] // 更新包，不跟包名就是更新所有包
  brew pin/unpin [FORMULA...]
 Troubleshooting:
  brew doctor
  brew install -vd FORMULA
  brew [--env | --config]
 Brewing:
- brew create [URL [--<span class="keyword">no</span>-fetch]]
- brew <span class="keyword">edit</span> [FORMULA...]
- <span class="keyword">open</span> https:<span class="comment">//github.com/Homebrew/homebrew/wiki/Formula-Cookbook</span>
-Further <span class="keyword">help</span>:
- <span class="keyword">man</span> brew
+ brew create [URL [--no-fetch]]
+ brew edit [FORMULA...]
+ open https://github.com/Homebrew/homebrew/wiki/Formula-Cookbook
+Further help:
+ man brew
  brew home
-</code></pre><h2 id="安装mysql">安装mysql</h2><pre><code><span class="label">sudo</span> <span class="keyword">brew </span>install mysql
-</code></pre><h2 id="mysql启动，重启，关闭服务">mysql启动，重启，关闭服务</h2><pre><code><span class="label">sudo</span> <span class="keyword">brew </span>services start mysql
-<span class="label">sudo</span> <span class="keyword">brew </span>services restart mysql
-<span class="label">sudo</span> <span class="keyword">brew </span>services stop mysql
-</code></pre><h2 id="常遇问题1">常遇问题1</h2><p>当mysql安装好，启动了服务后，我们<code style="color: red">mysql -u root -p</code>(mysql默认密码为空)时，可能会出现以下报错</p>
-<pre><code>Error: Can't connect <span class="keyword">to</span> <span class="keyword">local</span> MySQL server <span class="keyword">through</span> socket '/tmp/mysql.sock' (<span class="number">111</span>)
-</code></pre><h2 id="解决办法1">解决办法1</h2><p>1.查找电脑上所有的mysql都在哪里</p>
-<pre><code>sudo <span class="built_in">find</span> / -<span class="built_in">name</span> mysql
+</code></pre><h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><pre><code>sudo brew install mysql
+</code></pre><h2 id="mysql启动，重启，关闭服务"><a href="#mysql启动，重启，关闭服务" class="headerlink" title="mysql启动，重启，关闭服务"></a>mysql启动，重启，关闭服务</h2><pre><code>sudo brew services start mysql
+sudo brew services restart mysql
+sudo brew services stop mysql
+</code></pre><h2 id="常遇问题1"><a href="#常遇问题1" class="headerlink" title="常遇问题1"></a>常遇问题1</h2><p>当mysql安装好，启动了服务后，我们<code style="color: red">mysql -u root -p</code>(mysql默认密码为空)时，可能会出现以下报错</p>
+<pre><code>Error: Can&apos;t connect to local MySQL server through socket &apos;/tmp/mysql.sock&apos; (111)
+</code></pre><h2 id="解决办法1"><a href="#解决办法1" class="headerlink" title="解决办法1"></a>解决办法1</h2><p>1.查找电脑上所有的mysql都在哪里</p>
+<pre><code>sudo find / -name mysql
 </code></pre><p>2.找出mysql安装的目录，给权限</p>
-<pre><code><span class="tag">chown</span> <span class="tag">-R</span> <span class="tag">mysql</span><span class="pseudo">:mysql</span> <span class="tag">xxx</span>你的<span class="tag">mysql</span>目录<span class="tag">xxx</span>
+<pre><code>chown -R mysql:mysql xxx你的mysql目录xxx
 </code></pre><p>实在不知道，你就把所有搜出来的mysql目录文件都给权限，前提是你自己的测试开发环境，可别在服务器上这么搞。</p>
-<h3 id="2-dmg包双击安装">2.dmg包双击安装</h3><p>在mysql官网选downloads，选Community（社区版的意思），点这个<code style="color: red">MySQL Community Server (GPL)</code></p>
+<h3 id="2-dmg包双击安装"><a href="#2-dmg包双击安装" class="headerlink" title="2.dmg包双击安装"></a>2.dmg包双击安装</h3><p>在mysql官网选downloads，选Community（社区版的意思），点这个<code style="color: red">MySQL Community Server (GPL)</code></p>
 <p>下载那个dmg后缀名的包下载下来点点点，下一步就好了，安装好以后他会给你个初始登陆密码记录下来，然后他会在你的设置里多一个mysql的图标，点击进入后可以开启关闭mysql服务</p>
 <p>基本就安装好了，也可能会有1遇到的问题，按上述方法改就好了。</p>
 <p>ps：贴图太麻烦，还有好多事要做，我要速度学成为大牛。</p>

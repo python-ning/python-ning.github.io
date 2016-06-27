@@ -333,128 +333,128 @@ BASE_DIR = os.path.dirname(os.path.dir">
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/298437-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>这里说一下django中的settings配置以及大概的功能介绍</p>
 <p>下面是大概的settings配置范例(这里可能跟我们刚建立完项目（project）和应用（app）看到的有点不同，是因为我把所有的英文注释就是那些三引号和#号注释的部分去掉了，以及我配置的部分改动)，下面一一说明：</p>
 <pre><code>import os 
-<span class="comment"># 导入os模块</span>
+# 导入os模块
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(<span class="keyword">__file__</span>))) 
-<span class="comment"># 指定根目录 __file__是表示settings.py这个文件,</span>
-<span class="comment"># os.path.abspath(__file__) 表示settings.py的绝对路径，</span>
-<span class="comment"># os.path.dirname(os.path.abspath(__file__)) 代表settings.py的绝对路径的上一级，</span>
-<span class="comment"># os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 代表项目的最外层，就是指定了根目录</span>
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+# 指定根目录 __file__是表示settings.py这个文件,
+# os.path.abspath(__file__) 表示settings.py的绝对路径，
+# os.path.dirname(os.path.abspath(__file__)) 代表settings.py的绝对路径的上一级，
+# os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 代表项目的最外层，就是指定了根目录
 
-DEBUG = <span class="keyword">True</span> 
-<span class="comment"># 配置为True的时候会暴露出一些出错信息或者配置信息以方便调试.</span>
-<span class="comment"># 但是在上线的时候应该将其关掉，防止配置信息或者敏感出错信息泄露.</span>
+DEBUG = True 
+# 配置为True的时候会暴露出一些出错信息或者配置信息以方便调试.
+# 但是在上线的时候应该将其关掉，防止配置信息或者敏感出错信息泄露.
 
 ALLOWED_HOSTS = [] 
-<span class="comment"># ALLOWED_HOSTS是为了限定请求中的host值,以防止黑客构造包来发送请求.</span>
-<span class="comment"># 只有在列表中的host才能访问.强烈建议不要使用*通配符去配置,</span>
-<span class="comment"># 另外当DEBUG设置为False的时候必须配置这个配置.否则会抛出异常</span>
+# ALLOWED_HOSTS是为了限定请求中的host值,以防止黑客构造包来发送请求.
+# 只有在列表中的host才能访问.强烈建议不要使用*通配符去配置,
+# 另外当DEBUG设置为False的时候必须配置这个配置.否则会抛出异常
 
-INSTALLED_APPS = ( <span class="comment"># 是一个一元数组.里面是应用中要加载的自带或者自己定制的app包路径列表.</span>
-    <span class="string">'django_admin_bootstrapped'</span>, 
-    <span class="comment"># 引入boorstrap框架的样式，可以让后台更美观，</span>
-    <span class="comment"># 需要先pip install django_admin_bootstrapped去安装，不添加这一条也可以</span>
-    <span class="string">'django.contrib.admin'</span>, 
-    <span class="comment"># 管理站点，管理后台</span>
-    <span class="string">'django.contrib.auth'</span>, 
-    <span class="comment"># 认证系统</span>
-    <span class="string">'django.contrib.contenttypes'</span>, 
-    <span class="comment"># 用于内容类型的框架</span>
-    <span class="string">'django.contrib.sessions'</span>, 
-    <span class="comment"># 会话框架</span>
-    <span class="string">'django.contrib.messages'</span>, 
-    <span class="comment"># 消息框架</span>
-    <span class="string">'django.contrib.staticfiles'</span>, 
-    <span class="comment"># 管理静态文件的框架</span>
-    <span class="string">'polls'</span> 
-    <span class="comment"># 我手动添加的，这里加上你创建的应用(App)的名字，注册进来</span>
+INSTALLED_APPS = ( # 是一个一元数组.里面是应用中要加载的自带或者自己定制的app包路径列表.
+    &apos;django_admin_bootstrapped&apos;, 
+    # 引入boorstrap框架的样式，可以让后台更美观，
+    # 需要先pip install django_admin_bootstrapped去安装，不添加这一条也可以
+    &apos;django.contrib.admin&apos;, 
+    # 管理站点，管理后台
+    &apos;django.contrib.auth&apos;, 
+    # 认证系统
+    &apos;django.contrib.contenttypes&apos;, 
+    # 用于内容类型的框架
+    &apos;django.contrib.sessions&apos;, 
+    # 会话框架
+    &apos;django.contrib.messages&apos;, 
+    # 消息框架
+    &apos;django.contrib.staticfiles&apos;, 
+    # 管理静态文件的框架
+    &apos;polls&apos; 
+    # 我手动添加的，这里加上你创建的应用(App)的名字，注册进来
 )
 
 
-MIDDLEWARE_CLASSES = ( <span class="comment"># 中间件：web应用中需要加载的一些中间件列表.是一个一元数组.里面是django自带的或者定制的中间件包路径</span>
-    <span class="string">'django.contrib.sessions.middleware.SessionMiddleware'</span>, 
-    <span class="comment"># 关于会话的中间件</span>
-    <span class="string">'django.middleware.common.CommonMiddleware'</span>, 
-    <span class="comment"># </span>
-    <span class="string">'django.middleware.csrf.CsrfViewMiddleware'</span>, 
-    <span class="comment"># 防止恶意提交的中间件</span>
-    <span class="string">'django.contrib.auth.middleware.AuthenticationMiddleware'</span>,
-    <span class="string">'django.contrib.auth.middleware.SessionAuthenticationMiddleware'</span>,
-    <span class="string">'django.contrib.messages.middleware.MessageMiddleware'</span>,
-    <span class="string">'django.middleware.clickjacking.XFrameOptionsMiddleware'</span>,
-    <span class="string">'django.middleware.security.SecurityMiddleware'</span>,
+MIDDLEWARE_CLASSES = ( # 中间件：web应用中需要加载的一些中间件列表.是一个一元数组.里面是django自带的或者定制的中间件包路径
+    &apos;django.contrib.sessions.middleware.SessionMiddleware&apos;, 
+    # 关于会话的中间件
+    &apos;django.middleware.common.CommonMiddleware&apos;, 
+    # 
+    &apos;django.middleware.csrf.CsrfViewMiddleware&apos;, 
+    # 防止恶意提交的中间件
+    &apos;django.contrib.auth.middleware.AuthenticationMiddleware&apos;,
+    &apos;django.contrib.auth.middleware.SessionAuthenticationMiddleware&apos;,
+    &apos;django.contrib.messages.middleware.MessageMiddleware&apos;,
+    &apos;django.middleware.clickjacking.XFrameOptionsMiddleware&apos;,
+    &apos;django.middleware.security.SecurityMiddleware&apos;,
 )
 
-ROOT_URLCONF = <span class="string">'mysite.urls'</span>
-<span class="comment"># 指定URLconfig的路径</span>
+ROOT_URLCONF = &apos;mysite.urls&apos;
+# 指定URLconfig的路径
 
-TEMPLATES = [ <span class="comment"># 对template的一些设置</span>
+TEMPLATES = [ # 对template的一些设置
     {
-        <span class="string">'BACKEND'</span>: <span class="string">'django.template.backends.django.DjangoTemplates'</span>, 
-        <span class="comment"># BACKEND是python实现Django模板引擎类的模板后端API</span>
-        <span class="string">'DIRS'</span>: [os.path.join(BASE_DIR, <span class="string">'templates'</span>)],
-        <span class="comment"># 指定templates（模板）的根目录</span>
-        <span class="string">'APP_DIRS'</span>: <span class="keyword">True</span>,
-        <span class="comment"># 当APP_DIRS是True的,指定的模板引擎会寻找指定模板下已安装的程序</span>
-        <span class="string">'OPTIONS'</span>: {
-            <span class="comment"># 一些特定后台的选项</span>
-            <span class="string">'context_processors'</span>: [
-                <span class="string">'django.template.context_processors.debug'</span>,
-                <span class="string">'django.template.context_processors.request'</span>,
-                <span class="string">'django.contrib.auth.context_processors.auth'</span>,
-                <span class="string">'django.contrib.messages.context_processors.messages'</span>,
+        &apos;BACKEND&apos;: &apos;django.template.backends.django.DjangoTemplates&apos;, 
+        # BACKEND是python实现Django模板引擎类的模板后端API
+        &apos;DIRS&apos;: [os.path.join(BASE_DIR, &apos;templates&apos;)],
+        # 指定templates（模板）的根目录
+        &apos;APP_DIRS&apos;: True,
+        # 当APP_DIRS是True的,指定的模板引擎会寻找指定模板下已安装的程序
+        &apos;OPTIONS&apos;: {
+            # 一些特定后台的选项
+            &apos;context_processors&apos;: [
+                &apos;django.template.context_processors.debug&apos;,
+                &apos;django.template.context_processors.request&apos;,
+                &apos;django.contrib.auth.context_processors.auth&apos;,
+                &apos;django.contrib.messages.context_processors.messages&apos;,
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = <span class="string">'mysite.wsgi.application'</span>
+WSGI_APPLICATION = &apos;mysite.wsgi.application&apos;
 
-DATABASES = {<span class="comment"># 这里是你数据库的一些设置</span>
-    <span class="string">'default'</span>: {
-        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>, 
-        <span class="comment"># 指定你使用的数据库引擎，这里是mysql，你也可以是oracle等其他数据库引擎</span>
-        <span class="string">'NAME'</span>: <span class="string">'polls'</span>, 
-        <span class="comment"># 这里是你数据库的名字，一般为你的应用的名字，便于记忆</span>
-        <span class="string">'USER'</span>: <span class="string">'root'</span>, 
-        <span class="comment"># 设置你数据库的用户名，一般都是root</span>
-        <span class="string">'PASSWORD'</span>: <span class="string">'214563'</span>, 
-        <span class="comment"># 这里是你数据库的密码</span>
-        <span class="string">'HOST'</span>: <span class="string">''</span>, 
-        <span class="comment"># 指定你数据库所在的主机名，一般设置为空</span>
-        <span class="string">'PORT'</span>: <span class="string">'3306'</span> 
-        <span class="comment"># 这是你数据库的端口号， 可默认为空</span>
+DATABASES = {# 这里是你数据库的一些设置
+    &apos;default&apos;: {
+        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;, 
+        # 指定你使用的数据库引擎，这里是mysql，你也可以是oracle等其他数据库引擎
+        &apos;NAME&apos;: &apos;polls&apos;, 
+        # 这里是你数据库的名字，一般为你的应用的名字，便于记忆
+        &apos;USER&apos;: &apos;root&apos;, 
+        # 设置你数据库的用户名，一般都是root
+        &apos;PASSWORD&apos;: &apos;214563&apos;, 
+        # 这里是你数据库的密码
+        &apos;HOST&apos;: &apos;&apos;, 
+        # 指定你数据库所在的主机名，一般设置为空
+        &apos;PORT&apos;: &apos;3306&apos; 
+        # 这是你数据库的端口号， 可默认为空
     }
 }
 
-LANGUAGE_CODE = <span class="string">'zh-Hans'</span> 
-<span class="comment"># 指定你的语言zh-Hans表示汉语，默认是en-us表示英语</span>
+LANGUAGE_CODE = &apos;zh-Hans&apos; 
+# 指定你的语言zh-Hans表示汉语，默认是en-us表示英语
 
-TIME_ZONE = <span class="string">'UTC'</span> 
-<span class="comment"># 这里指定django的时区</span>
+TIME_ZONE = &apos;UTC&apos; 
+# 这里指定django的时区
 
-USE_I18N = <span class="keyword">True</span> 
-<span class="comment"># 用于指定是否Django的翻译系统应该启用</span>
+USE_I18N = True 
+# 用于指定是否Django的翻译系统应该启用
 
-USE_L10N = <span class="keyword">True</span> 
-<span class="comment"># 用于指定如果本地化格式的数据将被默认启用。默认设置为True,如Django使用的格式将数字和日期显示当前的语言环境。</span>
+USE_L10N = True 
+# 用于指定如果本地化格式的数据将被默认启用。默认设置为True,如Django使用的格式将数字和日期显示当前的语言环境。
 
-USE_TZ = <span class="keyword">True</span>
-<span class="comment"># 用于指定是否将默认timezone-aware日期时间。如果这是设置为True,Django使用内部timezone-aware日期时间。否则,Django将在当地时间、日期时间。</span>
+USE_TZ = True
+# 用于指定是否将默认timezone-aware日期时间。如果这是设置为True,Django使用内部timezone-aware日期时间。否则,Django将在当地时间、日期时间。
 
-STATIC_URL = <span class="string">'/static/'</span> 
-<span class="comment"># 指定静态文件的路径</span>
+STATIC_URL = &apos;/static/&apos; 
+# 指定静态文件的路径
 
-STATICFILES_DIRS = ( <span class="comment"># 指定静态文件的根目录</span>
-    os.path.join(BASE_DIR, <span class="string">'static'</span>),
+STATICFILES_DIRS = ( # 指定静态文件的根目录
+    os.path.join(BASE_DIR, &apos;static&apos;),
 )
 
-MEDIA_URL = <span class="string">'/uploads/'</span> 
-<span class="comment"># 指定上传文件的路径，要建立一个名为uuploads的文件夹</span>
+MEDIA_URL = &apos;/uploads/&apos; 
+# 指定上传文件的路径，要建立一个名为uuploads的文件夹
 
-MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'uploads'</span>) 
-<span class="comment"># 指定上传的根目录</span>
-APPEND_SLASH = <span class="keyword">False</span>
+MEDIA_ROOT = os.path.join(BASE_DIR, &apos;uploads&apos;) 
+# 指定上传的根目录
+APPEND_SLASH = False
 </code></pre><p>中间件指定的顺序和实际运行时运行的顺序相关，<br>在request阶段：process_request，process_view 按照其所在类在配置中的先后顺序进行，<br>在response阶段：process_response，process_exception 则按照相反的顺序进行。<br>还有一点就是在整个流程中，每一个process_response都会执行到，<br>而其余三种，都可能会因为其他的直接retuen response或者不发生异常而不被执行到。<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/0900aeda-52d0-3f63-af31-560311d7cf76.png" alt=""></p>
 </span>
       

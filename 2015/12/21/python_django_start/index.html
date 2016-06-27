@@ -324,34 +324,34 @@
 
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/298125-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>这里django介绍的是1.85的版本，python用的2.X，系统是ubuntu14.04，我默认你已经对python有了大概了解，基本的语法和模块调用都已经熟悉了，所以就不介绍python怎么安装等等事情了，如有问题请下方评论~</p>
-<h3 id="安装django:">安装django:</h3><pre><code>pip <span class="keyword">install</span> django
-</code></pre><h3 id="验证是否安装成功以及查看django版本：">验证是否安装成功以及查看django版本：</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt;import django
-<span class="prompt">&gt;&gt;</span>&gt;django.<span class="constant">VERSION</span>
-</code></pre><h3 id="创建一个项目：">创建一个项目：</h3><pre><code>django-<span class="literal">admin</span> startproject 你的项目名
-</code></pre><h3 id="项目目录解释">项目目录解释</h3><p>我们创建完项目就会生成一个文件夹，文件夹内部是这样的：</p>
+<h3 id="安装django"><a href="#安装django" class="headerlink" title="安装django:"></a>安装django:</h3><pre><code>pip install django
+</code></pre><h3 id="验证是否安装成功以及查看django版本："><a href="#验证是否安装成功以及查看django版本：" class="headerlink" title="验证是否安装成功以及查看django版本："></a>验证是否安装成功以及查看django版本：</h3><pre><code>&gt;&gt;&gt;import django
+&gt;&gt;&gt;django.VERSION
+</code></pre><h3 id="创建一个项目："><a href="#创建一个项目：" class="headerlink" title="创建一个项目："></a>创建一个项目：</h3><pre><code>django-admin startproject 你的项目名
+</code></pre><h3 id="项目目录解释"><a href="#项目目录解释" class="headerlink" title="项目目录解释"></a>项目目录解释</h3><p>我们创建完项目就会生成一个文件夹，文件夹内部是这样的：</p>
 <pre><code>mysite/
-    manage<span class="class">.py</span>
+    manage.py
     mysite/
-        __init__<span class="class">.py</span>
-        settings<span class="class">.py</span>
-        urls<span class="class">.py</span>
+        __init__.py
+        settings.py
+        urls.py
         wsgi.py
 </code></pre><p>这些文件是：</p>
 <p>外层的<code style="color:red">mysite/</code>根目录仅仅是项目的一个容器。它的命名对Django无关紧要；你可以把它重新命名为任何你喜欢的名字。<br><code style="color:red">manage.py</code>：一个命令行工具，可以使你用多种方式对Django项目进行交互。<br>内层的<code style="color:red">mysite/</code>目录是你的项目的真正的Python包。它是你导入任何东西时将需要使用的Python包的名字（例如 mysite.urls）。<br><code style="color:red">mysite/<strong>init</strong>.py</code>：一个空文件，它告诉Python这个目录应该被看做一个Python包。 （如果你是一个Python初学者，关于包的更多内容请阅读Python的官方文档）。<br><code style="color:red">mysite/settings.py</code>：该Django 项目的设置/配置。Django 设置 将告诉你这些设置如何工作。<br><code style="color:red">mysite/urls.py</code>：该Django项目的URL声明；你的Django站点的“目录”。<br><code style="color:red">mysite/wsgi.py</code>：用于你的项目的与WSGI兼容的Web服务器入口。<br>现在，你的开发环境 —— 一个“项目” —— 已经建立起来，你将开始在上面做一些东西。<br>你编写的每个Django应用都是一个遵循特定约定的Python包。 Django自带一个工具，它可以自动生成应用的基本目录结构，这样你就能专心于书写代码而不是创建目录。</p>
-<h3 id="新建一个应用">新建一个应用</h3><p>来到有<code style="color:red">manage.py</code>文件的这一层，然后终端命令输入，新建一个应用：</p>
-<pre><code>python manage<span class="class">.py</span> startapp polls
-</code></pre><h3 id="项目和应用之间有什么不同？">项目和应用之间有什么不同？</h3><p>应用是一个Web应用程序，它完成具体的事项 —— 比如一个博客系统、一个存储公共档案的数据库或者一个简单的投票应用。 项目是一个特定网站中相关配置和应用的集合。一个项目可以包含多个应用。一个应用可以运用到多个项目中。</p>
+<h3 id="新建一个应用"><a href="#新建一个应用" class="headerlink" title="新建一个应用"></a>新建一个应用</h3><p>来到有<code style="color:red">manage.py</code>文件的这一层，然后终端命令输入，新建一个应用：</p>
+<pre><code>python manage.py startapp polls
+</code></pre><h3 id="项目和应用之间有什么不同？"><a href="#项目和应用之间有什么不同？" class="headerlink" title="项目和应用之间有什么不同？"></a>项目和应用之间有什么不同？</h3><p>应用是一个Web应用程序，它完成具体的事项 —— 比如一个博客系统、一个存储公共档案的数据库或者一个简单的投票应用。 项目是一个特定网站中相关配置和应用的集合。一个项目可以包含多个应用。一个应用可以运用到多个项目中。</p>
 <p>一个应用就创建成功了，目录如下，来解释下每个文件：</p>
 <pre><code>polls/
-    __init__.py   <span class="preprocessor"># 说明这是个python包</span>
-    admin.py   <span class="preprocessor"># 管理后台的文件</span>
-    migrations/   <span class="preprocessor"># 数据库每次改动都会在这个目录下生成一条记录 </span>
-        __init__.py   <span class="preprocessor"># 说明这是个python包</span>
-    models.py   <span class="preprocessor"># models文件，主要编写一些数据库的表结构，字段等</span>
-    tests.py   <span class="preprocessor"># 测试用的文件</span>
-    views.py   <span class="preprocessor"># 试图函数的文件，大多数我们是在这个文件进行页面逻辑的编写</span>
-    templates/  <span class="preprocessor"># 这个目录是自己建立的，里面放我的html的模板页面</span>
-    <span class="keyword">static</span>/   <span class="preprocessor"># 这个目录是自己简历的，里面放我的静态文件，比如.css .js </span>
+    __init__.py   # 说明这是个python包
+    admin.py   # 管理后台的文件
+    migrations/   # 数据库每次改动都会在这个目录下生成一条记录 
+        __init__.py   # 说明这是个python包
+    models.py   # models文件，主要编写一些数据库的表结构，字段等
+    tests.py   # 测试用的文件
+    views.py   # 试图函数的文件，大多数我们是在这个文件进行页面逻辑的编写
+    templates/  # 这个目录是自己建立的，里面放我的html的模板页面
+    static/   # 这个目录是自己简历的，里面放我的静态文件，比如.css .js 
 </code></pre></span>
       
     </div>
@@ -568,7 +568,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装django:"><span class="nav-number">1.</span> <span class="nav-text">安装django:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证是否安装成功以及查看django版本："><span class="nav-number">2.</span> <span class="nav-text">验证是否安装成功以及查看django版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个项目："><span class="nav-number">3.</span> <span class="nav-text">创建一个项目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目目录解释"><span class="nav-number">4.</span> <span class="nav-text">项目目录解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建一个应用"><span class="nav-number">5.</span> <span class="nav-text">新建一个应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目和应用之间有什么不同？"><span class="nav-number">6.</span> <span class="nav-text">项目和应用之间有什么不同？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装django"><span class="nav-number">1.</span> <span class="nav-text">安装django:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证是否安装成功以及查看django版本："><span class="nav-number">2.</span> <span class="nav-text">验证是否安装成功以及查看django版本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建一个项目："><span class="nav-number">3.</span> <span class="nav-text">创建一个项目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目目录解释"><span class="nav-number">4.</span> <span class="nav-text">项目目录解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建一个应用"><span class="nav-number">5.</span> <span class="nav-text">新建一个应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目和应用之间有什么不同？"><span class="nav-number">6.</span> <span class="nav-text">项目和应用之间有什么不同？</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

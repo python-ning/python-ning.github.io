@@ -56,25 +56,19 @@
 
 
 <meta name="description" content="list 列表Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：
-&amp;gt;&amp;gt;&amp;gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1],True]
-&amp;gt;&amp;gt;&amp;gt; test
-[&apos;string&apos;,">
+&amp;gt;&amp;gt;&amp;gt; test = [&amp;apos;string&amp;apos;,1,2,{&amp;apos;dicts&amp;apos;:1},(1,2),[&amp;apos;lists&amp;apos;,1],True]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python的数据结构">
 <meta property="og:url" content="http://python-ning.github.io/2015/10/25/python_tuple_list_dict_set/index.html">
 <meta property="og:site_name" content="python ning's blog">
 <meta property="og:description" content="list 列表Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：
-&amp;gt;&amp;gt;&amp;gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1],True]
-&amp;gt;&amp;gt;&amp;gt; test
-[&apos;string&apos;,">
+&amp;gt;&amp;gt;&amp;gt; test = [&amp;apos;string&amp;apos;,1,2,{&amp;apos;dicts&amp;apos;:1},(1,2),[&amp;apos;lists&amp;apos;,1],True]">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/135930-106.jpg">
 <meta property="og:updated_time" content="2015-12-30T22:43:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python的数据结构">
 <meta name="twitter:description" content="list 列表Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：
-&amp;gt;&amp;gt;&amp;gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1],True]
-&amp;gt;&amp;gt;&amp;gt; test
-[&apos;string&apos;,">
+&amp;gt;&amp;gt;&amp;gt; test = [&amp;apos;string&amp;apos;,1,2,{&amp;apos;dicts&amp;apos;:1},(1,2),[&amp;apos;lists&amp;apos;,1],True]">
 <meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/135930-106.jpg">
 
 
@@ -324,85 +318,85 @@
 
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/135930-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<h3 id="list_列表">list 列表</h3><p>Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>],<span class="constant">True</span>]
-<span class="prompt">&gt;&gt;</span>&gt; test
-[<span class="string">'string'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>],<span class="constant">True</span>]
-<span class="prompt">&gt;&gt;</span>&gt; 
+<h3 id="list-列表"><a href="#list-列表" class="headerlink" title="list 列表"></a>list 列表</h3><p>Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素，而且元素可为数字、字符串、列表、元组、字典、布尔值。如下，test就是一个列表：</p>
+<pre><code>&gt;&gt;&gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1],True]
+&gt;&gt;&gt; test
+[&apos;string&apos;, 1, 2, {&apos;dicts&apos;: 1}, (1, 2), [&apos;lists&apos;, 1],True]
+&gt;&gt;&gt; 
 </code></pre><p>可用len()函数获取列表的长度：</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">len</span><span class="params">(test)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="number">6</span>
+<pre><code>&gt;&gt;&gt; b = len(test)
+&gt;&gt;&gt; b
+6
 &gt;&gt;&gt;         
 </code></pre><p>用索引来访问list中每一个位置的元素，记得索引是从0开始的：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; b = test[<span class="number">0</span>]
-<span class="prompt">&gt;&gt;</span>&gt; b
-<span class="string">'string'</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; b = test[0]
+&gt;&gt;&gt; b
+&apos;string&apos;
+&gt;&gt;&gt; 
 </code></pre><p>当索引超出了范围时，Python会报一个IndexError错误，所以，要确保索引不要越界，记得最后一个元素的索引是len(test) - 1。</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; b = test[<span class="number">5</span>]
-<span class="prompt">&gt;&gt;</span>&gt; b
-[<span class="string">'lists'</span>, <span class="number">1</span>]
-<span class="prompt">&gt;&gt;</span>&gt; 
-&gt;&gt;&gt; b = test[<span class="number">6</span>]
+<pre><code>&gt;&gt;&gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1]]
+&gt;&gt;&gt; b = test[5]
+&gt;&gt;&gt; b
+[&apos;lists&apos;, 1]
+&gt;&gt;&gt; 
+&gt;&gt;&gt; b = test[6]
 
-<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
-  <span class="constant">File</span> <span class="string">"&lt;pyshell#156&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
-    b = test[<span class="number">6</span>]
-<span class="constant">IndexError</span><span class="symbol">:</span> list index out of range
-<span class="prompt">&gt;&gt;</span>&gt;         
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#156&gt;&quot;, line 1, in &lt;module&gt;
+    b = test[6]
+IndexError: list index out of range
+&gt;&gt;&gt;         
 </code></pre><p>list是一个可变的有序表，所以，可以往list中追加元素到末尾：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; test.append(<span class="number">9</span>)
-<span class="prompt">&gt;&gt;</span>&gt; test
-[<span class="string">'string'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>], <span class="number">9</span>]
-<span class="prompt">&gt;&gt;</span>&gt;         
-</code></pre><p>也可以把元素插入到指定的位置，比如索引号为1的位置：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; test.insert(<span class="number">1</span>,<span class="string">'ning'</span>)
-<span class="prompt">&gt;&gt;</span>&gt; test
-[<span class="string">'string'</span>, <span class="string">'ning'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><p>要删除list末尾的元素，用pop()方法：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; test.pop()
-[<span class="string">'lists'</span>, <span class="number">1</span>]
-<span class="prompt">&gt;&gt;</span>&gt; test
-[<span class="string">'string'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>)]
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><p>要删除指定位置的元素，用pop(i)方法，其中i是索引位置：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; test.pop(<span class="number">1</span>)
-<span class="number">1</span>
-<span class="prompt">&gt;&gt;</span>&gt; test
-[<span class="string">'string'</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><p>要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'string'</span>,<span class="number">1</span>,<span class="number">2</span>,{<span class="string">'dicts'</span><span class="symbol">:</span><span class="number">1</span>},(<span class="number">1</span>,<span class="number">2</span>),[<span class="string">'lists'</span>,<span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">0</span>]=<span class="string">'ning'</span>
-<span class="prompt">&gt;&gt;</span>&gt; test
-[<span class="string">'ning'</span>, <span class="number">1</span>, <span class="number">2</span>, {<span class="string">'dicts'</span><span class="symbol">:</span> <span class="number">1</span>}, (<span class="number">1</span>, <span class="number">2</span>), [<span class="string">'lists'</span>, <span class="number">1</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><h3 id="tuple_元组">tuple 元组</h3><p>另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改。<br>现在，test这个tuple不能变了，它也没有append()，insert()这样的方法。其他获取元素的方法和list是一样的，你可以正常地使用test[0]，test[-1]，但不能赋值成另外的元素。</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = (<span class="string">'chen'</span>,<span class="number">1</span>,<span class="constant">True</span>)
-<span class="prompt">&gt;&gt;</span>&gt; type(test)
-&lt;type <span class="string">'tuple'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">0</span>]
-<span class="string">'chen'</span>
-<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">1</span>]
-<span class="number">1</span>
-<span class="prompt">&gt;&gt;</span>&gt; test.append(<span class="string">'no'</span>)
-
-<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
-  <span class="constant">File</span> <span class="string">"&lt;pyshell#194&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
-    test.append(<span class="string">'no'</span>)
-<span class="constant">AttributeError</span><span class="symbol">:</span> <span class="string">'tuple'</span> object has no attribute <span class="string">'append'</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><p>不可变的tuple有什么意义？因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量用tuple。<br>tuple的陷阱：当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，如果要定义一个空的tuple，可以写成()，比如：</p>
-<pre><code>&gt;&gt;&gt; test = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)
+<pre><code>&gt;&gt;&gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1]]
+&gt;&gt;&gt; test.append(9)
 &gt;&gt;&gt; test
-(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)
+[&apos;string&apos;, 1, 2, {&apos;dicts&apos;: 1}, (1, 2), [&apos;lists&apos;, 1], 9]
+&gt;&gt;&gt;         
+</code></pre><p>也可以把元素插入到指定的位置，比如索引号为1的位置：</p>
+<pre><code>&gt;&gt;&gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1]]
+&gt;&gt;&gt; test.insert(1,&apos;ning&apos;)
+&gt;&gt;&gt; test
+[&apos;string&apos;, &apos;ning&apos;, 1, 2, {&apos;dicts&apos;: 1}, (1, 2), [&apos;lists&apos;, 1]]
+&gt;&gt;&gt; 
+</code></pre><p>要删除list末尾的元素，用pop()方法：</p>
+<pre><code>&gt;&gt;&gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1]]
+&gt;&gt;&gt; test.pop()
+[&apos;lists&apos;, 1]
+&gt;&gt;&gt; test
+[&apos;string&apos;, 1, 2, {&apos;dicts&apos;: 1}, (1, 2)]
+&gt;&gt;&gt; 
+</code></pre><p>要删除指定位置的元素，用pop(i)方法，其中i是索引位置：</p>
+<pre><code>&gt;&gt;&gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1]]
+&gt;&gt;&gt; test.pop(1)
+1
+&gt;&gt;&gt; test
+[&apos;string&apos;, 2, {&apos;dicts&apos;: 1}, (1, 2), [&apos;lists&apos;, 1]]
+&gt;&gt;&gt; 
+</code></pre><p>要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：</p>
+<pre><code>&gt;&gt;&gt; test = [&apos;string&apos;,1,2,{&apos;dicts&apos;:1},(1,2),[&apos;lists&apos;,1]]
+&gt;&gt;&gt; test[0]=&apos;ning&apos;
+&gt;&gt;&gt; test
+[&apos;ning&apos;, 1, 2, {&apos;dicts&apos;: 1}, (1, 2), [&apos;lists&apos;, 1]]
+&gt;&gt;&gt; 
+</code></pre><h3 id="tuple-元组"><a href="#tuple-元组" class="headerlink" title="tuple 元组"></a>tuple 元组</h3><p>另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改。<br>现在，test这个tuple不能变了，它也没有append()，insert()这样的方法。其他获取元素的方法和list是一样的，你可以正常地使用test[0]，test[-1]，但不能赋值成另外的元素。</p>
+<pre><code>&gt;&gt;&gt; test = (&apos;chen&apos;,1,True)
+&gt;&gt;&gt; type(test)
+&lt;type &apos;tuple&apos;&gt;
+&gt;&gt;&gt; test[0]
+&apos;chen&apos;
+&gt;&gt;&gt; test[1]
+1
+&gt;&gt;&gt; test.append(&apos;no&apos;)
+
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#194&gt;&quot;, line 1, in &lt;module&gt;
+    test.append(&apos;no&apos;)
+AttributeError: &apos;tuple&apos; object has no attribute &apos;append&apos;
+&gt;&gt;&gt; 
+</code></pre><p>不可变的tuple有什么意义？因为tuple不可变，所以代码更安全。如果可能，能用tuple代替list就尽量用tuple。<br>tuple的陷阱：当你定义一个tuple时，在定义的时候，tuple的元素就必须被确定下来，如果要定义一个空的tuple，可以写成()，比如：</p>
+<pre><code>&gt;&gt;&gt; test = (1,2,3,4,5)
+&gt;&gt;&gt; test
+(1, 2, 3, 4, 5)
 &gt;&gt;&gt; 
 
 &gt;&gt;&gt; test = ()
@@ -410,181 +404,181 @@
 ()
 &gt;&gt;&gt; 
 </code></pre><p>但是，要定义一个只有1个元素的tuple，如果你如下定义，那么他只是一个数字类型，并不是元组，这是因为括号()既可以表示tuple，又可以表示数学公式中的小括号，这就产生了歧义，因此，Python规定，这种情况下，按小括号进行计算，计算结果自然是1。要想让他变成一个元组，就在1后边加个逗号(1,)来消除歧义就可以了：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = (<span class="number">1</span>)
-<span class="prompt">&gt;&gt;</span>&gt; test
-<span class="number">1</span>
-<span class="prompt">&gt;&gt;</span>&gt; type(test)
-&lt;type <span class="string">'int'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; test = (1)
+&gt;&gt;&gt; test
+1
+&gt;&gt;&gt; type(test)
+&lt;type &apos;int&apos;&gt;
+&gt;&gt;&gt; 
 
-&gt;&gt;&gt; test = (<span class="number">1</span>,)
-<span class="prompt">&gt;&gt;</span>&gt; type(test)
-&lt;type <span class="string">'tuple'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; test
-(<span class="number">1</span>,)
-<span class="prompt">&gt;&gt;</span>&gt; 
+&gt;&gt;&gt; test = (1,)
+&gt;&gt;&gt; type(test)
+&lt;type &apos;tuple&apos;&gt;
+&gt;&gt;&gt; test
+(1,)
+&gt;&gt;&gt; 
 </code></pre><p>最后再说一个让元组‘<strong style="color:red">可变</strong>’的方法</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = (<span class="string">'a'</span>,<span class="string">'b'</span>,[<span class="string">'hello'</span>,<span class="string">'world'</span>])
-<span class="prompt">&gt;&gt;</span>&gt; type(test)
-&lt;type <span class="string">'tuple'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">2</span>][<span class="number">1</span>] = <span class="string">'ni hao'</span>
-<span class="prompt">&gt;&gt;</span>&gt; test[<span class="number">2</span>][<span class="number">1</span>] = <span class="string">'shi jie'</span>
-<span class="prompt">&gt;&gt;</span>&gt; test
-(<span class="string">'a'</span>, <span class="string">'b'</span>, [<span class="string">'hello'</span>, <span class="string">'shi jie'</span>])
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; test = (&apos;a&apos;,&apos;b&apos;,[&apos;hello&apos;,&apos;world&apos;])
+&gt;&gt;&gt; type(test)
+&lt;type &apos;tuple&apos;&gt;
+&gt;&gt;&gt; test[2][1] = &apos;ni hao&apos;
+&gt;&gt;&gt; test[2][1] = &apos;shi jie&apos;
+&gt;&gt;&gt; test
+(&apos;a&apos;, &apos;b&apos;, [&apos;hello&apos;, &apos;shi jie&apos;])
+&gt;&gt;&gt; 
 </code></pre><p>表面上看，tuple的元素确实变了，但其实变的不是tuple的元素，而是list的元素。tuple一开始指向的list并没有改成别的list，所以，tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向’a’，就不能改成指向’b’，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！</p>
 <p>理解了“指向不变”后，要创建一个内容也不变的tuple怎么做？那就必须保证tuple的每一个元素本身也不能变。</p>
-<h3 id="dict_字典">dict 字典</h3><p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。<br>举个例子，假设要根据员工的名字查找对应的电话号码，如果用list实现，需要两个list：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; employee = [<span class="string">'zhang san'</span>,<span class="string">'li si'</span>,<span class="string">'wang gang dan'</span>]
-<span class="prompt">&gt;&gt;</span>&gt; phone = [<span class="number">521521521</span>,<span class="number">741741741</span>,<span class="number">888888888</span>]
-<span class="prompt">&gt;&gt;</span>&gt; 
+<h3 id="dict-字典"><a href="#dict-字典" class="headerlink" title="dict 字典"></a>dict 字典</h3><p>Python内置了字典：dict的支持，dict全称dictionary，在其他语言中也称为map，使用键-值（key-value）存储，具有极快的查找速度。<br>举个例子，假设要根据员工的名字查找对应的电话号码，如果用list实现，需要两个list：</p>
+<pre><code>&gt;&gt;&gt; employee = [&apos;zhang san&apos;,&apos;li si&apos;,&apos;wang gang dan&apos;]
+&gt;&gt;&gt; phone = [521521521,741741741,888888888]
+&gt;&gt;&gt; 
 </code></pre><p>给定一个名字，要查找对应的电话号码，就先要在employee中找到对应的位置，再从phone取出对应的电话号码，list越长，耗时越长。<br>如果用dict实现，只需要一个“名字”-“电话号码”的对照表，直接根据名字查找成绩，无论这个表有多大，查找速度都不会变慢。用Python写一个dict如下：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
-<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'wang gang dan'</span>]
-<span class="number">888888888</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; d = {&apos;zhang san&apos;:521521521,&apos;li si&apos;:741741741,&apos;wang gang dan&apos;:888888888}
+&gt;&gt;&gt; d[&apos;wang gang dan&apos;]
+888888888
+&gt;&gt;&gt; 
 </code></pre><p>为什么dict查找速度这么快？因为dict的实现原理和查字典是一样的。假设字典包含了1万个汉字，我们要查某一个字，一个办法是把字典从第一页往后翻，直到找到我们想要的字为止，这种方法就是在list中查找元素的方法，list越大，查找越慢。<br>第二种方法是先在字典的索引表里（比如部首表）查这个字对应的页码，然后直接翻到该页，找到这个字。无论找哪个字，这种查找速度都非常快，不会随着字典大小的增加而变慢。<br>dict就是第二种实现方式，给定一个名字，比如’wang gang dan’，dict在内部就可以直接计算出wang gang dan对应的存放成绩的“页码”，也就是888888888这个数字存放的内存地址，直接取出来，所以速度非常快。<br>你可以猜到，这种key-value存储方式，在放进去的时候，必须根据key算出value的存放位置，这样，取的时候才能根据key直接拿到value。<br>把数据放入dict的方法，除了初始化时指定外，还可以通过key放入：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
-<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'python'</span>] = <span class="number">999999999</span>
-<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'python'</span>]
-<span class="number">999999999</span>
-<span class="prompt">&gt;&gt;</span>&gt; d
-{<span class="string">'python'</span><span class="symbol">:</span> <span class="number">999999999</span>, <span class="string">'zhang san'</span><span class="symbol">:</span> <span class="number">521521521</span>, <span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; d = {&apos;zhang san&apos;:521521521,&apos;li si&apos;:741741741,&apos;wang gang dan&apos;:888888888}
+&gt;&gt;&gt; d[&apos;python&apos;] = 999999999
+&gt;&gt;&gt; d[&apos;python&apos;]
+999999999
+&gt;&gt;&gt; d
+{&apos;python&apos;: 999999999, &apos;zhang san&apos;: 521521521, &apos;wang gang dan&apos;: 888888888, &apos;li si&apos;: 741741741}
+&gt;&gt;&gt; 
 </code></pre><p>由于一个key只能对应一个value，所以，多次对一个key放入value，后面的值会把前面的值覆盖掉：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
-<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'zhang san'</span>] = <span class="number">111111111</span>
-<span class="prompt">&gt;&gt;</span>&gt; d
-{<span class="string">'zhang san'</span><span class="symbol">:</span> <span class="number">111111111</span>, <span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
-<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'zhang san'</span>] = <span class="number">222222222</span>
-<span class="prompt">&gt;&gt;</span>&gt; d
-{<span class="string">'zhang san'</span><span class="symbol">:</span> <span class="number">222222222</span>, <span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; d = {&apos;zhang san&apos;:521521521,&apos;li si&apos;:741741741,&apos;wang gang dan&apos;:888888888}
+&gt;&gt;&gt; d[&apos;zhang san&apos;] = 111111111
+&gt;&gt;&gt; d
+{&apos;zhang san&apos;: 111111111, &apos;wang gang dan&apos;: 888888888, &apos;li si&apos;: 741741741}
+&gt;&gt;&gt; d[&apos;zhang san&apos;] = 222222222
+&gt;&gt;&gt; d
+{&apos;zhang san&apos;: 222222222, &apos;wang gang dan&apos;: 888888888, &apos;li si&apos;: 741741741}
+&gt;&gt;&gt; 
 </code></pre><p>如果key不存在，dict就会报错：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
-<span class="prompt">&gt;&gt;</span>&gt; d[<span class="string">'!@#$%^&amp;*'</span>]
+<pre><code>&gt;&gt;&gt; d = {&apos;zhang san&apos;:521521521,&apos;li si&apos;:741741741,&apos;wang gang dan&apos;:888888888}
+&gt;&gt;&gt; d[&apos;!@#$%^&amp;*&apos;]
 
-<span class="constant">Traceback</span> (most recent call last)<span class="symbol">:</span>
-  <span class="constant">File</span> <span class="string">"&lt;pyshell#239&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span>
-    d[<span class="string">'!@#$%^&amp;*'</span>]
-<span class="constant">KeyError</span><span class="symbol">:</span> <span class="string">'!@#$%^&amp;*'</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
+Traceback (most recent call last):
+  File &quot;&lt;pyshell#239&gt;&quot;, line 1, in &lt;module&gt;
+    d[&apos;!@#$%^&amp;*&apos;]
+KeyError: &apos;!@#$%^&amp;*&apos;
+&gt;&gt;&gt; 
 </code></pre><p>要避免key不存在的错误，有两种办法，一是通过in判断key是否存在：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
-<span class="prompt">&gt;&gt;</span>&gt; <span class="string">'!@#$%^&amp;*'</span> in d
-<span class="constant">False</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; d = {&apos;zhang san&apos;:521521521,&apos;li si&apos;:741741741,&apos;wang gang dan&apos;:888888888}
+&gt;&gt;&gt; &apos;!@#$%^&amp;*&apos; in d
+False
+&gt;&gt;&gt; 
 </code></pre><p>通过dict提供的get方法，如果key不存在，可以返回None，或者自己指定的value：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
-<span class="prompt">&gt;&gt;</span>&gt; d.get(<span class="string">'!@#$%^&amp;*'</span>)
-<span class="prompt">&gt;&gt;</span>&gt;             <span class="comment"># 返回None的时候Python的交互式命令行不显示结果</span>
-<span class="prompt">&gt;&gt;</span>&gt; d.get(<span class="string">'!@#$%^&amp;*'</span>,<span class="number">1</span>)
-<span class="number">1</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; d = {&apos;zhang san&apos;:521521521,&apos;li si&apos;:741741741,&apos;wang gang dan&apos;:888888888}
+&gt;&gt;&gt; d.get(&apos;!@#$%^&amp;*&apos;)
+&gt;&gt;&gt;             # 返回None的时候Python的交互式命令行不显示结果
+&gt;&gt;&gt; d.get(&apos;!@#$%^&amp;*&apos;,1)
+1
+&gt;&gt;&gt; 
 </code></pre><p>要删除一个key，用pop(key)方法，对应的value也会从dict中删除：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; d = {<span class="string">'zhang san'</span><span class="symbol">:</span><span class="number">521521521</span>,<span class="string">'li si'</span><span class="symbol">:</span><span class="number">741741741</span>,<span class="string">'wang gang dan'</span><span class="symbol">:</span><span class="number">888888888</span>}
-<span class="prompt">&gt;&gt;</span>&gt; d.pop(<span class="string">'zhang san'</span>)
-<span class="number">521521521</span>
-<span class="prompt">&gt;&gt;</span>&gt; d
-{<span class="string">'wang gang dan'</span><span class="symbol">:</span> <span class="number">888888888</span>, <span class="string">'li si'</span><span class="symbol">:</span> <span class="number">741741741</span>}
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><h3 id="set_集合">set 集合</h3><p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。</p>
+<pre><code>&gt;&gt;&gt; d = {&apos;zhang san&apos;:521521521,&apos;li si&apos;:741741741,&apos;wang gang dan&apos;:888888888}
+&gt;&gt;&gt; d.pop(&apos;zhang san&apos;)
+521521521
+&gt;&gt;&gt; d
+{&apos;wang gang dan&apos;: 888888888, &apos;li si&apos;: 741741741}
+&gt;&gt;&gt; 
+</code></pre><h3 id="set-集合"><a href="#set-集合" class="headerlink" title="set 集合"></a>set 集合</h3><p>set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key。</p>
 <p>要创建一个set，需要提供一个list作为输入集合：</p>
-<pre><code>&gt;&gt;&gt; test = <span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span></span>
+<pre><code>&gt;&gt;&gt; test = set([1,2,3])
 &gt;&gt;&gt; test
-<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span></span>
-&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(test)</span></span>
-&lt;type <span class="string">'set'</span>&gt;
+set([1, 2, 3])
+&gt;&gt;&gt; type(test)
+&lt;type &apos;set&apos;&gt;
 &gt;&gt;&gt; 
 </code></pre><p><strong style="color:red">注意，传入的参数[1, 2, 3]是一个list，而显示的{1, 2, 3}只是告诉你这个set内部有1，2，3这3个元素，显示的顺序也不表示set是有序的。</strong></p>
 <p>重复元素在set中自动被过滤：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = set([<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>])
-<span class="prompt">&gt;&gt;</span>&gt; test
-set([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])
-<span class="prompt">&gt;&gt;</span>&gt; 
+<pre><code>&gt;&gt;&gt; test = set([1,2,2,3,3,3])
+&gt;&gt;&gt; test
+set([1, 2, 3])
+&gt;&gt;&gt; 
 </code></pre><p>通过add(key)方法可以添加元素到set中，可以重复添加，但不会有效果：</p>
-<pre><code>&gt;&gt;&gt; test = <span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span></span>
+<pre><code>&gt;&gt;&gt; test = set([1,2,3])
 &gt;&gt;&gt; test
-<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span></span>
-&gt;&gt;&gt; test.<span class="function"><span class="title">add</span><span class="params">(<span class="number">4</span>)</span></span>
+set([1, 2, 3])
+&gt;&gt;&gt; test.add(4)
 &gt;&gt;&gt; test
-<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span></span>
-&gt;&gt;&gt; test.<span class="function"><span class="title">add</span><span class="params">(<span class="number">4</span>)</span></span>
+set([1, 2, 3, 4])
+&gt;&gt;&gt; test.add(4)
 &gt;&gt;&gt; test
-<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span></span>
+set([1, 2, 3, 4])
 &gt;&gt;&gt; 
 </code></pre><p>通过remove(key)方法可以删除元素：</p>
-<pre><code>&gt;&gt;&gt; test = <span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span></span>
+<pre><code>&gt;&gt;&gt; test = set([1,2,3])
 &gt;&gt;&gt; test
-<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span></span>
-&gt;&gt;&gt; test.<span class="function"><span class="title">remove</span><span class="params">(<span class="number">3</span>)</span></span>
+set([1, 2, 3])
+&gt;&gt;&gt; test.remove(3)
 &gt;&gt;&gt; test
-<span class="function"><span class="title">set</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>])</span></span>
+set([1, 2])
 &gt;&gt;&gt; 
 </code></pre><p>set可以看成数学意义上的无序和无重复元素的集合，因此，两个set可以做数学意义上的交集、并集等操作：</p>
-<pre><code>&gt;&gt;&gt; <span class="built_in">test</span>1 = <span class="built_in">set</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])
-&gt;&gt;&gt; <span class="built_in">test</span>1
-<span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])
-&gt;&gt;&gt; <span class="built_in">test</span>2 = <span class="built_in">set</span>([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])
-&gt;&gt;&gt; <span class="built_in">test</span>2
-<span class="built_in">set</span>([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])
-&gt;&gt;&gt; <span class="built_in">test</span>1 &amp; <span class="built_in">test</span>2
-<span class="built_in">set</span>([<span class="number">2</span>, <span class="number">3</span>])
-&gt;&gt;&gt; <span class="built_in">test</span>1 | <span class="built_in">test</span>2
-<span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])
+<pre><code>&gt;&gt;&gt; test1 = set([1,2,3])
+&gt;&gt;&gt; test1
+set([1, 2, 3])
+&gt;&gt;&gt; test2 = set([2,3,4])
+&gt;&gt;&gt; test2
+set([2, 3, 4])
+&gt;&gt;&gt; test1 &amp; test2
+set([2, 3])
+&gt;&gt;&gt; test1 | test2
+set([1, 2, 3, 4])
 &gt;&gt;&gt; 
 </code></pre><p>set和dict的唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象，因为无法判断两个可变对象是否相等，也就无法保证set内部“不会有重复元素”。试试把list放入set，看看是否会报错。</p>
-<pre><code>&gt;&gt;&gt; <span class="keyword">test</span> = <span class="keyword">set</span>([1,2,3,[4,5]])
+<pre><code>&gt;&gt;&gt; test = set([1,2,3,[4,5]])
 
 Traceback (most recent call last):
-  <span class="keyword">File</span> <span class="string">"&lt;pyshell#283&gt;"</span>, <span class="keyword">line</span> 1, <span class="keyword">in</span> &lt;module&gt;
-    <span class="keyword">test</span> = <span class="keyword">set</span>([1,2,3,[4,5]])
-TypeError: unhashable <span class="keyword">type</span>: '<span class="keyword">list</span>'
+  File &quot;&lt;pyshell#283&gt;&quot;, line 1, in &lt;module&gt;
+    test = set([1,2,3,[4,5]])
+TypeError: unhashable type: &apos;list&apos;
 &gt;&gt;&gt; 
-</code></pre><h3 id="字符串/元组/列表/字典互转">字符串/元组/列表/字典互转</h3><p>1、字典</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt;dicts = {<span class="string">'name'</span><span class="symbol">:</span> <span class="string">'Zara'</span>, <span class="string">'age'</span><span class="symbol">:</span> <span class="number">7</span>, <span class="string">'class'</span><span class="symbol">:</span> <span class="string">'First'</span>}
+</code></pre><h3 id="字符串-元组-列表-字典互转"><a href="#字符串-元组-列表-字典互转" class="headerlink" title="字符串/元组/列表/字典互转"></a>字符串/元组/列表/字典互转</h3><p>1、字典</p>
+<pre><code>&gt;&gt;&gt;dicts = {&apos;name&apos;: &apos;Zara&apos;, &apos;age&apos;: 7, &apos;class&apos;: &apos;First&apos;}
 </code></pre><p>字典转为字符串:</p>
-<pre><code>&gt;&gt;&gt;<span class="built_in">print</span> <span class="built_in">type</span>(str(dicts)), str(dicts)
-&lt;<span class="built_in">type</span> <span class="string">'str'</span>&gt; {<span class="string">'age'</span>: <span class="number">7</span>, <span class="string">'name'</span>: <span class="string">'Zara'</span>, <span class="string">'class'</span>: <span class="string">'First'</span>}
+<pre><code>&gt;&gt;&gt;print type(str(dicts)), str(dicts)
+&lt;type &apos;str&apos;&gt; {&apos;age&apos;: 7, &apos;name&apos;: &apos;Zara&apos;, &apos;class&apos;: &apos;First&apos;}
 </code></pre><p>字典可以转为元组：</p>
-<pre><code>&gt;&gt;&gt;print tuple<span class="list">(<span class="keyword">dicts</span>)</span>
-<span class="list">(<span class="quoted">'age</span>', <span class="quoted">'name</span>', <span class="quoted">'class</span>')</span>
+<pre><code>&gt;&gt;&gt;print tuple(dicts)
+(&apos;age&apos;, &apos;name&apos;, &apos;class&apos;)
 </code></pre><p>字典可以转为元组：</p>
-<pre><code>&gt;&gt;&gt;print tuple<span class="list">(<span class="keyword">dicts</span>.values<span class="list">()</span>)</span>
-<span class="list">(<span class="number">7</span>, <span class="quoted">'Zara</span>', <span class="quoted">'First</span>')</span>
+<pre><code>&gt;&gt;&gt;print tuple(dicts.values())
+(7, &apos;Zara&apos;, &apos;First&apos;)
 </code></pre><p>字典转为列表：</p>
-<pre><code>&gt;&gt;&gt;print <span class="function"><span class="title">list</span><span class="params">(dicts)</span></span>
-[<span class="string">'age'</span>, <span class="string">'name'</span>, <span class="string">'class'</span>]
+<pre><code>&gt;&gt;&gt;print list(dicts)
+[&apos;age&apos;, &apos;name&apos;, &apos;class&apos;]
 </code></pre><p>字典转为列表</p>
 <pre><code>&gt;&gt;&gt;print dicts.values
-&lt;built-<span class="keyword">in</span> <span class="keyword">method</span> values <span class="keyword">of</span> dict <span class="keyword">object</span> at <span class="number">0x0000000002E6D6A8</span>&gt;
+&lt;built-in method values of dict object at 0x0000000002E6D6A8&gt;
 </code></pre><p>2、元组</p>
-<pre><code>&gt;&gt;&gt;tup=(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)
+<pre><code>&gt;&gt;&gt;tup=(1, 2, 3, 4, 5)
 </code></pre><p>元组转为字符串:</p>
 <pre><code>&gt;&gt;&gt;print tup.__str__()
-(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)
+(1, 2, 3, 4, 5)
 </code></pre><p>元组转为列表：</p>
-<pre><code>&gt;&gt;&gt;print <span class="function"><span class="title">list</span><span class="params">(tup)</span></span>
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<pre><code>&gt;&gt;&gt;print list(tup)
+[1, 2, 3, 4, 5]
 </code></pre><p>元组不可以转为字典</p>
 <p>3、列表</p>
-<pre><code>&gt;&gt;&gt;nums=[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">20</span>];
+<pre><code>&gt;&gt;&gt;nums=[1, 3, 5, 7, 8, 13, 20];
 </code></pre><p>列表转为字符串：</p>
-<pre><code>&gt;&gt;&gt;print <span class="function"><span class="title">str</span><span class="params">(nums)</span></span>
-[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">20</span>]
+<pre><code>&gt;&gt;&gt;print str(nums)
+[1, 3, 5, 7, 8, 13, 20]
 </code></pre><p>列表转为元组：</p>
-<pre><code>&gt;&gt;&gt;<span class="function">print <span class="title">tuple</span><span class="params">(nums)</span>
-<span class="params">(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">20</span>)</span></span>
+<pre><code>&gt;&gt;&gt;print tuple(nums)
+(1, 3, 5, 7, 8, 13, 20)
 </code></pre><p>列表不可以转为字典</p>
 <p>4、字符串<br>字符串转为元组：</p>
-<pre><code>&gt;&gt;&gt;print tuple<span class="list">(<span class="keyword">eval</span><span class="list">(<span class="string">"(1,2,3)"</span>)</span>)</span>
-<span class="list">(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span>
+<pre><code>&gt;&gt;&gt;print tuple(eval(&quot;(1,2,3)&quot;))
+(1, 2, 3)
 </code></pre><p>字符串转为列表：</p>
-<pre><code>&gt;&gt;&gt;<span class="keyword">print</span> <span class="keyword">list</span>(<span class="keyword">eval</span>(<span class="string">"(1,2,3)"</span>))
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+<pre><code>&gt;&gt;&gt;print list(eval(&quot;(1,2,3)&quot;))
+[1, 2, 3]
 </code></pre><p>字符串转为字典：</p>
-<pre><code>&gt;&gt;&gt;<span class="built_in">print</span> <span class="built_in">type</span>(<span class="built_in">eval</span>(<span class="string">"{'name':'ljq', 'age':24}"</span>))
-&lt;<span class="built_in">type</span> <span class="string">'dict'</span>&gt;
+<pre><code>&gt;&gt;&gt;print type(eval(&quot;{&apos;name&apos;:&apos;ljq&apos;, &apos;age&apos;:24}&quot;))
+&lt;type &apos;dict&apos;&gt;
 </code></pre></span>
       
     </div>
@@ -801,7 +795,7 @@ TypeError: unhashable <span class="keyword">type</span>: '<span class="keyword">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#list_列表"><span class="nav-number">1.</span> <span class="nav-text">list 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tuple_元组"><span class="nav-number">2.</span> <span class="nav-text">tuple 元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dict_字典"><span class="nav-number">3.</span> <span class="nav-text">dict 字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set_集合"><span class="nav-number">4.</span> <span class="nav-text">set 集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串/元组/列表/字典互转"><span class="nav-number">5.</span> <span class="nav-text">字符串/元组/列表/字典互转</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#list-列表"><span class="nav-number">1.</span> <span class="nav-text">list 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tuple-元组"><span class="nav-number">2.</span> <span class="nav-text">tuple 元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dict-字典"><span class="nav-number">3.</span> <span class="nav-text">dict 字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-集合"><span class="nav-number">4.</span> <span class="nav-text">set 集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串-元组-列表-字典互转"><span class="nav-number">5.</span> <span class="nav-text">字符串/元组/列表/字典互转</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

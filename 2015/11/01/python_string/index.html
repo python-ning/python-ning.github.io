@@ -57,36 +57,33 @@
 
 <meta name="description" content="工作经常用到一些字符串的方法，借此机会也总结一下~~
 findfind方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。
-&amp;gt;&amp;gt;&amp;gt; a = &apos;test&apos;
-&amp;gt;&amp;gt;&amp;gt; a.find(&apos;s&apos;)
+&amp;gt;&amp;gt;&amp;gt; a = &amp;apos;test&amp;apos;
+&amp;gt;&amp;gt;&amp;gt; a.find(&amp;apos;s&amp;apos;)
 2
 &amp;gt;&amp;gt;&amp;gt; 
-find方法其实和列表取步长的方法联用来截取某段需要的字符串。
-&amp;gt;&amp;gt;&amp;gt; a  =">
+find方法其实和列表取步长的方法联用来截取某段需要的字符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 字符串方法详解">
 <meta property="og:url" content="http://python-ning.github.io/2015/11/01/python_string/index.html">
 <meta property="og:site_name" content="python ning's blog">
 <meta property="og:description" content="工作经常用到一些字符串的方法，借此机会也总结一下~~
 findfind方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。
-&amp;gt;&amp;gt;&amp;gt; a = &apos;test&apos;
-&amp;gt;&amp;gt;&amp;gt; a.find(&apos;s&apos;)
+&amp;gt;&amp;gt;&amp;gt; a = &amp;apos;test&amp;apos;
+&amp;gt;&amp;gt;&amp;gt; a.find(&amp;apos;s&amp;apos;)
 2
 &amp;gt;&amp;gt;&amp;gt; 
-find方法其实和列表取步长的方法联用来截取某段需要的字符串。
-&amp;gt;&amp;gt;&amp;gt; a  =">
+find方法其实和列表取步长的方法联用来截取某段需要的字符">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/20741-106.jpg">
 <meta property="og:updated_time" content="2016-01-28T22:27:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 字符串方法详解">
 <meta name="twitter:description" content="工作经常用到一些字符串的方法，借此机会也总结一下~~
 findfind方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。
-&amp;gt;&amp;gt;&amp;gt; a = &apos;test&apos;
-&amp;gt;&amp;gt;&amp;gt; a.find(&apos;s&apos;)
+&amp;gt;&amp;gt;&amp;gt; a = &amp;apos;test&amp;apos;
+&amp;gt;&amp;gt;&amp;gt; a.find(&amp;apos;s&amp;apos;)
 2
 &amp;gt;&amp;gt;&amp;gt; 
-find方法其实和列表取步长的方法联用来截取某段需要的字符串。
-&amp;gt;&amp;gt;&amp;gt; a  =">
+find方法其实和列表取步长的方法联用来截取某段需要的字符">
 <meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/20741-106.jpg">
 
 
@@ -337,259 +334,259 @@ find方法其实和列表取步长的方法联用来截取某段需要的字符�
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/20741-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
 <p>工作经常用到一些字符串的方法，借此机会也总结一下~~</p>
-<h3 id="find">find</h3><p>find方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = <span class="string">'test'</span>
-&gt;&gt;&gt; <span class="tag">a</span>.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'s'</span>)</span></span>
-<span class="number">2</span>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>find方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。</p>
+<pre><code>&gt;&gt;&gt; a = &apos;test&apos;
+&gt;&gt;&gt; a.find(&apos;s&apos;)
+2
 &gt;&gt;&gt; 
 </code></pre><p>find方法其实和列表取步长的方法联用来截取某段需要的字符串。</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
-&gt;&gt;&gt; iwantstring = <span class="tag">a</span>[<span class="tag">a</span>.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'w'</span>)</span></span>:<span class="tag">a</span>.<span class="function"><span class="title">find</span><span class="params">(<span class="string">'r'</span>)</span></span>]
+<pre><code>&gt;&gt;&gt; a  = &apos;hello world&apos;
+&gt;&gt;&gt; iwantstring = a[a.find(&apos;w&apos;):a.find(&apos;r&apos;)]
 &gt;&gt;&gt; iwantstring
-<span class="string">'wo'</span>
+&apos;wo&apos;
 &gt;&gt;&gt;
-</code></pre><h3 id="join">join</h3><p>join方法是非常重要的字符串方法，它是split方法的逆方法，用来在队列中添加元素。<strong style="color:red; text-decoration:none;">注意：需要添加的队列元素都必须是字符串。</strong></p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; test = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]
-<span class="prompt">&gt;&gt;</span>&gt; out = <span class="string">'+'</span>.join(test)
-<span class="prompt">&gt;&gt;</span>&gt; out
-<span class="string">'a+b+c+d'</span>
-</code></pre><h3 id="replace">replace</h3><p>replace方法返回某个字符串的所有匹配项均被替换之后得到的字符串。</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">replace</span><span class="params">(<span class="string">'l'</span>,<span class="string">'t'</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="string">'hetto wortd'</span>
+</code></pre><h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>join方法是非常重要的字符串方法，它是split方法的逆方法，用来在队列中添加元素。<strong style="color:red; text-decoration:none;">注意：需要添加的队列元素都必须是字符串。</strong></p>
+<pre><code>&gt;&gt;&gt; test = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]
+&gt;&gt;&gt; out = &apos;+&apos;.join(test)
+&gt;&gt;&gt; out
+&apos;a+b+c+d&apos;
+</code></pre><h3 id="replace"><a href="#replace" class="headerlink" title="replace"></a>replace</h3><p>replace方法返回某个字符串的所有匹配项均被替换之后得到的字符串。</p>
+<pre><code>&gt;&gt;&gt; a  = &apos;hello world&apos;
+&gt;&gt;&gt; b = a.replace(&apos;l&apos;,&apos;t&apos;)
+&gt;&gt;&gt; b
+&apos;hetto wortd&apos;
 &gt;&gt;&gt; 
-</code></pre><h3 id="split">split</h3><p>这是个非常重要的字符串方法，它是join的逆方法，用来将字符串按指定字符串元素进行分割并返回列表。<strong style="color:red; text-decoration:none;">注意：如果不提供任何分隔符，程序会把所有空格作为分隔符（空格、制表、换行等）</strong></p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">split</span><span class="params">(<span class="string">'l'</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-[<span class="string">'he'</span>, <span class="string">''</span>, <span class="string">'o wor'</span>, <span class="string">'d'</span>]
+</code></pre><h3 id="split"><a href="#split" class="headerlink" title="split"></a>split</h3><p>这是个非常重要的字符串方法，它是join的逆方法，用来将字符串按指定字符串元素进行分割并返回列表。<strong style="color:red; text-decoration:none;">注意：如果不提供任何分隔符，程序会把所有空格作为分隔符（空格、制表、换行等）</strong></p>
+<pre><code>&gt;&gt;&gt; a  = &apos;hello world&apos;
+&gt;&gt;&gt; b = a.split(&apos;l&apos;)
+&gt;&gt;&gt; b
+[&apos;he&apos;, &apos;&apos;, &apos;o wor&apos;, &apos;d&apos;]
 &gt;&gt;&gt; 
-</code></pre><h3 id="strip">strip</h3><p>strip方法返回去除两侧（不包含内部）空格的字符串</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = <span class="string">'   hello world    '</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">strip</span><span class="params">()</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="string">'hello world'</span>
+</code></pre><h3 id="strip"><a href="#strip" class="headerlink" title="strip"></a>strip</h3><p>strip方法返回去除两侧（不包含内部）空格的字符串</p>
+<pre><code>&gt;&gt;&gt; a = &apos;   hello world    &apos;
+&gt;&gt;&gt; b = a.strip()
+&gt;&gt;&gt; b
+&apos;hello world&apos;
 &gt;&gt;&gt; 
-</code></pre><h3 id="translate">translate</h3><p>　　translate方法和replace方法一样，可以替换字符串中的某些部分，但是和前者不同的是，translate方法只处理单个字符。它的优势在于可以同时进行多个替换，有些时候比replace效率高得多。<br>　　在使用translate转换前，需要先完成一张转换表。转换表中是以某字符替换某字符的对应关系。因为这个表（事实上是字符串）有多达256个项目，我们还是不要自己写了，用string模块里面的maketrans函数就行了。</p>
+</code></pre><h3 id="translate"><a href="#translate" class="headerlink" title="translate"></a>translate</h3><p>　　translate方法和replace方法一样，可以替换字符串中的某些部分，但是和前者不同的是，translate方法只处理单个字符。它的优势在于可以同时进行多个替换，有些时候比replace效率高得多。<br>　　在使用translate转换前，需要先完成一张转换表。转换表中是以某字符替换某字符的对应关系。因为这个表（事实上是字符串）有多达256个项目，我们还是不要自己写了，用string模块里面的maketrans函数就行了。</p>
 <p>maketrans函数接收两个参数：两个等长的字符串，表示第一个字符串中的每个字符都用第二个字符串中相同位置的字符替换。</p>
 <pre><code>&gt;&gt;&gt; from string import maketrans
-&gt;&gt;&gt; <span class="tag">table</span> = <span class="function"><span class="title">maketrans</span><span class="params">(<span class="string">'ho'</span>, <span class="string">'at'</span>)</span></span>
+&gt;&gt;&gt; table = maketrans(&apos;ho&apos;, &apos;at&apos;)
 </code></pre><p>创建这个表后，可以将它用作translate方法的参数，进行字符串的转换：</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">translate</span><span class="params">(table)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="string">'aellt wtrld'</span>
+<pre><code>&gt;&gt;&gt; a  = &apos;hello world&apos;
+&gt;&gt;&gt; b = a.translate(table)
+&gt;&gt;&gt; b
+&apos;aellt wtrld&apos;
 </code></pre><p>translate的第二个参数是可选的，这个参数是用来指定需要删除的字符。</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>.<span class="function"><span class="title">translate</span><span class="params">(table, <span class="string">' '</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="string">'aelltwtrld'</span>
+<pre><code>&gt;&gt;&gt; b = a.translate(table, &apos; &apos;)
+&gt;&gt;&gt; b
+&apos;aelltwtrld&apos;
 &gt;&gt;&gt; 
-</code></pre><h3 id="=_生成字符串变量">= 生成字符串变量</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt; test = <span class="string">'hello world'</span>
-<span class="prompt">&gt;&gt;</span>&gt; test
-<span class="string">'hello world'</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><h3 id="len_字符串长度获取">len 字符串长度获取</h3><pre><code>&gt;&gt;&gt; <span class="tag">a</span>  = <span class="string">'hello world'</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">len</span><span class="params">(a)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="number">11</span>
+</code></pre><h3 id="生成字符串变量"><a href="#生成字符串变量" class="headerlink" title="= 生成字符串变量"></a>= 生成字符串变量</h3><pre><code>&gt;&gt;&gt; test = &apos;hello world&apos;
+&gt;&gt;&gt; test
+&apos;hello world&apos;
 &gt;&gt;&gt; 
-</code></pre><h3 id="+_连接字符串">+ 连接字符串</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt; a = <span class="string">'hello'</span>
-<span class="prompt">&gt;&gt;</span>&gt; b = <span class="string">' '</span>
-<span class="prompt">&gt;&gt;</span>&gt; c = <span class="string">'world'</span>
-<span class="prompt">&gt;&gt;</span>&gt; d = a+b+c
-<span class="prompt">&gt;&gt;</span>&gt; d
-<span class="string">'hello world'</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><h3 id="cmp_比较字符串">cmp 比较字符串</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt; a = <span class="string">'hello'</span>
-<span class="prompt">&gt;&gt;</span>&gt; b = <span class="string">'world'</span>
-<span class="prompt">&gt;&gt;</span>&gt; c = cmp(a,b)
-<span class="prompt">&gt;&gt;</span>&gt; c
--<span class="number">1</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><h3 id="[]_截取字符串">[] 截取字符串</h3><p><strong style="color:red; text-decoration:none;">注意：一定要搞清楚下标是从0开始的，列表右边的元素是不被包含的</strong></p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt;a = <span class="string">'0123456789'</span>
-<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="number">0</span><span class="symbol">:</span><span class="number">3</span>] <span class="comment"># 截取第一位到第三位的字符</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'012'</span>
+</code></pre><h3 id="len-字符串长度获取"><a href="#len-字符串长度获取" class="headerlink" title="len 字符串长度获取"></a>len 字符串长度获取</h3><pre><code>&gt;&gt;&gt; a  = &apos;hello world&apos;
+&gt;&gt;&gt; b = len(a)
+&gt;&gt;&gt; b
+11
+&gt;&gt;&gt; 
+</code></pre><h3 id="连接字符串"><a href="#连接字符串" class="headerlink" title="+ 连接字符串"></a>+ 连接字符串</h3><pre><code>&gt;&gt;&gt; a = &apos;hello&apos;
+&gt;&gt;&gt; b = &apos; &apos;
+&gt;&gt;&gt; c = &apos;world&apos;
+&gt;&gt;&gt; d = a+b+c
+&gt;&gt;&gt; d
+&apos;hello world&apos;
+&gt;&gt;&gt; 
+</code></pre><h3 id="cmp-比较字符串"><a href="#cmp-比较字符串" class="headerlink" title="cmp 比较字符串"></a>cmp 比较字符串</h3><pre><code>&gt;&gt;&gt; a = &apos;hello&apos;
+&gt;&gt;&gt; b = &apos;world&apos;
+&gt;&gt;&gt; c = cmp(a,b)
+&gt;&gt;&gt; c
+-1
+&gt;&gt;&gt; 
+</code></pre><h3 id="截取字符串"><a href="#截取字符串" class="headerlink" title="[] 截取字符串"></a>[] 截取字符串</h3><p><strong style="color:red; text-decoration:none;">注意：一定要搞清楚下标是从0开始的，列表右边的元素是不被包含的</strong></p>
+<pre><code>&gt;&gt;&gt;a = &apos;0123456789&apos;
+&gt;&gt;&gt;b = a[0:3] # 截取第一位到第三位的字符
+&gt;&gt;&gt;b
+&apos;012&apos;
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="symbol">:</span>] <span class="comment"># 截取字符串的全部字符</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'0123456789'</span> 
+&gt;&gt;&gt;b = a[:] # 截取字符串的全部字符
+&gt;&gt;&gt;b
+&apos;0123456789&apos; 
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="number">6</span><span class="symbol">:</span>] <span class="comment"># 截取第七个字符到结尾</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'6789'</span> 
+&gt;&gt;&gt;b = a[6:] # 截取第七个字符到结尾
+&gt;&gt;&gt;b
+&apos;6789&apos; 
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="symbol">:-</span><span class="number">3</span>] <span class="comment"># 截取从头开始到倒数第三个字符之前</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'0123456'</span>
+&gt;&gt;&gt;b = a[:-3] # 截取从头开始到倒数第三个字符之前
+&gt;&gt;&gt;b
+&apos;0123456&apos;
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="number">2</span>] <span class="comment"># 截取第三个字符</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'2'</span> 
+&gt;&gt;&gt;b = a[2] # 截取第三个字符
+&gt;&gt;&gt;b
+&apos;2&apos; 
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[-<span class="number">1</span>] <span class="comment"># 截取倒数第一个字符</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'9'</span> 
+&gt;&gt;&gt;b = a[-1] # 截取倒数第一个字符
+&gt;&gt;&gt;b
+&apos;9&apos; 
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[<span class="symbol">:</span><span class="symbol">:-</span><span class="number">1</span>] <span class="comment"># 创造一个与原字符串顺序相反的字符串</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'9876543210'</span> 
+&gt;&gt;&gt;b = a[::-1] # 创造一个与原字符串顺序相反的字符串
+&gt;&gt;&gt;b
+&apos;9876543210&apos; 
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[-<span class="number">3</span><span class="symbol">:-</span><span class="number">1</span>] <span class="comment"># 截取倒数第三位与倒数第一位之前的字符</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'78'</span> 
+&gt;&gt;&gt;b = a[-3:-1] # 截取倒数第三位与倒数第一位之前的字符
+&gt;&gt;&gt;b
+&apos;78&apos; 
 
-<span class="prompt">&gt;&gt;</span>&gt;b = a[-<span class="number">3</span><span class="symbol">:</span>] <span class="comment"># 截取倒数第三位到结尾</span>
-<span class="prompt">&gt;&gt;</span>&gt;b
-<span class="string">'789'</span>
-</code></pre><h3 id="字符串中的搜索和替换">字符串中的搜索和替换</h3><pre><code>S.find(substr, [<span class="operator"><span class="keyword">start</span>, [<span class="keyword">end</span>]])   
-#返回S中出现<span class="keyword">substr</span>的第一个字母的标号，如果S中没有<span class="keyword">substr</span>则返回-<span class="number">1</span>。<span class="keyword">start</span>和<span class="keyword">end</span>作用就相当于在S[<span class="keyword">start</span>:<span class="keyword">end</span>]中搜索
-S.<span class="keyword">index</span>(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])   
-#与find()相同，只是在S中没有<span class="keyword">substr</span>时，会返回一个运行时错误
-S.rfind(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])   
-#返回S中最后出现的<span class="keyword">substr</span>的第一个字母的标号，如果S中没有<span class="keyword">substr</span>则返回-<span class="number">1</span>，也就是说从右边算起的第一次出现的<span class="keyword">substr</span>的首字母标号
-S.rindex(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])
-S.<span class="keyword">count</span>(<span class="keyword">substr</span>, [<span class="keyword">start</span>, [<span class="keyword">end</span>]])    
-#计算<span class="keyword">substr</span>在S中出现的次数
-S.<span class="keyword">replace</span>(oldstr, newstr, [<span class="keyword">count</span>])    
-#把S中的oldstr替换为newstr，<span class="keyword">count</span>为替换次数。这是替换的通用形式，还有一些函数进行特殊字符的替换
+&gt;&gt;&gt;b = a[-3:] # 截取倒数第三位到结尾
+&gt;&gt;&gt;b
+&apos;789&apos;
+</code></pre><h3 id="字符串中的搜索和替换"><a href="#字符串中的搜索和替换" class="headerlink" title="字符串中的搜索和替换"></a>字符串中的搜索和替换</h3><pre><code>S.find(substr, [start, [end]])   
+#返回S中出现substr的第一个字母的标号，如果S中没有substr则返回-1。start和end作用就相当于在S[start:end]中搜索
+S.index(substr, [start, [end]])   
+#与find()相同，只是在S中没有substr时，会返回一个运行时错误
+S.rfind(substr, [start, [end]])   
+#返回S中最后出现的substr的第一个字母的标号，如果S中没有substr则返回-1，也就是说从右边算起的第一次出现的substr的首字母标号
+S.rindex(substr, [start, [end]])
+S.count(substr, [start, [end]])    
+#计算substr在S中出现的次数
+S.replace(oldstr, newstr, [count])    
+#把S中的oldstr替换为newstr，count为替换次数。这是替换的通用形式，还有一些函数进行特殊字符的替换
 S.strip([chars]) 
-#把S中前后chars中有的字符全部去掉，可以理解为把S前后chars替换为<span class="keyword">None</span>
+#把S中前后chars中有的字符全部去掉，可以理解为把S前后chars替换为None
 S.lstrip([chars])
 S.rstrip([chars])
 S.expandtabs([tabsize])   
-#把S中的tab字符替换没空格，每个tab替换为tabsize个空格，默认是<span class="number">8</span>个</span>
-</code></pre><h3 id="字符串的分割和组合：">字符串的分割和组合：</h3><pre><code><span class="tag">S</span><span class="class">.split</span>(<span class="attr_selector">[sep, [maxsplit]</span>]) 
-# 以<span class="tag">sep</span>为分隔符，把<span class="tag">S</span>分成一个<span class="tag">list</span>。<span class="tag">maxsplit</span>表示分割的次数。默认的分割符为空白字符
-<span class="tag">S</span><span class="class">.rsplit</span>(<span class="attr_selector">[sep, [maxsplit]</span>])
-<span class="tag">S</span><span class="class">.splitlines</span>(<span class="attr_selector">[keepends]</span>) 
-# 把<span class="tag">S</span>按照行分割符分为一个<span class="tag">list</span>，<span class="tag">keepends</span>是一个<span class="tag">bool</span>值，如果为真每行后而会保留行分割符。
-<span class="tag">S</span><span class="class">.join</span>(<span class="tag">seq</span>) 
-# 把<span class="tag">seq</span>代表的序列──字符串序列，用<span class="tag">S</span>连接起来
+#把S中的tab字符替换没空格，每个tab替换为tabsize个空格，默认是8个
+</code></pre><h3 id="字符串的分割和组合："><a href="#字符串的分割和组合：" class="headerlink" title="字符串的分割和组合："></a>字符串的分割和组合：</h3><pre><code>S.split([sep, [maxsplit]]) 
+# 以sep为分隔符，把S分成一个list。maxsplit表示分割的次数。默认的分割符为空白字符
+S.rsplit([sep, [maxsplit]])
+S.splitlines([keepends]) 
+# 把S按照行分割符分为一个list，keepends是一个bool值，如果为真每行后而会保留行分割符。
+S.join(seq) 
+# 把seq代表的序列──字符串序列，用S连接起来
 </code></pre><p>字符串的mapping，这一功能包含两个函数：<br>        String.maketrans(from, to) </p>
-<pre><code># 返回一个<span class="number">256</span>个字符组成的翻译表，其中<span class="keyword">from</span>中的字符被一一对应地转换成<span class="keyword">to</span>，所以<span class="keyword">from</span>和<span class="keyword">to</span>必须是等长的。
+<pre><code># 返回一个256个字符组成的翻译表，其中from中的字符被一一对应地转换成to，所以from和to必须是等长的。
 S.translate(table[,deletechars]) 
 #  使用上面的函数产后的翻译表，把S进行翻译，并把deletechars中有的字符删掉。需要注意的是，如果S为unicode字符串，那么就不支持 deletechars参数，可以使用把某个字符翻译为None的方式实现相同的功能。此外还可以使用codecs模块的功能来创建更加功能强大的翻译 表。
-</code></pre><h3 id="字符串中字符大小写的变换：">字符串中字符大小写的变换：</h3><pre><code>S.<span class="function"><span class="title">lower</span><span class="params">()</span></span>   #小写
-S.<span class="function"><span class="title">upper</span><span class="params">()</span></span>   #大写
-S.<span class="function"><span class="title">swapcase</span><span class="params">()</span></span>   #大小写互换
-S.<span class="function"><span class="title">capitalize</span><span class="params">()</span></span>   #首字母大写
-String.<span class="function"><span class="title">capwords</span><span class="params">(S)</span></span>  #这是模块中的方法。它把S用<span class="function"><span class="title">split</span><span class="params">()</span></span>函数分开，然后用
-<span class="function"><span class="title">capitalize</span><span class="params">()</span></span>把首字母变成大写，最后用<span class="function"><span class="title">join</span><span class="params">()</span></span>合并到一起
-S.<span class="function"><span class="title">title</span><span class="params">()</span></span>    #只有首字母大写，其余为小写，模块中没有这个方法
-</code></pre><h3 id="字符串去空格及去指定字符">字符串去空格及去指定字符</h3><pre><code>去两边空格：<span class="built_in">str</span>.strip()
-去左空格：<span class="built_in">str</span>.lstrip()
-去右空格：<span class="built_in">str</span>.rstrip()
-去两边字符串：<span class="built_in">str</span>.strip(<span class="string">'d'</span>)，相应的也有lstrip，rstrip
-<span class="built_in">str</span>=<span class="string">' python String function '</span>
-<span class="built_in">print</span> <span class="string">'%s strip=%s'</span> % (<span class="built_in">str</span>,<span class="built_in">str</span>.strip())
-<span class="built_in">str</span>=<span class="string">'python String function'</span>
-<span class="built_in">print</span> <span class="string">'%s strip=%s'</span> % (<span class="built_in">str</span>,<span class="built_in">str</span>.strip(<span class="string">'d'</span>))
-</code></pre><h3 id="字符串编码和解码的函数：">字符串编码和解码的函数：</h3><pre><code>S.encode([encoding,[errors]]) 
-# 其中encoding可以有多种值，比如gb2312 gbk gb18030 bz2 zlib big5 bzse64等都支持。errors默认值为strict，意思是UnicodeError。可能的值还有'ignore', '<span class="operator"><span class="keyword">replace</span><span class="string">', '</span>xmlcharrefre
-S.<span class="keyword">encode</span>([<span class="keyword">encoding</span>,[<span class="keyword">errors</span>]]) 
-# 其中<span class="keyword">encoding</span>可以有多种值，比如gb2312 gbk gb18030 bz2 zlib big5 bzse64等都支持。<span class="keyword">errors</span>默认值为<span class="string">"strict"</span>，意思是UnicodeError。可能的值还有<span class="string">'ignore'</span>, <span class="string">'replace'</span>, <span class="string">'xmlcharrefreplace'</span>, <span class="string">'backslashreplace'</span> 和所有的通过codecs.register_error注册的值。这一部分内容涉及codecs模块，不是特明白
-S.<span class="keyword">decode</span>([<span class="keyword">encoding</span>,[<span class="keyword">errors</span>]])</span>
-</code></pre><h3 id="字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：">字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：</h3><pre><code>S.<span class="function"><span class="title">startwith</span><span class="params">(prefix[,start[,end]])</span></span> #是否以prefix开头
-S.<span class="function"><span class="title">endwith</span><span class="params">(suffix[,start[,end]])</span></span>  #以suffix结尾
-S.<span class="function"><span class="title">isalnum</span><span class="params">()</span></span>  #是否全是字母和数字，并至少有一个字符
-S.<span class="function"><span class="title">isalpha</span><span class="params">()</span></span>  #是否全是字母，并至少有一个字符
-S.<span class="function"><span class="title">isdigit</span><span class="params">()</span></span>  #是否全是数字，并至少有一个字符
-S.<span class="function"><span class="title">isspace</span><span class="params">()</span></span> #是否全是空白字符，并至少有一个字符
-S.<span class="function"><span class="title">islower</span><span class="params">()</span></span> #S中的字母是否全是小写
-S.<span class="function"><span class="title">isupper</span><span class="params">()</span></span> #S中的字母是否便是大写
-S.<span class="function"><span class="title">istitle</span><span class="params">()</span></span> #S是否是首字母大写的
-</code></pre><h3 id="字符串类型转换函数，这几个函数只在string模块中有：">字符串类型转换函数，这几个函数只在string模块中有：</h3><pre><code><span class="built_in">string</span>.atoi(s[,base])  
-<span class="preprocessor"># base默认为<span class="number">10</span>，如果为<span class="number">0</span>,那么s就可以是<span class="number">012</span>或<span class="number">0x23</span>这种形式的字符串，如果是<span class="number">16</span>那么s就只能是<span class="number">0x23</span>或<span class="number">0X12</span>这种形式的字符串</span>
-<span class="built_in">string</span>.atol(s[,base])  
-<span class="preprocessor"># 转成long</span>
-<span class="built_in">string</span>.atof(s[,base])  
-<span class="preprocessor"># 转成float</span>
-</code></pre><h3 id="python字符串与数字的转化">python字符串与数字的转化</h3><pre><code>数字变为字符串 str（）
-字符串变为数字 <span class="keyword">string</span>.atoi（s,[，<span class="keyword">base</span>]) <span class="comment">//base为进制基数</span>
-浮点数转换 <span class="keyword">string</span>.atof(s)
-</code></pre><h3 id="字符串在输出时的对齐：">字符串在输出时的对齐：</h3><pre><code>S.<span class="function"><span class="title">ljust</span><span class="params">(width,[fillchar])</span></span>   #输出<span class="attribute">width</span>个字符，S左对齐，不足部分用fillchar填充，默认的为空格。
-S.<span class="function"><span class="title">rjust</span><span class="params">(width,[fillchar])</span></span>    #右对齐
-S.<span class="function"><span class="title">center</span><span class="params">(width, [fillchar])</span></span>    #中间对齐
-S.<span class="function"><span class="title">zfill</span><span class="params">(width)</span></span>   #把S变成<span class="attribute">width</span>长，并在右对齐，不足部分用<span class="number">0</span>补足
+</code></pre><h3 id="字符串中字符大小写的变换："><a href="#字符串中字符大小写的变换：" class="headerlink" title="字符串中字符大小写的变换："></a>字符串中字符大小写的变换：</h3><pre><code>S.lower()   #小写
+S.upper()   #大写
+S.swapcase()   #大小写互换
+S.capitalize()   #首字母大写
+String.capwords(S)  #这是模块中的方法。它把S用split()函数分开，然后用
+capitalize()把首字母变成大写，最后用join()合并到一起
+S.title()    #只有首字母大写，其余为小写，模块中没有这个方法
+</code></pre><h3 id="字符串去空格及去指定字符"><a href="#字符串去空格及去指定字符" class="headerlink" title="字符串去空格及去指定字符"></a>字符串去空格及去指定字符</h3><pre><code>去两边空格：str.strip()
+去左空格：str.lstrip()
+去右空格：str.rstrip()
+去两边字符串：str.strip(&apos;d&apos;)，相应的也有lstrip，rstrip
+str=&apos; python String function &apos;
+print &apos;%s strip=%s&apos; % (str,str.strip())
+str=&apos;python String function&apos;
+print &apos;%s strip=%s&apos; % (str,str.strip(&apos;d&apos;))
+</code></pre><h3 id="字符串编码和解码的函数："><a href="#字符串编码和解码的函数：" class="headerlink" title="字符串编码和解码的函数："></a>字符串编码和解码的函数：</h3><pre><code>S.encode([encoding,[errors]]) 
+# 其中encoding可以有多种值，比如gb2312 gbk gb18030 bz2 zlib big5 bzse64等都支持。errors默认值为strict，意思是UnicodeError。可能的值还有&apos;ignore&apos;, &apos;replace&apos;, &apos;xmlcharrefre
+S.encode([encoding,[errors]]) 
+# 其中encoding可以有多种值，比如gb2312 gbk gb18030 bz2 zlib big5 bzse64等都支持。errors默认值为&quot;strict&quot;，意思是UnicodeError。可能的值还有&apos;ignore&apos;, &apos;replace&apos;, &apos;xmlcharrefreplace&apos;, &apos;backslashreplace&apos; 和所有的通过codecs.register_error注册的值。这一部分内容涉及codecs模块，不是特明白
+S.decode([encoding,[errors]])
+</code></pre><h3 id="字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值："><a href="#字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：" class="headerlink" title="字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值："></a>字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：</h3><pre><code>S.startwith(prefix[,start[,end]]) #是否以prefix开头
+S.endwith(suffix[,start[,end]])  #以suffix结尾
+S.isalnum()  #是否全是字母和数字，并至少有一个字符
+S.isalpha()  #是否全是字母，并至少有一个字符
+S.isdigit()  #是否全是数字，并至少有一个字符
+S.isspace() #是否全是空白字符，并至少有一个字符
+S.islower() #S中的字母是否全是小写
+S.isupper() #S中的字母是否便是大写
+S.istitle() #S是否是首字母大写的
+</code></pre><h3 id="字符串类型转换函数，这几个函数只在string模块中有："><a href="#字符串类型转换函数，这几个函数只在string模块中有：" class="headerlink" title="字符串类型转换函数，这几个函数只在string模块中有："></a>字符串类型转换函数，这几个函数只在string模块中有：</h3><pre><code>string.atoi(s[,base])  
+# base默认为10，如果为0,那么s就可以是012或0x23这种形式的字符串，如果是16那么s就只能是0x23或0X12这种形式的字符串
+string.atol(s[,base])  
+# 转成long
+string.atof(s[,base])  
+# 转成float
+</code></pre><h3 id="python字符串与数字的转化"><a href="#python字符串与数字的转化" class="headerlink" title="python字符串与数字的转化"></a>python字符串与数字的转化</h3><pre><code>数字变为字符串 str（）
+字符串变为数字 string.atoi（s,[，base]) //base为进制基数
+浮点数转换 string.atof(s)
+</code></pre><h3 id="字符串在输出时的对齐："><a href="#字符串在输出时的对齐：" class="headerlink" title="字符串在输出时的对齐："></a>字符串在输出时的对齐：</h3><pre><code>S.ljust(width,[fillchar])   #输出width个字符，S左对齐，不足部分用fillchar填充，默认的为空格。
+S.rjust(width,[fillchar])    #右对齐
+S.center(width, [fillchar])    #中间对齐
+S.zfill(width)   #把S变成width长，并在右对齐，不足部分用0补足
 </code></pre><p> 字符串中的单引号，双引号用 \ 来转义。</p>
-<h3 id="把字符串转换成数字">把字符串转换成数字</h3><pre><code>int(<span class="string">'1234'</span>)
+<h3 id="把字符串转换成数字"><a href="#把字符串转换成数字" class="headerlink" title="把字符串转换成数字"></a>把字符串转换成数字</h3><pre><code>int(&apos;1234&apos;)
 string模块里有
 import string
-<span class="prompt">&gt;&gt;</span>&gt; a=<span class="string">"12345"</span>
-<span class="prompt">&gt;&gt;</span>&gt; import string
-<span class="prompt">&gt;&gt;</span>&gt; string.atoi(a)
-<span class="number">12345</span>
-<span class="prompt">&gt;&gt;</span>&gt; b=<span class="string">"123.678"</span>
-<span class="prompt">&gt;&gt;</span>&gt; string.atof(b)
-<span class="number">123.678</span>
-</code></pre><h3 id="textwrap_使用_textwrap_模块来格式化字符串的输出">textwrap 使用 textwrap 模块来格式化字符串的输出</h3><pre><code>s = <span class="string">"Look into my eyes, look into my eyes, the eyes, the eyes, \
-the eyes, not around the eyes, don't look around the eyes, \
-look into my eyes, you're under."</span>
+&gt;&gt;&gt; a=&quot;12345&quot;
+&gt;&gt;&gt; import string
+&gt;&gt;&gt; string.atoi(a)
+12345
+&gt;&gt;&gt; b=&quot;123.678&quot;
+&gt;&gt;&gt; string.atof(b)
+123.678
+</code></pre><h3 id="textwrap-使用-textwrap-模块来格式化字符串的输出"><a href="#textwrap-使用-textwrap-模块来格式化字符串的输出" class="headerlink" title="textwrap 使用 textwrap 模块来格式化字符串的输出"></a>textwrap 使用 textwrap 模块来格式化字符串的输出</h3><pre><code>s = &quot;Look into my eyes, look into my eyes, the eyes, the eyes, \
+the eyes, not around the eyes, don&apos;t look around the eyes, \
+look into my eyes, you&apos;re under.&quot;
 
 &gt;&gt;&gt; import textwrap
-&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">70</span>))
-Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes,
-<span class="keyword">not</span> <span class="keyword">around</span> <span class="keyword">the</span> eyes, don't look <span class="keyword">around</span> <span class="keyword">the</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes,
-you're under.
+&gt;&gt;&gt; print(textwrap.fill(s, 70))
+Look into my eyes, look into my eyes, the eyes, the eyes, the eyes,
+not around the eyes, don&apos;t look around the eyes, look into my eyes,
+you&apos;re under.
 
-&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">40</span>))
-Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes,
-<span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">not</span> <span class="keyword">around</span>
-<span class="keyword">the</span> eyes, don't look <span class="keyword">around</span> <span class="keyword">the</span> eyes,
-look <span class="keyword">into</span> <span class="keyword">my</span> eyes, you're under.
+&gt;&gt;&gt; print(textwrap.fill(s, 40))
+Look into my eyes, look into my eyes,
+the eyes, the eyes, the eyes, not around
+the eyes, don&apos;t look around the eyes,
+look into my eyes, you&apos;re under.
 
-&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">40</span>, initial_indent='    '))
-    Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span>
-eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">not</span>
-<span class="keyword">around</span> <span class="keyword">the</span> eyes, don't look <span class="keyword">around</span> <span class="keyword">the</span>
-eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes, you're under.
+&gt;&gt;&gt; print(textwrap.fill(s, 40, initial_indent=&apos;    &apos;))
+    Look into my eyes, look into my
+eyes, the eyes, the eyes, the eyes, not
+around the eyes, don&apos;t look around the
+eyes, look into my eyes, you&apos;re under.
 
-&gt;&gt;&gt; print(textwrap.fill(s, <span class="number">40</span>, subsequent_indent='    '))
-Look <span class="keyword">into</span> <span class="keyword">my</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes,
-    <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">the</span> eyes, <span class="keyword">not</span>
-    <span class="keyword">around</span> <span class="keyword">the</span> eyes, don't look <span class="keyword">around</span>
-    <span class="keyword">the</span> eyes, look <span class="keyword">into</span> <span class="keyword">my</span> eyes, you're
+&gt;&gt;&gt; print(textwrap.fill(s, 40, subsequent_indent=&apos;    &apos;))
+Look into my eyes, look into my eyes,
+    the eyes, the eyes, the eyes, not
+    around the eyes, don&apos;t look around
+    the eyes, look into my eyes, you&apos;re
     under.
 </code></pre><p>textwrap 模块对于字符串打印是非常有用的，特别是当你希望输出自动匹配终端大小的时候。 你可以使用 os.get_terminal_size() 方法来获取终端的大小尺寸</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; import os
-<span class="prompt">&gt;&gt;</span>&gt; os.get_terminal_size().columns
-<span class="number">80</span>
-<span class="prompt">&gt;&gt;</span>&gt;
+<pre><code>&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.get_terminal_size().columns
+80
+&gt;&gt;&gt;
 </code></pre><p>fill() 方法接受一些其他可选参数来控制tab，语句结尾等。 参阅 textwrap.TextWrapper文档 获取更多内容。</p>
-<h3 id="在字符串中处理html和xml">在字符串中处理html和xml</h3><pre><code>你想将HTML或者<span class="built_in">XML</span>实体如 <span class="subst">&amp;</span>entity; 或 <span class="subst">&amp;</span><span class="variable">#code</span>; 替换为对应的文本。 再者，你需要转换文本中特定的字符(比如&lt;, &gt;, 或 <span class="subst">&amp;</span>)。
+<h3 id="在字符串中处理html和xml"><a href="#在字符串中处理html和xml" class="headerlink" title="在字符串中处理html和xml"></a>在字符串中处理html和xml</h3><pre><code>你想将HTML或者XML实体如 &amp;entity; 或 &amp;#code; 替换为对应的文本。 再者，你需要转换文本中特定的字符(比如&lt;, &gt;, 或 &amp;)。
 </code></pre><p>解决方案</p>
 <p>如果你想替换文本字符串中的 ‘&lt;’ 或者 ‘&gt;’ ，使用 html.escape() 函数可以很容易的完成。比如：</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span>s = <span class="string">'Elements are written as "&lt;tag&gt;text&lt;/tag&gt;".'</span>
-<span class="prompt">&gt;&gt;&gt; </span><span class="keyword">import</span> html
-<span class="prompt">&gt;&gt;&gt; </span>print(s)
-Elements are written <span class="keyword">as</span> <span class="string">"&lt;tag&gt;text&lt;/tag&gt;"</span>.
-<span class="prompt">&gt;&gt;&gt; </span>print(html.escape(s))
-Elements are written <span class="keyword">as</span> &amp;quot;&amp;lt;tag&amp;gt;text&amp;lt;/tag&amp;gt;&amp;quot;.
+<pre><code>&gt;&gt;&gt; s = &apos;Elements are written as &quot;&lt;tag&gt;text&lt;/tag&gt;&quot;.&apos;
+&gt;&gt;&gt; import html
+&gt;&gt;&gt; print(s)
+Elements are written as &quot;&lt;tag&gt;text&lt;/tag&gt;&quot;.
+&gt;&gt;&gt; print(html.escape(s))
+Elements are written as &amp;quot;&amp;lt;tag&amp;gt;text&amp;lt;/tag&amp;gt;&amp;quot;.
 
-<span class="prompt">&gt;&gt;&gt; </span><span class="comment"># Disable escaping of quotes</span>
-<span class="prompt">&gt;&gt;&gt; </span>print(html.escape(s, quote=<span class="keyword">False</span>))
-Elements are written <span class="keyword">as</span> <span class="string">"&amp;lt;tag&amp;gt;text&amp;lt;/tag&amp;gt;"</span>.
+&gt;&gt;&gt; # Disable escaping of quotes
+&gt;&gt;&gt; print(html.escape(s, quote=False))
+Elements are written as &quot;&amp;lt;tag&amp;gt;text&amp;lt;/tag&amp;gt;&quot;.
 &gt;&gt;&gt;
 </code></pre><p>如果你正在处理的是ASCII文本，并且想将非ASCII文本对应的编码实体嵌入进去， 可以给某些I/O函数传递参数 errors=’xmlcharrefreplace’ 来达到这个目。比如：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'Spicy Jalapeño'</span>
-<span class="prompt">&gt;&gt;</span>&gt; s.encode(<span class="string">'ascii'</span>, errors=<span class="string">'xmlcharrefreplace'</span>)
-b<span class="string">'Spicy Jalape&amp;#241;o'</span>
-<span class="prompt">&gt;&gt;</span>&gt;
+<pre><code>&gt;&gt;&gt; s = &apos;Spicy Jalapeño&apos;
+&gt;&gt;&gt; s.encode(&apos;ascii&apos;, errors=&apos;xmlcharrefreplace&apos;)
+b&apos;Spicy Jalape&amp;#241;o&apos;
+&gt;&gt;&gt;
 </code></pre><p>为了替换文本中的编码实体，你需要使用另外一种方法。 如果你正在处理HTML或者XML文本，试着先使用一个合适的HTML或者XML解析器。 通常情况下，这些工具会自动替换这些编码值，你无需担心。</p>
 <p>有时候，如果你接收到了一些含有编码值的原始文本，需要手动去做替换， 通常你只需要使用HTML或者XML解析器的一些相关工具函数/方法即可。比如：</p>
-<pre><code>&gt;&gt;&gt; s = <span class="string">'Spicy &amp;quot;Jalape&amp;#241;o&amp;quot.'</span>
-&gt;&gt;&gt; from <span class="tag">html</span><span class="class">.parser</span> import HTMLParser
-&gt;&gt;&gt; <span class="tag">p</span> = <span class="function"><span class="title">HTMLParser</span><span class="params">()</span></span>
-&gt;&gt;&gt; <span class="tag">p</span>.<span class="function"><span class="title">unescape</span><span class="params">(s)</span></span>
-<span class="string">'Spicy "Jalapeño".'</span>
+<pre><code>&gt;&gt;&gt; s = &apos;Spicy &amp;quot;Jalape&amp;#241;o&amp;quot.&apos;
+&gt;&gt;&gt; from html.parser import HTMLParser
+&gt;&gt;&gt; p = HTMLParser()
+&gt;&gt;&gt; p.unescape(s)
+&apos;Spicy &quot;Jalapeño&quot;.&apos;
 &gt;&gt;&gt;
-&gt;&gt;&gt; t = <span class="string">'The prompt is &amp;gt;&amp;gt;&amp;gt;'</span>
-&gt;&gt;&gt; from xml<span class="class">.sax</span><span class="class">.saxutils</span> import unescape
-&gt;&gt;&gt; <span class="function"><span class="title">unescape</span><span class="params">(t)</span></span>
-<span class="string">'The prompt is &gt;&gt;&gt;'</span>
+&gt;&gt;&gt; t = &apos;The prompt is &amp;gt;&amp;gt;&amp;gt;&apos;
+&gt;&gt;&gt; from xml.sax.saxutils import unescape
+&gt;&gt;&gt; unescape(t)
+&apos;The prompt is &gt;&gt;&gt;&apos;
 &gt;&gt;&gt;
 </code></pre><p>讨论</p>
 <p>在生成HTML或者XML文本的时候，如果正确的转换特殊标记字符是一个很容易被忽视的细节。 特别是当你使用 print() 函数或者其他字符串格式化来产生输出的时候。 使用像 html.escape() 的工具函数可以很容易的解决这类问题。</p>
@@ -810,7 +807,7 @@ b<span class="string">'Spicy Jalape&amp;#241;o'</span>
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">2.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">3.</span> <span class="nav-text">replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split"><span class="nav-number">4.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strip"><span class="nav-number">5.</span> <span class="nav-text">strip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#translate"><span class="nav-number">6.</span> <span class="nav-text">translate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#=_生成字符串变量"><span class="nav-number">7.</span> <span class="nav-text">= 生成字符串变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#len_字符串长度获取"><span class="nav-number">8.</span> <span class="nav-text">len 字符串长度获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#+_连接字符串"><span class="nav-number">9.</span> <span class="nav-text">+ 连接字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmp_比较字符串"><span class="nav-number">10.</span> <span class="nav-text">cmp 比较字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#[]_截取字符串"><span class="nav-number">11.</span> <span class="nav-text">[] 截取字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串中的搜索和替换"><span class="nav-number">12.</span> <span class="nav-text">字符串中的搜索和替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的分割和组合："><span class="nav-number">13.</span> <span class="nav-text">字符串的分割和组合：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串中字符大小写的变换："><span class="nav-number">14.</span> <span class="nav-text">字符串中字符大小写的变换：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串去空格及去指定字符"><span class="nav-number">15.</span> <span class="nav-text">字符串去空格及去指定字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串编码和解码的函数："><span class="nav-number">16.</span> <span class="nav-text">字符串编码和解码的函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值："><span class="nav-number">17.</span> <span class="nav-text">字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串类型转换函数，这几个函数只在string模块中有："><span class="nav-number">18.</span> <span class="nav-text">字符串类型转换函数，这几个函数只在string模块中有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python字符串与数字的转化"><span class="nav-number">19.</span> <span class="nav-text">python字符串与数字的转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串在输出时的对齐："><span class="nav-number">20.</span> <span class="nav-text">字符串在输出时的对齐：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把字符串转换成数字"><span class="nav-number">21.</span> <span class="nav-text">把字符串转换成数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#textwrap_使用_textwrap_模块来格式化字符串的输出"><span class="nav-number">22.</span> <span class="nav-text">textwrap 使用 textwrap 模块来格式化字符串的输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在字符串中处理html和xml"><span class="nav-number">23.</span> <span class="nav-text">在字符串中处理html和xml</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">2.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replace"><span class="nav-number">3.</span> <span class="nav-text">replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split"><span class="nav-number">4.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#strip"><span class="nav-number">5.</span> <span class="nav-text">strip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#translate"><span class="nav-number">6.</span> <span class="nav-text">translate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成字符串变量"><span class="nav-number">7.</span> <span class="nav-text">= 生成字符串变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#len-字符串长度获取"><span class="nav-number">8.</span> <span class="nav-text">len 字符串长度获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接字符串"><span class="nav-number">9.</span> <span class="nav-text">+ 连接字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmp-比较字符串"><span class="nav-number">10.</span> <span class="nav-text">cmp 比较字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截取字符串"><span class="nav-number">11.</span> <span class="nav-text">[] 截取字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串中的搜索和替换"><span class="nav-number">12.</span> <span class="nav-text">字符串中的搜索和替换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的分割和组合："><span class="nav-number">13.</span> <span class="nav-text">字符串的分割和组合：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串中字符大小写的变换："><span class="nav-number">14.</span> <span class="nav-text">字符串中字符大小写的变换：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串去空格及去指定字符"><span class="nav-number">15.</span> <span class="nav-text">字符串去空格及去指定字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串编码和解码的函数："><span class="nav-number">16.</span> <span class="nav-text">字符串编码和解码的函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值："><span class="nav-number">17.</span> <span class="nav-text">字符串的测试函数，这一类函数在string模块中没有，这些函数返回的都是bool值：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串类型转换函数，这几个函数只在string模块中有："><span class="nav-number">18.</span> <span class="nav-text">字符串类型转换函数，这几个函数只在string模块中有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python字符串与数字的转化"><span class="nav-number">19.</span> <span class="nav-text">python字符串与数字的转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串在输出时的对齐："><span class="nav-number">20.</span> <span class="nav-text">字符串在输出时的对齐：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把字符串转换成数字"><span class="nav-number">21.</span> <span class="nav-text">把字符串转换成数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#textwrap-使用-textwrap-模块来格式化字符串的输出"><span class="nav-number">22.</span> <span class="nav-text">textwrap 使用 textwrap 模块来格式化字符串的输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在字符串中处理html和xml"><span class="nav-number">23.</span> <span class="nav-text">在字符串中处理html和xml</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

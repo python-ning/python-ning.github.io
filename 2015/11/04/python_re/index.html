@@ -315,107 +315,107 @@
 
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/210463-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<h3 id="正则表达式">正则表达式</h3><p>1.正则表达式是一个特殊的字符序列，它能帮助你方便的检查一个字符串是否与某种模式匹配。<br>2.本章节主要介绍Python中常用的正则表达式处理函数。<br>3.字符串是编程时涉及到的最多的一种数据结构，对字符串进行操作的需求几乎无处不在。比如判断一个字符串是否是合法的Email地址，虽然可以编程提取@前后的子串，再分别判断是否是单词和域名，但这样做不但麻烦，而且代码难以复用。<br>正则表达式是一种用来匹配字符串的强有力的武器。它的设计思想是用一种描述性的语言来给字符串定义一个规则，凡是符合规则的字符串，我们就认为它“匹配”了，否则，该字符串就是不合法的。<br>4.在很多语言中都有正则表达式，比如javascript，PHP等等</p>
-<h3 id="正则表达式模式">正则表达式模式</h3><p>1.模式字符串使用特殊的语法来表示一个正则表达式：<br>2.字母和数字表示他们自身。一个正则表达式模式中的字母和数字匹配同样的字符串。<br>3.多数字母和数字前加一个反斜杠时会拥有不同的含义。<br>4.标点符号只有被转义时才匹配自身，否则它们表示特殊的含义。<br>5.反斜杠本身需要使用反斜杠转义。<br>6.由于正则表达式通常都包含反斜杠，所以你最好使用原始字符串来表示它们。模式元素(如 r’/t’，等价于’//t’)匹配相应的特殊字符。<br>7.下表列出了正则表达式模式语法中的特殊元素。如果你使用模式的同时提供了可选的标志参数，某些模式元素的含义会改变。</p>
-<pre><code>.    匹配除 <span class="string">"\n"</span> 之外的任何单个字符。如果要匹配包括 <span class="string">'\n'</span> 在内的任何字符，可使用像 <span class="string">'[.\n]'</span>或者<span class="string">'[\s\S]'</span> 的模式。
-<span class="string">\d</span>    匹配一个数字字符。等价于 [<span class="number">0</span>-<span class="number">9</span>]。
-<span class="string">\D</span>     匹配一个非数字字符。等价于 [^<span class="number">0</span>-<span class="number">9</span>]。
-<span class="string">\s</span>    匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ <span class="string">\f\n\r\t\v]。</span>
-<span class="string">\S</span>     匹配任何非空白字符。等价于 [^ <span class="string">\f\n\r\t\v]。</span>
-<span class="string">\w</span>    匹配字母数字。等价于<span class="string">'[A-Za-z0-9_]'</span>。
-<span class="string">\W</span>    匹配任何非字母数字。等价于 <span class="string">'[^A-Za-z0-9_]'</span>。
-<span class="string">\b</span>    匹配一个单词边界，也就是指单词和空格间的位置。例如， <span class="string">'er\b'</span> 可以匹配<span class="string">"never"</span> 中的 <span class="string">'er'</span>，但不能匹配 <span class="string">"verb"</span> 中的 <span class="string">'er'</span>。
-<span class="string">\B</span>    匹配非单词边界。<span class="string">'er\B'</span> 能匹配 <span class="string">"verb"</span> 中的 <span class="string">'er'</span>，但不能匹配 <span class="string">"never"</span> 中的 <span class="string">'er'</span>。
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>1.正则表达式是一个特殊的字符序列，它能帮助你方便的检查一个字符串是否与某种模式匹配。<br>2.本章节主要介绍Python中常用的正则表达式处理函数。<br>3.字符串是编程时涉及到的最多的一种数据结构，对字符串进行操作的需求几乎无处不在。比如判断一个字符串是否是合法的Email地址，虽然可以编程提取@前后的子串，再分别判断是否是单词和域名，但这样做不但麻烦，而且代码难以复用。<br>正则表达式是一种用来匹配字符串的强有力的武器。它的设计思想是用一种描述性的语言来给字符串定义一个规则，凡是符合规则的字符串，我们就认为它“匹配”了，否则，该字符串就是不合法的。<br>4.在很多语言中都有正则表达式，比如javascript，PHP等等</p>
+<h3 id="正则表达式模式"><a href="#正则表达式模式" class="headerlink" title="正则表达式模式"></a>正则表达式模式</h3><p>1.模式字符串使用特殊的语法来表示一个正则表达式：<br>2.字母和数字表示他们自身。一个正则表达式模式中的字母和数字匹配同样的字符串。<br>3.多数字母和数字前加一个反斜杠时会拥有不同的含义。<br>4.标点符号只有被转义时才匹配自身，否则它们表示特殊的含义。<br>5.反斜杠本身需要使用反斜杠转义。<br>6.由于正则表达式通常都包含反斜杠，所以你最好使用原始字符串来表示它们。模式元素(如 r’/t’，等价于’//t’)匹配相应的特殊字符。<br>7.下表列出了正则表达式模式语法中的特殊元素。如果你使用模式的同时提供了可选的标志参数，某些模式元素的含义会改变。</p>
+<pre><code>.    匹配除 &quot;\n&quot; 之外的任何单个字符。如果要匹配包括 &apos;\n&apos; 在内的任何字符，可使用像 &apos;[.\n]&apos;或者&apos;[\s\S]&apos; 的模式。
+\d    匹配一个数字字符。等价于 [0-9]。
+\D     匹配一个非数字字符。等价于 [^0-9]。
+\s    匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。
+\S     匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。
+\w    匹配字母数字。等价于&apos;[A-Za-z0-9_]&apos;。
+\W    匹配任何非字母数字。等价于 &apos;[^A-Za-z0-9_]&apos;。
+\b    匹配一个单词边界，也就是指单词和空格间的位置。例如， &apos;er\b&apos; 可以匹配&quot;never&quot; 中的 &apos;er&apos;，但不能匹配 &quot;verb&quot; 中的 &apos;er&apos;。
+\B    匹配非单词边界。&apos;er\B&apos; 能匹配 &quot;verb&quot; 中的 &apos;er&apos;，但不能匹配 &quot;never&quot; 中的 &apos;er&apos;。
 ^    匹配字符串的开头
 $    匹配字符串的末尾。
-[...]    用来表示一组字符,单独列出：[amk] 匹配 <span class="string">'a'</span>，<span class="string">'m'</span>或<span class="string">'k'</span>
+[...]    用来表示一组字符,单独列出：[amk] 匹配 &apos;a&apos;，&apos;m&apos;或&apos;k&apos;
 [^...]    不在[]中的字符：[^abc] 匹配除了a,b,c之外的字符。
-re*    匹配<span class="number">0</span>个或多个的表达式。
-re+    匹配<span class="number">1</span>个或多个的表达式。
-re?    匹配<span class="number">0</span>个或<span class="number">1</span>个由前面的正则表达式定义的片段，非贪婪方式
+re*    匹配0个或多个的表达式。
+re+    匹配1个或多个的表达式。
+re?    匹配0个或1个由前面的正则表达式定义的片段，非贪婪方式
 re{ n}    
 re{ n,}    精确匹配n个前面表达式。
 re{ n, m}    匹配 n 到 m 次由前面的正则表达式定义的片段，贪婪方式
 a| b    匹配a或b
 (re)    G匹配括号内的表达式，也表示一个组
 </code></pre><p>一些常用的例子</p>
-<pre><code><span class="string">[Pp]</span>ython     匹配 <span class="string">"Python"</span> 或 <span class="string">"python"</span>
-rub<span class="string">[ye]</span>    匹配 <span class="string">"ruby"</span> 或 <span class="string">"rube"</span>
-<span class="string">[aeiou]</span>    匹配中括号内的任意一个字母
-<span class="string">[0-9]</span>    匹配任何数字。类似于 <span class="string">[0123456789]</span>
-<span class="string">[a-z]</span>    匹配任何小写字母
-<span class="string">[A-Z]</span>    匹配任何大写字母
-<span class="string">[a-zA-Z0-9]</span>    匹配任何字母及数字
-<span class="string">[^aeiou]</span>    除了aeiou字母以外的所有字符
-<span class="string">[^0-9]</span>    匹配除了数字外的字符 
-</code></pre><h3 id="python_re模块">python re模块</h3><p>1.Python 自1.5版本起增加了re 模块，它提供 Perl 风格的正则表达式模式。<br>2.re 模块使 Python 语言拥有全部的正则表达式功能。<br>3.re 模块也提供了与这些方法功能完全一致的函数，这些函数使用一个模式字符串做为它们的第一个参数。</p>
-<h2 id="re-match函数">re.match函数</h2><p>re.match(pattern, string, flags=0) 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none。<br><code style="color: red">pattern</code> 匹配的正则表达式<br><code style="color: red">string</code>    要匹配的字符串。<br><code style="color: red">flags</code>    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</p>
+<pre><code>[Pp]ython     匹配 &quot;Python&quot; 或 &quot;python&quot;
+rub[ye]    匹配 &quot;ruby&quot; 或 &quot;rube&quot;
+[aeiou]    匹配中括号内的任意一个字母
+[0-9]    匹配任何数字。类似于 [0123456789]
+[a-z]    匹配任何小写字母
+[A-Z]    匹配任何大写字母
+[a-zA-Z0-9]    匹配任何字母及数字
+[^aeiou]    除了aeiou字母以外的所有字符
+[^0-9]    匹配除了数字外的字符 
+</code></pre><h3 id="python-re模块"><a href="#python-re模块" class="headerlink" title="python re模块"></a>python re模块</h3><p>1.Python 自1.5版本起增加了re 模块，它提供 Perl 风格的正则表达式模式。<br>2.re 模块使 Python 语言拥有全部的正则表达式功能。<br>3.re 模块也提供了与这些方法功能完全一致的函数，这些函数使用一个模式字符串做为它们的第一个参数。</p>
+<h2 id="re-match函数"><a href="#re-match函数" class="headerlink" title="re.match函数"></a>re.match函数</h2><p>re.match(pattern, string, flags=0) 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none。<br><code style="color: red">pattern</code> 匹配的正则表达式<br><code style="color: red">string</code>    要匹配的字符串。<br><code style="color: red">flags</code>    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</p>
 <p>匹配成功re.match方法返回一个匹配的对象，否则返回None。<br>我们可以使用group(num) 或 groups() 匹配对象函数来获取匹配表达式。<br><code style="color: red">group(num=0)</code>    匹配的整个表达式的字符串，group() 可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组。<br><code style="color: red">groups()</code>    返回一个包含所有小组字符串的元组，从 1 到 所含的小组号。</p>
 <pre><code>&gt;&gt;&gt; import re
-&gt;&gt;&gt; test = re.<span class="function"><span class="title">match</span><span class="params">(<span class="string">'\d{3}'</span>,<span class="string">'123chen'</span>)</span></span>
-&gt;&gt;&gt; test.<span class="function"><span class="title">group</span><span class="params">()</span></span>
-<span class="string">'123'</span>
+&gt;&gt;&gt; test = re.match(&apos;\d{3}&apos;,&apos;123chen&apos;)
+&gt;&gt;&gt; test.group()
+&apos;123&apos;
 &gt;&gt;&gt; 
-&gt;&gt;&gt; print re.<span class="function"><span class="title">match</span><span class="params">(<span class="string">'www'</span>,<span class="string">'www.baidu.com'</span>)</span></span>
-&lt;_sre<span class="class">.SRE_Match</span> <span class="tag">object</span> at <span class="number">0</span>x0000000002F388B8&gt;
-&gt;&gt;&gt; print re.<span class="function"><span class="title">match</span><span class="params">(<span class="string">'www'</span>,<span class="string">'www.baidu.com'</span>)</span></span>.<span class="function"><span class="title">group</span><span class="params">()</span></span>
+&gt;&gt;&gt; print re.match(&apos;www&apos;,&apos;www.baidu.com&apos;)
+&lt;_sre.SRE_Match object at 0x0000000002F388B8&gt;
+&gt;&gt;&gt; print re.match(&apos;www&apos;,&apos;www.baidu.com&apos;).group()
 www
-&gt;&gt;&gt; print re.<span class="function"><span class="title">match</span><span class="params">(<span class="string">'com'</span>,<span class="string">'www.baidu.com'</span>)</span></span>
+&gt;&gt;&gt; print re.match(&apos;com&apos;,&apos;www.baidu.com&apos;)
 None
-&gt;&gt;&gt; print re.<span class="function"><span class="title">match</span><span class="params">(<span class="string">'com'</span>,<span class="string">'www.baidu.com'</span>)</span></span>.<span class="function"><span class="title">group</span><span class="params">()</span></span>
+&gt;&gt;&gt; print re.match(&apos;com&apos;,&apos;www.baidu.com&apos;).group()
 
 Traceback (most recent call last):
-  File <span class="string">"&lt;pyshell#24&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;
-    print re.<span class="function"><span class="title">match</span><span class="params">(<span class="string">'com'</span>,<span class="string">'www.baidu.com'</span>)</span></span>.<span class="function"><span class="title">group</span><span class="params">()</span></span>
-AttributeError: <span class="string">'NoneType'</span> <span class="tag">object</span> has no attribute <span class="string">'group'</span>
+  File &quot;&lt;pyshell#24&gt;&quot;, line 1, in &lt;module&gt;
+    print re.match(&apos;com&apos;,&apos;www.baidu.com&apos;).group()
+AttributeError: &apos;NoneType&apos; object has no attribute &apos;group&apos;
 &gt;&gt;&gt; 
-</code></pre><h2 id="re-search函数">re.search函数</h2><p>re.search(pattern, string, flags=0) 扫描整个字符串并返回第一个成功的匹配。<br><code style="color: red">pattern</code>    匹配的正则表达式<br><code style="color: red">string</code>    要匹配的字符串。<br><code style="color: red">flags</code>    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</p>
+</code></pre><h2 id="re-search函数"><a href="#re-search函数" class="headerlink" title="re.search函数"></a>re.search函数</h2><p>re.search(pattern, string, flags=0) 扫描整个字符串并返回第一个成功的匹配。<br><code style="color: red">pattern</code>    匹配的正则表达式<br><code style="color: red">string</code>    要匹配的字符串。<br><code style="color: red">flags</code>    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</p>
 <p>匹配成功re.search方法返回一个匹配的对象，否则返回None。<br>我们可以使用group(num) 或 groups() 匹配对象函数来获取匹配表达式。<br><code style="color: red">group(num=0)</code>    匹配的整个表达式的字符串，group() 可以一次输入多个组号，在这种情况下它将返回一个包含那些组所对应值的元组。<br><code style="color: red">groups()</code>    返回一个包含所有小组字符串的元组，从 1 到 所含的小组号。</p>
-<h2 id="re-match与re-search的区别">re.match与re.search的区别</h2><p>re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配。</p>
-<h2 id="re-findall函数">re.findall函数</h2><p>re.findall(pattern, string, flags=0) 匹配整个字符串，并返回一个列表<br><code style="color: red">pattern</code>    匹配的正则表达式<br><code style="color: red">string</code>    要匹配的字符串。<br><code style="color: red">flags</code>    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。<br>findall函数没有group()方法，因为他返回的是个列表</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; import re
-<span class="prompt">&gt;&gt;</span>&gt; t = <span class="string">'Hello Python I Love you'</span>
-<span class="prompt">&gt;&gt;</span>&gt; test = re.findall(<span class="string">'\S+'</span>,t)
-<span class="prompt">&gt;&gt;</span>&gt; test
-[<span class="string">'Hello'</span>, <span class="string">'Python'</span>, <span class="string">'I'</span>, <span class="string">'Love'</span>, <span class="string">'you'</span>]
-<span class="prompt">&gt;&gt;</span>&gt; type(test)
-&lt;type <span class="string">'list'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><h2 id="re-sub函数">re.sub函数</h2><p>re.sub(pattern, repl, string, max=0)<br><code style="color: red">pattern</code> 匹配的正则表达式<br><code style="color: red">repl</code> 要替换的字符串<br><code style="color: red">string</code> 要匹配的字符串<br><code style="color: red">max=0</code> 替换的次数，默认为0<br>返回的字符串是在字符串中用 RE 最左边不重复的匹配来替换。如果模式没有发现，字符将被没有改变地返回。<br>可选参数 count 是模式匹配后替换的最大次数；count 必须是非负整数。缺省值是 0 表示替换所有的匹配。</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">import</span> re
-<span class="prompt">&gt;&gt;&gt; </span>phone = <span class="string">'2015-999-888# this is phone number'</span>
-<span class="prompt">&gt;&gt;&gt; </span>num1 = re.sub(<span class="string">r'#.*$'</span>,<span class="string">""</span>,phone)
-<span class="prompt">&gt;&gt;&gt; </span>num1
-<span class="string">'2015-999-888'</span>
-<span class="prompt">&gt;&gt;&gt; </span>num2 = re.sub(<span class="string">r'\D'</span>,<span class="string">""</span>,phone)
-<span class="prompt">&gt;&gt;&gt; </span>num2
-<span class="string">'2015999888'</span>
-<span class="prompt">&gt;&gt;&gt; </span>
-</code></pre><h3 id="示例1：匹配一个手机号">示例1：匹配一个手机号</h3><pre><code><span class="comment"># test.py</span>
-<span class="comment"># conding:utf-8</span>
+<h2 id="re-match与re-search的区别"><a href="#re-match与re-search的区别" class="headerlink" title="re.match与re.search的区别"></a>re.match与re.search的区别</h2><p>re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配。</p>
+<h2 id="re-findall函数"><a href="#re-findall函数" class="headerlink" title="re.findall函数"></a>re.findall函数</h2><p>re.findall(pattern, string, flags=0) 匹配整个字符串，并返回一个列表<br><code style="color: red">pattern</code>    匹配的正则表达式<br><code style="color: red">string</code>    要匹配的字符串。<br><code style="color: red">flags</code>    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。<br>findall函数没有group()方法，因为他返回的是个列表</p>
+<pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; t = &apos;Hello Python I Love you&apos;
+&gt;&gt;&gt; test = re.findall(&apos;\S+&apos;,t)
+&gt;&gt;&gt; test
+[&apos;Hello&apos;, &apos;Python&apos;, &apos;I&apos;, &apos;Love&apos;, &apos;you&apos;]
+&gt;&gt;&gt; type(test)
+&lt;type &apos;list&apos;&gt;
+&gt;&gt;&gt; 
+</code></pre><h2 id="re-sub函数"><a href="#re-sub函数" class="headerlink" title="re.sub函数"></a>re.sub函数</h2><p>re.sub(pattern, repl, string, max=0)<br><code style="color: red">pattern</code> 匹配的正则表达式<br><code style="color: red">repl</code> 要替换的字符串<br><code style="color: red">string</code> 要匹配的字符串<br><code style="color: red">max=0</code> 替换的次数，默认为0<br>返回的字符串是在字符串中用 RE 最左边不重复的匹配来替换。如果模式没有发现，字符将被没有改变地返回。<br>可选参数 count 是模式匹配后替换的最大次数；count 必须是非负整数。缺省值是 0 表示替换所有的匹配。</p>
+<pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; phone = &apos;2015-999-888# this is phone number&apos;
+&gt;&gt;&gt; num1 = re.sub(r&apos;#.*$&apos;,&quot;&quot;,phone)
+&gt;&gt;&gt; num1
+&apos;2015-999-888&apos;
+&gt;&gt;&gt; num2 = re.sub(r&apos;\D&apos;,&quot;&quot;,phone)
+&gt;&gt;&gt; num2
+&apos;2015999888&apos;
+&gt;&gt;&gt; 
+</code></pre><h3 id="示例1：匹配一个手机号"><a href="#示例1：匹配一个手机号" class="headerlink" title="示例1：匹配一个手机号"></a>示例1：匹配一个手机号</h3><pre><code># test.py
+# conding:utf-8
 import re
-<span class="keyword">while</span> True:
-    phone = raw_input(<span class="string">'please input a phone:'</span>)
-    <span class="built_in">test</span> = re.match(<span class="string">'^1[358]\d{9}$'</span>, phone)
-    <span class="keyword">if</span> <span class="built_in">test</span>:
-        <span class="built_in">print</span> <span class="string">'匹配正确，匹配到的是：%s'</span> % test.group()
-    <span class="keyword">else</span>:
-        <span class="built_in">print</span> <span class="string">'匹配错误，您输入的是：%s'</span> % phone
-</code></pre><h3 id="示例2：匹配一个时间">示例2：匹配一个时间</h3><pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">import</span> re
-<span class="prompt">&gt;&gt;&gt; </span>t = <span class="string">'19:45:32'</span>
-<span class="prompt">&gt;&gt;&gt; </span>reg = re.compile(<span class="string">r'^(0[0-9]|1[0-9]|2[0-3]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$'</span>)
-<span class="prompt">&gt;&gt;&gt; </span>time = reg.match(t).group()
-<span class="prompt">&gt;&gt;&gt; </span>time
-<span class="string">'19:45:32'</span>
-<span class="prompt">&gt;&gt;&gt; </span>
+while True:
+    phone = raw_input(&apos;please input a phone:&apos;)
+    test = re.match(&apos;^1[358]\d{9}$&apos;, phone)
+    if test:
+        print &apos;匹配正确，匹配到的是：%s&apos; % test.group()
+    else:
+        print &apos;匹配错误，您输入的是：%s&apos; % phone
+</code></pre><h3 id="示例2：匹配一个时间"><a href="#示例2：匹配一个时间" class="headerlink" title="示例2：匹配一个时间"></a>示例2：匹配一个时间</h3><pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; t = &apos;19:45:32&apos;
+&gt;&gt;&gt; reg = re.compile(r&apos;^(0[0-9]|1[0-9]|2[0-3]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$&apos;)
+&gt;&gt;&gt; time = reg.match(t).group()
+&gt;&gt;&gt; time
+&apos;19:45:32&apos;
+&gt;&gt;&gt; 
 </code></pre><p>试一试：尝试去匹配一个QQ邮箱<br>        someone@qq.com</p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">import</span> re
-<span class="prompt">&gt;&gt;&gt; </span>reg_qqmail_list = [<span class="string">'789456123@qq.com'</span>,<span class="string">'65464@qq.com'</span>,<span class="string">'1231545@QQ.com'</span>,<span class="string">'qqmail.com'</span>,<span class="string">'www.baidu.com'</span>]
-<span class="prompt">&gt;&gt;&gt; </span>reg = re.compile(<span class="string">r'[0-9a-zA-Z]+@(qq|QQ).com'</span>)
-<span class="prompt">&gt;&gt;&gt; </span>qqmail = [x <span class="keyword">for</span> x <span class="keyword">in</span> reg_qqmail_list <span class="keyword">if</span> reg.match(x)]
-<span class="prompt">&gt;&gt;&gt; </span>qqmail
-[<span class="string">'789456123@qq.com'</span>, <span class="string">'65464@qq.com'</span>, <span class="string">'1231545@QQ.com'</span>]
-<span class="prompt">&gt;&gt;&gt; </span>
+<pre><code>&gt;&gt;&gt; import re
+&gt;&gt;&gt; reg_qqmail_list = [&apos;789456123@qq.com&apos;,&apos;65464@qq.com&apos;,&apos;1231545@QQ.com&apos;,&apos;qqmail.com&apos;,&apos;www.baidu.com&apos;]
+&gt;&gt;&gt; reg = re.compile(r&apos;[0-9a-zA-Z]+@(qq|QQ).com&apos;)
+&gt;&gt;&gt; qqmail = [x for x in reg_qqmail_list if reg.match(x)]
+&gt;&gt;&gt; qqmail
+[&apos;789456123@qq.com&apos;, &apos;65464@qq.com&apos;, &apos;1231545@QQ.com&apos;]
+&gt;&gt;&gt; 
 </code></pre><p>扩展：<br>pyquery<br>beautiful soup<br>xpath<br>lxml</p>
 </span>
       
@@ -633,7 +633,7 @@ import re
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式模式"><span class="nav-number">2.</span> <span class="nav-text">正则表达式模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python_re模块"><span class="nav-number">3.</span> <span class="nav-text">python re模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-match函数"><span class="nav-number"></span> <span class="nav-text">re.match函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-search函数"><span class="nav-number"></span> <span class="nav-text">re.search函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-match与re-search的区别"><span class="nav-number"></span> <span class="nav-text">re.match与re.search的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-findall函数"><span class="nav-number"></span> <span class="nav-text">re.findall函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-sub函数"><span class="nav-number"></span> <span class="nav-text">re.sub函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例1：匹配一个手机号"><span class="nav-number">1.</span> <span class="nav-text">示例1：匹配一个手机号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例2：匹配一个时间"><span class="nav-number">2.</span> <span class="nav-text">示例2：匹配一个时间</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式模式"><span class="nav-number">2.</span> <span class="nav-text">正则表达式模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-re模块"><span class="nav-number">3.</span> <span class="nav-text">python re模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-match函数"><span class="nav-number"></span> <span class="nav-text">re.match函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-search函数"><span class="nav-number"></span> <span class="nav-text">re.search函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-match与re-search的区别"><span class="nav-number"></span> <span class="nav-text">re.match与re.search的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-findall函数"><span class="nav-number"></span> <span class="nav-text">re.findall函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re-sub函数"><span class="nav-number"></span> <span class="nav-text">re.sub函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例1：匹配一个手机号"><span class="nav-number">1.</span> <span class="nav-text">示例1：匹配一个手机号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例2：匹配一个时间"><span class="nav-number">2.</span> <span class="nav-text">示例2：匹配一个时间</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -340,7 +340,7 @@ first_name varchar(30)   名字（外国人设计的框">
 
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/305368-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<h3 id="django自带的user表的所有字段">django自带的user表的所有字段</h3><ol>
+<h3 id="django自带的user表的所有字段"><a href="#django自带的user表的所有字段" class="headerlink" title="django自带的user表的所有字段"></a>django自带的user表的所有字段</h3><ol>
 <li><code style="color:red">id</code> <code style="color:green">int(11)</code>    用户id</li>
 <li><code style="color:red">password</code> <code style="color:green">varchar(128)</code>    用户密码</li>
 <li><code style="color:red">last_login</code> <code style="color:green">datetime</code>    最后登录的日期时间</li>
@@ -354,204 +354,204 @@ first_name varchar(30)   名字（外国人设计的框">
 <li><code style="color:red">date_joined</code> <code style="color:green">datetime</code>   加入日期</li>
 </ol>
 <p>python manage.py shell 进入django的终端:</p>
-<pre><code>&gt;&gt;&gt; from django<span class="class">.contrib</span><span class="class">.auth</span><span class="class">.models</span> import User
-&gt;&gt;&gt; user = User<span class="class">.objects</span><span class="class">.create_user</span>(<span class="string">'test'</span>,<span class="string">'924632889@qq.com'</span>,<span class="string">'nihao'</span>)  
-&gt;&gt;&gt; user.last_name=<span class="string">'Lean'</span>
-&gt;&gt;&gt; from django<span class="class">.contrib</span><span class="class">.auth</span><span class="class">.hashers</span> import make_password
-&gt;&gt;&gt; user<span class="class">.password</span> = <span class="function"><span class="title">make_password</span><span class="params">(<span class="string">'123'</span>)</span></span>
-&gt;&gt;&gt; user.<span class="function"><span class="title">save</span><span class="params">()</span></span>
+<pre><code>&gt;&gt;&gt; from django.contrib.auth.models import User
+&gt;&gt;&gt; user = User.objects.create_user(&apos;test&apos;,&apos;924632889@qq.com&apos;,&apos;nihao&apos;)  
+&gt;&gt;&gt; user.last_name=&apos;Lean&apos;
+&gt;&gt;&gt; from django.contrib.auth.hashers import make_password
+&gt;&gt;&gt; user.password = make_password(&apos;123&apos;)
+&gt;&gt;&gt; user.save()
 </code></pre><p>你就可以在django的<code style="color: red">admin</code>后台可以看到这个新建的用户了，首先你要先登录超级管理员用户，授予你新建的这个用户权限才可以登陆到后台。</p>
-<h3 id="创建超级用户">创建超级用户</h3><pre><code><span class="prompt">&gt;&gt;</span>&gt; python manage.py createsuperuser 
-</code></pre><h3 id="登录注册注销方法一">登录注册注销方法一</h3><p>方法一用的django的<code style="color: red">form</code>类，和django自带的<code style="color: red">User</code>表</p>
-<h2 id="views-py">views.py</h2><pre><code><span class="comment"># coding:utf-8</span>
-<span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt
-<span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render, redirect, HttpResponse
-<span class="keyword">from</span> app.form <span class="keyword">import</span> UserForm, LoginForm
-<span class="keyword">from</span> django.contrib.auth.models <span class="keyword">import</span> User
-<span class="keyword">from</span> django.contrib.auth <span class="keyword">import</span> authenticate, login, logout
-<span class="keyword">from</span> django.contrib <span class="keyword">import</span> auth
+<h3 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h3><pre><code>&gt;&gt;&gt; python manage.py createsuperuser 
+</code></pre><h3 id="登录注册注销方法一"><a href="#登录注册注销方法一" class="headerlink" title="登录注册注销方法一"></a>登录注册注销方法一</h3><p>方法一用的django的<code style="color: red">form</code>类，和django自带的<code style="color: red">User</code>表</p>
+<h2 id="views-py"><a href="#views-py" class="headerlink" title="views.py"></a>views.py</h2><pre><code># coding:utf-8
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect, HttpResponse
+from app.form import UserForm, LoginForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import auth
 
-<span class="comment"># Create your views here.</span>
+# Create your views here.
 
 
-<span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>
-    <span class="keyword">return</span> render(request, <span class="string">'index.html'</span>)
+def index(request):
+    return render(request, &apos;index.html&apos;)
 
-<span class="decorator">@csrf_exempt</span>
-<span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">(request)</span>:</span>
-    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:
+@csrf_exempt
+def register(request):
+    if request.method == &apos;POST&apos;:
         user_form = UserForm(request.POST)
-        <span class="keyword">if</span> user_form.is_valid():
-            username = user_form.cleaned_data[<span class="string">'username'</span>]
-            password = user_form.cleaned_data[<span class="string">'password'</span>]
-            email = user_form.cleaned_data[<span class="string">'email'</span>]
-            <span class="keyword">if</span> User.objects.filter(username=username):
-                <span class="keyword">return</span> HttpResponse(<span class="string">'&lt;h1&gt;此用户名已被注册&lt;/h1&gt;'</span>)
-            <span class="keyword">else</span>:
+        if user_form.is_valid():
+            username = user_form.cleaned_data[&apos;username&apos;]
+            password = user_form.cleaned_data[&apos;password&apos;]
+            email = user_form.cleaned_data[&apos;email&apos;]
+            if User.objects.filter(username=username):
+                return HttpResponse(&apos;&lt;h1&gt;此用户名已被注册&lt;/h1&gt;&apos;)
+            else:
                 user = User.objects.create_user(username, email, password)
-                user.is_superuser = <span class="keyword">True</span>
-                user.is_staff = <span class="keyword">True</span>
+                user.is_superuser = True
+                user.is_staff = True
                 user.save()
                 user = authenticate(username=username, password=password)
                 auth.login(request, user)
-                <span class="keyword">return</span> render(request, <span class="string">'index.html'</span>)
-        <span class="keyword">else</span>:
-            <span class="keyword">return</span> render(request, <span class="string">'failure.html'</span>, {<span class="string">'reason'</span>: user_form.errors})
-    <span class="keyword">else</span>:
+                return render(request, &apos;index.html&apos;)
+        else:
+            return render(request, &apos;failure.html&apos;, {&apos;reason&apos;: user_form.errors})
+    else:
         user_form = UserForm()
-    <span class="keyword">return</span> render(request, <span class="string">'register.html'</span>, {<span class="string">'form'</span>: user_form})
+    return render(request, &apos;register.html&apos;, {&apos;form&apos;: user_form})
 
 
-<span class="decorator">@csrf_exempt</span>
-<span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(request)</span>:</span>
+@csrf_exempt
+def login(request):
     form = LoginForm()
-    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:
+    if request.method == &apos;POST&apos;:
         login_form = LoginForm(request.POST)
-        <span class="keyword">if</span> login_form.is_valid():
-            username = login_form.cleaned_data[<span class="string">'username'</span>]
-            password = login_form.cleaned_data[<span class="string">'password'</span>]
+        if login_form.is_valid():
+            username = login_form.cleaned_data[&apos;username&apos;]
+            password = login_form.cleaned_data[&apos;password&apos;]
             user = authenticate(username=username, password=password)
-            <span class="keyword">if</span> User.objects.filter(username=username):
-                <span class="keyword">if</span> user <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:
+            if User.objects.filter(username=username):
+                if user is not None:
                     auth.login(request, user)
-                    response = render(request, <span class="string">'index.html'</span>, {<span class="string">'form'</span>: login_form})
-                    <span class="comment"># 将username写入浏览器cookie,失效时间为3600</span>
-                    response.set_cookie(<span class="string">'username'</span>, username, <span class="number">3600</span>)
-                    <span class="keyword">return</span> response
-            <span class="keyword">else</span>:
-                <span class="comment"># 比较失败，还在login</span>
-                <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, {<span class="string">'form'</span>: form})
-        <span class="keyword">else</span>:
-            <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, {<span class="string">'form'</span>: form})
-    <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, {<span class="string">'form'</span>: form})
+                    response = render(request, &apos;index.html&apos;, {&apos;form&apos;: login_form})
+                    # 将username写入浏览器cookie,失效时间为3600
+                    response.set_cookie(&apos;username&apos;, username, 3600)
+                    return response
+            else:
+                # 比较失败，还在login
+                return render(request, &apos;login.html&apos;, {&apos;form&apos;: form})
+        else:
+            return render(request, &apos;login.html&apos;, {&apos;form&apos;: form})
+    return render(request, &apos;login.html&apos;, {&apos;form&apos;: form})
 
 
-<span class="function"><span class="keyword">def</span> <span class="title">logout_view</span><span class="params">(request)</span>:</span>
+def logout_view(request):
     auth.logout(request)
-    <span class="keyword">return</span> render(request, <span class="string">'index.html'</span>, locals())
-</code></pre><h2 id="form-py">form.py</h2><pre><code>from django import forms
+    return render(request, &apos;index.html&apos;, locals())
+</code></pre><h2 id="form-py"><a href="#form-py" class="headerlink" title="form.py"></a>form.py</h2><pre><code>from django import forms
 
 
-class <span class="function"><span class="title">UserForm</span><span class="params">(forms.Form)</span></span>:
-    username = forms.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">50</span>, widget=forms.TextInput()</span></span>)
-    email = forms.<span class="function"><span class="title">EmailField</span><span class="params">(max_length=<span class="number">50</span>, widget=forms.TextInput()</span></span>)
-    password = forms.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">50</span>, widget=forms.PasswordInput()</span></span>)
+class UserForm(forms.Form):
+    username = forms.CharField(max_length=50, widget=forms.TextInput())
+    email = forms.EmailField(max_length=50, widget=forms.TextInput())
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput())
 
 
-class <span class="function"><span class="title">LoginForm</span><span class="params">(forms.Form)</span></span>:
-    username = forms.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">50</span>, widget=forms.TextInput()</span></span>)
-    password = forms.<span class="function"><span class="title">CharField</span><span class="params">(max_length=<span class="number">50</span>, widget=forms.PasswordInput()</span></span>)
-</code></pre><h2 id="urls-py">urls.py</h2><pre><code><span class="keyword">from</span> app.views <span class="keyword">import</span> *
-<span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url
-<span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=50, widget=forms.TextInput())
+    password = forms.CharField(max_length=50, widget=forms.PasswordInput())
+</code></pre><h2 id="urls-py"><a href="#urls-py" class="headerlink" title="urls.py"></a>urls.py</h2><pre><code>from app.views import *
+from django.conf.urls import include, url
+from django.contrib import admin
 
 
 urlpatterns = [
-    url(<span class="string">r'^admin/'</span>, include(admin.site.urls)),
-    url(<span class="string">r'^$'</span>, index),
-    url(<span class="string">r'^register$'</span>, register),
-    url(<span class="string">r'^login$'</span>, login),
-    url(<span class="string">r'^logout$'</span>, logout_view)
+    url(r&apos;^admin/&apos;, include(admin.site.urls)),
+    url(r&apos;^$&apos;, index),
+    url(r&apos;^register$&apos;, register),
+    url(r&apos;^login$&apos;, login),
+    url(r&apos;^logout$&apos;, logout_view)
 ]
-</code></pre><h2 id="index-html">index.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_index.jpg" alt=""></p>
-<h2 id="login-html">login.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_login.jpg" alt=""></p>
-<h2 id="failure-html">failure.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_failure.jpg" alt=""></p>
-<h2 id="register-html">register.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_register.jpg" alt=""></p>
-<h3 id="登录注册注销方法二">登录注册注销方法二</h3><p>方法二是用<code style="color: red">models.py</code> 建立了<code style="color: red">User</code>表，以<code style="color: red">request</code>请求的方式做登录，后端视图层对登录密码进行加密，登录的操作是对<code style="color: red">session</code>进行操作。</p>
-<h2 id="views-py-1">views.py</h2><pre><code><span class="comment"># coding:utf-8</span>
-<span class="keyword">from</span> django.views.decorators.csrf <span class="keyword">import</span> csrf_exempt
-<span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render, redirect, HttpResponse
-<span class="keyword">from</span> models <span class="keyword">import</span> User
-<span class="keyword">import</span> hashlib
-<span class="comment"># from django.contrib.auth import authenticate, login, logout</span>
+</code></pre><h2 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_index.jpg" alt=""></p>
+<h2 id="login-html"><a href="#login-html" class="headerlink" title="login.html"></a>login.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_login.jpg" alt=""></p>
+<h2 id="failure-html"><a href="#failure-html" class="headerlink" title="failure.html"></a>failure.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_failure.jpg" alt=""></p>
+<h2 id="register-html"><a href="#register-html" class="headerlink" title="register.html"></a>register.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_register.jpg" alt=""></p>
+<h3 id="登录注册注销方法二"><a href="#登录注册注销方法二" class="headerlink" title="登录注册注销方法二"></a>登录注册注销方法二</h3><p>方法二是用<code style="color: red">models.py</code> 建立了<code style="color: red">User</code>表，以<code style="color: red">request</code>请求的方式做登录，后端视图层对登录密码进行加密，登录的操作是对<code style="color: red">session</code>进行操作。</p>
+<h2 id="views-py-1"><a href="#views-py-1" class="headerlink" title="views.py"></a>views.py</h2><pre><code># coding:utf-8
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect, HttpResponse
+from models import User
+import hashlib
+# from django.contrib.auth import authenticate, login, logout
 
 
-<span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>
-    <span class="keyword">return</span> render(request, <span class="string">'index.html'</span>)
+def index(request):
+    return render(request, &apos;index.html&apos;)
 
 
-<span class="function"><span class="keyword">def</span> <span class="title">register_view</span><span class="params">(request)</span>:</span>
-    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:
-        username = request.POST[<span class="string">'username'</span>]
-        <span class="keyword">if</span> User.objects.filter(username=username):
-            <span class="keyword">return</span> HttpResponse(<span class="string">'&lt;h1&gt;用户已存在!&lt;/h1&gt;'</span>)
-        <span class="keyword">else</span>:
-            password = add_password(request.POST[<span class="string">'password'</span>])
-            email = request.POST[<span class="string">'email'</span>]
-            phone = request.POST[<span class="string">'phone'</span>]
+def register_view(request):
+    if request.method == &apos;POST&apos;:
+        username = request.POST[&apos;username&apos;]
+        if User.objects.filter(username=username):
+            return HttpResponse(&apos;&lt;h1&gt;用户已存在!&lt;/h1&gt;&apos;)
+        else:
+            password = add_password(request.POST[&apos;password&apos;])
+            email = request.POST[&apos;email&apos;]
+            phone = request.POST[&apos;phone&apos;]
             user = User.objects.create(
                 username=username, password=password, email=email, phone=phone)
-            request.session[<span class="string">"username"</span>] = user.username
-            <span class="keyword">return</span> redirect(<span class="string">'/'</span>)
+            request.session[&quot;username&quot;] = user.username
+            return redirect(&apos;/&apos;)
 
-    <span class="keyword">return</span> render(request, <span class="string">'register.html'</span>, locals())
+    return render(request, &apos;register.html&apos;, locals())
 
 
-<span class="decorator">@csrf_exempt</span>
-<span class="function"><span class="keyword">def</span> <span class="title">login_view</span><span class="params">(request)</span>:</span>
-    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:
-        username = request.POST[<span class="string">'username'</span>]
-        password = add_password(request.POST[<span class="string">'password'</span>])
+@csrf_exempt
+def login_view(request):
+    if request.method == &apos;POST&apos;:
+        username = request.POST[&apos;username&apos;]
+        password = add_password(request.POST[&apos;password&apos;])
         user_objs = User.objects.filter(username=username)
-        <span class="keyword">if</span> len(user_objs) == <span class="number">1</span>:
-            user = user_objs[<span class="number">0</span>]
-            request.session[<span class="string">"username"</span>] = user.username
-            <span class="keyword">return</span> redirect(<span class="string">'/'</span>)
-        <span class="keyword">else</span>:
-            <span class="keyword">return</span> HttpResponse(<span class="string">'&lt;h1&gt;用户不存在或者密码账号输入不正确&lt;/h1&gt;'</span>)
-    <span class="keyword">else</span>:
-        <span class="keyword">return</span> render(request, <span class="string">'login.html'</span>, locals())
-    <span class="keyword">return</span> render(request, <span class="string">'index.html'</span>, locals())
+        if len(user_objs) == 1:
+            user = user_objs[0]
+            request.session[&quot;username&quot;] = user.username
+            return redirect(&apos;/&apos;)
+        else:
+            return HttpResponse(&apos;&lt;h1&gt;用户不存在或者密码账号输入不正确&lt;/h1&gt;&apos;)
+    else:
+        return render(request, &apos;login.html&apos;, locals())
+    return render(request, &apos;index.html&apos;, locals())
 
 
-<span class="function"><span class="keyword">def</span> <span class="title">logout_view</span><span class="params">(request)</span>:</span>
-    <span class="keyword">del</span> request.session
-    <span class="keyword">return</span> render(request, <span class="string">'index.html'</span>, locals())
+def logout_view(request):
+    del request.session
+    return render(request, &apos;index.html&apos;, locals())
 
 
-<span class="function"><span class="keyword">def</span> <span class="title">add_password</span><span class="params">(password)</span>:</span>
+def add_password(password):
     m = hashlib.md5(password).hexdigest()
-    <span class="keyword">return</span> m
-</code></pre><h2 id="urls-py-1">urls.py</h2><pre><code><span class="keyword">from</span> app.views <span class="keyword">import</span> *
-<span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url
-<span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin
+    return m
+</code></pre><h2 id="urls-py-1"><a href="#urls-py-1" class="headerlink" title="urls.py"></a>urls.py</h2><pre><code>from app.views import *
+from django.conf.urls import include, url
+from django.contrib import admin
 
 
 urlpatterns = [
-    url(<span class="string">r'^admin/'</span>, include(admin.site.urls)),
-    url(<span class="string">r'^$'</span>, index),
-    url(<span class="string">r'^register$'</span>, register_view),
-    url(<span class="string">r'^login$'</span>, login_view),
-    url(<span class="string">r'^logout$'</span>, logout_view)
+    url(r&apos;^admin/&apos;, include(admin.site.urls)),
+    url(r&apos;^$&apos;, index),
+    url(r&apos;^register$&apos;, register_view),
+    url(r&apos;^login$&apos;, login_view),
+    url(r&apos;^logout$&apos;, logout_view)
 ]
-</code></pre><h2 id="models-py">models.py</h2><pre><code><span class="comment"># coding:utf-8</span>
-<span class="keyword">from</span> django.db <span class="keyword">import</span> models
-<span class="comment"># Create your models here.</span>
+</code></pre><h2 id="models-py"><a href="#models-py" class="headerlink" title="models.py"></a>models.py</h2><pre><code># coding:utf-8
+from django.db import models
+# Create your models here.
 
 
-<span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(models.Model)</span>:</span>
-    username = models.CharField(unique=<span class="keyword">True</span>, max_length=<span class="number">50</span>)
-    password = models.CharField(max_length=<span class="number">30</span>)
+class User(models.Model):
+    username = models.CharField(unique=True, max_length=50)
+    password = models.CharField(max_length=30)
     email = models.EmailField()
-    datetime = models.DateTimeField(auto_now_add=<span class="keyword">True</span>)
-    phone = models.CharField(max_length=<span class="number">30</span>)
-    image = models.ImageField(null=<span class="keyword">False</span>, blank=<span class="keyword">True</span>)
+    datetime = models.DateTimeField(auto_now_add=True)
+    phone = models.CharField(max_length=30)
+    image = models.ImageField(null=False, blank=True)
 
-    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>
-        verbose_name = <span class="string">'用户'</span>
+    class Meta:
+        verbose_name = &apos;用户&apos;
         verbose_name_plural = verbose_name
-        ordering = [<span class="string">'-id'</span>]
+        ordering = [&apos;-id&apos;]
 
-    <span class="function"><span class="keyword">def</span> <span class="title">__unicode__</span><span class="params">(self)</span>:</span>
-        <span class="keyword">return</span> self.username
-</code></pre><h2 id="admin-py">admin.py</h2><pre><code><span class="built_in">from</span> django.contrib import admin
-<span class="built_in">from</span> models import <span class="built_in">User</span>
-<span class="comment"># Register your models here.</span>
-admin.site.register(<span class="built_ins">User</span>)
-</code></pre><h2 id="index-html-1">index.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_index2.jpg" alt=""></p>
-<h2 id="login-html-1">login.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_login2.jpg" alt=""></p>
-<h2 id="register-html-1">register.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_register2.jpg" alt=""></p>
-<h3 id="登录注册注销方法三">登录注册注销方法三</h3><p>第三种方式其实跟第二种差不多，在<code style="color: red">models.py</code>建立User表，去继承django自带的<code style="color: red">User</code>表，用再自己加自己想要加的字段，等于是用户名密码的加密走django自带的，登录注册注销也用django自带的方法，一般不大的项目有这种方式的比较多，大项目一般用第二种的比较多。擦，终于写完了！</p>
+    def __unicode__(self):
+        return self.username
+</code></pre><h2 id="admin-py"><a href="#admin-py" class="headerlink" title="admin.py"></a>admin.py</h2><pre><code>from django.contrib import admin
+from models import User
+# Register your models here.
+admin.site.register(User)
+</code></pre><h2 id="index-html-1"><a href="#index-html-1" class="headerlink" title="index.html"></a>index.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_index2.jpg" alt=""></p>
+<h2 id="login-html-1"><a href="#login-html-1" class="headerlink" title="login.html"></a>login.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_login2.jpg" alt=""></p>
+<h2 id="register-html-1"><a href="#register-html-1" class="headerlink" title="register.html"></a>register.html</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/django_login_resiter_logout_register2.jpg" alt=""></p>
+<h3 id="登录注册注销方法三"><a href="#登录注册注销方法三" class="headerlink" title="登录注册注销方法三"></a>登录注册注销方法三</h3><p>第三种方式其实跟第二种差不多，在<code style="color: red">models.py</code>建立User表，去继承django自带的<code style="color: red">User</code>表，用再自己加自己想要加的字段，等于是用户名密码的加密走django自带的，登录注册注销也用django自带的方法，一般不大的项目有这种方式的比较多，大项目一般用第二种的比较多。擦，终于写完了！</p>
 </span>
       
     </div>

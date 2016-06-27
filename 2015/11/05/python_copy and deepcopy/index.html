@@ -57,24 +57,24 @@
 
 <meta name="description" content="python程序员貌似面试都会有这样一道题，就是问你深拷贝和浅拷贝，那就来总结一下
 &amp;gt;&amp;gt;&amp;gt; import copy 
-&amp;gt;&amp;gt;&amp;gt; a = [1,2,3,4,5,6,[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]]    #列表里边有列表
-&amp;gt;&amp;gt;&amp;gt; b = a    #这是赋值的操作，id(b)=id(a)是true，说明在同一个内存的位置，b是对a列表的又一个引用，所以">
+&amp;gt;&amp;gt;&amp;gt; a = [1,2,3,4,5,6,[&amp;apos;a&amp;apos;,&amp;apos;b&amp;apos;,&amp;apos;c&amp;apos;]]    #列表里边有列表
+&amp;gt;&amp;gt;&amp;gt; b = a    #这是赋值的操作，id(b)=id(a)是tr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python的深拷贝和浅拷贝">
 <meta property="og:url" content="http://python-ning.github.io/2015/11/05/python_copy and deepcopy/index.html">
 <meta property="og:site_name" content="python ning's blog">
 <meta property="og:description" content="python程序员貌似面试都会有这样一道题，就是问你深拷贝和浅拷贝，那就来总结一下
 &amp;gt;&amp;gt;&amp;gt; import copy 
-&amp;gt;&amp;gt;&amp;gt; a = [1,2,3,4,5,6,[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]]    #列表里边有列表
-&amp;gt;&amp;gt;&amp;gt; b = a    #这是赋值的操作，id(b)=id(a)是true，说明在同一个内存的位置，b是对a列表的又一个引用，所以">
+&amp;gt;&amp;gt;&amp;gt; a = [1,2,3,4,5,6,[&amp;apos;a&amp;apos;,&amp;apos;b&amp;apos;,&amp;apos;c&amp;apos;]]    #列表里边有列表
+&amp;gt;&amp;gt;&amp;gt; b = a    #这是赋值的操作，id(b)=id(a)是tr">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/300167-106.jpg">
 <meta property="og:updated_time" content="2015-12-30T22:48:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python的深拷贝和浅拷贝">
 <meta name="twitter:description" content="python程序员貌似面试都会有这样一道题，就是问你深拷贝和浅拷贝，那就来总结一下
 &amp;gt;&amp;gt;&amp;gt; import copy 
-&amp;gt;&amp;gt;&amp;gt; a = [1,2,3,4,5,6,[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]]    #列表里边有列表
-&amp;gt;&amp;gt;&amp;gt; b = a    #这是赋值的操作，id(b)=id(a)是true，说明在同一个内存的位置，b是对a列表的又一个引用，所以">
+&amp;gt;&amp;gt;&amp;gt; a = [1,2,3,4,5,6,[&amp;apos;a&amp;apos;,&amp;apos;b&amp;apos;,&amp;apos;c&amp;apos;]]    #列表里边有列表
+&amp;gt;&amp;gt;&amp;gt; b = a    #这是赋值的操作，id(b)=id(a)是tr">
 <meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/300167-106.jpg">
 
 
@@ -325,63 +325,63 @@
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/300167-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>python程序员貌似面试都会有这样一道题，就是问你深拷贝和浅拷贝，那就来总结一下</p>
 <pre><code>&gt;&gt;&gt; import copy 
-&gt;&gt;&gt; <span class="tag">a</span> = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]]    #列表里边有列表
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>    #这是赋值的操作，<span class="function"><span class="title">id</span><span class="params">(b)</span></span>=<span class="function"><span class="title">id</span><span class="params">(a)</span></span>是true，说明在同一个内存的位置，b是对a列表的又一个引用，所以a、b是完全相同的，可以通过<span class="function"><span class="title">id</span><span class="params">(a)</span></span>==<span class="function"><span class="title">id</span><span class="params">(b)</span></span>证明
-&gt;&gt;&gt; c = copy.<span class="function"><span class="title">copy</span><span class="params">(a)</span></span>    #对a进行了浅拷贝并传给c
-&gt;&gt;&gt; d = copy.<span class="function"><span class="title">deepcopy</span><span class="params">(a)</span></span>    #对a进行了深拷贝并传给d
-&gt;&gt;&gt; <span class="tag">a</span>
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]]
-&gt;&gt;&gt; <span class="tag">b</span>
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]]
+&gt;&gt;&gt; a = [1,2,3,4,5,6,[&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]]    #列表里边有列表
+&gt;&gt;&gt; b = a    #这是赋值的操作，id(b)=id(a)是true，说明在同一个内存的位置，b是对a列表的又一个引用，所以a、b是完全相同的，可以通过id(a)==id(b)证明
+&gt;&gt;&gt; c = copy.copy(a)    #对a进行了浅拷贝并传给c
+&gt;&gt;&gt; d = copy.deepcopy(a)    #对a进行了深拷贝并传给d
+&gt;&gt;&gt; a
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]]
+&gt;&gt;&gt; b
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]]
 &gt;&gt;&gt; c
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]]
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]]
 &gt;&gt;&gt; d
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]]
-&gt;&gt;&gt; <span class="tag">a</span>.<span class="function"><span class="title">append</span><span class="params">(<span class="number">5</span>)</span></span>    #对a列表末尾追加一个元素
-&gt;&gt;&gt; <span class="tag">a</span>[<span class="number">6</span>].<span class="function"><span class="title">append</span><span class="params">(<span class="string">'hello'</span>)</span></span>    #对a列表内层的列表追加一个元素
-&gt;&gt;&gt; <span class="tag">a</span>
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'hello'</span>], <span class="number">5</span>]    #a列表的变化很正常，是操作应该得到的结果
-&gt;&gt;&gt; <span class="tag">b</span>
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'hello'</span>], <span class="number">5</span>]    #b是对a列表的又一个引用，所以a、b是完全相同的
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]]
+&gt;&gt;&gt; a.append(5)    #对a列表末尾追加一个元素
+&gt;&gt;&gt; a[6].append(&apos;hello&apos;)    #对a列表内层的列表追加一个元素
+&gt;&gt;&gt; a
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;hello&apos;], 5]    #a列表的变化很正常，是操作应该得到的结果
+&gt;&gt;&gt; b
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;hello&apos;], 5]    #b是对a列表的又一个引用，所以a、b是完全相同的
 &gt;&gt;&gt; c
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'hello'</span>]]    #c列表的对a列表进行了浅拷贝得到的，copy.copy（浅拷贝)只拷贝父对象，不会拷贝对象的内部的子对象
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;hello&apos;]]    #c列表的对a列表进行了浅拷贝得到的，copy.copy（浅拷贝)只拷贝父对象，不会拷贝对象的内部的子对象
 &gt;&gt;&gt; d
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]]    #d列表是a列表进行了深拷贝，copy.deepcopy（深拷贝）拷贝对象及其子对象
-<span class="function"><span class="title">id</span><span class="params">(a)</span></span> = <span class="function"><span class="title">id</span><span class="params">(b)</span></span> != <span class="function"><span class="title">id</span><span class="params">(c)</span></span> != <span class="function"><span class="title">id</span><span class="params">(d)</span></span>
+[1, 2, 3, 4, 5, 6, [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]]    #d列表是a列表进行了深拷贝，copy.deepcopy（深拷贝）拷贝对象及其子对象
+id(a) = id(b) != id(c) != id(d)
 </code></pre><p>浅拷贝是指拷贝的只是原对象元素的引用，换句话说，浅拷贝产生的对象本身是新的，但是它的内容不是新的，只是对原对象的一个引用</p>
-<pre><code>&gt;&gt;&gt; List1=[[<span class="number">1</span>, <span class="number">2</span>], <span class="number">3</span>, <span class="number">4</span>]
-&gt;&gt;&gt; List2 = aList[:]    <span class="preprocessor">#利用切片完成一次浅拷贝</span>
+<pre><code>&gt;&gt;&gt; List1=[[1, 2], 3, 4]
+&gt;&gt;&gt; List2 = aList[:]    #利用切片完成一次浅拷贝
 &gt;&gt;&gt; id(List1)
-<span class="number">3084416588L</span>
+3084416588L
 &gt;&gt;&gt; id(List2)
-<span class="number">3084418156L</span>
-&gt;&gt;&gt; List1[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">5</span>
+3084418156L
+&gt;&gt;&gt; List1[0][0] = 5
 &gt;&gt;&gt; List1
-[[<span class="number">5</span>, <span class="number">2</span>], <span class="number">3</span>, <span class="number">4</span>]
+[[5, 2], 3, 4]
 &gt;&gt;&gt; List2
-[[<span class="number">5</span>, <span class="number">2</span>], <span class="number">3</span>, <span class="number">4</span>]
+[[5, 2], 3, 4]
 </code></pre><p>可以看到，浅拷贝生产了一个新的对象List2,但是List1的内容确实对List1的引用，所以但改变List1中值的时候，List2的值也跟着变化了。</p>
 <p>但是有点需要特别提醒的，如果对象本身是不可变的，那么浅拷贝时也会产生两个值，见这个例子：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; <span class="constant">List1</span> = [<span class="number">1</span>, <span class="number">2</span>]
-<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">List2</span> = <span class="constant">List1</span>[<span class="symbol">:</span>]
-<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">List2</span>
-[<span class="number">1</span>, <span class="number">2</span>]
-<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">List1</span>
-[<span class="number">1</span>, <span class="number">2</span>]
-<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">List1</span>[<span class="number">1</span>]=<span class="number">111</span>
-<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">List1</span>
-[<span class="number">1</span>, <span class="number">111</span>]
-<span class="prompt">&gt;&gt;</span>&gt; <span class="constant">List2</span>
-[<span class="number">1</span>, <span class="number">2</span>]
+<pre><code>&gt;&gt;&gt; List1 = [1, 2]
+&gt;&gt;&gt; List2 = List1[:]
+&gt;&gt;&gt; List2
+[1, 2]
+&gt;&gt;&gt; List1
+[1, 2]
+&gt;&gt;&gt; List1[1]=111
+&gt;&gt;&gt; List1
+[1, 111]
+&gt;&gt;&gt; List2
+[1, 2]
 </code></pre><p>为什么List2的第二个元素没有变成111呢？因为数字在python中是不可变类型！！</p>
 <p>这个顺便回顾下Python标准类型的分类：<br>可变类型： 列表，字典<br>不可变类型：数字，字符串，元组</p>
 <p>对象赋值实际上是简单的对象引用</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = <span class="number">1</span>
-&gt;&gt;&gt; <span class="function"><span class="title">id</span><span class="params">(a)</span></span>
-<span class="number">135720760</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="tag">a</span>
-&gt;&gt;&gt; <span class="function"><span class="title">id</span><span class="params">(b)</span></span>
-<span class="number">135720760</span>
+<pre><code>&gt;&gt;&gt; a = 1
+&gt;&gt;&gt; id(a)
+135720760
+&gt;&gt;&gt; b = a
+&gt;&gt;&gt; id(b)
+135720760
 </code></pre><p>a和b完全是一回事。</p>
 </span>
       

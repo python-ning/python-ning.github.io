@@ -326,111 +326,111 @@ class Singleton(type):
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/304899-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
 <p>单例模式：保证一个类仅有一个实例，并提供一个访问他的全局访问点。<br>实现某个类只有一个实例的途径：<br>1，让一个全局变量使得一个对象被访问，但是他不能防止外部实例化多个对象。<br>2，让类自身保存他的唯一实例，这个类可以保证没有其他实例可以被创建。</p>
 <p>首先，方法一：</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span><span class="params">(type)</span>:</span>  
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(cls, name, bases, dict)</span>:</span>  
+<pre><code>class Singleton(type):  
+    def __init__(cls, name, bases, dict):  
     super(Singleton, cls).__init__(name, bases, dict)  
-    cls.instance = <span class="keyword">None</span>  
+    cls.instance = None  
 
-    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(cls, *args, **kw)</span>:</span>  
-    <span class="keyword">if</span> cls.instance <span class="keyword">is</span> <span class="keyword">None</span>:  
+    def __call__(cls, *args, **kw):  
+    if cls.instance is None:  
         cls.instance = super(Singleton, cls).__call__(*args, **kw)  
-        <span class="keyword">return</span> cls.instance  
+        return cls.instance  
 
-<span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span>  
+class MyClass(object):  
     __metaclass__ = Singleton  
 
-<span class="keyword">print</span> MyClass()  
-<span class="keyword">print</span> MyClass()  
+print MyClass()  
+print MyClass()  
 </code></pre><p>方法二：使用装饰器（decorator）</p>
-<pre><code><span class="function"><span class="keyword">def</span> <span class="title">singleton</span><span class="params">(cls, *args, **kw)</span>:</span>    
+<pre><code>def singleton(cls, *args, **kw):    
     instances = {}    
-    <span class="function"><span class="keyword">def</span> <span class="title">_singleton</span><span class="params">()</span>:</span>    
-        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> instances:    
+    def _singleton():    
+        if cls not in instances:    
             instances[cls] = cls(*args, **kw)    
-        <span class="keyword">return</span> instances[cls]    
-    <span class="keyword">return</span> _singleton    
+        return instances[cls]    
+    return _singleton    
 
-<span class="decorator">@singleton    </span>
-<span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span>    
-    a = <span class="number">1</span>    
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x=<span class="number">0</span>)</span>:</span>    
+@singleton    
+class MyClass(object):    
+    a = 1    
+    def __init__(self, x=0):    
         self.x = x    
 
 one = MyClass()    
 two = MyClass()    
 
-two.a = <span class="number">3</span>    
-<span class="keyword">print</span> one.a    
-<span class="comment">#3    </span>
-<span class="keyword">print</span> id(one)    
-<span class="comment">#29660784    </span>
-<span class="keyword">print</span> id(two)    
-<span class="comment">#29660784    </span>
-<span class="keyword">print</span> one == two    
-<span class="comment">#True    </span>
-<span class="keyword">print</span> one <span class="keyword">is</span> two    
-<span class="comment">#True    </span>
-one.x = <span class="number">1</span>    
-<span class="keyword">print</span> one.x    
-<span class="comment">#1    </span>
-<span class="keyword">print</span> two.x  
+two.a = 3    
+print one.a    
+#3    
+print id(one)    
+#29660784    
+print id(two)    
+#29660784    
+print one == two    
+#True    
+print one is two    
+#True    
+one.x = 1    
+print one.x    
+#1    
+print two.x  
 </code></pre><p>方法三：使用<strong>metaclass</strong>元类来实现</p>
-<pre><code>class <span class="function"><span class="title">Singleton2</span><span class="params">(type)</span></span>:    
+<pre><code>class Singleton2(type):    
     def __init__(cls, name, bases, dict):    
-        <span class="function"><span class="title">super</span><span class="params">(Singleton2, cls)</span></span>.__init__(name, bases, dict)    
+        super(Singleton2, cls).__init__(name, bases, dict)    
         cls._instance = None    
     def __call__(cls, *args, **kw):    
-        <span class="keyword">if</span> cls._instance is None:    
-            cls._instance = <span class="function"><span class="title">super</span><span class="params">(Singleton2, cls)</span></span>.__call__(*args, **kw)    
+        if cls._instance is None:    
+            cls._instance = super(Singleton2, cls).__call__(*args, **kw)    
         return cls._instance    
 
-class <span class="function"><span class="title">MyClass</span><span class="params">(object)</span></span>:    
+class MyClass(object):    
     __metaclass__ = Singleton2    
-
-one = <span class="function"><span class="title">MyClass</span><span class="params">()</span></span>    
-two = <span class="function"><span class="title">MyClass</span><span class="params">()</span></span>    
-
-two<span class="class">.a</span> = <span class="number">3</span>    
-print one<span class="class">.a</span>    
-#<span class="number">3</span>    
-print <span class="function"><span class="title">id</span><span class="params">(one)</span></span>    
-<span class="hexcolor">#314954</span>72    
-print <span class="function"><span class="title">id</span><span class="params">(two)</span></span>    
-<span class="hexcolor">#314954</span>72    
-print one == two    
-<span class="id">#True</span>    
-print one is two    
-<span class="id">#True</span>    
-</code></pre><p>方法四：通过共享属性来实现，所谓共享属性，最简单直观的方法就是通过<strong>dict</strong>属性指向同一个字典dict</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Borg</span><span class="params">(object)</span>:</span>    
-    _state = {}    
-    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kw)</span>:</span>    
-        ob = super(Borg, cls).__new__(cls, *args, **kw)    
-        ob.__dict__ = cls._state    
-        <span class="keyword">return</span> ob    
-
-<span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(Borg)</span>:</span>    
-    a = <span class="number">1</span>    
 
 one = MyClass()    
 two = MyClass()    
 
-<span class="comment">#one和two是两个不同的对象,id, ==, is对比结果可看出    </span>
-two.a = <span class="number">3</span>    
-<span class="keyword">print</span> one.a    
-<span class="comment">#3    </span>
-<span class="keyword">print</span> id(one)    
-<span class="comment">#28873680    </span>
-<span class="keyword">print</span> id(two)    
-<span class="comment">#28873712    </span>
-<span class="keyword">print</span> one == two    
-<span class="comment">#False    </span>
-<span class="keyword">print</span> one <span class="keyword">is</span> two    
-<span class="comment">#False    </span>
-<span class="comment">#但是one和two具有相同的（同一个__dict__属性）,见:    </span>
-<span class="keyword">print</span> id(one.__dict__)    
-<span class="comment">#30104000    </span>
-<span class="keyword">print</span> id(two.__dict__)    
+two.a = 3    
+print one.a    
+#3    
+print id(one)    
+#31495472    
+print id(two)    
+#31495472    
+print one == two    
+#True    
+print one is two    
+#True    
+</code></pre><p>方法四：通过共享属性来实现，所谓共享属性，最简单直观的方法就是通过<strong>dict</strong>属性指向同一个字典dict</p>
+<pre><code>class Borg(object):    
+    _state = {}    
+    def __new__(cls, *args, **kw):    
+        ob = super(Borg, cls).__new__(cls, *args, **kw)    
+        ob.__dict__ = cls._state    
+        return ob    
+
+class MyClass(Borg):    
+    a = 1    
+
+one = MyClass()    
+two = MyClass()    
+
+#one和two是两个不同的对象,id, ==, is对比结果可看出    
+two.a = 3    
+print one.a    
+#3    
+print id(one)    
+#28873680    
+print id(two)    
+#28873712    
+print one == two    
+#False    
+print one is two    
+#False    
+#但是one和two具有相同的（同一个__dict__属性）,见:    
+print id(one.__dict__)    
+#30104000    
+print id(two.__dict__)    
 </code></pre><p>从本质上来讲，方法一二三都属于一种单例化模式的方法，与第四种不同，所以认为python中有两种或四种方法实现单例模式都可以。 </p>
 </span>
       

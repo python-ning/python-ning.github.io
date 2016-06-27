@@ -336,203 +336,203 @@ for i in test_list1:
 
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/290735-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
-<h3 id="面向对象与面向过程">面向对象与面向过程</h3><p>面向对象编程从某种程度上来说是从面向过程进化而来的一种编程方法，下面通过例子，对比： </p>
+<h3 id="面向对象与面向过程"><a href="#面向对象与面向过程" class="headerlink" title="面向对象与面向过程"></a>面向对象与面向过程</h3><p>面向对象编程从某种程度上来说是从面向过程进化而来的一种编程方法，下面通过例子，对比： </p>
 <p>面向过程：</p>
-<pre><code>test_list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
-test_list2 = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]
+<pre><code>test_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+test_list2 = [2, 4, 6, 8, 10]
 lists = []
-<span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> test_list1:
-    <span class="keyword">for</span> j <span class="keyword">in</span> test_list2:
-        <span class="keyword">if</span> <span class="tag">i</span> == j:
-            <span class="keyword">if</span> <span class="function"><span class="title">len</span><span class="params">(test_list1)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(test_list2)</span></span>:
-                lists.<span class="function"><span class="title">append</span><span class="params">(i)</span></span>
-            elif <span class="function"><span class="title">len</span><span class="params">(test_list2)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(test_list1)</span></span>:
-                lists.<span class="function"><span class="title">append</span><span class="params">(j)</span></span>
+for i in test_list1:
+    for j in test_list2:
+        if i == j:
+            if len(test_list1) &gt; len(test_list2):
+                lists.append(i)
+            elif len(test_list2) &gt; len(test_list1):
+                lists.append(j)
 print lists
 </code></pre><p>面向对象：</p>
 <pre><code>class BingJi:
 
     def __init__(self, test_list1, test_list2):
-        self<span class="class">.test_list1</span> = test_list1
-        self<span class="class">.test_list2</span> = test_list2
+        self.test_list1 = test_list1
+        self.test_list2 = test_list2
 
-    def <span class="function"><span class="title">puls</span><span class="params">(self)</span></span>:
+    def puls(self):
         lists = []
-        <span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> self<span class="class">.test_list1</span>:
-            <span class="keyword">for</span> j <span class="keyword">in</span> self<span class="class">.test_list2</span>:
-                <span class="keyword">if</span> <span class="tag">i</span> == j:
-                    <span class="keyword">if</span> <span class="function"><span class="title">len</span><span class="params">(self.test_list1)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(self.test_list2)</span></span>:
-                        lists.<span class="function"><span class="title">append</span><span class="params">(i)</span></span>
-                    elif <span class="function"><span class="title">len</span><span class="params">(self.test_list2)</span></span> &gt; <span class="function"><span class="title">len</span><span class="params">(self.test_list1)</span></span>:
-                        lists.<span class="function"><span class="title">append</span><span class="params">(j)</span></span>
+        for i in self.test_list1:
+            for j in self.test_list2:
+                if i == j:
+                    if len(self.test_list1) &gt; len(self.test_list2):
+                        lists.append(i)
+                    elif len(self.test_list2) &gt; len(self.test_list1):
+                        lists.append(j)
         return lists
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
-    test = <span class="function"><span class="title">BingJi</span><span class="params">([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>])</span></span>
-    print test.<span class="function"><span class="title">puls</span><span class="params">()</span></span>
+if __name__ == &apos;__main__&apos;:
+    test = BingJi([1, 2, 3, 4, 5, 6, 7, 8, 9], [2, 4, 6, 8, 10])
+    print test.puls()
 </code></pre><p>这是一个对两个列表取并集的功能的面向对象编程和面向过程编程，相信大家对此有些理解了，对于两者，他的操作对象主体是不同的，对于面向过程，他的操作主体是由函数或者过程进行加工和展现，对于面向对象，是在对象的方法(函数)中进行加工与展现的。也就是数据在对象之间进行传递和交互，最后仍然在对象的方法中进行加工与展现，说白了，面向对象呢，就是结构化了，有很多前辈跟我说这样一句话，每个函数只干一件事，就是对象中每个函数(方法)都去完成一项逻辑操作，当代码量很大时，便于维护与修改，想想看，当技术总监给你一个任务，让你去改某项功能时，如果是面向过程的，你就需要修改大量的代码，但如果是面向对象呢，你只需要修改部分函数(方法)的代码就可以了！</p>
-<h3 id="什么是对象？">什么是对象？</h3><p>自然界中，万物皆对象，你所看到的都是对象(是不是很开心，妈妈再也不催我相亲啦^-^)<br>编程中是计算机为解决某个领域问题所使用的事物(自然界中事物的模型化)<br>比如说人是一个对象，那么，人的眼睛，鼻子，嘴巴就是属性(特征)，吃，跑，走就是方法。在python中，类就是对象，以关键字class来定义一个类。</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Test</span><span class="params">(object)</span>:</span>
-    <span class="keyword">pass</span>
+<h3 id="什么是对象？"><a href="#什么是对象？" class="headerlink" title="什么是对象？"></a>什么是对象？</h3><p>自然界中，万物皆对象，你所看到的都是对象(是不是很开心，妈妈再也不催我相亲啦^-^)<br>编程中是计算机为解决某个领域问题所使用的事物(自然界中事物的模型化)<br>比如说人是一个对象，那么，人的眼睛，鼻子，嘴巴就是属性(特征)，吃，跑，走就是方法。在python中，类就是对象，以关键字class来定义一个类。</p>
+<pre><code>class Test(object):
+    pass
 </code></pre><p>类的名字一定要首字母大写,这是代码规范，详情请看<a href="http://python-ning.github.io/2015/11/22/python_PEP8/">PEP8</a>，class后边的括号里是参数，如果有父类，可以写父类，默认参数object，或者直接就不写:</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:
-    <span class="typename">pass</span></span>
-</code></pre><h3 id="实例化">实例化</h3><p>实例化类就是建立真实事物，就好你有一套人民币模板，那你就可以印钞票了(当然不可以犯法哟$-$),那么每张钞票就是每次实例。<br>类实例化需要两个步骤：<br>1.调用__new__()方法创建实例，__new__()方法自动从object继承<br>2.调用__init__()方法对其初始化，__init__()方法在类中定义<br>这两个方法的的调用在类实例化的过程中是在背后默默进行的，我们是看不到他是什么时候调用的以及如何调用的，你实例化后自动在后台进行完了。</p>
-<h3 id="类的说明(docstring)">类的说明(docstring)</h3><p>当我们定义一个类的时候，肯定是有目的的，因此在定义类的时候一般给添加一个类的说明，一般紧跟类名行(hang)之后，以三引号包围的字符串。</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
-    <span class="string">'''
+<pre><code>class Test:
+    pass
+</code></pre><h3 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h3><p>实例化类就是建立真实事物，就好你有一套人民币模板，那你就可以印钞票了(当然不可以犯法哟$-$),那么每张钞票就是每次实例。<br>类实例化需要两个步骤：<br>1.调用__new__()方法创建实例，__new__()方法自动从object继承<br>2.调用__init__()方法对其初始化，__init__()方法在类中定义<br>这两个方法的的调用在类实例化的过程中是在背后默默进行的，我们是看不到他是什么时候调用的以及如何调用的，你实例化后自动在后台进行完了。</p>
+<h3 id="类的说明-docstring"><a href="#类的说明-docstring" class="headerlink" title="类的说明(docstring)"></a>类的说明(docstring)</h3><p>当我们定义一个类的时候，肯定是有目的的，因此在定义类的时候一般给添加一个类的说明，一般紧跟类名行(hang)之后，以三引号包围的字符串。</p>
+<pre><code>class Test:
+    &apos;&apos;&apos;
     我是类的说明
-    '''</span>
-    <span class="keyword">pass</span>
+    &apos;&apos;&apos;
+    pass
 </code></pre><p>如何来查看类的说明：<br>可以通过help(实例名)或者实例名.__doc__来查看类的说明</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
-    <span class="string">'''
+<pre><code># test.py
+# coding:utf-8
+class Test:
+    &apos;&apos;&apos;
     我是类的说明
-    '''</span>
-    <span class="keyword">pass</span>
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    &apos;&apos;&apos;
+    pass
+if __name__ == &apos;__main__&apos;:
     test = Test()
-    <span class="keyword">print</span> help(test)
-    <span class="keyword">print</span> test.__doc__
-</code></pre><h3 id="类的属性">类的属性</h3><h2 id="实例属性:">实例属性:</h2><p>类被实例化以后才会具有的属性叫做实例属性，直接使用即定义：self.&lt;属性名&gt;,self用来代表类的实例的：</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+    print help(test)
+    print test.__doc__
+</code></pre><h3 id="类的属性"><a href="#类的属性" class="headerlink" title="类的属性"></a>类的属性</h3><h2 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性:"></a>实例属性:</h2><p>类被实例化以后才会具有的属性叫做实例属性，直接使用即定义：self.&lt;属性名&gt;,self用来代表类的实例的：</p>
+<pre><code># test.py
+# coding:utf-8
+class Test:
 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
-        self.a = <span class="number">1</span>
-        self.b = <span class="number">10</span>
+    def __init__(self):
+        self.a = 1
+        self.b = 10
 
-    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
-        <span class="keyword">print</span> <span class="string">'a:'</span>, self.a
-        <span class="keyword">print</span> <span class="string">'b:'</span>, self.b
+    def method(self):
+        print &apos;a:&apos;, self.a
+        print &apos;b:&apos;, self.b
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+if __name__ == &apos;__main__&apos;:
     test = Test()
     test.method()
 </code></pre><p>在类的外面用实例名.属性名的方式定义和引用，一般不建议和使用这种方式，这种方式会导致程序混乱：</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+<pre><code># test.py
+# coding:utf-8
+class Test:
 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
-        self.a = <span class="number">1</span>
-        self.b = <span class="number">10</span>
+    def __init__(self):
+        self.a = 1
+        self.b = 10
 
-    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
-        <span class="keyword">print</span> <span class="string">'a:'</span>, self.a
-        <span class="keyword">print</span> <span class="string">'b:'</span>, self.b
+    def method(self):
+        print &apos;a:&apos;, self.a
+        print &apos;b:&apos;, self.b
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+if __name__ == &apos;__main__&apos;:
     test = Test()
     test.method()
-    test.size = <span class="string">'12'</span>
-    <span class="keyword">print</span> test.size
+    test.size = &apos;12&apos;
+    print test.size
 </code></pre><p>相同类的实例其实例属性是不相关的：</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+<pre><code># test.py
+# coding:utf-8
+class Test:
 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
-        self.a = <span class="number">1</span>
-        self.b = <span class="number">10</span>
+    def __init__(self):
+        self.a = 1
+        self.b = 10
 
-    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
-        <span class="keyword">print</span> <span class="string">'a:'</span>, self.a
-        <span class="keyword">print</span> <span class="string">'b:'</span>, self.b
+    def method(self):
+        print &apos;a:&apos;, self.a
+        print &apos;b:&apos;, self.b
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+if __name__ == &apos;__main__&apos;:
     test1 = Test()
     test2 = Test()
-    test1.a = <span class="number">1000</span>
-    test2.a = <span class="number">9999</span>
-    <span class="keyword">print</span> <span class="string">'*'</span> * <span class="number">15</span> + <span class="string">'修改实例test1'</span> + <span class="string">'*'</span> * <span class="number">15</span>
+    test1.a = 1000
+    test2.a = 9999
+    print &apos;*&apos; * 15 + &apos;修改实例test1&apos; + &apos;*&apos; * 15
     test1.method()
-    <span class="keyword">print</span> <span class="string">'-'</span> * <span class="number">15</span> + <span class="string">'修改实例test2'</span> + <span class="string">'-'</span> * <span class="number">15</span>
+    print &apos;-&apos; * 15 + &apos;修改实例test2&apos; + &apos;-&apos; * 15
     test2.method()
 </code></pre><p>一般不建议在<strong>init</strong>()方法之外创建和初始化实例属性<br>也不推荐类外定义和修改，修改可以单独定义方法。(先将注释1打开运行看结果，再将注释2、3打开运行看结果)</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
+<pre><code># test.py
+# coding:utf-8
+class Test:
 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
-        self.a = <span class="number">1</span>
-        self.b = <span class="number">10</span>
+    def __init__(self):
+        self.a = 1
+        self.b = 10
 
-    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
-        self.c = <span class="number">6666</span>
+    def method(self):
+        self.c = 6666
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+if __name__ == &apos;__main__&apos;:
     test = Test()
-    <span class="keyword">print</span> test.a
-    <span class="keyword">print</span> test.b
-    <span class="comment"># print test.c</span>
-    <span class="comment"># test.method()</span>
-    <span class="comment"># print test.c</span>
-</code></pre><h2 id="类属性">类属性</h2><p>类定义后就存在，并且不需要实例化就可以被调用，类属性使得相同类的不同示例共同持有相同变量</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-<span class="class"><span class="keyword">class</span> <span class="title">Test</span>:</span>
-    cla = <span class="string">'ning'</span>
+    print test.a
+    print test.b
+    # print test.c
+    # test.method()
+    # print test.c
+</code></pre><h2 id="类属性"><a href="#类属性" class="headerlink" title="类属性"></a>类属性</h2><p>类定义后就存在，并且不需要实例化就可以被调用，类属性使得相同类的不同示例共同持有相同变量</p>
+<pre><code># test.py
+# coding:utf-8
+class Test:
+    cla = &apos;ning&apos;
 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span>
-        self.a = <span class="number">1</span>
-        self.b = <span class="number">10</span>
+    def __init__(self):
+        self.a = 1
+        self.b = 10
 
-    <span class="function"><span class="keyword">def</span> <span class="title">method</span><span class="params">(self)</span>:</span>
-        <span class="keyword">print</span> Test.cla
+    def method(self):
+        print Test.cla
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+if __name__ == &apos;__main__&apos;:
     test = Test()
     test.method()
 </code></pre><p>当在类外对类属性进行修改时，会同时影响每个实例的类属性：</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-class <span class="type">Test</span>:
-    cla = 'ning'
+<pre><code># test.py
+# coding:utf-8
+class Test:
+    cla = &apos;ning&apos;
 
     def __init__(self):
-        self.a = <span class="number">1</span>
-        self.b = <span class="number">10</span>
+        self.a = 1
+        self.b = 10
 
-    def <span class="keyword">method</span>(self):
-        print <span class="type">Test</span>.cla
+    def method(self):
+        print Test.cla
 
-<span class="keyword">if</span> __name__ == '__main__':
-    test1 = <span class="type">Test</span>()
-    test1.<span class="keyword">method</span>()
-    test2 = <span class="type">Test</span>()
-    test2.<span class="keyword">method</span>()
-    <span class="type">Test</span>.cla = <span class="number">123</span>
-    test1.<span class="keyword">method</span>()
-    test2.<span class="keyword">method</span>()
-</code></pre><h2 id="私有属性">私有属性</h2><p>从上述来看，大家会想了，那我能在类外修改属性，是不是有点不安全？确实会有吧，那我们怎么解决呢，就是私有属性了，我们使用__开头的变量名加以标志，这样就只有类对象自己能访问了，或者使用_开头的变量名加以标志，不过这种感觉没啥用，就是给程序员自己看的，他加了一个_跟没加没区别，还是能在外边修改类属性。</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="comment"># coding:utf-8</span>
-class <span class="type">Test</span>:
+if __name__ == &apos;__main__&apos;:
+    test1 = Test()
+    test1.method()
+    test2 = Test()
+    test2.method()
+    Test.cla = 123
+    test1.method()
+    test2.method()
+</code></pre><h2 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h2><p>从上述来看，大家会想了，那我能在类外修改属性，是不是有点不安全？确实会有吧，那我们怎么解决呢，就是私有属性了，我们使用__开头的变量名加以标志，这样就只有类对象自己能访问了，或者使用_开头的变量名加以标志，不过这种感觉没啥用，就是给程序员自己看的，他加了一个_跟没加没区别，还是能在外边修改类属性。</p>
+<pre><code># test.py
+# coding:utf-8
+class Test:
 
     def __init__(self):
-        self.__test = <span class="number">0</span>
+        self.__test = 0
 
-    def <span class="keyword">method</span>(self):
+    def method(self):
         print self.__test
 
-<span class="keyword">if</span> __name__ == '__main__':
-    test = <span class="type">Test</span>()
-    test.<span class="keyword">method</span>()
-    test.__test = <span class="number">99</span>
-    test.<span class="keyword">method</span>()
-    <span class="comment"># print test.__test</span>
+if __name__ == &apos;__main__&apos;:
+    test = Test()
+    test.method()
+    test.__test = 99
+    test.method()
+    # print test.__test
 </code></pre><p>当我运行被注释的这行代码时，会发现__test被修改了，变成了99，不是说不能修改吗？其实并没有修改私有属性__test，它其实并不是类里的那个类属性，我们说过，私有属性在类的外部是不能被修改的，在python内部，当你定义了__test这个私有属性后，python会自动对这个属性名进行修改，在外部已经看不到了，当我们在类外实例化修改的时候，他会在类内重新定义一个__test属性，所以他能修改了。</p>
-<h2 id="特殊属性">特殊属性</h2><p>类当中用来保存的元数据(元数据（Metadata），又称中介数据、中继数据，为描述数据的数据（data about data），主要是描述数据属性（property）的信息，用来支持如指示存储位置、历史数据、资源查找、文件记录等功能。)</p>
+<h2 id="特殊属性"><a href="#特殊属性" class="headerlink" title="特殊属性"></a>特殊属性</h2><p>类当中用来保存的元数据(元数据（Metadata），又称中介数据、中继数据，为描述数据的数据（data about data），主要是描述数据属性（property）的信息，用来支持如指示存储位置、历史数据、资源查找、文件记录等功能。)</p>
 <p>__doc__前边讲过<br>__name__类的名称<br>__dict__用来保存实例属性的所有属性名以及它的值的，类似一个字典。<br>__module__是用来保存他所在的模块名<br>__base__用来保存类的父类</p>
-<h3 id="面向对象的三大特点">面向对象的三大特点</h3><p>封装、继承、多态</p>
-<h3 id="什么是封装呢？为啥封装？">什么是封装呢？为啥封装？</h3><p>封装你就可以理解为打包程序代码，把什么打包呢？就是对象的方法和属性，就是把人的眼睛、鼻子、嘴巴等特征，以及吃、跑、走等方法进行打包。<br>那为啥要封装呢？我封装了我的代码，外界就只能使用他，而无法看到他以及改变他。哪个新闻联播主持人也不想被看到下身穿着大裤衩子直播~~</p>
-<h3 id="什么是继承，继承的好处是什么？">什么是继承，继承的好处是什么？</h3><p>继承呢，表面意思你可以这样理解，假如某建林持续多年成为某国首富，开心死了，那么，某达的财产就都让他的儿子某思聪继承了(这样说不会被打击报复吧，我只是一个穷屌丝-_-)，某建林创造的财富是不是某思聪拥有了？对，代码中，子类就继承了父类的方法和属性，实现了代码的重(chong)用。</p>
+<h3 id="面向对象的三大特点"><a href="#面向对象的三大特点" class="headerlink" title="面向对象的三大特点"></a>面向对象的三大特点</h3><p>封装、继承、多态</p>
+<h3 id="什么是封装呢？为啥封装？"><a href="#什么是封装呢？为啥封装？" class="headerlink" title="什么是封装呢？为啥封装？"></a>什么是封装呢？为啥封装？</h3><p>封装你就可以理解为打包程序代码，把什么打包呢？就是对象的方法和属性，就是把人的眼睛、鼻子、嘴巴等特征，以及吃、跑、走等方法进行打包。<br>那为啥要封装呢？我封装了我的代码，外界就只能使用他，而无法看到他以及改变他。哪个新闻联播主持人也不想被看到下身穿着大裤衩子直播~~</p>
+<h3 id="什么是继承，继承的好处是什么？"><a href="#什么是继承，继承的好处是什么？" class="headerlink" title="什么是继承，继承的好处是什么？"></a>什么是继承，继承的好处是什么？</h3><p>继承呢，表面意思你可以这样理解，假如某建林持续多年成为某国首富，开心死了，那么，某达的财产就都让他的儿子某思聪继承了(这样说不会被打击报复吧，我只是一个穷屌丝-_-)，某建林创造的财富是不是某思聪拥有了？对，代码中，子类就继承了父类的方法和属性，实现了代码的重(chong)用。</p>
 <p>class </p>
-<h3 id="什么是多态？多态的好处？">什么是多态？多态的好处？</h3><p>多态呢，就是子类可以继承父类的方法和属性，还可以通过自定义去修改父类的属性和方法；同时呢，这里提及一个概念叫鸭子类型(duck typing),这个概念的名字来源于由James Whitcomb Riley提出的鸭子测试,当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子，在鸭子类型中，关注的不是类型本身，而是他是如何使用的，而有些语言是需要接口来实现的。</p>
+<h3 id="什么是多态？多态的好处？"><a href="#什么是多态？多态的好处？" class="headerlink" title="什么是多态？多态的好处？"></a>什么是多态？多态的好处？</h3><p>多态呢，就是子类可以继承父类的方法和属性，还可以通过自定义去修改父类的属性和方法；同时呢，这里提及一个概念叫鸭子类型(duck typing),这个概念的名字来源于由James Whitcomb Riley提出的鸭子测试,当看到一只鸟走起来像鸭子、游泳起来像鸭子、叫起来也像鸭子，那么这只鸟就可以被称为鸭子，在鸭子类型中，关注的不是类型本身，而是他是如何使用的，而有些语言是需要接口来实现的。</p>
 <p>累了  明天写</p>
 </span>
       
@@ -750,7 +750,7 @@ class <span class="type">Test</span>:
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象与面向过程"><span class="nav-number">1.</span> <span class="nav-text">面向对象与面向过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是对象？"><span class="nav-number">2.</span> <span class="nav-text">什么是对象？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例化"><span class="nav-number">3.</span> <span class="nav-text">实例化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的说明(docstring)"><span class="nav-number">4.</span> <span class="nav-text">类的说明(docstring)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的属性"><span class="nav-number">5.</span> <span class="nav-text">类的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例属性:"><span class="nav-number"></span> <span class="nav-text">实例属性:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类属性"><span class="nav-number"></span> <span class="nav-text">类属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有属性"><span class="nav-number"></span> <span class="nav-text">私有属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊属性"><span class="nav-number"></span> <span class="nav-text">特殊属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的三大特点"><span class="nav-number">1.</span> <span class="nav-text">面向对象的三大特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是封装呢？为啥封装？"><span class="nav-number">2.</span> <span class="nav-text">什么是封装呢？为啥封装？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是继承，继承的好处是什么？"><span class="nav-number">3.</span> <span class="nav-text">什么是继承，继承的好处是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是多态？多态的好处？"><span class="nav-number">4.</span> <span class="nav-text">什么是多态？多态的好处？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象与面向过程"><span class="nav-number">1.</span> <span class="nav-text">面向对象与面向过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是对象？"><span class="nav-number">2.</span> <span class="nav-text">什么是对象？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例化"><span class="nav-number">3.</span> <span class="nav-text">实例化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的说明-docstring"><span class="nav-number">4.</span> <span class="nav-text">类的说明(docstring)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的属性"><span class="nav-number">5.</span> <span class="nav-text">类的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例属性"><span class="nav-number"></span> <span class="nav-text">实例属性:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类属性"><span class="nav-number"></span> <span class="nav-text">类属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有属性"><span class="nav-number"></span> <span class="nav-text">私有属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊属性"><span class="nav-number"></span> <span class="nav-text">特殊属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象的三大特点"><span class="nav-number">1.</span> <span class="nav-text">面向对象的三大特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是封装呢？为啥封装？"><span class="nav-number">2.</span> <span class="nav-text">什么是封装呢？为啥封装？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是继承，继承的好处是什么？"><span class="nav-number">3.</span> <span class="nav-text">什么是继承，继承的好处是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是多态？多态的好处？"><span class="nav-number">4.</span> <span class="nav-text">什么是多态？多态的好处？</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

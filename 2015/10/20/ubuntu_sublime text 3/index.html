@@ -337,15 +337,15 @@ cd">
 <p>1.下载我们需要的文件，打开终端<br>输入：</p>
 <pre><code>cd ~
 
-git <span class="keyword">clone</span> <span class="title">https</span>://github.com/lyfeyaj/sublime-text-imfix.git
+git clone https://github.com/lyfeyaj/sublime-text-imfix.git
 </code></pre><p>2.将subl移动到/usr/bin/，并且将sublime-imfix.so移动到/opt/sublime_text/（sublime的安装目录）<br>终端输入：</p>
-<pre><code><span class="label">cd</span> ~/<span class="keyword">sublime-text-imfix
-</span><span class="label">sudo</span> <span class="preprocessor">cp</span> ./lib/libsublime-imfix.so /<span class="preprocessor">opt</span>/<span class="keyword">sublime_text/
-</span><span class="label">sudo</span> <span class="preprocessor">cp</span> ./src/<span class="keyword">subl </span>/usr/<span class="keyword">bin/</span>
+<pre><code>cd ~/sublime-text-imfix
+sudo cp ./lib/libsublime-imfix.so /opt/sublime_text/
+sudo cp ./src/subl /usr/bin/
 </code></pre><p>3.然后打开sublime Text 3 输入中文试试：</p>
-<pre><code>LD_PRELOAD=./libsublime-imfix<span class="class">.so</span> subl
+<pre><code>LD_PRELOAD=./libsublime-imfix.so subl
 </code></pre><p>4.但是这样子只能用上述命令行启动才能输入中文，我们需要更简单的办法，我选择新建一个shell脚本，很简单，就一句话。<br>sublime新建文件输入：</p>
-<pre><code><span class="shebang">#!/bin/bash</span>
+<pre><code>#!/bin/bash
 LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so subl
 </code></pre><p>5.然后将文件另存为sublime（注意：没有后缀），并且放到/home文件夹。</p>
 <p>6.至此，所有工作完成了。想要启动，直接终端输入：bash ~/sublime，就可以启动sublime，并且能够输入中文。</p>

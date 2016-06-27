@@ -328,310 +328,310 @@
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/282119-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
 <p>clipboard.js 实现了纯 JavaScript （无 Flash）的浏览器内容复制到系统剪贴板的功能。可以在浏览器和 Node 环境中使用。支持 Chrome 42+、Firefox 41+、IE 9+、Opera 29+</p>
-<h3 id="点击复制input框内容示例代码：">点击复制input框内容示例代码：</h3><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"css/bootstrap.min.css"</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">type</span>=<span class="value">'text/css'</span> /&gt;</span>
-        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1"</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">input</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">br</span> /&gt;</span>
-        <span class="tag">&lt;<span class="title">button</span>  <span class="attribute">class</span>=<span class="value">"btn-clipboard"</span> <span class="attribute">data-clipboard-target</span>=<span class="value">"#foo"</span>&gt;</span>复制<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript">
-        <span class="keyword">var</span> cpobj = <span class="keyword">new</span> Clipboard(<span class="string">'.btn-clipboard'</span>);
-       <span class="comment">//点击按钮后的操作</span>
-        cpobj.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span> </span>{
-            alert(<span class="string">'复制成功'</span>)
+<h3 id="点击复制input框内容示例代码："><a href="#点击复制input框内容示例代码：" class="headerlink" title="点击复制input框内容示例代码："></a>点击复制input框内容示例代码：</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;link href=&quot;css/bootstrap.min.css&quot; rel=&apos;stylesheet&apos; type=&apos;text/css&apos; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+    &lt;body&gt;
+        &lt;input id=&quot;foo&quot;&gt;&lt;/input&gt;
+        &lt;br /&gt;
+        &lt;button  class=&quot;btn-clipboard&quot; data-clipboard-target=&quot;#foo&quot;&gt;复制&lt;/button&gt;
+    &lt;/body&gt;
+&lt;script src=&quot;js/clipboard.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+        var cpobj = new Clipboard(&apos;.btn-clipboard&apos;);
+       //点击按钮后的操作
+        cpobj.on(&apos;success&apos;, function(e) {
+            alert(&apos;复制成功&apos;)
             e.clearSelection();
         });
-</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h3 id="点击复制指定内容：">点击复制指定内容：</h3><p>就是把button标签中的<code style="color: red">data-clipboard-target=”#foo”</code>改成<code style="color: red">data-clipboard-text=”#foo”</code></p>
-<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"css/bootstrap.min.css"</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">type</span>=<span class="value">'text/css'</span> /&gt;</span>
-        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1"</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"foo"</span>&gt;</span><span class="tag">&lt;/<span class="title">input</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">br</span> /&gt;</span>
-        <span class="tag">&lt;<span class="title">button</span>  <span class="attribute">class</span>=<span class="value">"btn-clipboard"</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"#foo"</span>&gt;</span>复制<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript">
-        <span class="keyword">var</span> cpobj = <span class="keyword">new</span> Clipboard(<span class="string">'.btn-clipboard'</span>);
-       <span class="comment">//点击按钮后的操作</span>
-        cpobj.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span> </span>{
-            alert(<span class="string">'复制成功'</span>)
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre><h3 id="点击复制指定内容："><a href="#点击复制指定内容：" class="headerlink" title="点击复制指定内容："></a>点击复制指定内容：</h3><p>就是把button标签中的<code style="color: red">data-clipboard-target=”#foo”</code>改成<code style="color: red">data-clipboard-text=”#foo”</code></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;link href=&quot;css/bootstrap.min.css&quot; rel=&apos;stylesheet&apos; type=&apos;text/css&apos; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+    &lt;body&gt;
+        &lt;input id=&quot;foo&quot;&gt;&lt;/input&gt;
+        &lt;br /&gt;
+        &lt;button  class=&quot;btn-clipboard&quot; data-clipboard-text=&quot;#foo&quot;&gt;复制&lt;/button&gt;
+    &lt;/body&gt;
+&lt;script src=&quot;js/clipboard.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+        var cpobj = new Clipboard(&apos;.btn-clipboard&apos;);
+       //点击按钮后的操作
+        cpobj.on(&apos;success&apos;, function(e) {
+            alert(&apos;复制成功&apos;)
             e.clearSelection();
         });
-</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h3 id="点击剪切input框内容示例代码：">点击剪切input框内容示例代码：</h3><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"css/bootstrap.min.css"</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">type</span>=<span class="value">'text/css'</span> /&gt;</span>
-        <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1"</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">body</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"foo"</span> <span class="attribute">value</span>=<span class="value">"这是内容"</span>&gt;</span><span class="tag">&lt;/<span class="title">input</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">br</span> /&gt;</span>
-        <span class="tag">&lt;<span class="title">button</span>  <span class="attribute">class</span>=<span class="value">"btn-clipboard"</span> <span class="attribute">data-clipboard-action</span>=<span class="value">"cut"</span> <span class="attribute">data-clipboard-target</span>=<span class="value">"#foo"</span>&gt;</span>剪切<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"js/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript">
-        <span class="keyword">var</span> cpobj = <span class="keyword">new</span> Clipboard(<span class="string">'.btn-clipboard'</span>);
-       <span class="comment">//点击按钮后的操作</span>
-        cpobj.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span><span class="params">(e)</span> </span>{
-            alert(<span class="string">'剪切成功'</span>)
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre><h3 id="点击剪切input框内容示例代码："><a href="#点击剪切input框内容示例代码：" class="headerlink" title="点击剪切input框内容示例代码："></a>点击剪切input框内容示例代码：</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;link href=&quot;css/bootstrap.min.css&quot; rel=&apos;stylesheet&apos; type=&apos;text/css&apos; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;/head&gt;
+    &lt;body&gt;
+        &lt;input id=&quot;foo&quot; value=&quot;这是内容&quot;&gt;&lt;/input&gt;
+        &lt;br /&gt;
+        &lt;button  class=&quot;btn-clipboard&quot; data-clipboard-action=&quot;cut&quot; data-clipboard-target=&quot;#foo&quot;&gt;剪切&lt;/button&gt;
+    &lt;/body&gt;
+&lt;script src=&quot;js/clipboard.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+        var cpobj = new Clipboard(&apos;.btn-clipboard&apos;);
+       //点击按钮后的操作
+        cpobj.on(&apos;success&apos;, function(e) {
+            alert(&apos;剪切成功&apos;)
             e.clearSelection();
         });
-</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h3 id="文档及github地址">文档及github地址</h3><p>github地址在<code style="color: blue; font-size: 15px"><strong><a href="https://github.com/zenorocha/clipboard.js" target="_blank" rel="external">这里</a></strong></code>,点开下边就是他的说明文档。</p>
-<h3 id="文档给出的所有例子">文档给出的所有例子</h3><h2 id="constructor-node">constructor-node</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>constructor-node<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"btn"</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"1"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">span</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+&lt;/script&gt;
+&lt;/html&gt;
+</code></pre><h3 id="文档及github地址"><a href="#文档及github地址" class="headerlink" title="文档及github地址"></a>文档及github地址</h3><p>github地址在<code style="color: blue; font-size: 15px"><strong><a href="https://github.com/zenorocha/clipboard.js" target="_blank" rel="external">这里</a></strong></code>,点开下边就是他的说明文档。</p>
+<h3 id="文档给出的所有例子"><a href="#文档给出的所有例子" class="headerlink" title="文档给出的所有例子"></a>文档给出的所有例子</h3><h2 id="constructor-node"><a href="#constructor-node" class="headerlink" title="constructor-node"></a>constructor-node</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;constructor-node&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;div id=&quot;btn&quot; data-clipboard-text=&quot;1&quot;&gt;
+        &lt;span&gt;Copy&lt;/span&gt;
+    &lt;/div&gt;
 
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
 
-    <span class="comment">&lt;!-- 3. Instantiate clipboard by passing a HTML element --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(btn);
+    &lt;!-- 3. Instantiate clipboard by passing a HTML element --&gt;
+    &lt;script&gt;
+    var btn = document.getElementById(&apos;btn&apos;);
+    var clipboard = new Clipboard(btn);
 
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
     });
 
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
     });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h2 id="constructor-nodelist">constructor-nodelist</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>constructor-nodelist<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"1"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"2"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"3"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="constructor-nodelist"><a href="#constructor-nodelist" class="headerlink" title="constructor-nodelist"></a>constructor-nodelist</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;constructor-nodelist&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;button data-clipboard-text=&quot;1&quot;&gt;Copy&lt;/button&gt;
+    &lt;button data-clipboard-text=&quot;2&quot;&gt;Copy&lt;/button&gt;
+    &lt;button data-clipboard-text=&quot;3&quot;&gt;Copy&lt;/button&gt;
 
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
 
-    <span class="comment">&lt;!-- 3. Instantiate clipboard by passing a list of HTML elements --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> btns = <span class="built_in">document</span>.querySelectorAll(<span class="string">'button'</span>);
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(btns);
+    &lt;!-- 3. Instantiate clipboard by passing a list of HTML elements --&gt;
+    &lt;script&gt;
+    var btns = document.querySelectorAll(&apos;button&apos;);
+    var clipboard = new Clipboard(btns);
 
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
-    });
-
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
-    });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h2 id="constructor-selector">constructor-selector</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>constructor-selector<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"1"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"2"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span> <span class="attribute">data-clipboard-text</span>=<span class="value">"3"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-
-    <span class="comment">&lt;!-- 3. Instantiate clipboard by passing a string selector --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">'.btn'</span>);
-
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
     });
 
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
     });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h2 id="function-target">function-target</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>function-target<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="constructor-selector"><a href="#constructor-selector" class="headerlink" title="constructor-selector"></a>constructor-selector</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;constructor-selector&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;button class=&quot;btn&quot; data-clipboard-text=&quot;1&quot;&gt;Copy&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; data-clipboard-text=&quot;2&quot;&gt;Copy&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; data-clipboard-text=&quot;3&quot;&gt;Copy&lt;/button&gt;
 
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
 
-    <span class="comment">&lt;!-- 3. Instantiate clipboard --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">'.btn'</span>, {
-        target: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
-            <span class="keyword">return</span> <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>);
+    &lt;!-- 3. Instantiate clipboard by passing a string selector --&gt;
+    &lt;script&gt;
+    var clipboard = new Clipboard(&apos;.btn&apos;);
+
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
+    });
+
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
+    });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="function-target"><a href="#function-target" class="headerlink" title="function-target"></a>function-target</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;function-target&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;button class=&quot;btn&quot;&gt;Copy&lt;/button&gt;
+    &lt;div&gt;hello&lt;/div&gt;
+
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- 3. Instantiate clipboard --&gt;
+    &lt;script&gt;
+    var clipboard = new Clipboard(&apos;.btn&apos;, {
+        target: function() {
+            return document.querySelector(&apos;div&apos;);
         }
     });
 
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
     });
 
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
     });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h2 id="function-text">function-text</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>function-text<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="function-text"><a href="#function-text" class="headerlink" title="function-text"></a>function-text</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;function-text&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;button class=&quot;btn&quot;&gt;Copy&lt;/button&gt;
 
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
 
-    <span class="comment">&lt;!-- 3. Instantiate clipboard --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">'.btn'</span>, {
-        text: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
-            <span class="keyword">return</span> <span class="string">'to be or not to be'</span>;
+    &lt;!-- 3. Instantiate clipboard --&gt;
+    &lt;script&gt;
+    var clipboard = new Clipboard(&apos;.btn&apos;, {
+        text: function() {
+            return &apos;to be or not to be&apos;;
         }
     });
 
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
     });
 
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
     });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h2 id="target-div">target-div</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>target-div<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span> <span class="attribute">data-clipboard-action</span>=<span class="value">"copy"</span> <span class="attribute">data-clipboard-target</span>=<span class="value">"div"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="target-div"><a href="#target-div" class="headerlink" title="target-div"></a>target-div</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;target-div&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;div&gt;hello&lt;/div&gt;
+    &lt;button class=&quot;btn&quot; data-clipboard-action=&quot;copy&quot; data-clipboard-target=&quot;div&quot;&gt;Copy&lt;/button&gt;
 
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
 
-    <span class="comment">&lt;!-- 3. Instantiate clipboard --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">'.btn'</span>);
+    &lt;!-- 3. Instantiate clipboard --&gt;
+    &lt;script&gt;
+    var clipboard = new Clipboard(&apos;.btn&apos;);
 
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
-    });
-
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
-    });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h2 id="target-input">target-input</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>target-input<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">input</span> <span class="attribute">id</span>=<span class="value">"foo"</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">value</span>=<span class="value">"hello"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span> <span class="attribute">data-clipboard-action</span>=<span class="value">"copy"</span> <span class="attribute">data-clipboard-target</span>=<span class="value">"#foo"</span>&gt;</span>Copy<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
-
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-
-    <span class="comment">&lt;!-- 3. Instantiate clipboard --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">'.btn'</span>);
-
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
     });
 
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
     });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
-</code></pre><h2 id="target-textarea">target-textarea</h2><pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">title</span>&gt;</span>target-textarea<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-    <span class="comment">&lt;!-- 1. Define some markup --&gt;</span>
-    <span class="tag">&lt;<span class="title">textarea</span> <span class="attribute">id</span>=<span class="value">"bar"</span>&gt;</span>hello<span class="tag">&lt;/<span class="title">textarea</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span> <span class="attribute">data-clipboard-action</span>=<span class="value">"cut"</span> <span class="attribute">data-clipboard-target</span>=<span class="value">"#bar"</span>&gt;</span>Cut<span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="target-input"><a href="#target-input" class="headerlink" title="target-input"></a>target-input</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;target-input&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;input id=&quot;foo&quot; type=&quot;text&quot; value=&quot;hello&quot;&gt;
+    &lt;button class=&quot;btn&quot; data-clipboard-action=&quot;copy&quot; data-clipboard-target=&quot;#foo&quot;&gt;Copy&lt;/button&gt;
 
-    <span class="comment">&lt;!-- 2. Include library --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"../dist/clipboard.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
 
-    <span class="comment">&lt;!-- 3. Instantiate clipboard --&gt;</span>
-    <span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
-    <span class="keyword">var</span> clipboard = <span class="keyword">new</span> Clipboard(<span class="string">'.btn'</span>);
+    &lt;!-- 3. Instantiate clipboard --&gt;
+    &lt;script&gt;
+    var clipboard = new Clipboard(&apos;.btn&apos;);
 
-    clipboard.on(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
     });
 
-    clipboard.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>{
-        <span class="built_in">console</span>.log(e);
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
     });
-    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="target-textarea"><a href="#target-textarea" class="headerlink" title="target-textarea"></a>target-textarea</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;target-textarea&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 1. Define some markup --&gt;
+    &lt;textarea id=&quot;bar&quot;&gt;hello&lt;/textarea&gt;
+    &lt;button class=&quot;btn&quot; data-clipboard-action=&quot;cut&quot; data-clipboard-target=&quot;#bar&quot;&gt;Cut&lt;/button&gt;
+
+    &lt;!-- 2. Include library --&gt;
+    &lt;script src=&quot;../dist/clipboard.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;!-- 3. Instantiate clipboard --&gt;
+    &lt;script&gt;
+    var clipboard = new Clipboard(&apos;.btn&apos;);
+
+    clipboard.on(&apos;success&apos;, function(e) {
+        console.log(e);
+    });
+
+    clipboard.on(&apos;error&apos;, function(e) {
+        console.log(e);
+    });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre></span>
       
     </div>

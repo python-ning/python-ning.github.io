@@ -327,7 +327,7 @@ r+以读写方式打开">
       
 
       
-        <span itemprop="articleBody"><h3 id="正常打开文件读取">正常打开文件读取</h3><p>f = open(‘/root/Desktop/test/chen.txt’,’rt’)</p>
+        <span itemprop="articleBody"><h3 id="正常打开文件读取"><a href="#正常打开文件读取" class="headerlink" title="正常打开文件读取"></a>正常打开文件读取</h3><p>f = open(‘/root/Desktop/test/chen.txt’,’rt’)</p>
 <p>open()内建函数，第一个参数是文件绝对路径，第二个是对文件操作的权限</p>
 <p>r<br>以读方式打开文件，可读取文件信息。</p>
 <p>w<br>以写方式打开文件，可向文件写入信息。如文件存在，则清空该文件，再写入新内容</p>
@@ -336,28 +336,28 @@ r+以读写方式打开">
 <p>w+<br>消除文件内容，然后以读写方式打开文件。</p>
 <p>a+<br>以读写方式打开文件，并把文件指针移到文件尾。</p>
 <p>b<br>以二进制模式打开文件，而不是以文本模式。该模式只对Windows或Dos有效，类Unix的文件是用二进制模式进行操作的。</p>
-<h3 id="with">with</h3><pre><code>with <span class="function"><span class="title">open</span><span class="params">(<span class="string">'somefile.txt'</span>, <span class="string">'rt'</span>)</span></span> as f:
-    data = f.<span class="function"><span class="title">read</span><span class="params">()</span></span>
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><pre><code>with open(&apos;somefile.txt&apos;, &apos;rt&apos;) as f:
+    data = f.read()
 </code></pre><p>为了写入一个文本文件，使用带有 wt 模式的 open() 函数， 如果之前文件内容存在则清除并覆盖掉。如下所示:</p>
-<pre><code><span class="comment"># Write chunks of text data</span>
-<span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'somefile.txt'</span>, <span class="string">'wt'</span>) <span class="keyword">as</span> f:
-    f.<span class="built_in">write</span>(text1)
-    f.<span class="built_in">write</span>(text2)
+<pre><code># Write chunks of text data
+with open(&apos;somefile.txt&apos;, &apos;wt&apos;) as f:
+    f.write(text1)
+    f.write(text2)
     ...
 
-<span class="comment"># Redirected print statement</span>
-<span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'somefile.txt'</span>, <span class="string">'wt'</span>) <span class="keyword">as</span> f:
-    print(line1, <span class="built_in">file</span>=f)
-    print(line2, <span class="built_in">file</span>=f)
+# Redirected print statement
+with open(&apos;somefile.txt&apos;, &apos;wt&apos;) as f:
+    print(line1, file=f)
+    print(line2, file=f)
     ...
 </code></pre><p>如果是在已存在文件中添加内容，使用模式为 at 的 open() 函数</p>
 <p>文件的读写操作默认使用系统编码，可以通过调用 sys.getdefaultencoding() 来得到。 在大多数机器上面都是utf-8编码。如果你已经知道你要读写的文本是其他编码方式， 那么可以通过传递一个可选的 encoding 参数给open()函数。如下所示：</p>
-<pre><code><span class="operator">with</span> <span class="built_in">open</span>(<span class="string">'somefile.txt'</span>, <span class="string">'rt'</span>, encoding=<span class="string">'latin-1'</span>) <span class="keyword">as</span> f:
+<pre><code>with open(&apos;somefile.txt&apos;, &apos;rt&apos;, encoding=&apos;latin-1&apos;) as f:
     ...
 </code></pre><p>Python支持非常多的文本编码。几个常见的编码是ascii, latin-1, utf-8和utf-16。 在web应用程序中通常都使用的是UTF-8。 ascii对应从U+0000到U+007F范围内的7位字符。 latin-1是字节0-255到U+0000至U+00FF范围内Unicode字符的直接映射。 当读取一个未知编码的文本时使用latin-1编码永远不会产生解码错误。 使用latin-1编码读取一个文件的时候也许不能产生完全正确的文本解码数据， 但是它也能从中提取出足够多的有用数据。同时，如果你之后将数据回写回去，原先的数据还是会保留的。</p>
-<h3 id="file">file</h3><pre><code>print <span class="function"><span class="title">file</span><span class="params">(<span class="string">'/root/Desktop/test/chen.txt'</span>, <span class="string">'rt'</span>)</span></span>.<span class="function"><span class="title">read</span><span class="params">()</span></span>
-</code></pre><h3 id="file与open_区别">file与open 区别</h3><p>python3没有file了，基本这俩一样</p>
-<h3 id="什么是IO？">什么是IO？</h3><p>i就是input输入,O就是output输出,一起就是基本输入输出设备<br>I/O也就是输入输出地址。每个设备都会有一个专用的I/O地址，用来处理自己的输入输出信息。I/O地址绝对不能重复，如果两个设备的I/O地址有冲突，系统硬件就不能正常工作。以Windows XP操作系统为例，查看一个设备所占用的I/O地址的方法是：在系统桌面中选择“我的电脑”，单击鼠标右键，选择“属性”，在弹出的“系统属性”对话框中选择“硬件”，单击“设备管理器”按钮，弹出一个“设备管理器”窗口，在设备列表中双击要查看的I/O地址设备类型，然后双击具体的设备名称，在弹出对话框的“资源”选项卡中就可以看到该设备所占用的I/O地址了。在“资源设置”区域，可以看到显卡占用的I/O地址。 </p>
+<h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><pre><code>print file(&apos;/root/Desktop/test/chen.txt&apos;, &apos;rt&apos;).read()
+</code></pre><h3 id="file与open-区别"><a href="#file与open-区别" class="headerlink" title="file与open 区别"></a>file与open 区别</h3><p>python3没有file了，基本这俩一样</p>
+<h3 id="什么是IO？"><a href="#什么是IO？" class="headerlink" title="什么是IO？"></a>什么是IO？</h3><p>i就是input输入,O就是output输出,一起就是基本输入输出设备<br>I/O也就是输入输出地址。每个设备都会有一个专用的I/O地址，用来处理自己的输入输出信息。I/O地址绝对不能重复，如果两个设备的I/O地址有冲突，系统硬件就不能正常工作。以Windows XP操作系统为例，查看一个设备所占用的I/O地址的方法是：在系统桌面中选择“我的电脑”，单击鼠标右键，选择“属性”，在弹出的“系统属性”对话框中选择“硬件”，单击“设备管理器”按钮，弹出一个“设备管理器”窗口，在设备列表中双击要查看的I/O地址设备类型，然后双击具体的设备名称，在弹出对话框的“资源”选项卡中就可以看到该设备所占用的I/O地址了。在“资源设置”区域，可以看到显卡占用的I/O地址。 </p>
 </span>
       
     </div>
@@ -383,8 +383,8 @@ r+以读写方式打开">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/08/good_article_collect_nosql/" rel="prev" title="初识NoSQL">
-                初识NoSQL <i class="fa fa-chevron-right"></i>
+              <a href="/2016/04/08/python_django_paginator/" rel="prev" title="Django(六)用django自带Paginator实现分页功能">
+                Django(六)用django自带Paginator实现分页功能 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -574,7 +574,7 @@ r+以读写方式打开">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正常打开文件读取"><span class="nav-number">1.</span> <span class="nav-text">正常打开文件读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with"><span class="nav-number">2.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-number">3.</span> <span class="nav-text">file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file与open_区别"><span class="nav-number">4.</span> <span class="nav-text">file与open 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是IO？"><span class="nav-number">5.</span> <span class="nav-text">什么是IO？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正常打开文件读取"><span class="nav-number">1.</span> <span class="nav-text">正常打开文件读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#with"><span class="nav-number">2.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file"><span class="nav-number">3.</span> <span class="nav-text">file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#file与open-区别"><span class="nav-number">4.</span> <span class="nav-text">file与open 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是IO？"><span class="nav-number">5.</span> <span class="nav-text">什么是IO？</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

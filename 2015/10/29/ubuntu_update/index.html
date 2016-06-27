@@ -319,14 +319,14 @@
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/136010-106.jpg" class="img-shadow" style="display: block;margin: auto"></p>
 <p>ubuntu apt-get update失败</p>
-<h3 id="出现错误1处理：">出现错误1处理：</h3><p>E:Could not get lock /var/lib/apt/lists/lock - open (11: Resource temporarily unavailable)<br> 出现这个问题的原因可能是有另外一个程序正在运行，导致资源被锁不可用。而导致资源被锁的原因，可能是上次安装时没正常完成，而导致出现此状况。<br> 解决方法：把 /var/lib/apt/lists 中的文件全部删掉</p>
+<h3 id="出现错误1处理："><a href="#出现错误1处理：" class="headerlink" title="出现错误1处理："></a>出现错误1处理：</h3><p>E:Could not get lock /var/lib/apt/lists/lock - open (11: Resource temporarily unavailable)<br> 出现这个问题的原因可能是有另外一个程序正在运行，导致资源被锁不可用。而导致资源被锁的原因，可能是上次安装时没正常完成，而导致出现此状况。<br> 解决方法：把 /var/lib/apt/lists 中的文件全部删掉</p>
 <p>输入以下命令:</p>
 <pre><code>sudo rm /var/cache/apt/archives/lock
-sudo rm /var/<span class="class"><span class="keyword">lib</span>/<span class="title">dpkg</span>/<span class="title">lock</span></span>
+sudo rm /var/lib/dpkg/lock
 </code></pre><p>之后再安装想装的包，即可解决</p>
-<h3 id="出现错误2处理：">出现错误2处理：</h3><p>E: Some index files failed to download. They have been ignored, or old ones used instead.<br>解决方法：<br>To upgrade a really old Ubuntu release, we first need to edit our sources.<br>list and change all(xx.)archive.ubuntu.com to old-releases.ubuntu.com.</p>
-<pre><code>sudo emacs /etc/apt/sources.<span class="keyword">list</span>
-sudo apt-<span class="built_in">get</span> <span class="keyword">update</span>
+<h3 id="出现错误2处理："><a href="#出现错误2处理：" class="headerlink" title="出现错误2处理："></a>出现错误2处理：</h3><p>E: Some index files failed to download. They have been ignored, or old ones used instead.<br>解决方法：<br>To upgrade a really old Ubuntu release, we first need to edit our sources.<br>list and change all(xx.)archive.ubuntu.com to old-releases.ubuntu.com.</p>
+<pre><code>sudo emacs /etc/apt/sources.list
+sudo apt-get update
 </code></pre></span>
       
     </div>

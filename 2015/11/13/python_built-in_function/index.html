@@ -336,365 +336,365 @@ abs函数绝对值的函数
 
       
         <span itemprop="articleBody"><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/58561-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>Python内建了很多有用的函数，我们可以直接调用。<br>要调用一个函数，需要知道函数的名称和参数，最好的方法就是去看官方文档，并去查看源码来查看他的是实现原理以便于更好得理解。<br>这里介绍一些常用的内置函数。</p>
-<h3 id="abs函数">abs函数</h3><p>绝对值的函数</p>
-<pre><code>&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">abs</span><span class="params">(-<span class="number">12</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="number">12</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">abs</span><span class="params">(<span class="number">12</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="number">12</span>
+<h3 id="abs函数"><a href="#abs函数" class="headerlink" title="abs函数"></a>abs函数</h3><p>绝对值的函数</p>
+<pre><code>&gt;&gt;&gt; b = abs(-12)
+&gt;&gt;&gt; b
+12
+&gt;&gt;&gt; b = abs(12)
+&gt;&gt;&gt; b
+12
 &gt;&gt;&gt; 
 </code></pre><p>可以在交互式命令行通过help（内置函数）来查看的方法和参数。</p>
-<pre><code>&gt;&gt;&gt; help(<span class="built_in">abs</span>)
-Help on built-<span class="type">in</span> <span class="function"><span class="keyword">function</span></span> <span class="built_in">abs</span> <span class="type">in</span> <span class="keyword">module</span> __builtin__:
+<pre><code>&gt;&gt;&gt; help(abs)
+Help on built-in function abs in module __builtin__:
 
-<span class="built_in">abs</span>(...)
-    <span class="built_in">abs</span>(<span class="keyword">number</span>) -&gt; <span class="keyword">number</span>
+abs(...)
+    abs(number) -&gt; number
 
-    <span class="keyword">Return</span> the absolute <span class="keyword">value</span> of the argument.
+    Return the absolute value of the argument.
 
 &gt;&gt;&gt; 
-</code></pre><h3 id="max函数和min函数">max函数和min函数</h3><pre><code>&gt;&gt;&gt; b = max(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)
+</code></pre><h3 id="max函数和min函数"><a href="#max函数和min函数" class="headerlink" title="max函数和min函数"></a>max函数和min函数</h3><pre><code>&gt;&gt;&gt; b = max(1,2,3,4,5,6)
 &gt;&gt;&gt; b
-<span class="number">6</span>
-&gt;&gt;&gt; b = min(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)
+6
+&gt;&gt;&gt; b = min(1,2,3,4,5,6)
 &gt;&gt;&gt; b
-<span class="number">1</span>
+1
 &gt;&gt;&gt; 
-</code></pre><h3 id="数据类型转换的函数">数据类型转换的函数</h3><pre><code>&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(<span class="string">'3'</span>)</span></span>
-&lt;type <span class="string">'str'</span>&gt;
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">int</span><span class="params">(<span class="string">'3'</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="number">3</span>
-&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(b)</span></span>
-&lt;type <span class="string">'int'</span>&gt;
+</code></pre><h3 id="数据类型转换的函数"><a href="#数据类型转换的函数" class="headerlink" title="数据类型转换的函数"></a>数据类型转换的函数</h3><pre><code>&gt;&gt;&gt; type(&apos;3&apos;)
+&lt;type &apos;str&apos;&gt;
+&gt;&gt;&gt; b = int(&apos;3&apos;)
+&gt;&gt;&gt; b
+3
+&gt;&gt;&gt; type(b)
+&lt;type &apos;int&apos;&gt;
 &gt;&gt;&gt;         
 
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">float</span><span class="params">(<span class="number">3.1415926</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="number">3.1415926</span>
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">float</span><span class="params">(<span class="number">3</span>)</span></span>
-&gt;&gt;&gt;<span class="tag">b</span> 
-<span class="number">3.0</span>
+&gt;&gt;&gt; b = float(3.1415926)
+&gt;&gt;&gt; b
+3.1415926
+&gt;&gt;&gt; b = float(3)
+&gt;&gt;&gt;b 
+3.0
 
-&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(<span class="number">3</span>)</span></span>
-&lt;type <span class="string">'int'</span>&gt;
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">str</span><span class="params">(<span class="number">3</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
-<span class="string">'3'</span>
-&gt;&gt;&gt; <span class="function"><span class="title">type</span><span class="params">(b)</span></span>
-&lt;type <span class="string">'str'</span>&gt;
+&gt;&gt;&gt; type(3)
+&lt;type &apos;int&apos;&gt;
+&gt;&gt;&gt; b = str(3)
+&gt;&gt;&gt; b
+&apos;3&apos;
+&gt;&gt;&gt; type(b)
+&lt;type &apos;str&apos;&gt;
 &gt;&gt;&gt; 
 
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="number">0</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
+&gt;&gt;&gt; b = bool(0)
+&gt;&gt;&gt; b
 False
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="number">1</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
+&gt;&gt;&gt; b = bool(1)
+&gt;&gt;&gt; b
 True
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="string">''</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
+&gt;&gt;&gt; b = bool(&apos;&apos;)
+&gt;&gt;&gt; b
 False
-&gt;&gt;&gt; <span class="tag">b</span> = <span class="function"><span class="title">bool</span><span class="params">(<span class="string">'a'</span>)</span></span>
-&gt;&gt;&gt; <span class="tag">b</span>
+&gt;&gt;&gt; b = bool(&apos;a&apos;)
+&gt;&gt;&gt; b
 True
 &gt;&gt;&gt; 
-</code></pre><h3 id="cmp函数">cmp函数</h3><p>如果x &lt; y ,返回负数；x == y, 返回0；x &gt; y,返回正数</p>
-<pre><code>&gt;&gt;&gt; cmp(<span class="number">1</span>,<span class="number">2</span>)
--<span class="number">1</span>
-&gt;&gt;&gt; cmp(<span class="number">2</span>,<span class="number">1</span>)
-<span class="number">1</span>
+</code></pre><h3 id="cmp函数"><a href="#cmp函数" class="headerlink" title="cmp函数"></a>cmp函数</h3><p>如果x &lt; y ,返回负数；x == y, 返回0；x &gt; y,返回正数</p>
+<pre><code>&gt;&gt;&gt; cmp(1,2)
+-1
+&gt;&gt;&gt; cmp(2,1)
+1
 &gt;&gt;&gt; 
-</code></pre><h3 id="dir([object])">dir([object])</h3><p>1、不带参数时，返回当前范围内的变量、方法和定义的类型列表；<br>2、带参数时，返回参数的属性、方法列表。<br>3、如果参数包含方法__dir__()，该方法将被调用。当参数为实例时。<br>4、如果参数不包含__dir__()，该方法将最大限度地收集参数信息</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; dir()
-[<span class="string">'__builtins__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__name__'</span>, <span class="string">'__package__'</span>, <span class="string">'b'</span>]
-<span class="prompt">&gt;&gt;</span>&gt; dir(str)
-[<span class="string">'__add__'</span>, <span class="string">'__class__'</span>, <span class="string">'__contains__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__getitem__'</span>, <span class="string">'__getnewargs__'</span>, <span class="string">'__getslice__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__le__'</span>, <span class="string">'__len__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__mod__'</span>, <span class="string">'__mul__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__rmod__'</span>, <span class="string">'__rmul__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>, <span class="string">'_formatter_field_name_split'</span>, <span class="string">'_formatter_parser'</span>, <span class="string">'capitalize'</span>, <span class="string">'center'</span>, <span class="string">'count'</span>, <span class="string">'decode'</span>, <span class="string">'encode'</span>, <span class="string">'endswith'</span>, <span class="string">'expandtabs'</span>, <span class="string">'find'</span>, <span class="string">'format'</span>, <span class="string">'index'</span>, <span class="string">'isalnum'</span>, <span class="string">'isalpha'</span>, <span class="string">'isdigit'</span>, <span class="string">'islower'</span>, <span class="string">'isspace'</span>, <span class="string">'istitle'</span>, <span class="string">'isupper'</span>, <span class="string">'join'</span>, <span class="string">'ljust'</span>, <span class="string">'lower'</span>, <span class="string">'lstrip'</span>, <span class="string">'partition'</span>, <span class="string">'replace'</span>, <span class="string">'rfind'</span>, <span class="string">'rindex'</span>, <span class="string">'rjust'</span>, <span class="string">'rpartition'</span>, <span class="string">'rsplit'</span>, <span class="string">'rstrip'</span>, <span class="string">'split'</span>, <span class="string">'splitlines'</span>, <span class="string">'startswith'</span>, <span class="string">'strip'</span>, <span class="string">'swapcase'</span>, <span class="string">'title'</span>, <span class="string">'translate'</span>, <span class="string">'upper'</span>, <span class="string">'zfill'</span>]
-<span class="prompt">&gt;&gt;</span>&gt; 
-</code></pre><h3 id="eval函数">eval函数</h3><p>eval()函数十分强大，官方demo解释为：将字符串str当成有效的表达式来求值并返回计算结果。</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; a = <span class="string">"[[1,2], [3,4], [5,6], [7,8], [9,0]]"</span>
-<span class="prompt">&gt;&gt;</span>&gt; type(a)
-&lt;type <span class="string">'str'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; b = eval(a)
-<span class="prompt">&gt;&gt;</span>&gt; b
-[[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>], [<span class="number">9</span>, <span class="number">0</span>]]
-<span class="prompt">&gt;&gt;</span>&gt; type(b)
-&lt;type <span class="string">'list'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="dir-object"><a href="#dir-object" class="headerlink" title="dir([object])"></a>dir([object])</h3><p>1、不带参数时，返回当前范围内的变量、方法和定义的类型列表；<br>2、带参数时，返回参数的属性、方法列表。<br>3、如果参数包含方法__dir__()，该方法将被调用。当参数为实例时。<br>4、如果参数不包含__dir__()，该方法将最大限度地收集参数信息</p>
+<pre><code>&gt;&gt;&gt; dir()
+[&apos;__builtins__&apos;, &apos;__doc__&apos;, &apos;__name__&apos;, &apos;__package__&apos;, &apos;b&apos;]
+&gt;&gt;&gt; dir(str)
+[&apos;__add__&apos;, &apos;__class__&apos;, &apos;__contains__&apos;, &apos;__delattr__&apos;, &apos;__doc__&apos;, &apos;__eq__&apos;, &apos;__format__&apos;, &apos;__ge__&apos;, &apos;__getattribute__&apos;, &apos;__getitem__&apos;, &apos;__getnewargs__&apos;, &apos;__getslice__&apos;, &apos;__gt__&apos;, &apos;__hash__&apos;, &apos;__init__&apos;, &apos;__le__&apos;, &apos;__len__&apos;, &apos;__lt__&apos;, &apos;__mod__&apos;, &apos;__mul__&apos;, &apos;__ne__&apos;, &apos;__new__&apos;, &apos;__reduce__&apos;, &apos;__reduce_ex__&apos;, &apos;__repr__&apos;, &apos;__rmod__&apos;, &apos;__rmul__&apos;, &apos;__setattr__&apos;, &apos;__sizeof__&apos;, &apos;__str__&apos;, &apos;__subclasshook__&apos;, &apos;_formatter_field_name_split&apos;, &apos;_formatter_parser&apos;, &apos;capitalize&apos;, &apos;center&apos;, &apos;count&apos;, &apos;decode&apos;, &apos;encode&apos;, &apos;endswith&apos;, &apos;expandtabs&apos;, &apos;find&apos;, &apos;format&apos;, &apos;index&apos;, &apos;isalnum&apos;, &apos;isalpha&apos;, &apos;isdigit&apos;, &apos;islower&apos;, &apos;isspace&apos;, &apos;istitle&apos;, &apos;isupper&apos;, &apos;join&apos;, &apos;ljust&apos;, &apos;lower&apos;, &apos;lstrip&apos;, &apos;partition&apos;, &apos;replace&apos;, &apos;rfind&apos;, &apos;rindex&apos;, &apos;rjust&apos;, &apos;rpartition&apos;, &apos;rsplit&apos;, &apos;rstrip&apos;, &apos;split&apos;, &apos;splitlines&apos;, &apos;startswith&apos;, &apos;strip&apos;, &apos;swapcase&apos;, &apos;title&apos;, &apos;translate&apos;, &apos;upper&apos;, &apos;zfill&apos;]
+&gt;&gt;&gt; 
+</code></pre><h3 id="eval函数"><a href="#eval函数" class="headerlink" title="eval函数"></a>eval函数</h3><p>eval()函数十分强大，官方demo解释为：将字符串str当成有效的表达式来求值并返回计算结果。</p>
+<pre><code>&gt;&gt;&gt; a = &quot;[[1,2], [3,4], [5,6], [7,8], [9,0]]&quot;
+&gt;&gt;&gt; type(a)
+&lt;type &apos;str&apos;&gt;
+&gt;&gt;&gt; b = eval(a)
+&gt;&gt;&gt; b
+[[1, 2], [3, 4], [5, 6], [7, 8], [9, 0]]
+&gt;&gt;&gt; type(b)
+&lt;type &apos;list&apos;&gt;
+&gt;&gt;&gt; 
 
-&gt;&gt;&gt; a = <span class="string">"{'hello':'world', 1:2}"</span>
-<span class="prompt">&gt;&gt;</span>&gt; type(a)
-&lt;type <span class="string">'str'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; b = eval(a)
-<span class="prompt">&gt;&gt;</span>&gt; b
-{<span class="number">1</span><span class="symbol">:</span> <span class="number">2</span>, <span class="string">'hello'</span><span class="symbol">:</span> <span class="string">'world'</span>}
-<span class="prompt">&gt;&gt;</span>&gt; type(b)
-&lt;type <span class="string">'dict'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; 
+&gt;&gt;&gt; a = &quot;{&apos;hello&apos;:&apos;world&apos;, 1:2}&quot;
+&gt;&gt;&gt; type(a)
+&lt;type &apos;str&apos;&gt;
+&gt;&gt;&gt; b = eval(a)
+&gt;&gt;&gt; b
+{1: 2, &apos;hello&apos;: &apos;world&apos;}
+&gt;&gt;&gt; type(b)
+&lt;type &apos;dict&apos;&gt;
+&gt;&gt;&gt; 
 
-&gt;&gt;&gt; a = <span class="string">'(1,2,3,4,5,6,7,8,9)'</span>
-<span class="prompt">&gt;&gt;</span>&gt; type(a)
-&lt;type <span class="string">'str'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt; b = eval(a)
-<span class="prompt">&gt;&gt;</span>&gt; b
-(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)
-<span class="prompt">&gt;&gt;</span>&gt; type(b)
-&lt;type <span class="string">'tuple'</span>&gt;
-<span class="prompt">&gt;&gt;</span>&gt;
+&gt;&gt;&gt; a = &apos;(1,2,3,4,5,6,7,8,9)&apos;
+&gt;&gt;&gt; type(a)
+&lt;type &apos;str&apos;&gt;
+&gt;&gt;&gt; b = eval(a)
+&gt;&gt;&gt; b
+(1, 2, 3, 4, 5, 6, 7, 8, 9)
+&gt;&gt;&gt; type(b)
+&lt;type &apos;tuple&apos;&gt;
+&gt;&gt;&gt;
 </code></pre><p><strong style="color:red">虽然强大，但是安全性不高</strong></p>
-<h3 id="filter(function,_iterable)">filter(function, iterable)</h3><p>构造一个序列，等价于[ item for item in iterable if function(item)]<br>1、参数function：返回值为True或False的函数，可以为None<br>2、参数iterable：序列或可迭代对象<br>filter函数会对指定序列执行过滤操作。<br>filter函数的定义：<br>        filter(function or None, sequence) -&gt; list, tuple, or string<br>function是一个谓词函数，接受一个参数，返回布尔值True或False。<br>filter函数会对序列参数sequence中的每个元素调用function函数，最后返回的结果包含调用结果为True的元素。<br>返回值的类型和参数sequence的类型相同</p>
+<h3 id="filter-function-iterable"><a href="#filter-function-iterable" class="headerlink" title="filter(function, iterable)"></a>filter(function, iterable)</h3><p>构造一个序列，等价于[ item for item in iterable if function(item)]<br>1、参数function：返回值为True或False的函数，可以为None<br>2、参数iterable：序列或可迭代对象<br>filter函数会对指定序列执行过滤操作。<br>filter函数的定义：<br>        filter(function or None, sequence) -&gt; list, tuple, or string<br>function是一个谓词函数，接受一个参数，返回布尔值True或False。<br>filter函数会对序列参数sequence中的每个元素调用function函数，最后返回的结果包含调用结果为True的元素。<br>返回值的类型和参数sequence的类型相同</p>
 <pre><code>&gt;&gt;&gt; def fun(num):
-    <span class="keyword">if</span> <span class="number">3</span>&lt;num&lt;<span class="number">6</span>:
-        <span class="keyword">return</span> num
+    if 3&lt;num&lt;6:
+        return num
 
 
-&gt;&gt;&gt; lists = [<span class="number">12</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">56</span>,<span class="number">66</span>,<span class="number">774</span>,<span class="number">5</span>,<span class="number">2</span>]
-&gt;&gt;&gt; <span class="literal">result</span> = filter(fun,lists)
-&gt;&gt;&gt; <span class="literal">result</span>
-[<span class="number">4</span>, <span class="number">5</span>]
+&gt;&gt;&gt; lists = [12,3,4,56,66,774,5,2]
+&gt;&gt;&gt; result = filter(fun,lists)
+&gt;&gt;&gt; result
+[4, 5]
 &gt;&gt;&gt; 
-</code></pre><h3 id="repr()函数">repr()函数</h3><p>将一个对象变幻为可打印的格式</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'hello world'</span>
-<span class="prompt">&gt;&gt;</span>&gt; b = repr(s)
-<span class="prompt">&gt;&gt;</span>&gt; b
-<span class="string">"'hello world'"</span>
-<span class="prompt">&gt;&gt;</span>&gt; 
+</code></pre><h3 id="repr-函数"><a href="#repr-函数" class="headerlink" title="repr()函数"></a>repr()函数</h3><p>将一个对象变幻为可打印的格式</p>
+<pre><code>&gt;&gt;&gt; s = &apos;hello world&apos;
+&gt;&gt;&gt; b = repr(s)
+&gt;&gt;&gt; b
+&quot;&apos;hello world&apos;&quot;
+&gt;&gt;&gt; 
 </code></pre><p>python str和repr的区别：<br>尽管str(),repr()和<code>运算在特性和功能方面都非常相似，事实上repr()和</code>做的是完全一样的事情，它们返回的是一个对象的“官方”字符串表示，也就是说绝大多数情况下可以通过求值运算（使用内建函数eval()）重新得到该对象。</p>
 <p>但str()则有所不同，str()致力于生成一个对象的可读性好的字符串表示，它的返回结果通常无法用于eval()求值，但很适合用于print语句输出。需要再次提醒的是，并不是所有repr()返回的字符串都能够用 eval()内建函数得到原来的对象。 也就是说 repr() 输出对 Python比较友好，而str()的输出对用户比较友好。<br>虽然如此，很多情况下这三者的输出仍然都是完全一样的。 大家可以看下下面的代码，来进行对比：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'Hello, world.'</span>
-<span class="prompt">&gt;&gt;</span>&gt; str(s)
-<span class="string">'Hello, world.'</span>
-<span class="prompt">&gt;&gt;</span>&gt; repr(s)
-<span class="string">"'Hello, world.'"</span>
-<span class="prompt">&gt;&gt;</span>&gt; str(<span class="number">0</span>.<span class="number">1</span>)
-<span class="string">'0.1'</span>
-<span class="prompt">&gt;&gt;</span>&gt; repr(<span class="number">0</span>.<span class="number">1</span>)
-<span class="string">'0.10000000000000001'</span>
-<span class="prompt">&gt;&gt;</span>&gt; x = <span class="number">10</span> * <span class="number">3.25</span>
-<span class="prompt">&gt;&gt;</span>&gt; y = <span class="number">200</span> * <span class="number">200</span>
-<span class="prompt">&gt;&gt;</span>&gt; s = <span class="string">'The value of x is '</span> + repr(x) + <span class="string">', and y is '</span> + repr(y) + <span class="string">'...'</span>
-<span class="prompt">&gt;&gt;</span>&gt; print s
-<span class="constant">The</span> value of x is <span class="number">32.5</span>, <span class="keyword">and</span> y is <span class="number">40000</span>...
-<span class="prompt">&gt;&gt;</span>&gt; <span class="comment"># The repr() of a string adds string quotes and backslashes:</span>
-... hello = <span class="string">'hello, world\n'</span>
-<span class="prompt">&gt;&gt;</span>&gt; hellos = repr(hello)
-<span class="prompt">&gt;&gt;</span>&gt; print hellos
-<span class="string">'hello, world\n'</span>
-<span class="prompt">&gt;&gt;</span>&gt; <span class="comment"># The argument to repr() may be any Python object:</span>
-... repr((x, y, (<span class="string">'spam'</span>, <span class="string">'eggs'</span>)))
-<span class="string">"(32.5, 40000, ('spam', 'eggs'))"</span>
-</code></pre><h3 id="super(type[,_object-or-type])函数">super(type[, object-or-type])函数</h3><p><strong>普通继承</strong></p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">FooParent</span><span class="params">(object)</span>:</span> 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
-        self.parent = <span class="string">'I\'m the parent.'</span> 
-        <span class="keyword">print</span> <span class="string">'Parent'</span> 
+<pre><code>&gt;&gt;&gt; s = &apos;Hello, world.&apos;
+&gt;&gt;&gt; str(s)
+&apos;Hello, world.&apos;
+&gt;&gt;&gt; repr(s)
+&quot;&apos;Hello, world.&apos;&quot;
+&gt;&gt;&gt; str(0.1)
+&apos;0.1&apos;
+&gt;&gt;&gt; repr(0.1)
+&apos;0.10000000000000001&apos;
+&gt;&gt;&gt; x = 10 * 3.25
+&gt;&gt;&gt; y = 200 * 200
+&gt;&gt;&gt; s = &apos;The value of x is &apos; + repr(x) + &apos;, and y is &apos; + repr(y) + &apos;...&apos;
+&gt;&gt;&gt; print s
+The value of x is 32.5, and y is 40000...
+&gt;&gt;&gt; # The repr() of a string adds string quotes and backslashes:
+... hello = &apos;hello, world\n&apos;
+&gt;&gt;&gt; hellos = repr(hello)
+&gt;&gt;&gt; print hellos
+&apos;hello, world\n&apos;
+&gt;&gt;&gt; # The argument to repr() may be any Python object:
+... repr((x, y, (&apos;spam&apos;, &apos;eggs&apos;)))
+&quot;(32.5, 40000, (&apos;spam&apos;, &apos;eggs&apos;))&quot;
+</code></pre><h3 id="super-type-object-or-type-函数"><a href="#super-type-object-or-type-函数" class="headerlink" title="super(type[, object-or-type])函数"></a>super(type[, object-or-type])函数</h3><p><strong>普通继承</strong></p>
+<pre><code>class FooParent(object): 
+    def __init__(self): 
+        self.parent = &apos;I\&apos;m the parent.&apos; 
+        print &apos;Parent&apos; 
 
-    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
-        <span class="keyword">print</span> message, <span class="string">'from Parent'</span> 
+    def bar(self,message): 
+        print message, &apos;from Parent&apos; 
 
-<span class="class"><span class="keyword">class</span> <span class="title">FooChild</span><span class="params">(FooParent)</span>:</span> 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
+class FooChild(FooParent): 
+    def __init__(self): 
         FooParent.__init__(self) 
-        <span class="keyword">print</span> <span class="string">'Child'</span> 
+        print &apos;Child&apos; 
 
-    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
+    def bar(self,message): 
         FooParent.bar(self,message) 
-        <span class="keyword">print</span> <span class="string">'Child bar function.'</span> 
-        <span class="keyword">print</span> self.parent 
+        print &apos;Child bar function.&apos; 
+        print self.parent 
 
-<span class="keyword">if</span> __name__==<span class="string">'__main__'</span>: 
+if __name__==&apos;__main__&apos;: 
     fooChild = FooChild() 
-    fooChild.bar(<span class="string">'HelloWorld'</span>)  
+    fooChild.bar(&apos;HelloWorld&apos;)  
 </code></pre><p><strong>super继承</strong></p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">FooParent</span><span class="params">(object)</span>:</span> 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
-        self.parent = <span class="string">'I\'m the parent.'</span> 
-        <span class="keyword">print</span> <span class="string">'Parent'</span> 
+<pre><code>class FooParent(object): 
+    def __init__(self): 
+        self.parent = &apos;I\&apos;m the parent.&apos; 
+        print &apos;Parent&apos; 
 
-    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
-        <span class="keyword">print</span> message,<span class="string">'from Parent'</span> 
+    def bar(self,message): 
+        print message,&apos;from Parent&apos; 
 
-<span class="class"><span class="keyword">class</span> <span class="title">FooChild</span><span class="params">(FooParent)</span>:</span> 
-    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span> 
+class FooChild(FooParent): 
+    def __init__(self): 
         super(FooChild,self).__init__() 
-        <span class="keyword">print</span> <span class="string">'Child'</span> 
+        print &apos;Child&apos; 
 
-    <span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">(self,message)</span>:</span> 
+    def bar(self,message): 
         super(FooChild, self).bar(message) 
-        <span class="keyword">print</span> <span class="string">'Child bar fuction'</span> 
-        <span class="keyword">print</span> self.parent 
+        print &apos;Child bar fuction&apos; 
+        print self.parent 
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>: 
+if __name__ == &apos;__main__&apos;: 
     fooChild = FooChild() 
-    fooChild.bar(<span class="string">'HelloWorld'</span>)
+    fooChild.bar(&apos;HelloWorld&apos;)
 </code></pre><p>程序运行结果相同，为：</p>
 <pre><code>Parent
 Child
-HelloWorld <span class="keyword">from</span> Parent
+HelloWorld from Parent
 Child bar fuction
-I<span class="comment">'m the parent.</span>
+I&apos;m the parent.
 </code></pre><p>从运行结果上看，普通继承和super继承是一样的。但是其实它们的内部运行机制不一样，这一点在多重继承时体现得很明显。在super机制里可以保证公共父类仅被执行一次，至于执行的顺序，是按照mro进行的（E.<strong>mro</strong>）。<br>注意super继承只能用于新式类，用于经典类时就会报错。<br>新式类：必须有继承的类，如果没什么想继承的，那就继承object<br>经典类：没有父类，如果此时调用super就会出现错误：『super() argument 1 must be type, not classobj</p>
-<h3 id="isinstance()函数">isinstance()函数</h3><p>isinstance(object, classinfo)<br>判断实例是否是这个类或者object是变量  </p>
+<h3 id="isinstance-函数"><a href="#isinstance-函数" class="headerlink" title="isinstance()函数"></a>isinstance()函数</h3><p>isinstance(object, classinfo)<br>判断实例是否是这个类或者object是变量  </p>
 <p>classinfo 是类型(tuple,dict,int,float)<br>判断变量是否是这个类型 </p>
-<pre><code><span class="prompt">&gt;&gt;&gt; </span>num = <span class="number">10</span>    <span class="comment"># 定义一个变量为整数10</span>
-<span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">function</span><span class="params">()</span>:</span>    <span class="comment"># 定义一个叫function的函数，不做任何操作</span>
-    <span class="keyword">pass</span>
+<pre><code>&gt;&gt;&gt; num = 10    # 定义一个变量为整数10
+&gt;&gt;&gt; def function():    # 定义一个叫function的函数，不做任何操作
+    pass
 
-<span class="prompt">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">()</span>:</span>    <span class="comment"># 定义一个叫test的类，不做任何操作</span>
-    <span class="keyword">pass</span>
+&gt;&gt;&gt; class test():    # 定义一个叫test的类，不做任何操作
+    pass
 
-<span class="prompt">&gt;&gt;&gt; </span>isinstance(num,int)    <span class="comment"># 判断num是不是整型</span>
-<span class="keyword">True</span>
-<span class="prompt">&gt;&gt;&gt; </span>isinstance(num,(int,str))    <span class="comment"># 判断num是不是整型或者字符串</span>
-<span class="keyword">True</span>
-<span class="prompt">&gt;&gt;&gt; </span>isinstance(num,(float,str))    <span class="comment"># 判断num是不是整型或者浮点型</span>
-<span class="keyword">False</span>
-<span class="prompt">&gt;&gt;&gt; </span>isinstance(function,object)    <span class="comment"># 判断function是不是一个对象</span>
-<span class="keyword">True</span>
-<span class="prompt">&gt;&gt;&gt; </span>isinstance(function,int)    <span class="comment"># 判断function是不是一个整型</span>
-<span class="keyword">False</span>
-<span class="prompt">&gt;&gt;&gt; </span>isinstance(test,object)    <span class="comment"># 判断test是不是一个对象</span>
-<span class="keyword">True</span>
-<span class="prompt">&gt;&gt;&gt; </span>isinstance(test,str)    <span class="comment"># 判断test是不是一个字符串</span>
-<span class="keyword">False</span>
-<span class="prompt">&gt;&gt;&gt; </span>
-</code></pre><h3 id="map()函数">map()函数</h3><p>map函数会根据提供的函数对指定序列做映射。<br>map函数的定义：</p>
-<pre><code>map(<span class="function"><span class="keyword">function</span></span>, <span class="keyword">sequence</span>[, <span class="keyword">sequence</span>, ...]) -&gt; list
+&gt;&gt;&gt; isinstance(num,int)    # 判断num是不是整型
+True
+&gt;&gt;&gt; isinstance(num,(int,str))    # 判断num是不是整型或者字符串
+True
+&gt;&gt;&gt; isinstance(num,(float,str))    # 判断num是不是整型或者浮点型
+False
+&gt;&gt;&gt; isinstance(function,object)    # 判断function是不是一个对象
+True
+&gt;&gt;&gt; isinstance(function,int)    # 判断function是不是一个整型
+False
+&gt;&gt;&gt; isinstance(test,object)    # 判断test是不是一个对象
+True
+&gt;&gt;&gt; isinstance(test,str)    # 判断test是不是一个字符串
+False
+&gt;&gt;&gt; 
+</code></pre><h3 id="map-函数"><a href="#map-函数" class="headerlink" title="map()函数"></a>map()函数</h3><p>map函数会根据提供的函数对指定序列做映射。<br>map函数的定义：</p>
+<pre><code>map(function, sequence[, sequence, ...]) -&gt; list
 </code></pre><p>通过定义可以看到，这个函数的第一个参数是一个函数，剩下的参数是一个或多个序列，返回值是一个集合。<br>function可以理解为是一个一对一或多对一函数，map的作用是以参数序列中的每一个元素调用function函数，返回包含每次function函数返回值的list。<br>比如要对一个序列中的每个元素进行平方运算：</p>
-<pre><code>&gt;&gt;&gt;<span class="built_in">map</span>(lambda x: x ** <span class="number">2</span>, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])
+<pre><code>&gt;&gt;&gt;map(lambda x: x ** 2, [1, 2, 3, 4, 5])
 </code></pre><p>返回结果为：</p>
-<pre><code>&gt;&gt;&gt;[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>]
+<pre><code>&gt;&gt;&gt;[1, 4, 9, 16, 25]
 </code></pre><p>在参数存在多个序列时，会依次以每个序列中相同位置的元素做参数调用function函数。<br>比如要对两个序列中的元素依次求和。</p>
-<pre><code>&gt;&gt;&gt;<span class="built_in">map</span>(lambda x, y: x + y, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>])
+<pre><code>&gt;&gt;&gt;map(lambda x, y: x + y, [1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
 </code></pre><p>map返回的list中第一个元素为，参数序列1的第一个元素加参数序列2中的第一个元素(1 + 2)，<br>list中的第二个元素为，参数序列1中的第二个元素加参数序列2中的第二个元素(3 + 4)，<br>依次类推，最后的返回结果为：</p>
-<pre><code>&gt;&gt;&gt;[<span class="number">3</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>, <span class="number">19</span>]
+<pre><code>&gt;&gt;&gt;[3, 7, 11, 15, 19]
 </code></pre><p>要注意function函数的参数数量，要和map中提供的集合数量相匹配。<br>如果集合长度不相等，会以最小长度对所有集合进行截取。<br>当函数为None时，操作和zip相似：</p>
-<pre><code>&gt;&gt;&gt;<span class="built_in">map</span>(None, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>], [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>])
+<pre><code>&gt;&gt;&gt;map(None, [1, 3, 5, 7, 9], [2, 4, 6, 8, 10])
 </code></pre><p>返回结果为：</p>
-<pre><code>&gt;&gt;&gt;[(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">4</span>), (<span class="number">5</span>, <span class="number">6</span>), (<span class="number">7</span>, <span class="number">8</span>), (<span class="number">9</span>, <span class="number">10</span>)]
-</code></pre><h3 id="reduce()函数">reduce()函数</h3><p>reduce函数，reduce函数会对参数序列中元素进行累积。<br>reduce函数的定义：<br>reduce(function, sequence[, initial]) -&gt; value<br>function参数是一个有两个参数的函数，reduce依次从sequence中取一个元素，和上一次调用function的结果做参数再次调用function。<br>第一次调用function时，如果提供initial参数，会以sequence中的第一个元素和initial作为参数调用function，否则会以序列sequence中的前两个元素做参数调用function。</p>
-<pre><code>&gt;&gt;&gt;reduce(lambda x, y: x + y, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], <span class="number">1</span>)    <span class="preprocessor"># (  (((((<span class="number">1</span>+<span class="number">2</span>)+<span class="number">3</span>)+<span class="number">4</span>)+<span class="number">5</span>)+<span class="number">6</span>)  ) </span>
-&gt;&gt;&gt;<span class="number">21</span>
-&gt;&gt;&gt;reduce(lambda x, y: x + y, [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>])
-&gt;&gt;&gt;<span class="number">20</span>
+<pre><code>&gt;&gt;&gt;[(1, 2), (3, 4), (5, 6), (7, 8), (9, 10)]
+</code></pre><h3 id="reduce-函数"><a href="#reduce-函数" class="headerlink" title="reduce()函数"></a>reduce()函数</h3><p>reduce函数，reduce函数会对参数序列中元素进行累积。<br>reduce函数的定义：<br>reduce(function, sequence[, initial]) -&gt; value<br>function参数是一个有两个参数的函数，reduce依次从sequence中取一个元素，和上一次调用function的结果做参数再次调用function。<br>第一次调用function时，如果提供initial参数，会以sequence中的第一个元素和initial作为参数调用function，否则会以序列sequence中的前两个元素做参数调用function。</p>
+<pre><code>&gt;&gt;&gt;reduce(lambda x, y: x + y, [2, 3, 4, 5, 6], 1)    # (  (((((1+2)+3)+4)+5)+6)  ) 
+&gt;&gt;&gt;21
+&gt;&gt;&gt;reduce(lambda x, y: x + y, [2, 3, 4, 5, 6])
+&gt;&gt;&gt;20
 </code></pre><p><strong style="color:red">注意function函数不能为None。</strong></p>
-<h3 id="zip()函数">zip()函数</h3><p>zip函数接受任意多个（包括0个和1个）序列作为参数，返回一个tuple列表</p>
-<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
-&gt;&gt;&gt; y = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
-&gt;&gt;&gt; z = [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]
+<h3 id="zip-函数"><a href="#zip-函数" class="headerlink" title="zip()函数"></a>zip()函数</h3><p>zip函数接受任意多个（包括0个和1个）序列作为参数，返回一个tuple列表</p>
+<pre><code>&gt;&gt;&gt; x = [1, 2, 3]
+&gt;&gt;&gt; y = [4, 5, 6]
+&gt;&gt;&gt; z = [7,8,9]
 &gt;&gt;&gt; xyz = zip(x,y,z)
 &gt;&gt;&gt; xyz
-[(<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>), (<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>), (<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>)]
+[(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 &gt;&gt;&gt;
 </code></pre><p>如果集合长度不相等，会以最小长度对所有集合进行截取</p>
-<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
-&gt;&gt;&gt; y = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]
+<pre><code>&gt;&gt;&gt; x = [1, 2, 3]
+&gt;&gt;&gt; y = [4, 5, 6, 7]
 &gt;&gt;&gt; xy = zip(x, y)
 &gt;&gt;&gt; xy
-[(<span class="number">1</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">5</span>), (<span class="number">3</span>, <span class="number">6</span>)]
+[(1, 4), (2, 5), (3, 6)]
 </code></pre><p><strong>当只有一个参数时</strong></p>
-<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+<pre><code>&gt;&gt;&gt; x = [1, 2, 3]
 &gt;&gt;&gt; x = zip(x)
 &gt;&gt;&gt; x
-[(<span class="number">1</span>,), (<span class="number">2</span>,), (<span class="number">3</span>,)]
+[(1,), (2,), (3,)]
 </code></pre><p><strong>当没有参数时</strong></p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; x = zip()
-<span class="prompt">&gt;&gt;</span>&gt; x
+<pre><code>&gt;&gt;&gt; x = zip()
+&gt;&gt;&gt; x
 []
-<span class="prompt">&gt;&gt;</span>&gt; 
+&gt;&gt;&gt; 
 </code></pre><p><strong>来看这一个例子：</strong></p>
-<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
-&gt;&gt;&gt; y = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
-&gt;&gt;&gt; z = [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+<pre><code>&gt;&gt;&gt; x = [1, 2, 3]
+&gt;&gt;&gt; y = [4, 5, 6]
+&gt;&gt;&gt; z = [7, 8, 9]
 &gt;&gt;&gt; xyz = zip(x,y,z)
 &gt;&gt;&gt; xyz
-[(<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>), (<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>), (<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>)]
+[(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 &gt;&gt;&gt; u = zip(*xyz)
 &gt;&gt;&gt; u
-[(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>), (<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)]
+[(1, 2, 3), (4, 5, 6), (7, 8, 9)]
 &gt;&gt;&gt; 
 </code></pre><p>一般认为这是一个unzip的过程，它的运行机制是这样的：<br>在运行zip(<em>xyz)之前，xyz的值是：[(1, 4, 7), (2, 5, 8), (3, 6, 9)]<br>那么，zip(</em>xyz) 等价于 zip((1, 4, 7), (2, 5, 8), (3, 6, 9))<br>所以，运行结果是：[(1, 2, 3), (4, 5, 6), (7, 8, 9)]<br><strong style="color:red">注：在函数调用中使用*list/tuple的方式表示将list/tuple分开，作为位置参数传递给对应函数（前提是对应函数支持不定个数的位置参数）</strong></p>
 <p><strong>又一个例子：</strong></p>
-<pre><code>&gt;&gt;&gt; x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]
-&gt;&gt;&gt; r = zip(*[x]*<span class="number">3</span>)
+<pre><code>&gt;&gt;&gt; x = [1,2,3]
+&gt;&gt;&gt; r = zip(*[x]*3)
 &gt;&gt;&gt; r
-[(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>)]
+[(1, 1, 1), (2, 2, 2), (3, 3, 3)]
 &gt;&gt;&gt; 
 </code></pre><p>它的运行机制是这样的：<br>[x]生成一个列表的列表，它只有一个元素x<br>[x] * 3生成一个列表的列表，它有3个元素，[x, x, x]<br>zip(* [x] * 3)的意思就明确了，zip(x, x, x)</p>
-<h3 id="sort()和sorted()函数">sort()和sorted()函数</h3><p>sort(list[cmp=None[, key=None[, reverse=False]]])<br>sorted(iterable[,cmp=None,[,key=None[,reverse=True]]])</p>
+<h3 id="sort-和sorted-函数"><a href="#sort-和sorted-函数" class="headerlink" title="sort()和sorted()函数"></a>sort()和sorted()函数</h3><p>sort(list[cmp=None[, key=None[, reverse=False]]])<br>sorted(iterable[,cmp=None,[,key=None[,reverse=True]]])</p>
 <p>两者都是用于排序的bif(built-in-function)内建函数，区别在于sort()没有返回值，而且sort()内只能传一个list参数,其他可迭代对象不可以，并且它是把list(列表)原地排序，也就是使用后并不是返回一个有序的序列副本，而是把当前序列变得有序，而sorted()参数可以传所有的iterable(可迭代对象)，并且，他会通过排序后返回一个新的序列。相比之下，sorted更强大。</p>
 <p><strong>list.sort()举例：</strong></p>
-<pre><code>&gt;&gt;&gt; <span class="tag">a</span> = [<span class="number">9</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">47</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>]
-&gt;&gt;&gt; <span class="tag">a</span>.<span class="function"><span class="title">sort</span><span class="params">()</span></span>
-&gt;&gt;&gt; <span class="tag">a</span>
-[<span class="number">3</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">47</span>]
-&gt;&gt;&gt; <span class="tag">a</span> = <span class="string">'chen'</span>
-&gt;&gt;&gt; <span class="tag">a</span>.<span class="function"><span class="title">sort</span><span class="params">()</span></span>
+<pre><code>&gt;&gt;&gt; a = [9,5,6,8,47,7,5,3,6]
+&gt;&gt;&gt; a.sort()
+&gt;&gt;&gt; a
+[3, 5, 5, 6, 6, 7, 8, 9, 47]
+&gt;&gt;&gt; a = &apos;chen&apos;
+&gt;&gt;&gt; a.sort()
 Traceback (most recent call last):
-  File <span class="string">"&lt;pyshell#4&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;
-    <span class="tag">a</span>.<span class="function"><span class="title">sort</span><span class="params">()</span></span>
-AttributeError: <span class="string">'str'</span> <span class="tag">object</span> has no attribute <span class="string">'sort'</span>
+  File &quot;&lt;pyshell#4&gt;&quot;, line 1, in &lt;module&gt;
+    a.sort()
+AttributeError: &apos;str&apos; object has no attribute &apos;sort&apos;
 &gt;&gt;&gt; 
 </code></pre><p><strong>sorted(iterable)举例：</strong></p>
-<pre><code>&gt;&gt;&gt; a = [<span class="number">9</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">47</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>]
+<pre><code>&gt;&gt;&gt; a = [9,5,6,8,47,7,5,3,6]
 &gt;&gt;&gt; sorted(a)
-[<span class="number">3</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">47</span>]
+[3, 5, 5, 6, 6, 7, 8, 9, 47]
 &gt;&gt;&gt; 
 </code></pre><p>可选的参数有三个，cmp、key和reverse。<br>1)cmp指定一个定制的比较函数，这个函数接收两个参数（iterable的元素），如果第一个参数小于第二个参数，返回一个负数；如果第一个参数等于第二个参数，返回零；如果第一个参数大于第二个参数，返回一个正数。默认值为None。<br>2)key指定一个接收一个参数的函数，这个函数用于从每个元素中提取一个用于比较的关键字。默认值为None。<br>3)reverse是一个布尔值。如果设置为True，列表元素将被倒序排列。<br>通常来说，key和reverse比一个等价的cmp函数处理速度要快。这是因为对于每个列表元素，cmp都会被调用多次，而key和reverse只被调用一次。</p>
 <p><strong>cmp参数举例(cmp参数可以和lambda函数一起使用)：</strong></p>
-<pre><code>&gt;&gt;&gt; L = [(<span class="string">'b'</span>,<span class="number">2</span>),(<span class="string">'a'</span>,<span class="number">1</span>),(<span class="string">'c'</span>,<span class="number">3</span>),(<span class="string">'d'</span>,<span class="number">4</span>)]
-&gt;&gt;&gt; sorted(L, cmp=lambda x,y:cmp(x[<span class="number">1</span>],y[<span class="number">1</span>]))
-[(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'b'</span>, <span class="number">2</span>), (<span class="string">'c'</span>, <span class="number">3</span>), (<span class="string">'d'</span>, <span class="number">4</span>)]
+<pre><code>&gt;&gt;&gt; L = [(&apos;b&apos;,2),(&apos;a&apos;,1),(&apos;c&apos;,3),(&apos;d&apos;,4)]
+&gt;&gt;&gt; sorted(L, cmp=lambda x,y:cmp(x[1],y[1]))
+[(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3), (&apos;d&apos;, 4)]
 &gt;&gt;&gt; 
 </code></pre><p><strong>key举例：</strong></p>
-<pre><code>&gt;&gt;&gt; L = [(<span class="string">'b'</span>,<span class="number">2</span>),(<span class="string">'a'</span>,<span class="number">1</span>),(<span class="string">'c'</span>,<span class="number">3</span>),(<span class="string">'d'</span>,<span class="number">4</span>)]
-&gt;&gt;&gt; sorted(L, key=lambda x:x[<span class="number">1</span>])
-[(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'b'</span>, <span class="number">2</span>), (<span class="string">'c'</span>, <span class="number">3</span>), (<span class="string">'d'</span>, <span class="number">4</span>)]
+<pre><code>&gt;&gt;&gt; L = [(&apos;b&apos;,2),(&apos;a&apos;,1),(&apos;c&apos;,3),(&apos;d&apos;,4)]
+&gt;&gt;&gt; sorted(L, key=lambda x:x[1])
+[(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3), (&apos;d&apos;, 4)]
 &gt;&gt;&gt; 
 </code></pre><p><strong>reverse举例：</strong></p>
-<pre><code>&gt;&gt;&gt; L = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">5</span>]
+<pre><code>&gt;&gt;&gt; L = [1,4,3,2,5]
 &gt;&gt;&gt; sorted(L)
-[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+[1, 2, 3, 4, 5]
 &gt;&gt;&gt; sorted(L,reverse=True)
-[<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]
+[5, 4, 3, 2, 1]
 &gt;&gt;&gt; 
-</code></pre><h3 id="enumerate()函数">enumerate()函数</h3><p>一般情况下对一个列表或数组既要遍历索引又要遍历元素时，就可以用这个函数。<br>一般我们要循环列表或数组的索引和元素时，可以这样：</p>
-<pre><code>&gt;&gt;&gt; lis = [<span class="string">'chen'</span>,<span class="string">'ning'</span>,<span class="string">'love'</span>,<span class="string">'python'</span>]
-&gt;&gt;&gt; <span class="keyword">for</span> <span class="tag">i</span> <span class="keyword">in</span> <span class="function"><span class="title">range</span><span class="params">(<span class="number">0</span>,len(lis)</span></span>):
-    print <span class="tag">i</span>,lis[i]
+</code></pre><h3 id="enumerate-函数"><a href="#enumerate-函数" class="headerlink" title="enumerate()函数"></a>enumerate()函数</h3><p>一般情况下对一个列表或数组既要遍历索引又要遍历元素时，就可以用这个函数。<br>一般我们要循环列表或数组的索引和元素时，可以这样：</p>
+<pre><code>&gt;&gt;&gt; lis = [&apos;chen&apos;,&apos;ning&apos;,&apos;love&apos;,&apos;python&apos;]
+&gt;&gt;&gt; for i in range(0,len(lis)):
+    print i,lis[i]
 
 
-<span class="number">0</span> chen
-<span class="number">1</span> ning
-<span class="number">2</span> love
-<span class="number">3</span> python
+0 chen
+1 ning
+2 love
+3 python
 &gt;&gt;&gt; 
 </code></pre><p>但是这种方法有些累赘，使用 内置<code style="color:red">enumerrate</code>函数会有更加直接，优美的做法，先看看<code style="color:red">enumerate</code>的定义：</p>
-<pre><code><span class="function"><span class="keyword">def</span> <span class="title">enumerate</span> <span class="params">(collection )</span>:</span>
-    <span class="string">'Generates an indexed series:  (0,coll[0]), (1,coll[1]) ...'</span>      
-     i = <span class="number">0</span>
+<pre><code>def enumerate (collection ):
+    &apos;Generates an indexed series:  (0,coll[0]), (1,coll[1]) ...&apos;      
+     i = 0
      it = iter (collection )
-     <span class="keyword">while</span> <span class="number">1</span> :
-     <span class="keyword">yield</span> (i , it . next ())
-     i += <span class="number">1</span>
+     while 1 :
+     yield (i , it . next ())
+     i += 1
 </code></pre><p><code style="color:red">enumerate</code>会将数组或列表组成一个索引序列。使我们再获取索引和索引内容的时候更加方便如下：</p>
-<pre><code><span class="prompt">&gt;&gt;</span>&gt; lis = [<span class="string">'chen'</span>,<span class="string">'ning'</span>,<span class="string">'love'</span>,<span class="string">'python'</span>]
-<span class="prompt">&gt;&gt;</span>&gt; for index,text in enumerate(lis)<span class="symbol">:</span>
+<pre><code>&gt;&gt;&gt; lis = [&apos;chen&apos;,&apos;ning&apos;,&apos;love&apos;,&apos;python&apos;]
+&gt;&gt;&gt; for index,text in enumerate(lis):
     print index,text
 
 
-<span class="number">0</span> chen
-<span class="number">1</span> ning
-<span class="number">2</span> love
-<span class="number">3</span> python
-<span class="prompt">&gt;&gt;</span>&gt; 
+0 chen
+1 ning
+2 love
+3 python
+&gt;&gt;&gt; 
 </code></pre><p>在 cookbook里介绍，如果你要计算文件的行数，可以这样写：</p>
-<pre><code>count = len <span class="list">(<span class="keyword">open</span> <span class="list">(<span class="keyword">thefilepath</span> , ‘ rU ’ )</span>. readlines <span class="list">()</span>)</span>
+<pre><code>count = len (open (thefilepath , ‘ rU ’ ). readlines ())
 </code></pre><p>前面这种方法简单，但是可能比 较慢，当文件比较大时甚至不能工作，下面这种循环读取的方法更合适些。</p>
-<pre><code><span class="keyword">Count</span> = - 1
-<span class="keyword">For</span> <span class="keyword">count</span> , <span class="keyword">line</span> <span class="keyword">in</span> enumerate (<span class="keyword">open</span> (thefilepath , ‘ <span class="keyword">rU</span> ’ ))：
+<pre><code>Count = - 1
+For count , line in enumerate (open (thefilepath , ‘ rU ’ ))：
     Pass
-<span class="keyword">Count</span> += 1
+Count += 1
 </code></pre></span>
       
     </div>
@@ -911,7 +911,7 @@ AttributeError: <span class="string">'str'</span> <span class="tag">object</span
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#abs函数"><span class="nav-number">1.</span> <span class="nav-text">abs函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max函数和min函数"><span class="nav-number">2.</span> <span class="nav-text">max函数和min函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型转换的函数"><span class="nav-number">3.</span> <span class="nav-text">数据类型转换的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmp函数"><span class="nav-number">4.</span> <span class="nav-text">cmp函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dir([object])"><span class="nav-number">5.</span> <span class="nav-text">dir([object])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval函数"><span class="nav-number">6.</span> <span class="nav-text">eval函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter(function,_iterable)"><span class="nav-number">7.</span> <span class="nav-text">filter(function, iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#repr()函数"><span class="nav-number">8.</span> <span class="nav-text">repr()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super(type[,_object-or-type])函数"><span class="nav-number">9.</span> <span class="nav-text">super(type[, object-or-type])函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isinstance()函数"><span class="nav-number">10.</span> <span class="nav-text">isinstance()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map()函数"><span class="nav-number">11.</span> <span class="nav-text">map()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce()函数"><span class="nav-number">12.</span> <span class="nav-text">reduce()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip()函数"><span class="nav-number">13.</span> <span class="nav-text">zip()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sort()和sorted()函数"><span class="nav-number">14.</span> <span class="nav-text">sort()和sorted()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enumerate()函数"><span class="nav-number">15.</span> <span class="nav-text">enumerate()函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#abs函数"><span class="nav-number">1.</span> <span class="nav-text">abs函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max函数和min函数"><span class="nav-number">2.</span> <span class="nav-text">max函数和min函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型转换的函数"><span class="nav-number">3.</span> <span class="nav-text">数据类型转换的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cmp函数"><span class="nav-number">4.</span> <span class="nav-text">cmp函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dir-object"><span class="nav-number">5.</span> <span class="nav-text">dir([object])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eval函数"><span class="nav-number">6.</span> <span class="nav-text">eval函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter-function-iterable"><span class="nav-number">7.</span> <span class="nav-text">filter(function, iterable)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#repr-函数"><span class="nav-number">8.</span> <span class="nav-text">repr()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super-type-object-or-type-函数"><span class="nav-number">9.</span> <span class="nav-text">super(type[, object-or-type])函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isinstance-函数"><span class="nav-number">10.</span> <span class="nav-text">isinstance()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-函数"><span class="nav-number">11.</span> <span class="nav-text">map()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-函数"><span class="nav-number">12.</span> <span class="nav-text">reduce()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip-函数"><span class="nav-number">13.</span> <span class="nav-text">zip()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sort-和sorted-函数"><span class="nav-number">14.</span> <span class="nav-text">sort()和sorted()函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enumerate-函数"><span class="nav-number">15.</span> <span class="nav-text">enumerate()函数</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

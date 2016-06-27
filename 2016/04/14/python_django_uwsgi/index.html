@@ -327,44 +327,44 @@
 第二步解决uwsgi与Nginx的桥接。通过nginx与uwsgi的桥接，打通nginx与django的连通，从而比较完美的实现django的部署。
 </code></pre><p>本文将分成五步来详细阐述uwsgi+django的部署方式。nginx+uwsgi+django的部署将在下一篇 文章中阐述。</p>
 <p>环境介绍</p>
-<pre><code>Ubuntu <span class="number">12.04</span><span class="number">.1</span> LTS
-django <span class="number">1.4</span><span class="number">.2</span>
-</code></pre><h3 id="安装uwsgi">安装uwsgi</h3><p>1.安装pip</p>
+<pre><code>Ubuntu 12.04.1 LTS
+django 1.4.2
+</code></pre><h3 id="安装uwsgi"><a href="#安装uwsgi" class="headerlink" title="安装uwsgi"></a>安装uwsgi</h3><p>1.安装pip</p>
 <p>可以参考这篇文章：<a href="http://www.jsxubar.info/install-pip.html" target="_blank" rel="external">http://www.jsxubar.info/install-pip.html</a></p>
 <p>2.安装uwsgi</p>
 <p>$ export LDFLAGS=”-Xlinker –no-as-needed”<br>$ pip install uwsgi</p>
-<h3 id="测试uwsgi">测试uwsgi</h3><p>在你的机器上写一个test.py</p>
-<pre><code><span class="comment"># test.py</span>
-<span class="function"><span class="keyword">def</span> <span class="title">application</span><span class="params">(env, start_response)</span>:</span>
-    start_response(<span class="string">'200 OK'</span>, [(<span class="string">'Content-Type'</span>,<span class="string">'text/html'</span>)])
-    <span class="keyword">return</span> <span class="string">"Hello World"</span>
+<h3 id="测试uwsgi"><a href="#测试uwsgi" class="headerlink" title="测试uwsgi"></a>测试uwsgi</h3><p>在你的机器上写一个test.py</p>
+<pre><code># test.py
+def application(env, start_response):
+    start_response(&apos;200 OK&apos;, [(&apos;Content-Type&apos;,&apos;text/html&apos;)])
+    return &quot;Hello World&quot;
 </code></pre><p>然后执行shell命令：</p>
-<pre><code><span class="comment">uwsgi</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">http</span> <span class="comment">:8001</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">wsgi</span><span class="literal">-</span><span class="comment">file</span> <span class="comment">test</span><span class="string">.</span><span class="comment">py</span>
+<pre><code>uwsgi --http :8001 --wsgi-file test.py
 </code></pre><p>访问网页：</p>
-<pre><code><span class="string">http:</span><span class="comment">//127.0.0.1:8001/</span>
+<pre><code>http://127.0.0.1:8001/
 </code></pre><p>看在网页上是否有Hello World</p>
-<h3 id="配置django">配置django</h3><pre><code><span class="tag">NOTE</span>：
-请保证你的<span class="tag">django</span>项目是正常使用的。可以使用
-<span class="tag">python</span> <span class="tag">manage</span><span class="class">.py</span> <span class="tag">runserver</span> 0<span class="class">.0</span><span class="class">.0</span><span class="class">.0</span><span class="pseudo">:8002</span>
-来测试一下你的<span class="tag">django</span>项目是否能正常跑起来。
-请保证你的<span class="tag">django</span>程序已经关闭。
+<h3 id="配置django"><a href="#配置django" class="headerlink" title="配置django"></a>配置django</h3><pre><code>NOTE：
+请保证你的django项目是正常使用的。可以使用
+python manage.py runserver 0.0.0.0:8002
+来测试一下你的django项目是否能正常跑起来。
+请保证你的django程序已经关闭。
 </code></pre><p>编写django_wsgi.py文件，将其放在与文件manage.py同一个目录下。</p>
-<pre><code>注意： 编写文件时需要注意语句os.environ.setdefault。比如，如果你的项目为mysite，则你的语句应该是 os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"mysite.settings"</span>)<span class="preprocessor">
+<pre><code>注意： 编写文件时需要注意语句os.environ.setdefault。比如，如果你的项目为mysite，则你的语句应该是 os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;mysite.settings&quot;)
 
-    #!/usr/bin/env python</span><span class="preprocessor">
-    # coding: utf-8</span>
+    #!/usr/bin/env python
+    # coding: utf-8
 
-    <span class="preprocessor"><span class="keyword">import</span> os</span>
-    <span class="preprocessor"><span class="keyword">import</span> sys</span><span class="preprocessor">
+    import os
+    import sys
 
-    # 将系统的编码设置为UTF8</span>
+    # 将系统的编码设置为UTF8
 
     reload(sys)
-    sys.setdefaultencoding(<span class="comment">'utf8')</span>
+    sys.setdefaultencoding(&apos;utf8&apos;)
 
-    os.environ.setdefault(<span class="string">"DJANGO_SETTINGS_MODULE"</span>, <span class="string">"mysite.settings"</span>)
+    os.environ.setdefault(&quot;DJANGO_SETTINGS_MODULE&quot;, &quot;mysite.settings&quot;)
 
-    from django.core.handlers.wsgi <span class="preprocessor"><span class="keyword">import</span> WSGIHandler</span>
+    from django.core.handlers.wsgi import WSGIHandler
     application = WSGIHandler()
 </code></pre><p>连接django和uwsgi，实现简单的WEB服务器。</p>
 <p>我们假设你的Django项目的地址是/root/home/www/django_blog，</p>
