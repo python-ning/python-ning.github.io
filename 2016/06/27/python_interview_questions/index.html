@@ -64,7 +64,7 @@
 <meta property="og:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
 用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：a) 非负数在前，负数在后；b) 非负数部分按照从小到大排序；c) 负数部分按从大到小排序。如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg">
-<meta property="og:updated_time" content="2016-06-27T18:50:50.000Z">
+<meta property="og:updated_time" content="2016-06-27T18:52:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python面试题精选">
 <meta name="twitter:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
@@ -373,9 +373,7 @@
         t0 = time.time()
         result = function(*args, **kwargs)
         t1 = time.time()
-        <span class="keyword">print</span> (<span class="string">"Total time running %s: %s seconds"</span> %
-               (function.func_name, str(t1-t0))
-               )
+        <span class="keyword">print</span> (<span class="string">"Total time running %s: %s seconds"</span> %(function.func_name, str(t1-t0)))
         <span class="keyword">return</span> result
     <span class="keyword">return</span> function_timer
 

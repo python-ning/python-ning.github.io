@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-06-27T18:50:50.000Z</updated>
+  <updated>2016-06-27T18:52:36.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://python-ning.github.io/2016/06/27/python_interview_questions/"/>
     <id>http://python-ning.github.io/2016/06/27/python_interview_questions/</id>
     <published>2016-06-27T07:00:00.000Z</published>
-    <updated>2016-06-27T18:50:50.000Z</updated>
+    <updated>2016-06-27T18:52:36.000Z</updated>
     <content type="html"><![CDATA[<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg" class="img-shadow" style="display: block;margin: auto"><br>小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~</p>
 <h3 id="用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</h3><p>a) 非负数在前，负数在后；<br>b) 非负数部分按照从小到大排序；<br>c) 负数部分按从大到小排序。<br>如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]<br>希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]</p>
 <p>解答：</p>
@@ -76,9 +76,7 @@
         t0 = time.time()
         result = function(*args, **kwargs)
         t1 = time.time()
-        <span class="keyword">print</span> (<span class="string">"Total time running %s: %s seconds"</span> %
-               (function.func_name, str(t1-t0))
-               )
+        <span class="keyword">print</span> (<span class="string">"Total time running %s: %s seconds"</span> %(function.func_name, str(t1-t0)))
         <span class="keyword">return</span> result
     <span class="keyword">return</span> function_timer
 
