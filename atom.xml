@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-06-28T18:10:49.000Z</updated>
+  <updated>2016-06-28T18:12:51.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://python-ning.github.io/2016/06/28/ning.chen/"/>
     <id>http://python-ning.github.io/2016/06/28/ning.chen/</id>
     <published>2016-06-28T07:00:00.000Z</published>
-    <updated>2016-06-28T18:10:49.000Z</updated>
+    <updated>2016-06-28T18:12:51.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;私有云项目&quot;&gt;&lt;a href=&quot;#私有云项目&quot; class=&quot;headerlink&quot; title=&quot;私有云项目&quot;&gt;&lt;/a&gt;私有云项目&lt;/h3&gt;&lt;p&gt;客户有(北京王府井集团，国家电网，神州数码)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus1.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus2.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus3.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus4.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
@@ -141,197 +141,6 @@ def create(request):
         id = vserver.id
         return render_json({&amp;apos;url&amp;apos;: reverse(&amp;apos;cloudserver_show&amp;apos;, kwargs={&amp;apos;id&amp;apos;: id})})
     return render_form_error(form)
-
-
-@login_required
-def get_data_center_cluster(request, id):
-    data_center = DataCenter.objects.get(pk=id)
-    clusters = [{&amp;apos;name&amp;apos;: n.name, &amp;apos;id&amp;apos;: n.id}
-                for n in data_center.cluster_set.all()]
-    return HttpResponse(json.dumps(clusters))
-
-
-def create_virtual_server_from_form(request, form):
-    network_type_name = &amp;apos;,&amp;apos;.join(request.POST.getlist(&amp;apos;network_type_name&amp;apos;))
-    data = form.cleaned_data
-    user = data[&amp;apos;user&amp;apos;]
-    host_name = data[&amp;apos;host_name&amp;apos;]
-    root_password = data[&amp;apos;root_password&amp;apos;]
-    image = data[&amp;apos;image&amp;apos;]
-    cpu = data[&amp;apos;cpu&amp;apos;]
-    memory = data[&amp;apos;memory&amp;apos;]
-    disk = data[&amp;apos;disk&amp;apos;]
-    bandwidth = data[&amp;apos;bandwidth&amp;apos;]
-    comments = data[&amp;apos;comments&amp;apos;]
-    data_center = data[&amp;apos;data_center&amp;apos;]
-    physical_server = data[&amp;apos;physical_server&amp;apos;]
-    tags = data[&amp;apos;tags&amp;apos;]
-    backup_quota = data[&amp;apos;backup_quota&amp;apos;]
-    cluster = data[&amp;apos;cluster&amp;apos;]
-    data_center_name = None
-    cluster_name = &amp;quot;&amp;quot;
-    if data_center:
-        data_center_name = data_center.internal_name
-    if physical_server:
-        data_center_name = physical_server.rack.room.data_center.internal_name
-    if cluster:
-        cluster_name = cluster.name
-    name = create_cloud_server_name()
-    if not host_name:
-        host_name = name
-    if not root_password:
-        root_password = auto_generate_string(&amp;quot;&amp;quot;, 10)
-    vserver = create_virtual_server(user, name, host_name, root_password, image,
-                                    cpu, memory, disk, comments, network_type_name,
-                                    data_center_name, bandwidth)
-    vserver.tags = tags
-    vserver.backup_quota = backup_quota
-    vserver.cpu_mode = data[&amp;apos;cpu_mode&amp;apos;]
-    vserver.cluster_name = cluster_name
-    if physical_server:
-        vserver.physical_server = physical_server
-    vserver.save()
-    return vserver
-
-
-def create_cloud_server_name():
-    for i in range(10):
-        name = auto_generate_string(&amp;quot;i-&amp;quot;)
-        if VirtualServer.objects.filter(name=name).count() == 0:
-            break
-    return name
-
-
-@login_required
-def physical_server_info(request):
-    data = {}
-    id = request.GET.get(&amp;apos;id&amp;apos;)
-    server_objs = PhysicalServer.objects.filter(pk=id)
-    if len(server_objs) == 1:
-        pserver = server_objs[0]
-        cpu_rest = pserver.cpu_core - pserver.cpu_usage()
-        if cpu_rest &amp;lt; 0:
-            cpu_rest = 0
-        mem_rest = (pserver.memory - pserver.memory_usage()) / 1024
-        disk_rest = pserver.disk - pserver.disk_usage()
-        data = {
-            &amp;apos;memory&amp;apos;: mem_rest,
-            &amp;apos;cpu_core&amp;apos;: cpu_rest,
-            &amp;apos;disk&amp;apos;: disk_rest,
-        }
-    return HttpResponse(json.dumps(data))
-
-
-@login_required
-def edit(request):
-    cloud_server_id = request.POST.get(&amp;apos;cloud_server_id&amp;apos;)
-    vserver = VirtualServer.objects.get(pk=cloud_server_id)
-    obj = model_to_dict(vserver)
-    data_center = vserver.get_data_center()
-    obj[&amp;apos;data_center_id&amp;apos;] = data_center.id
-    obj[&amp;apos;network_type_name&amp;apos;] = obj[&amp;apos;network_type_name&amp;apos;].split(&amp;apos;,&amp;apos;)
-    if int(obj[&amp;apos;cpu&amp;apos;]) not in [2, 4, 6, 8]:
-        obj[&amp;apos;cpu_core&amp;apos;] = obj[&amp;apos;cpu&amp;apos;]
-        obj[&amp;apos;cpu&amp;apos;] = &amp;apos;cpu_other&amp;apos;
-    else:
-        obj[&amp;apos;cpu_core&amp;apos;] = 0
-
-    if int(obj[&amp;apos;disk&amp;apos;]) not in [50, 100]:
-        obj[&amp;apos;disk_gb&amp;apos;] = obj[&amp;apos;disk&amp;apos;]
-        obj[&amp;apos;disk&amp;apos;] = &amp;apos;disk_other&amp;apos;
-    else:
-        obj[&amp;apos;disk_gb&amp;apos;] = 50
-    if int(obj[&amp;apos;memory&amp;apos;] / 1024) not in [1, 2, 4, 6, 8, 16]:
-        obj[&amp;apos;memory_gb&amp;apos;] = obj[&amp;apos;memory&amp;apos;] / 1024
-        obj[&amp;apos;memory&amp;apos;] = &amp;apos;memory_other&amp;apos;
-    else:
-        obj[&amp;apos;memory&amp;apos;] = obj[&amp;apos;memory&amp;apos;] / 1024
-        obj[&amp;apos;memory_gb&amp;apos;] = 1
-    data = {
-        &amp;apos;cloud_server&amp;apos;: obj
-    }
-    return render_json(data)
-
-
-@login_required
-@permit_require(&amp;apos;cloudserver_w&amp;apos;)
-@log_action(action=&amp;quot;Edit Cloud Server&amp;quot;, method=&amp;quot;POST&amp;quot;)
-def do_edit(request):
-    cloud_server_id = request.POST.get(&amp;apos;cloud_server_id&amp;apos;)
-    vserver = VirtualServer.objects.get(pk=cloud_server_id)
-    ret = check_super_admin(request, vserver)
-    if ret is not None:
-        return ret
-    form = VirtualServerEditForm(request.POST, error_class=JQErrorList)
-    if form.is_valid() and validate_cloud_server_edit(form, vserver):
-        save_instance(form, vserver)
-        pserver = form.cleaned_data[&amp;apos;physical_server&amp;apos;]
-        vserver.network_type_name = &amp;apos;,&amp;apos;.join(request.POST.getlist(&amp;apos;network_type_name&amp;apos;))
-        if pserver:
-            vserver.data_center_name = pserver.rack.room.data_center.internal_name
-            cluster_name = &amp;quot;&amp;quot;
-            if pserver.cluster:
-                cluster_name = pserver.cluster.name
-            vserver.cluster_name = cluster_name
-        vserver.save()
-        referer = request.META[&amp;apos;HTTP_REFERER&amp;apos;]
-        return render_json({&amp;apos;url&amp;apos;: referer})
-    return render_form_error(form)
-
-
-def validate_cloud_server_edit(form, vserver):
-    ret = True
-    if vserver.status in [&amp;apos;Provisioning&amp;apos;, &amp;apos;Running&amp;apos;, &amp;apos;Suspended&amp;apos;]:
-        if vserver.physical_server != form.cleaned_data[&amp;apos;physical_server&amp;apos;]:
-            # modify running, provisioning, suspended cloud server&amp;apos;s physical
-            # server is not allowed!
-            add_error_to_form(form, &amp;apos;physical_server&amp;apos;,
-                              _(&amp;quot;Cannot modify Server field&amp;quot;))
-            ret = False
-        if vserver.image != form.cleaned_data[&amp;apos;image&amp;apos;]:
-            # modify running, provisioning, suspended cloud server&amp;apos;s image
-            # is not allowed!
-            add_error_to_form(form, &amp;apos;image&amp;apos;, _(&amp;quot;Cannot modify Image field&amp;quot;))
-            ret = False
-        if vserver.network_type_name != form.cleaned_data[&amp;apos;network_type_name&amp;apos;]:
-            # modify running, provisioning, suspended cloud server&amp;apos;s network type
-            # is not allowed!
-            add_error_to_form(form, &amp;apos;network_type_name&amp;apos;, _(
-                &amp;quot;Cannot modify Network Type field&amp;quot;))
-            ret = False
-    return ret
-
-
-@login_required
-@permit_require(&amp;apos;cloudserver_d&amp;apos;)
-@log_action(action=&amp;quot;Delete Cloud Server&amp;quot;)
-def delete(request):
-    cloud_server_ids = request.POST.get(&amp;apos;cloud_server_ids&amp;apos;)
-    if cloud_server_ids is not None:
-        cloud_server_ids = cloud_server_ids.split(&amp;apos;,&amp;apos;)
-    else:
-        return render_json(True)
-    for cloud_server_id in cloud_server_ids:
-        vserver = VirtualServer.objects.get(pk=cloud_server_id)
-        ret = check_super_admin(request, vserver)
-        if ret is not None:
-            continue
-        ret = check_super_admin(request, vserver)
-        if ret is not None:
-            continue
-
-        # only can delete destroyed virtual server.
-        if not vserver.status == VIRTUAL_SERVER_STATUS[5]:
-            continue
-
-        ips = vserver.ip_addresses()
-        try:
-            vserver.delete()
-            for ip in ips:
-                ip.release()
-        except Exception:
-            continue
-    return render_json(True)
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;公有云项目&quot;&gt;&lt;a href=&quot;#公有云项目&quot; class=&quot;headerlink&quot; title=&quot;公有云项目&quot;&gt;&lt;/a&gt;公有云项目&lt;/h3&gt;&lt;p&gt;(公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus6.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus7.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;相关代码-1&quot;&gt;&lt;a href=&quot;#相关代码-1&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h3&gt;&lt;h2 id=&quot;前端页面部分代码&quot;&gt;&lt;a href=&quot;#前端页面部分代码&quot; class=&quot;headerlink&quot; title=&quot;前端页面部分代码&quot;&gt;&lt;/a&gt;前端页面部分代码&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus9.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
