@@ -1,0 +1,1128 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+    <link href='#' rel='stylesheet' type='text/css'>
+  
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="求职," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="python ning's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="私有云项目 客户有(北京王府井集团，国家电网，神州数码)
+相关代码前端页部分代码
+后端部分代码from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response
+from django.forms.models import model_to_dict,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的简介">
+<meta property="og:url" content="http://python-ning.github.io/2016/06/28/ning.chen/index.html">
+<meta property="og:site_name" content="python ning's blog">
+<meta property="og:description" content="私有云项目 客户有(北京王府井集团，国家电网，神州数码)
+相关代码前端页部分代码
+后端部分代码from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response
+from django.forms.models import model_to_dict,">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus1.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus2.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus3.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus4.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus5.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus6.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus7.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus9.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus10.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus8.png">
+<meta property="og:updated_time" content="2016-06-28T18:03:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的简介">
+<meta name="twitter:description" content="私有云项目 客户有(北京王府井集团，国家电网，神州数码)
+相关代码前端页部分代码
+后端部分代码from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response
+from django.forms.models import model_to_dict,">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/nexus1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 我的简介 | python ning's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">python ning's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feeling">
+          <a href="/feeling" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            心情
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message" rel="section">
+            
+              <i class="menu-item-icon fa fa-question-circle fa-fw"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'CkyV4Ux3QZb6T9Hxonnh','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                我的简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-28T00:00:00-07:00" content="2016-06-28">
+              2016-06-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/求职/" itemprop="url" rel="index">
+                    <span itemprop="name">求职</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/28/ning.chen/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/ning.chen/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="私有云项目-客户有-北京王府井集团，国家电网，神州数码"><a href="#私有云项目-客户有-北京王府井集团，国家电网，神州数码" class="headerlink" title="私有云项目 客户有(北京王府井集团，国家电网，神州数码)"></a>私有云项目 客户有(北京王府井集团，国家电网，神州数码)</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus1.png" class="img-shadow" style="display: block;margin: auto"><br><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus2.png" class="img-shadow" style="display: block;margin: auto"><br><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus3.png" class="img-shadow" style="display: block;margin: auto"><br><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus4.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h3><h2 id="前端页部分代码"><a href="#前端页部分代码" class="headerlink" title="前端页部分代码"></a>前端页部分代码</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus5.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h2 id="后端部分代码"><a href="#后端部分代码" class="headerlink" title="后端部分代码"></a>后端部分代码</h2><pre><code>from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response
+from django.forms.models import model_to_dict, save_instance
+from django.http import HttpResponse
+from db.models import *
+from db.apis import *
+from db.joblistener import send_welcome_email_to_internal, send_welcome_email
+from sysadmin.views import *
+from sysadmin.forms import *
+from django.template.context import RequestContext
+from django.utils.translation import ugettext as _
+from sysadmin.templatetags.tags import *
+from nexus.util import encrypt_password
+
+
+@login_required
+@permit_require(&apos;cloudserver_r&apos;)
+@db_cached_view
+@active_navs(&apos;cloud_server&apos;, &apos;cloud_server&apos;)
+def index(request):
+    customer_list = User.objects.order_by(&apos;customer_name&apos;)
+    physical_server = PhysicalServer.objects.filter(
+        hyperviser__in=[&quot;kvm&quot;]).order_by(&apos;host_name&apos;)
+    image_list = Image.objects.filter(status=&quot;Ready&quot;).order_by(&apos;name&apos;)
+    data_center = DataCenter.objects.order_by(&apos;name&apos;)
+    cluster_list = Cluster.objects.order_by(&apos;name&apos;)
+    data = {
+        &apos;customer_list&apos;: customer_list,
+        &apos;physical_server&apos;: physical_server,
+        &apos;image_list&apos;: image_list,
+        &apos;data_center_list&apos;: data_center,
+        &apos;cluster_list&apos;: cluster_list,
+        &apos;cpu_modes&apos;: CPU_MODES,
+    }
+    return render(request, &apos;sysadmin/cloud_server/cloud_server_list.html&apos;, data)
+
+
+@login_required
+@permit_require(&apos;cloudserver_r&apos;)
+@db_cached_view
+def cloudservers_json(request):
+    def query_fields(key_word):
+        query = (Q(name__contains=key_word) |
+                 Q(host_name__contains=key_word) |
+                 Q(image__name__contains=key_word) |
+                 Q(physical_server__host_name__contains=key_word) |
+                 Q(user__customer_name__contains=key_word) |
+                 Q(status__contains=key_word))
+        return query
+
+    def order_callback(qobj, column):
+        sortable = {0: &quot;name&quot;,
+                    1: &quot;host_name&quot;,
+                    2: &quot;user__customer_name&quot;,
+                    5: &quot;status&quot;,
+                    6: &quot;image__name&quot;,
+                    11: &quot;created_at&quot;
+                    }
+        order = sortable[0]
+        if column in sortable:
+            order = sortable[column]
+        return qobj.order_by(order)
+
+    data = generate_query_data(VirtualServer, request,
+                               create_and_search_callback(query_fields),
+                               order_callback, generate_vserver_list)
+    return response_200(json.dumps(data))
+
+
+def generate_vserver_list(vservers):
+    ret = []
+    for vserver in vservers:
+        if vserver.bandwidth &gt;= 0:
+            bandwidth_str = vserver.bandwidth
+        else:
+            bandwidth_str = &quot;&amp;nbsp;&quot;
+        if vserver.physical_server:
+            pserver_str = &quot;&lt;a href=\&quot;/admin/server/show/%s\&quot;&gt;%s&lt;/a&gt;&quot; % (
+                vserver.physical_server.id, vserver.physical_server.host_name)
+        else:
+            pserver_str = &quot;&quot;
+        user_content = &quot;&quot;
+        if vserver.user:
+            user_content = &quot;&lt;a href=\&quot;/admin/customer/show/%s\&quot;&gt;%s&lt;/a&gt;&quot; % (
+                vserver.user.id, vserver.user.customer_name)
+
+        ret.append([
+            &quot;&lt;a data-id=\&quot;%s\&quot; href=\&quot;/admin/cloudserver/show/%s\&quot;&gt;%s&lt;/a&gt;&quot; % (
+                vserver.id, vserver.id, vserver.name),
+            vserver.host_name,
+            user_content,
+            vserver.ip_address_str(),
+            pserver_str,
+            &quot;&lt;div style=\&quot;color: %s\&quot;&gt;%s&lt;/div&gt;&quot; % (
+                vstatus_color(vserver.status), _(vserver.status)),
+            vserver.image.name,
+            vserver.cpu,
+            vserver.memory,
+            vserver.disk,
+            bandwidth_str,
+            format_time(vserver.created_at)
+        ])
+    return ret
+
+
+@login_required
+@permit_require(&apos;cloudserver_w&apos;)
+@log_action(action=&quot;Create Cloud Server&quot;, method=&quot;POST&quot;)
+def create(request):
+    form = VirtualServerForm(request.POST)
+    form.fields[&apos;network_type_name&apos;].choices = get_network_type_names()
+    if form.is_valid():
+        vserver = create_virtual_server_from_form(request, form)
+        id = vserver.id
+        return render_json({&apos;url&apos;: reverse(&apos;cloudserver_show&apos;, kwargs={&apos;id&apos;: id})})
+    return render_form_error(form)
+
+
+@login_required
+def get_data_center_cluster(request, id):
+    data_center = DataCenter.objects.get(pk=id)
+    clusters = [{&apos;name&apos;: n.name, &apos;id&apos;: n.id}
+                for n in data_center.cluster_set.all()]
+    return HttpResponse(json.dumps(clusters))
+
+
+def create_virtual_server_from_form(request, form):
+    network_type_name = &apos;,&apos;.join(request.POST.getlist(&apos;network_type_name&apos;))
+    data = form.cleaned_data
+    user = data[&apos;user&apos;]
+    host_name = data[&apos;host_name&apos;]
+    root_password = data[&apos;root_password&apos;]
+    image = data[&apos;image&apos;]
+    cpu = data[&apos;cpu&apos;]
+    memory = data[&apos;memory&apos;]
+    disk = data[&apos;disk&apos;]
+    bandwidth = data[&apos;bandwidth&apos;]
+    comments = data[&apos;comments&apos;]
+    data_center = data[&apos;data_center&apos;]
+    physical_server = data[&apos;physical_server&apos;]
+    tags = data[&apos;tags&apos;]
+    backup_quota = data[&apos;backup_quota&apos;]
+    cluster = data[&apos;cluster&apos;]
+    data_center_name = None
+    cluster_name = &quot;&quot;
+    if data_center:
+        data_center_name = data_center.internal_name
+    if physical_server:
+        data_center_name = physical_server.rack.room.data_center.internal_name
+    if cluster:
+        cluster_name = cluster.name
+    name = create_cloud_server_name()
+    if not host_name:
+        host_name = name
+    if not root_password:
+        root_password = auto_generate_string(&quot;&quot;, 10)
+    vserver = create_virtual_server(user, name, host_name, root_password, image,
+                                    cpu, memory, disk, comments, network_type_name,
+                                    data_center_name, bandwidth)
+    vserver.tags = tags
+    vserver.backup_quota = backup_quota
+    vserver.cpu_mode = data[&apos;cpu_mode&apos;]
+    vserver.cluster_name = cluster_name
+    if physical_server:
+        vserver.physical_server = physical_server
+    vserver.save()
+    return vserver
+
+
+def create_cloud_server_name():
+    for i in range(10):
+        name = auto_generate_string(&quot;i-&quot;)
+        if VirtualServer.objects.filter(name=name).count() == 0:
+            break
+    return name
+
+
+@login_required
+def physical_server_info(request):
+    data = {}
+    id = request.GET.get(&apos;id&apos;)
+    server_objs = PhysicalServer.objects.filter(pk=id)
+    if len(server_objs) == 1:
+        pserver = server_objs[0]
+        cpu_rest = pserver.cpu_core - pserver.cpu_usage()
+        if cpu_rest &lt; 0:
+            cpu_rest = 0
+        mem_rest = (pserver.memory - pserver.memory_usage()) / 1024
+        disk_rest = pserver.disk - pserver.disk_usage()
+        data = {
+            &apos;memory&apos;: mem_rest,
+            &apos;cpu_core&apos;: cpu_rest,
+            &apos;disk&apos;: disk_rest,
+        }
+    return HttpResponse(json.dumps(data))
+
+
+@login_required
+def edit(request):
+    cloud_server_id = request.POST.get(&apos;cloud_server_id&apos;)
+    vserver = VirtualServer.objects.get(pk=cloud_server_id)
+    obj = model_to_dict(vserver)
+    data_center = vserver.get_data_center()
+    obj[&apos;data_center_id&apos;] = data_center.id
+    obj[&apos;network_type_name&apos;] = obj[&apos;network_type_name&apos;].split(&apos;,&apos;)
+    if int(obj[&apos;cpu&apos;]) not in [2, 4, 6, 8]:
+        obj[&apos;cpu_core&apos;] = obj[&apos;cpu&apos;]
+        obj[&apos;cpu&apos;] = &apos;cpu_other&apos;
+    else:
+        obj[&apos;cpu_core&apos;] = 0
+
+    if int(obj[&apos;disk&apos;]) not in [50, 100]:
+        obj[&apos;disk_gb&apos;] = obj[&apos;disk&apos;]
+        obj[&apos;disk&apos;] = &apos;disk_other&apos;
+    else:
+        obj[&apos;disk_gb&apos;] = 50
+    if int(obj[&apos;memory&apos;] / 1024) not in [1, 2, 4, 6, 8, 16]:
+        obj[&apos;memory_gb&apos;] = obj[&apos;memory&apos;] / 1024
+        obj[&apos;memory&apos;] = &apos;memory_other&apos;
+    else:
+        obj[&apos;memory&apos;] = obj[&apos;memory&apos;] / 1024
+        obj[&apos;memory_gb&apos;] = 1
+    data = {
+        &apos;cloud_server&apos;: obj
+    }
+    return render_json(data)
+
+
+@login_required
+@permit_require(&apos;cloudserver_w&apos;)
+@log_action(action=&quot;Edit Cloud Server&quot;, method=&quot;POST&quot;)
+def do_edit(request):
+    cloud_server_id = request.POST.get(&apos;cloud_server_id&apos;)
+    vserver = VirtualServer.objects.get(pk=cloud_server_id)
+    ret = check_super_admin(request, vserver)
+    if ret is not None:
+        return ret
+    form = VirtualServerEditForm(request.POST, error_class=JQErrorList)
+    if form.is_valid() and validate_cloud_server_edit(form, vserver):
+        save_instance(form, vserver)
+        pserver = form.cleaned_data[&apos;physical_server&apos;]
+        vserver.network_type_name = &apos;,&apos;.join(request.POST.getlist(&apos;network_type_name&apos;))
+        if pserver:
+            vserver.data_center_name = pserver.rack.room.data_center.internal_name
+            cluster_name = &quot;&quot;
+            if pserver.cluster:
+                cluster_name = pserver.cluster.name
+            vserver.cluster_name = cluster_name
+        vserver.save()
+        referer = request.META[&apos;HTTP_REFERER&apos;]
+        return render_json({&apos;url&apos;: referer})
+    return render_form_error(form)
+
+
+def validate_cloud_server_edit(form, vserver):
+    ret = True
+    if vserver.status in [&apos;Provisioning&apos;, &apos;Running&apos;, &apos;Suspended&apos;]:
+        if vserver.physical_server != form.cleaned_data[&apos;physical_server&apos;]:
+            # modify running, provisioning, suspended cloud server&apos;s physical
+            # server is not allowed!
+            add_error_to_form(form, &apos;physical_server&apos;,
+                              _(&quot;Cannot modify Server field&quot;))
+            ret = False
+        if vserver.image != form.cleaned_data[&apos;image&apos;]:
+            # modify running, provisioning, suspended cloud server&apos;s image
+            # is not allowed!
+            add_error_to_form(form, &apos;image&apos;, _(&quot;Cannot modify Image field&quot;))
+            ret = False
+        if vserver.network_type_name != form.cleaned_data[&apos;network_type_name&apos;]:
+            # modify running, provisioning, suspended cloud server&apos;s network type
+            # is not allowed!
+            add_error_to_form(form, &apos;network_type_name&apos;, _(
+                &quot;Cannot modify Network Type field&quot;))
+            ret = False
+    return ret
+
+
+@login_required
+@permit_require(&apos;cloudserver_d&apos;)
+@log_action(action=&quot;Delete Cloud Server&quot;)
+def delete(request):
+    cloud_server_ids = request.POST.get(&apos;cloud_server_ids&apos;)
+    if cloud_server_ids is not None:
+        cloud_server_ids = cloud_server_ids.split(&apos;,&apos;)
+    else:
+        return render_json(True)
+    for cloud_server_id in cloud_server_ids:
+        vserver = VirtualServer.objects.get(pk=cloud_server_id)
+        ret = check_super_admin(request, vserver)
+        if ret is not None:
+            continue
+        ret = check_super_admin(request, vserver)
+        if ret is not None:
+            continue
+
+        # only can delete destroyed virtual server.
+        if not vserver.status == VIRTUAL_SERVER_STATUS[5]:
+            continue
+
+        ips = vserver.ip_addresses()
+        try:
+            vserver.delete()
+            for ip in ips:
+                ip.release()
+        except Exception:
+            continue
+    return render_json(True)
+</code></pre><h3 id="公有云项目-公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作"><a href="#公有云项目-公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作" class="headerlink" title="公有云项目(公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作)"></a>公有云项目(公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作)</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus6.png" class="img-shadow" style="display: block;margin: auto"><br><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus7.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="相关代码-1"><a href="#相关代码-1" class="headerlink" title="相关代码"></a>相关代码</h3><h2 id="前端页面部分代码"><a href="#前端页面部分代码" class="headerlink" title="前端页面部分代码"></a>前端页面部分代码</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus9.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h2 id="后端部分代码-1"><a href="#后端部分代码-1" class="headerlink" title="后端部分代码"></a>后端部分代码</h2><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus10.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="官网接口文档编写与测试"><a href="#官网接口文档编写与测试" class="headerlink" title="官网接口文档编写与测试"></a>官网接口文档编写与测试</h3><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/nexus8.png" class="img-shadow" style="display: block;margin: auto"></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/求职/" rel="tag">#求职</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/27/python_interview_questions/" rel="next" title="python面试题精选">
+                <i class="fa fa-chevron-left"></i> python面试题精选
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/06/28/ning.chen/"
+     data-title="我的简介"
+     data-content=""
+     data-url="http://python-ning.github.io/2016/06/28/ning.chen/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+  <br />
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/28/ning.chen/"
+           data-title="我的简介" data-url="http://python-ning.github.io/2016/06/28/ning.chen/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="python-ning" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">python-ning</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/python-ning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/pythonning" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的微博
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yuan-tong-tian" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 我的知乎
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.speedycloud.cn/" target="_blank">迅达云成</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://devtan.xyz/" target="_blank">Dev-Tan</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.liuwuba.com/" target="_blank">河间</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#私有云项目-客户有-北京王府井集团，国家电网，神州数码"><span class="nav-number">1.</span> <span class="nav-text">私有云项目 客户有(北京王府井集团，国家电网，神州数码)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关代码"><span class="nav-number">2.</span> <span class="nav-text">相关代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端页部分代码"><span class="nav-number"></span> <span class="nav-text">前端页部分代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端部分代码"><span class="nav-number"></span> <span class="nav-text">后端部分代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公有云项目-公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作"><span class="nav-number">1.</span> <span class="nav-text">公有云项目(公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关代码-1"><span class="nav-number">2.</span> <span class="nav-text">相关代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前端页面部分代码"><span class="nav-number"></span> <span class="nav-text">前端页面部分代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后端部分代码-1"><span class="nav-number"></span> <span class="nav-text">后端部分代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官网接口文档编写与测试"><span class="nav-number">1.</span> <span class="nav-text">官网接口文档编写与测试</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">python-ning</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"python-ning"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

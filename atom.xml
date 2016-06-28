@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-06-27T22:40:31.000Z</updated>
+  <updated>2016-06-28T18:03:42.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -14,6 +14,341 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的简介</title>
+    <link href="http://python-ning.github.io/2016/06/28/ning.chen/"/>
+    <id>http://python-ning.github.io/2016/06/28/ning.chen/</id>
+    <published>2016-06-28T07:00:00.000Z</published>
+    <updated>2016-06-28T18:03:42.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;私有云项目-客户有-北京王府井集团，国家电网，神州数码&quot;&gt;&lt;a href=&quot;#私有云项目-客户有-北京王府井集团，国家电网，神州数码&quot; class=&quot;headerlink&quot; title=&quot;私有云项目 客户有(北京王府井集团，国家电网，神州数码)&quot;&gt;&lt;/a&gt;私有云项目 客户有(北京王府井集团，国家电网，神州数码)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus1.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus2.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus3.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus4.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;相关代码&quot;&gt;&lt;a href=&quot;#相关代码&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h3&gt;&lt;h2 id=&quot;前端页部分代码&quot;&gt;&lt;a href=&quot;#前端页部分代码&quot; class=&quot;headerlink&quot; title=&quot;前端页部分代码&quot;&gt;&lt;/a&gt;前端页部分代码&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus5.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;后端部分代码&quot;&gt;&lt;a href=&quot;#后端部分代码&quot; class=&quot;headerlink&quot; title=&quot;后端部分代码&quot;&gt;&lt;/a&gt;后端部分代码&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response
+from django.forms.models import model_to_dict, save_instance
+from django.http import HttpResponse
+from db.models import *
+from db.apis import *
+from db.joblistener import send_welcome_email_to_internal, send_welcome_email
+from sysadmin.views import *
+from sysadmin.forms import *
+from django.template.context import RequestContext
+from django.utils.translation import ugettext as _
+from sysadmin.templatetags.tags import *
+from nexus.util import encrypt_password
+
+
+@login_required
+@permit_require(&amp;apos;cloudserver_r&amp;apos;)
+@db_cached_view
+@active_navs(&amp;apos;cloud_server&amp;apos;, &amp;apos;cloud_server&amp;apos;)
+def index(request):
+    customer_list = User.objects.order_by(&amp;apos;customer_name&amp;apos;)
+    physical_server = PhysicalServer.objects.filter(
+        hyperviser__in=[&amp;quot;kvm&amp;quot;]).order_by(&amp;apos;host_name&amp;apos;)
+    image_list = Image.objects.filter(status=&amp;quot;Ready&amp;quot;).order_by(&amp;apos;name&amp;apos;)
+    data_center = DataCenter.objects.order_by(&amp;apos;name&amp;apos;)
+    cluster_list = Cluster.objects.order_by(&amp;apos;name&amp;apos;)
+    data = {
+        &amp;apos;customer_list&amp;apos;: customer_list,
+        &amp;apos;physical_server&amp;apos;: physical_server,
+        &amp;apos;image_list&amp;apos;: image_list,
+        &amp;apos;data_center_list&amp;apos;: data_center,
+        &amp;apos;cluster_list&amp;apos;: cluster_list,
+        &amp;apos;cpu_modes&amp;apos;: CPU_MODES,
+    }
+    return render(request, &amp;apos;sysadmin/cloud_server/cloud_server_list.html&amp;apos;, data)
+
+
+@login_required
+@permit_require(&amp;apos;cloudserver_r&amp;apos;)
+@db_cached_view
+def cloudservers_json(request):
+    def query_fields(key_word):
+        query = (Q(name__contains=key_word) |
+                 Q(host_name__contains=key_word) |
+                 Q(image__name__contains=key_word) |
+                 Q(physical_server__host_name__contains=key_word) |
+                 Q(user__customer_name__contains=key_word) |
+                 Q(status__contains=key_word))
+        return query
+
+    def order_callback(qobj, column):
+        sortable = {0: &amp;quot;name&amp;quot;,
+                    1: &amp;quot;host_name&amp;quot;,
+                    2: &amp;quot;user__customer_name&amp;quot;,
+                    5: &amp;quot;status&amp;quot;,
+                    6: &amp;quot;image__name&amp;quot;,
+                    11: &amp;quot;created_at&amp;quot;
+                    }
+        order = sortable[0]
+        if column in sortable:
+            order = sortable[column]
+        return qobj.order_by(order)
+
+    data = generate_query_data(VirtualServer, request,
+                               create_and_search_callback(query_fields),
+                               order_callback, generate_vserver_list)
+    return response_200(json.dumps(data))
+
+
+def generate_vserver_list(vservers):
+    ret = []
+    for vserver in vservers:
+        if vserver.bandwidth &amp;gt;= 0:
+            bandwidth_str = vserver.bandwidth
+        else:
+            bandwidth_str = &amp;quot;&amp;amp;nbsp;&amp;quot;
+        if vserver.physical_server:
+            pserver_str = &amp;quot;&amp;lt;a href=\&amp;quot;/admin/server/show/%s\&amp;quot;&amp;gt;%s&amp;lt;/a&amp;gt;&amp;quot; % (
+                vserver.physical_server.id, vserver.physical_server.host_name)
+        else:
+            pserver_str = &amp;quot;&amp;quot;
+        user_content = &amp;quot;&amp;quot;
+        if vserver.user:
+            user_content = &amp;quot;&amp;lt;a href=\&amp;quot;/admin/customer/show/%s\&amp;quot;&amp;gt;%s&amp;lt;/a&amp;gt;&amp;quot; % (
+                vserver.user.id, vserver.user.customer_name)
+
+        ret.append([
+            &amp;quot;&amp;lt;a data-id=\&amp;quot;%s\&amp;quot; href=\&amp;quot;/admin/cloudserver/show/%s\&amp;quot;&amp;gt;%s&amp;lt;/a&amp;gt;&amp;quot; % (
+                vserver.id, vserver.id, vserver.name),
+            vserver.host_name,
+            user_content,
+            vserver.ip_address_str(),
+            pserver_str,
+            &amp;quot;&amp;lt;div style=\&amp;quot;color: %s\&amp;quot;&amp;gt;%s&amp;lt;/div&amp;gt;&amp;quot; % (
+                vstatus_color(vserver.status), _(vserver.status)),
+            vserver.image.name,
+            vserver.cpu,
+            vserver.memory,
+            vserver.disk,
+            bandwidth_str,
+            format_time(vserver.created_at)
+        ])
+    return ret
+
+
+@login_required
+@permit_require(&amp;apos;cloudserver_w&amp;apos;)
+@log_action(action=&amp;quot;Create Cloud Server&amp;quot;, method=&amp;quot;POST&amp;quot;)
+def create(request):
+    form = VirtualServerForm(request.POST)
+    form.fields[&amp;apos;network_type_name&amp;apos;].choices = get_network_type_names()
+    if form.is_valid():
+        vserver = create_virtual_server_from_form(request, form)
+        id = vserver.id
+        return render_json({&amp;apos;url&amp;apos;: reverse(&amp;apos;cloudserver_show&amp;apos;, kwargs={&amp;apos;id&amp;apos;: id})})
+    return render_form_error(form)
+
+
+@login_required
+def get_data_center_cluster(request, id):
+    data_center = DataCenter.objects.get(pk=id)
+    clusters = [{&amp;apos;name&amp;apos;: n.name, &amp;apos;id&amp;apos;: n.id}
+                for n in data_center.cluster_set.all()]
+    return HttpResponse(json.dumps(clusters))
+
+
+def create_virtual_server_from_form(request, form):
+    network_type_name = &amp;apos;,&amp;apos;.join(request.POST.getlist(&amp;apos;network_type_name&amp;apos;))
+    data = form.cleaned_data
+    user = data[&amp;apos;user&amp;apos;]
+    host_name = data[&amp;apos;host_name&amp;apos;]
+    root_password = data[&amp;apos;root_password&amp;apos;]
+    image = data[&amp;apos;image&amp;apos;]
+    cpu = data[&amp;apos;cpu&amp;apos;]
+    memory = data[&amp;apos;memory&amp;apos;]
+    disk = data[&amp;apos;disk&amp;apos;]
+    bandwidth = data[&amp;apos;bandwidth&amp;apos;]
+    comments = data[&amp;apos;comments&amp;apos;]
+    data_center = data[&amp;apos;data_center&amp;apos;]
+    physical_server = data[&amp;apos;physical_server&amp;apos;]
+    tags = data[&amp;apos;tags&amp;apos;]
+    backup_quota = data[&amp;apos;backup_quota&amp;apos;]
+    cluster = data[&amp;apos;cluster&amp;apos;]
+    data_center_name = None
+    cluster_name = &amp;quot;&amp;quot;
+    if data_center:
+        data_center_name = data_center.internal_name
+    if physical_server:
+        data_center_name = physical_server.rack.room.data_center.internal_name
+    if cluster:
+        cluster_name = cluster.name
+    name = create_cloud_server_name()
+    if not host_name:
+        host_name = name
+    if not root_password:
+        root_password = auto_generate_string(&amp;quot;&amp;quot;, 10)
+    vserver = create_virtual_server(user, name, host_name, root_password, image,
+                                    cpu, memory, disk, comments, network_type_name,
+                                    data_center_name, bandwidth)
+    vserver.tags = tags
+    vserver.backup_quota = backup_quota
+    vserver.cpu_mode = data[&amp;apos;cpu_mode&amp;apos;]
+    vserver.cluster_name = cluster_name
+    if physical_server:
+        vserver.physical_server = physical_server
+    vserver.save()
+    return vserver
+
+
+def create_cloud_server_name():
+    for i in range(10):
+        name = auto_generate_string(&amp;quot;i-&amp;quot;)
+        if VirtualServer.objects.filter(name=name).count() == 0:
+            break
+    return name
+
+
+@login_required
+def physical_server_info(request):
+    data = {}
+    id = request.GET.get(&amp;apos;id&amp;apos;)
+    server_objs = PhysicalServer.objects.filter(pk=id)
+    if len(server_objs) == 1:
+        pserver = server_objs[0]
+        cpu_rest = pserver.cpu_core - pserver.cpu_usage()
+        if cpu_rest &amp;lt; 0:
+            cpu_rest = 0
+        mem_rest = (pserver.memory - pserver.memory_usage()) / 1024
+        disk_rest = pserver.disk - pserver.disk_usage()
+        data = {
+            &amp;apos;memory&amp;apos;: mem_rest,
+            &amp;apos;cpu_core&amp;apos;: cpu_rest,
+            &amp;apos;disk&amp;apos;: disk_rest,
+        }
+    return HttpResponse(json.dumps(data))
+
+
+@login_required
+def edit(request):
+    cloud_server_id = request.POST.get(&amp;apos;cloud_server_id&amp;apos;)
+    vserver = VirtualServer.objects.get(pk=cloud_server_id)
+    obj = model_to_dict(vserver)
+    data_center = vserver.get_data_center()
+    obj[&amp;apos;data_center_id&amp;apos;] = data_center.id
+    obj[&amp;apos;network_type_name&amp;apos;] = obj[&amp;apos;network_type_name&amp;apos;].split(&amp;apos;,&amp;apos;)
+    if int(obj[&amp;apos;cpu&amp;apos;]) not in [2, 4, 6, 8]:
+        obj[&amp;apos;cpu_core&amp;apos;] = obj[&amp;apos;cpu&amp;apos;]
+        obj[&amp;apos;cpu&amp;apos;] = &amp;apos;cpu_other&amp;apos;
+    else:
+        obj[&amp;apos;cpu_core&amp;apos;] = 0
+
+    if int(obj[&amp;apos;disk&amp;apos;]) not in [50, 100]:
+        obj[&amp;apos;disk_gb&amp;apos;] = obj[&amp;apos;disk&amp;apos;]
+        obj[&amp;apos;disk&amp;apos;] = &amp;apos;disk_other&amp;apos;
+    else:
+        obj[&amp;apos;disk_gb&amp;apos;] = 50
+    if int(obj[&amp;apos;memory&amp;apos;] / 1024) not in [1, 2, 4, 6, 8, 16]:
+        obj[&amp;apos;memory_gb&amp;apos;] = obj[&amp;apos;memory&amp;apos;] / 1024
+        obj[&amp;apos;memory&amp;apos;] = &amp;apos;memory_other&amp;apos;
+    else:
+        obj[&amp;apos;memory&amp;apos;] = obj[&amp;apos;memory&amp;apos;] / 1024
+        obj[&amp;apos;memory_gb&amp;apos;] = 1
+    data = {
+        &amp;apos;cloud_server&amp;apos;: obj
+    }
+    return render_json(data)
+
+
+@login_required
+@permit_require(&amp;apos;cloudserver_w&amp;apos;)
+@log_action(action=&amp;quot;Edit Cloud Server&amp;quot;, method=&amp;quot;POST&amp;quot;)
+def do_edit(request):
+    cloud_server_id = request.POST.get(&amp;apos;cloud_server_id&amp;apos;)
+    vserver = VirtualServer.objects.get(pk=cloud_server_id)
+    ret = check_super_admin(request, vserver)
+    if ret is not None:
+        return ret
+    form = VirtualServerEditForm(request.POST, error_class=JQErrorList)
+    if form.is_valid() and validate_cloud_server_edit(form, vserver):
+        save_instance(form, vserver)
+        pserver = form.cleaned_data[&amp;apos;physical_server&amp;apos;]
+        vserver.network_type_name = &amp;apos;,&amp;apos;.join(request.POST.getlist(&amp;apos;network_type_name&amp;apos;))
+        if pserver:
+            vserver.data_center_name = pserver.rack.room.data_center.internal_name
+            cluster_name = &amp;quot;&amp;quot;
+            if pserver.cluster:
+                cluster_name = pserver.cluster.name
+            vserver.cluster_name = cluster_name
+        vserver.save()
+        referer = request.META[&amp;apos;HTTP_REFERER&amp;apos;]
+        return render_json({&amp;apos;url&amp;apos;: referer})
+    return render_form_error(form)
+
+
+def validate_cloud_server_edit(form, vserver):
+    ret = True
+    if vserver.status in [&amp;apos;Provisioning&amp;apos;, &amp;apos;Running&amp;apos;, &amp;apos;Suspended&amp;apos;]:
+        if vserver.physical_server != form.cleaned_data[&amp;apos;physical_server&amp;apos;]:
+            # modify running, provisioning, suspended cloud server&amp;apos;s physical
+            # server is not allowed!
+            add_error_to_form(form, &amp;apos;physical_server&amp;apos;,
+                              _(&amp;quot;Cannot modify Server field&amp;quot;))
+            ret = False
+        if vserver.image != form.cleaned_data[&amp;apos;image&amp;apos;]:
+            # modify running, provisioning, suspended cloud server&amp;apos;s image
+            # is not allowed!
+            add_error_to_form(form, &amp;apos;image&amp;apos;, _(&amp;quot;Cannot modify Image field&amp;quot;))
+            ret = False
+        if vserver.network_type_name != form.cleaned_data[&amp;apos;network_type_name&amp;apos;]:
+            # modify running, provisioning, suspended cloud server&amp;apos;s network type
+            # is not allowed!
+            add_error_to_form(form, &amp;apos;network_type_name&amp;apos;, _(
+                &amp;quot;Cannot modify Network Type field&amp;quot;))
+            ret = False
+    return ret
+
+
+@login_required
+@permit_require(&amp;apos;cloudserver_d&amp;apos;)
+@log_action(action=&amp;quot;Delete Cloud Server&amp;quot;)
+def delete(request):
+    cloud_server_ids = request.POST.get(&amp;apos;cloud_server_ids&amp;apos;)
+    if cloud_server_ids is not None:
+        cloud_server_ids = cloud_server_ids.split(&amp;apos;,&amp;apos;)
+    else:
+        return render_json(True)
+    for cloud_server_id in cloud_server_ids:
+        vserver = VirtualServer.objects.get(pk=cloud_server_id)
+        ret = check_super_admin(request, vserver)
+        if ret is not None:
+            continue
+        ret = check_super_admin(request, vserver)
+        if ret is not None:
+            continue
+
+        # only can delete destroyed virtual server.
+        if not vserver.status == VIRTUAL_SERVER_STATUS[5]:
+            continue
+
+        ips = vserver.ip_addresses()
+        try:
+            vserver.delete()
+            for ip in ips:
+                ip.release()
+        except Exception:
+            continue
+    return render_json(True)
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;公有云项目-公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作&quot;&gt;&lt;a href=&quot;#公有云项目-公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作&quot; class=&quot;headerlink&quot; title=&quot;公有云项目(公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作)&quot;&gt;&lt;/a&gt;公有云项目(公司主营，公有云管理平台，让客户对所有云计算资源以及存储进行一键化操作)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus6.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus7.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;相关代码-1&quot;&gt;&lt;a href=&quot;#相关代码-1&quot; class=&quot;headerlink&quot; title=&quot;相关代码&quot;&gt;&lt;/a&gt;相关代码&lt;/h3&gt;&lt;h2 id=&quot;前端页面部分代码&quot;&gt;&lt;a href=&quot;#前端页面部分代码&quot; class=&quot;headerlink&quot; title=&quot;前端页面部分代码&quot;&gt;&lt;/a&gt;前端页面部分代码&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus9.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;后端部分代码-1&quot;&gt;&lt;a href=&quot;#后端部分代码-1&quot; class=&quot;headerlink&quot; title=&quot;后端部分代码&quot;&gt;&lt;/a&gt;后端部分代码&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus10.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;官网接口文档编写与测试&quot;&gt;&lt;a href=&quot;#官网接口文档编写与测试&quot; class=&quot;headerlink&quot; title=&quot;官网接口文档编写与测试&quot;&gt;&lt;/a&gt;官网接口文档编写与测试&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus8.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;私有云项目-客户有-北京王府井集团，国家电网，神州数码&quot;&gt;&lt;a href=&quot;#私有云项目-客户有-北京王府井集团，国家电网，神州数码&quot; class=&quot;headerlink&quot; title=&quot;私有云项目 客户有(北京王府井集团，国家电网，神州数码)&quot;&gt;&lt;/a&gt;私有云项
+    
+    </summary>
+    
+      <category term="求职" scheme="http://python-ning.github.io/categories/%E6%B1%82%E8%81%8C/"/>
+    
+    
+      <category term="求职" scheme="http://python-ning.github.io/tags/%E6%B1%82%E8%81%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>python面试题精选</title>
@@ -758,92 +1093,6 @@ with open(&amp;apos;somefile.txt&amp;apos;, &amp;apos;wt&amp;apos;) as f:
     
     
       <category term="python" scheme="http://python-ning.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python图片小爬虫</title>
-    <link href="http://python-ning.github.io/2016/02/01/python_scrapy_img/"/>
-    <id>http://python-ning.github.io/2016/02/01/python_scrapy_img/</id>
-    <published>2016-02-01T08:00:00.000Z</published>
-    <updated>2016-02-01T20:07:28.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/89403-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;最近没活了，简单复习下爬虫，就去爬了下煎蛋网的妹子图和糗事百科的图片，&lt;br&gt;python做爬虫和模拟登陆来说最适合不过了，除了各种强大的库，也只需很少的代码量就能完成功能。&lt;/p&gt;
-&lt;h3 id=&quot;我理解的python爬虫&quot;&gt;&lt;a href=&quot;#我理解的python爬虫&quot; class=&quot;headerlink&quot; title=&quot;我理解的python爬虫&quot;&gt;&lt;/a&gt;我理解的python爬虫&lt;/h3&gt;&lt;p&gt;我理解的python爬虫，利用urllib2(自带库) 、httplib(httplib是一个相对底层的http请求模块，urlib就是基于httplib封装的)、requests(我个人喜欢用这个)等库去发送http请求，然后将请求到的html页面，或者ajax返回的xml、json或者js等进行解析，用pyquery(我个人喜欢用这个)、BeautifulSoup(from bs4 import BeautifulSoup一般这么引用)、lxml(解析xml)、xpath(没怎么用过)、HTMLParser(from html.parser import HTMLParser一般这么引用)等&lt;/p&gt;
-&lt;h3 id=&quot;http协议&quot;&gt;&lt;a href=&quot;#http协议&quot; class=&quot;headerlink&quot; title=&quot;http协议&quot;&gt;&lt;/a&gt;http协议&lt;/h3&gt;&lt;p&gt;你一定要对http协议有了解，在此基础上对网页进行解析，其实说白了就是拿一些网页信息进行解析&lt;/p&gt;
-&lt;h3 id=&quot;模拟登陆&quot;&gt;&lt;a href=&quot;#模拟登陆&quot; class=&quot;headerlink&quot; title=&quot;模拟登陆&quot;&gt;&lt;/a&gt;模拟登陆&lt;/h3&gt;&lt;p&gt;在抓取网页的基础上，我们要做一个模拟人去做用户登录，然后去拿我的订单号啊等等的就是模拟登陆，基本是加入post中的data信息去做登陆。&lt;/p&gt;
-&lt;h3 id=&quot;robots协议&quot;&gt;&lt;a href=&quot;#robots协议&quot; class=&quot;headerlink&quot; title=&quot;robots协议&quot;&gt;&lt;/a&gt;robots协议&lt;/h3&gt;&lt;p&gt;Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”（Robots Exclusion Protocol），网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。&lt;br&gt;        &lt;a href=&quot;https://www.baidu.com/robots.txt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.baidu.com/robots.txt&lt;/a&gt;&lt;br&gt;我在任何web官网的url后边+/robots.txt就可看到每个官网允许或者不允许爬的内容,也没啥用，让你不爬你就不爬啊。&lt;/p&gt;
-&lt;h3 id=&quot;煎蛋网妹子图爬虫实例：&quot;&gt;&lt;a href=&quot;#煎蛋网妹子图爬虫实例：&quot; class=&quot;headerlink&quot; title=&quot;煎蛋网妹子图爬虫实例：&quot;&gt;&lt;/a&gt;煎蛋网妹子图爬虫实例：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;import requests
-from pyquery import PyQuery as pq
-import time
-
-for page in range(1720, 1501, -1):
-    url = &amp;quot;http://jandan.net/ooxx/page-%s#comments&amp;quot; % page
-    headers = {
-        &amp;apos;Accept&amp;apos;: &amp;apos;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&amp;apos;,
-        &amp;apos;Accept-Encoding&amp;apos;: &amp;apos;gzip, deflate, sdch&amp;apos;,
-        &amp;apos;Accept-Language&amp;apos;: &amp;apos;zh-CN,zh;q=0.8&amp;apos;,
-        &amp;apos;Host&amp;apos;: &amp;apos;jandan.net&amp;apos;,
-        &amp;apos;User-Agent&amp;apos;: &amp;apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36&amp;apos;
-        # &amp;apos;User-Agent&amp;apos;: &amp;apos;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/47.0.2526.73 Chrome/47.0.2526.73 Safari/537.36&amp;apos;
-        # &amp;apos;User-Agent&amp;apos;: &amp;apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36&amp;apos;
-        # &amp;apos;User-Agent&amp;apos;: &amp;apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36&amp;apos;
-    }
-    time.sleep(2)
-    response = requests.session().get(url, headers=headers, timeout=50, verify=False)
-    print response
-
-    b = pq(response.content)
-    path = b(&amp;apos;div[class=&amp;quot;text&amp;quot;] p&amp;apos;)
-    img = path(&amp;apos;img&amp;apos;)
-    for i in img:
-        time.sleep(1)
-        img_url = i.values()[0].decode(&amp;apos;utf-8&amp;apos;)
-        filename = img_url.split(&amp;apos;/&amp;apos;)[-1]
-        print img_url, &amp;apos;-&amp;apos; * 30, filename
-        r = requests.get(img_url, stream=True).content
-        file(&amp;apos;/root/Desktop/testpachong/MM/page%s_img%s&amp;apos; %
-             (page, filename), &amp;apos;a&amp;apos;).write(r)
-        print page
-print &amp;apos;done&amp;apos;
-# JanDanWangMeiZiTu
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;糗事百科图片实例：&quot;&gt;&lt;a href=&quot;#糗事百科图片实例：&quot; class=&quot;headerlink&quot; title=&quot;糗事百科图片实例：&quot;&gt;&lt;/a&gt;糗事百科图片实例：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# coding:utf-8
-import re
-import urllib
-import urllib2
-
-a = 1
-for page in xrange(1, 36):
-    a += 1
-    url = &amp;apos;http://www.qiushibaike.com/imgrank/page/%s&amp;apos; % page
-
-    headers = {
-        &amp;apos;User-Agent&amp;apos;: &amp;apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36&amp;apos;
-    }
-    request = urllib2.Request(url, headers=headers)
-    response = urllib2.urlopen(request)
-    html = response.read().decode(&amp;apos;utf-8&amp;apos;)
-    imglist = re.findall(&amp;apos;img src=&amp;quot;(.*?)\.jpg&amp;quot;&amp;apos;, html)
-    i = 1
-    for img in imglist:
-        i += 1
-        imgfile = urllib.urlopen(img + &amp;apos;.jpg&amp;apos;)
-        file(&amp;apos;/root/Desktop/testpachong/QiuShiBaiKe/page%s_img%s.jpg&amp;apos; % (page, i), &amp;apos;wb&amp;apos;).write(imgfile.read())
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;python爬虫还有个scrapy框架：听说比较强悍，回头瞅瞅&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/89403-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;最近没活了，简单复习下
-    
-    </summary>
-    
-      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
-    
-    
-      <category term="爬虫" scheme="http://python-ning.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
