@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-06-28T18:09:58.000Z</updated>
+  <updated>2016-06-28T18:10:49.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我的简介</title>
+    <title>我的项目经验</title>
     <link href="http://python-ning.github.io/2016/06/28/ning.chen/"/>
     <id>http://python-ning.github.io/2016/06/28/ning.chen/</id>
     <published>2016-06-28T07:00:00.000Z</published>
-    <updated>2016-06-28T18:09:58.000Z</updated>
+    <updated>2016-06-28T18:10:49.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;私有云项目&quot;&gt;&lt;a href=&quot;#私有云项目&quot; class=&quot;headerlink&quot; title=&quot;私有云项目&quot;&gt;&lt;/a&gt;私有云项目&lt;/h3&gt;&lt;p&gt;客户有(北京王府井集团，国家电网，神州数码)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus1.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus2.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus3.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/nexus4.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
@@ -926,6 +926,50 @@ class Article(models.Model):
   </entry>
   
   <entry>
+    <title>Django(六)用django自带Paginator实现分页功能</title>
+    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
+    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
+    <published>2016-04-08T07:00:00.000Z</published>
+    <updated>2016-04-12T17:54:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。&lt;/p&gt;
+&lt;h3 id=&quot;在view-py中使用Paginator&quot;&gt;&lt;a href=&quot;#在view-py中使用Paginator&quot; class=&quot;headerlink&quot; title=&quot;在view.py中使用Paginator&quot;&gt;&lt;/a&gt;在view.py中使用Paginator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from app.models import Topic
+
+def index(request):
+limit = 3  # 每页显示的记录数
+topics = Topic.objects.all()
+paginator = Paginator(topics, limit)  # 实例化一个分页对象
+
+page = request.GET.get(&amp;apos;page&amp;apos;)  # 获取页码
+try:
+    topics = paginator.page(page)  # 获取某页对应的记录
+except PageNotAnInteger:  # 如果页码不是个整数
+    topics = paginator.page(1)  # 取第一页的记录
+    except EmptyPage:  # 如果页码太大，没有相应的记录
+        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
+
+    return render_to_response(&amp;apos;index.html&amp;apos;, {&amp;apos;topics&amp;apos;: topics})
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;模板中的相关操作&quot;&gt;&lt;a href=&quot;#模板中的相关操作&quot; class=&quot;headerlink&quot; title=&quot;模板中的相关操作&quot;&gt;&lt;/a&gt;模板中的相关操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;效果：&quot;&gt;&lt;a href=&quot;#效果：&quot; class=&quot;headerlink&quot; title=&quot;效果：&quot;&gt;&lt;/a&gt;效果：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在django中使用
+    
+    </summary>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+    
+      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初识NoSQL</title>
     <link href="http://python-ning.github.io/2016/04/08/good_article_collect_nosql/"/>
     <id>http://python-ning.github.io/2016/04/08/good_article_collect_nosql/</id>
@@ -1002,50 +1046,6 @@ Vermont Public Radio
     
     
       <category term="NoSQL" scheme="http://python-ning.github.io/tags/NoSQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Django(六)用django自带Paginator实现分页功能</title>
-    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
-    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
-    <published>2016-04-08T07:00:00.000Z</published>
-    <updated>2016-04-12T17:54:54.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。&lt;/p&gt;
-&lt;h3 id=&quot;在view-py中使用Paginator&quot;&gt;&lt;a href=&quot;#在view-py中使用Paginator&quot; class=&quot;headerlink&quot; title=&quot;在view.py中使用Paginator&quot;&gt;&lt;/a&gt;在view.py中使用Paginator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from app.models import Topic
-
-def index(request):
-limit = 3  # 每页显示的记录数
-topics = Topic.objects.all()
-paginator = Paginator(topics, limit)  # 实例化一个分页对象
-
-page = request.GET.get(&amp;apos;page&amp;apos;)  # 获取页码
-try:
-    topics = paginator.page(page)  # 获取某页对应的记录
-except PageNotAnInteger:  # 如果页码不是个整数
-    topics = paginator.page(1)  # 取第一页的记录
-    except EmptyPage:  # 如果页码太大，没有相应的记录
-        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
-
-    return render_to_response(&amp;apos;index.html&amp;apos;, {&amp;apos;topics&amp;apos;: topics})
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;模板中的相关操作&quot;&gt;&lt;a href=&quot;#模板中的相关操作&quot; class=&quot;headerlink&quot; title=&quot;模板中的相关操作&quot;&gt;&lt;/a&gt;模板中的相关操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;效果：&quot;&gt;&lt;a href=&quot;#效果：&quot; class=&quot;headerlink&quot; title=&quot;效果：&quot;&gt;&lt;/a&gt;效果：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用
-    
-    </summary>
-    
-      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
-    
-    
-      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
     
   </entry>
   
