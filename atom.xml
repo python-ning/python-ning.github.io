@@ -170,7 +170,7 @@ def create(request):
     <link href="http://python-ning.github.io/2016/06/27/python_interview_questions/"/>
     <id>http://python-ning.github.io/2016/06/27/python_interview_questions/</id>
     <published>2016-06-27T07:00:00.000Z</published>
-    <updated>2016-07-01T17:55:49.000Z</updated>
+    <updated>2016-07-01T17:57:14.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~&lt;/p&gt;
 &lt;h3 id=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;a href=&quot;#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot; class=&quot;headerlink&quot; title=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;/a&gt;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&lt;/h3&gt;&lt;p&gt;a) 非负数在前，负数在后；&lt;br&gt;b) 非负数部分按照从小到大排序；&lt;br&gt;c) 负数部分按从大到小排序。&lt;br&gt;如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]&lt;br&gt;希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]&lt;/p&gt;
@@ -217,8 +217,13 @@ if __name__ == &amp;apos;__main__&amp;apos;:
 &lt;pre&gt;&lt;code&gt;with open(&amp;apos;C:\Users\test\Desktop\\chen.txt&amp;apos;, &amp;apos;a&amp;apos;) as f:
     for i in listt:
         f.write(i + &amp;apos;\n&amp;apos;)
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;写一个装饰器，计算这个函数运行了多长时间？&quot;&gt;&lt;a href=&quot;#写一个装饰器，计算这个函数运行了多长时间？&quot; class=&quot;headerlink&quot; title=&quot;写一个装饰器，计算这个函数运行了多长时间？&quot;&gt;&lt;/a&gt;写一个装饰器，计算这个函数运行了多长时间？&lt;/h3&gt;&lt;p&gt;1.复杂&lt;br&gt;        import time&lt;br&gt;        from functools import wraps&lt;br&gt;        import random&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;def fn_timer(function):
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;写一个装饰器，计算这个函数运行了多长时间？&quot;&gt;&lt;a href=&quot;#写一个装饰器，计算这个函数运行了多长时间？&quot; class=&quot;headerlink&quot; title=&quot;写一个装饰器，计算这个函数运行了多长时间？&quot;&gt;&lt;/a&gt;写一个装饰器，计算这个函数运行了多长时间？&lt;/h3&gt;&lt;p&gt;1.复杂&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import time
+from functools import wraps
+import random
+
+
+def fn_timer(function):
     @wraps(function)
     def function_timer(*args, **kwargs):
         t0 = time.time()
@@ -756,50 +761,6 @@ class Article(models.Model):
   </entry>
   
   <entry>
-    <title>Django(六)用django自带Paginator实现分页功能</title>
-    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
-    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
-    <published>2016-04-08T07:00:00.000Z</published>
-    <updated>2016-04-12T17:54:54.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。&lt;/p&gt;
-&lt;h3 id=&quot;在view-py中使用Paginator&quot;&gt;&lt;a href=&quot;#在view-py中使用Paginator&quot; class=&quot;headerlink&quot; title=&quot;在view.py中使用Paginator&quot;&gt;&lt;/a&gt;在view.py中使用Paginator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from app.models import Topic
-
-def index(request):
-limit = 3  # 每页显示的记录数
-topics = Topic.objects.all()
-paginator = Paginator(topics, limit)  # 实例化一个分页对象
-
-page = request.GET.get(&amp;apos;page&amp;apos;)  # 获取页码
-try:
-    topics = paginator.page(page)  # 获取某页对应的记录
-except PageNotAnInteger:  # 如果页码不是个整数
-    topics = paginator.page(1)  # 取第一页的记录
-    except EmptyPage:  # 如果页码太大，没有相应的记录
-        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
-
-    return render_to_response(&amp;apos;index.html&amp;apos;, {&amp;apos;topics&amp;apos;: topics})
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;模板中的相关操作&quot;&gt;&lt;a href=&quot;#模板中的相关操作&quot; class=&quot;headerlink&quot; title=&quot;模板中的相关操作&quot;&gt;&lt;/a&gt;模板中的相关操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;效果：&quot;&gt;&lt;a href=&quot;#效果：&quot; class=&quot;headerlink&quot; title=&quot;效果：&quot;&gt;&lt;/a&gt;效果：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用
-    
-    </summary>
-    
-      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
-    
-    
-      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
-    
-  </entry>
-  
-  <entry>
     <title>初识NoSQL</title>
     <link href="http://python-ning.github.io/2016/04/08/good_article_collect_nosql/"/>
     <id>http://python-ning.github.io/2016/04/08/good_article_collect_nosql/</id>
@@ -876,6 +837,50 @@ Vermont Public Radio
     
     
       <category term="NoSQL" scheme="http://python-ning.github.io/tags/NoSQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Django(六)用django自带Paginator实现分页功能</title>
+    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
+    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
+    <published>2016-04-08T07:00:00.000Z</published>
+    <updated>2016-04-12T17:54:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。&lt;/p&gt;
+&lt;h3 id=&quot;在view-py中使用Paginator&quot;&gt;&lt;a href=&quot;#在view-py中使用Paginator&quot; class=&quot;headerlink&quot; title=&quot;在view.py中使用Paginator&quot;&gt;&lt;/a&gt;在view.py中使用Paginator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from app.models import Topic
+
+def index(request):
+limit = 3  # 每页显示的记录数
+topics = Topic.objects.all()
+paginator = Paginator(topics, limit)  # 实例化一个分页对象
+
+page = request.GET.get(&amp;apos;page&amp;apos;)  # 获取页码
+try:
+    topics = paginator.page(page)  # 获取某页对应的记录
+except PageNotAnInteger:  # 如果页码不是个整数
+    topics = paginator.page(1)  # 取第一页的记录
+    except EmptyPage:  # 如果页码太大，没有相应的记录
+        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
+
+    return render_to_response(&amp;apos;index.html&amp;apos;, {&amp;apos;topics&amp;apos;: topics})
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;模板中的相关操作&quot;&gt;&lt;a href=&quot;#模板中的相关操作&quot; class=&quot;headerlink&quot; title=&quot;模板中的相关操作&quot;&gt;&lt;/a&gt;模板中的相关操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;效果：&quot;&gt;&lt;a href=&quot;#效果：&quot; class=&quot;headerlink&quot; title=&quot;效果：&quot;&gt;&lt;/a&gt;效果：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在django中使用
+    
+    </summary>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+    
+      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
     
   </entry>
   

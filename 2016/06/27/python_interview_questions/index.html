@@ -64,7 +64,7 @@
 <meta property="og:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
 用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：a) 非负数在前，负数在后；b) 非负数部分按照从小到大排序；c) 负数部分按从大到小排序。如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg">
-<meta property="og:updated_time" content="2016-07-01T17:55:49.000Z">
+<meta property="og:updated_time" content="2016-07-01T17:57:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python面试题精选">
 <meta name="twitter:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
@@ -362,8 +362,13 @@ if __name__ == &apos;__main__&apos;:
 <pre><code>with open(&apos;C:\Users\test\Desktop\\chen.txt&apos;, &apos;a&apos;) as f:
     for i in listt:
         f.write(i + &apos;\n&apos;)
-</code></pre><h3 id="写一个装饰器，计算这个函数运行了多长时间？"><a href="#写一个装饰器，计算这个函数运行了多长时间？" class="headerlink" title="写一个装饰器，计算这个函数运行了多长时间？"></a>写一个装饰器，计算这个函数运行了多长时间？</h3><p>1.复杂<br>        import time<br>        from functools import wraps<br>        import random</p>
-<pre><code>def fn_timer(function):
+</code></pre><h3 id="写一个装饰器，计算这个函数运行了多长时间？"><a href="#写一个装饰器，计算这个函数运行了多长时间？" class="headerlink" title="写一个装饰器，计算这个函数运行了多长时间？"></a>写一个装饰器，计算这个函数运行了多长时间？</h3><p>1.复杂</p>
+<pre><code>import time
+from functools import wraps
+import random
+
+
+def fn_timer(function):
     @wraps(function)
     def function_timer(*args, **kwargs):
         t0 = time.time()
