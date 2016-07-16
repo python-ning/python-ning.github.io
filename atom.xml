@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-06-29T20:46:17.000Z</updated>
+  <updated>2016-07-16T17:48:22.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jira的安装配置以及接口调用</title>
+    <link href="http://python-ning.github.io/2016/07/16/jira_python_api/"/>
+    <id>http://python-ning.github.io/2016/07/16/jira_python_api/</id>
+    <published>2016-07-16T07:00:00.000Z</published>
+    <updated>2016-07-16T17:48:22.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近应用户的需求，使用了一下 jira这个软件，用户要用 jira 作为工作流使用来调用私有云的云资源&lt;/p&gt;
+&lt;h3 id=&quot;jira-介绍&quot;&gt;&lt;a href=&quot;#jira-介绍&quot; class=&quot;headerlink&quot; title=&quot;jira 介绍&quot;&gt;&lt;/a&gt;jira 介绍&lt;/h3&gt;&lt;h3 id=&quot;jira-安装与配置&quot;&gt;&lt;a href=&quot;#jira-安装与配置&quot; class=&quot;headerlink&quot; title=&quot;jira 安装与配置&quot;&gt;&lt;/a&gt;jira 安装与配置&lt;/h3&gt;&lt;h3 id=&quot;jira-一些功能&quot;&gt;&lt;a href=&quot;#jira-一些功能&quot; class=&quot;headerlink&quot; title=&quot;jira 一些功能&quot;&gt;&lt;/a&gt;jira 一些功能&lt;/h3&gt;&lt;h3 id=&quot;jira-私有云接口-flask&quot;&gt;&lt;a href=&quot;#jira-私有云接口-flask&quot; class=&quot;headerlink&quot; title=&quot;jira+私有云接口+flask&quot;&gt;&lt;/a&gt;jira+私有云接口+flask&lt;/h3&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近应用户的需求，使用了一下 jira这个软件，用户要用 jira 作为工作流使用来调用私有云的云资源&lt;/p&gt;
+&lt;h3 id=&quot;jira-介绍&quot;&gt;&lt;a href=&quot;#jira-介绍&quot; class=&quot;headerlink&quot; title=&quot;jira 介绍&quot;&gt;&lt;/a&gt;jira 介
+    
+    </summary>
+    
+      <category term="使用工具" scheme="http://python-ning.github.io/categories/%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="jira" scheme="http://python-ning.github.io/tags/jira/"/>
+    
+  </entry>
   
   <entry>
     <title>我的项目经验</title>
@@ -170,7 +194,7 @@ def create(request):
     <link href="http://python-ning.github.io/2016/06/27/python_interview_questions/"/>
     <id>http://python-ning.github.io/2016/06/27/python_interview_questions/</id>
     <published>2016-06-27T07:00:00.000Z</published>
-    <updated>2016-07-01T17:57:14.000Z</updated>
+    <updated>2016-07-01T18:10:53.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~&lt;/p&gt;
 &lt;h3 id=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;a href=&quot;#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot; class=&quot;headerlink&quot; title=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;/a&gt;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&lt;/h3&gt;&lt;p&gt;a) 非负数在前，负数在后；&lt;br&gt;b) 非负数部分按照从小到大排序；&lt;br&gt;c) 负数部分按从大到小排序。&lt;br&gt;如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]&lt;br&gt;希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]&lt;/p&gt;
@@ -761,6 +785,50 @@ class Article(models.Model):
   </entry>
   
   <entry>
+    <title>Django(六)用django自带Paginator实现分页功能</title>
+    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
+    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
+    <published>2016-04-08T07:00:00.000Z</published>
+    <updated>2016-04-12T17:54:54.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。&lt;/p&gt;
+&lt;h3 id=&quot;在view-py中使用Paginator&quot;&gt;&lt;a href=&quot;#在view-py中使用Paginator&quot; class=&quot;headerlink&quot; title=&quot;在view.py中使用Paginator&quot;&gt;&lt;/a&gt;在view.py中使用Paginator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from app.models import Topic
+
+def index(request):
+limit = 3  # 每页显示的记录数
+topics = Topic.objects.all()
+paginator = Paginator(topics, limit)  # 实例化一个分页对象
+
+page = request.GET.get(&amp;apos;page&amp;apos;)  # 获取页码
+try:
+    topics = paginator.page(page)  # 获取某页对应的记录
+except PageNotAnInteger:  # 如果页码不是个整数
+    topics = paginator.page(1)  # 取第一页的记录
+    except EmptyPage:  # 如果页码太大，没有相应的记录
+        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
+
+    return render_to_response(&amp;apos;index.html&amp;apos;, {&amp;apos;topics&amp;apos;: topics})
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;模板中的相关操作&quot;&gt;&lt;a href=&quot;#模板中的相关操作&quot; class=&quot;headerlink&quot; title=&quot;模板中的相关操作&quot;&gt;&lt;/a&gt;模板中的相关操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;效果：&quot;&gt;&lt;a href=&quot;#效果：&quot; class=&quot;headerlink&quot; title=&quot;效果：&quot;&gt;&lt;/a&gt;效果：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在django中使用
+    
+    </summary>
+    
+      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
+    
+    
+      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初识NoSQL</title>
     <link href="http://python-ning.github.io/2016/04/08/good_article_collect_nosql/"/>
     <id>http://python-ning.github.io/2016/04/08/good_article_collect_nosql/</id>
@@ -837,103 +905,6 @@ Vermont Public Radio
     
     
       <category term="NoSQL" scheme="http://python-ning.github.io/tags/NoSQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Django(六)用django自带Paginator实现分页功能</title>
-    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
-    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
-    <published>2016-04-08T07:00:00.000Z</published>
-    <updated>2016-04-12T17:54:54.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。&lt;/p&gt;
-&lt;h3 id=&quot;在view-py中使用Paginator&quot;&gt;&lt;a href=&quot;#在view-py中使用Paginator&quot; class=&quot;headerlink&quot; title=&quot;在view.py中使用Paginator&quot;&gt;&lt;/a&gt;在view.py中使用Paginator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from app.models import Topic
-
-def index(request):
-limit = 3  # 每页显示的记录数
-topics = Topic.objects.all()
-paginator = Paginator(topics, limit)  # 实例化一个分页对象
-
-page = request.GET.get(&amp;apos;page&amp;apos;)  # 获取页码
-try:
-    topics = paginator.page(page)  # 获取某页对应的记录
-except PageNotAnInteger:  # 如果页码不是个整数
-    topics = paginator.page(1)  # 取第一页的记录
-    except EmptyPage:  # 如果页码太大，没有相应的记录
-        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
-
-    return render_to_response(&amp;apos;index.html&amp;apos;, {&amp;apos;topics&amp;apos;: topics})
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;模板中的相关操作&quot;&gt;&lt;a href=&quot;#模板中的相关操作&quot; class=&quot;headerlink&quot; title=&quot;模板中的相关操作&quot;&gt;&lt;/a&gt;模板中的相关操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;效果：&quot;&gt;&lt;a href=&quot;#效果：&quot; class=&quot;headerlink&quot; title=&quot;效果：&quot;&gt;&lt;/a&gt;效果：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用
-    
-    </summary>
-    
-      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
-    
-    
-      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python 文件操作</title>
-    <link href="http://python-ning.github.io/2016/02/02/python_IO/"/>
-    <id>http://python-ning.github.io/2016/02/02/python_IO/</id>
-    <published>2016-02-02T08:00:00.000Z</published>
-    <updated>2016-02-03T23:59:48.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;正常打开文件读取&quot;&gt;&lt;a href=&quot;#正常打开文件读取&quot; class=&quot;headerlink&quot; title=&quot;正常打开文件读取&quot;&gt;&lt;/a&gt;正常打开文件读取&lt;/h3&gt;&lt;p&gt;f = open(‘/root/Desktop/test/chen.txt’,’rt’)&lt;/p&gt;
-&lt;p&gt;open()内建函数，第一个参数是文件绝对路径，第二个是对文件操作的权限&lt;/p&gt;
-&lt;p&gt;r&lt;br&gt;以读方式打开文件，可读取文件信息。&lt;/p&gt;
-&lt;p&gt;w&lt;br&gt;以写方式打开文件，可向文件写入信息。如文件存在，则清空该文件，再写入新内容&lt;/p&gt;
-&lt;p&gt;a&lt;br&gt;以追加模式打开文件（即一打开文件，文件指针自动移到文件末尾），如果文件不存在则创建&lt;/p&gt;
-&lt;p&gt;r+&lt;br&gt;以读写方式打开文件，可对文件进行读和写操作。&lt;/p&gt;
-&lt;p&gt;w+&lt;br&gt;消除文件内容，然后以读写方式打开文件。&lt;/p&gt;
-&lt;p&gt;a+&lt;br&gt;以读写方式打开文件，并把文件指针移到文件尾。&lt;/p&gt;
-&lt;p&gt;b&lt;br&gt;以二进制模式打开文件，而不是以文本模式。该模式只对Windows或Dos有效，类Unix的文件是用二进制模式进行操作的。&lt;/p&gt;
-&lt;h3 id=&quot;with&quot;&gt;&lt;a href=&quot;#with&quot; class=&quot;headerlink&quot; title=&quot;with&quot;&gt;&lt;/a&gt;with&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;with open(&amp;apos;somefile.txt&amp;apos;, &amp;apos;rt&amp;apos;) as f:
-    data = f.read()
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;为了写入一个文本文件，使用带有 wt 模式的 open() 函数， 如果之前文件内容存在则清除并覆盖掉。如下所示:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# Write chunks of text data
-with open(&amp;apos;somefile.txt&amp;apos;, &amp;apos;wt&amp;apos;) as f:
-    f.write(text1)
-    f.write(text2)
-    ...
-
-# Redirected print statement
-with open(&amp;apos;somefile.txt&amp;apos;, &amp;apos;wt&amp;apos;) as f:
-    print(line1, file=f)
-    print(line2, file=f)
-    ...
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果是在已存在文件中添加内容，使用模式为 at 的 open() 函数&lt;/p&gt;
-&lt;p&gt;文件的读写操作默认使用系统编码，可以通过调用 sys.getdefaultencoding() 来得到。 在大多数机器上面都是utf-8编码。如果你已经知道你要读写的文本是其他编码方式， 那么可以通过传递一个可选的 encoding 参数给open()函数。如下所示：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;with open(&amp;apos;somefile.txt&amp;apos;, &amp;apos;rt&amp;apos;, encoding=&amp;apos;latin-1&amp;apos;) as f:
-    ...
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Python支持非常多的文本编码。几个常见的编码是ascii, latin-1, utf-8和utf-16。 在web应用程序中通常都使用的是UTF-8。 ascii对应从U+0000到U+007F范围内的7位字符。 latin-1是字节0-255到U+0000至U+00FF范围内Unicode字符的直接映射。 当读取一个未知编码的文本时使用latin-1编码永远不会产生解码错误。 使用latin-1编码读取一个文件的时候也许不能产生完全正确的文本解码数据， 但是它也能从中提取出足够多的有用数据。同时，如果你之后将数据回写回去，原先的数据还是会保留的。&lt;/p&gt;
-&lt;h3 id=&quot;file&quot;&gt;&lt;a href=&quot;#file&quot; class=&quot;headerlink&quot; title=&quot;file&quot;&gt;&lt;/a&gt;file&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;print file(&amp;apos;/root/Desktop/test/chen.txt&amp;apos;, &amp;apos;rt&amp;apos;).read()
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;file与open-区别&quot;&gt;&lt;a href=&quot;#file与open-区别&quot; class=&quot;headerlink&quot; title=&quot;file与open 区别&quot;&gt;&lt;/a&gt;file与open 区别&lt;/h3&gt;&lt;p&gt;python3没有file了，基本这俩一样&lt;/p&gt;
-&lt;h3 id=&quot;什么是IO？&quot;&gt;&lt;a href=&quot;#什么是IO？&quot; class=&quot;headerlink&quot; title=&quot;什么是IO？&quot;&gt;&lt;/a&gt;什么是IO？&lt;/h3&gt;&lt;p&gt;i就是input输入,O就是output输出,一起就是基本输入输出设备&lt;br&gt;I/O也就是输入输出地址。每个设备都会有一个专用的I/O地址，用来处理自己的输入输出信息。I/O地址绝对不能重复，如果两个设备的I/O地址有冲突，系统硬件就不能正常工作。以Windows XP操作系统为例，查看一个设备所占用的I/O地址的方法是：在系统桌面中选择“我的电脑”，单击鼠标右键，选择“属性”，在弹出的“系统属性”对话框中选择“硬件”，单击“设备管理器”按钮，弹出一个“设备管理器”窗口，在设备列表中双击要查看的I/O地址设备类型，然后双击具体的设备名称，在弹出对话框的“资源”选项卡中就可以看到该设备所占用的I/O地址了。在“资源设置”区域，可以看到显卡占用的I/O地址。 &lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;正常打开文件读取&quot;&gt;&lt;a href=&quot;#正常打开文件读取&quot; class=&quot;headerlink&quot; title=&quot;正常打开文件读取&quot;&gt;&lt;/a&gt;正常打开文件读取&lt;/h3&gt;&lt;p&gt;f = open(‘/root/Desktop/test/chen.txt’,’rt’)&lt;/
-    
-    </summary>
-    
-      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
-    
-    
-      <category term="python" scheme="http://python-ning.github.io/tags/python/"/>
     
   </entry>
   
