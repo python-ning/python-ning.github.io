@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-07-16T17:48:22.000Z</updated>
+  <updated>2016-07-16T17:58:12.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -20,10 +20,13 @@
     <link href="http://python-ning.github.io/2016/07/16/jira_python_api/"/>
     <id>http://python-ning.github.io/2016/07/16/jira_python_api/</id>
     <published>2016-07-16T07:00:00.000Z</published>
-    <updated>2016-07-16T17:48:22.000Z</updated>
+    <updated>2016-07-16T17:58:12.000Z</updated>
     
     <content type="html">&lt;p&gt;最近应用户的需求，使用了一下 jira这个软件，用户要用 jira 作为工作流使用来调用私有云的云资源&lt;/p&gt;
-&lt;h3 id=&quot;jira-介绍&quot;&gt;&lt;a href=&quot;#jira-介绍&quot; class=&quot;headerlink&quot; title=&quot;jira 介绍&quot;&gt;&lt;/a&gt;jira 介绍&lt;/h3&gt;&lt;h3 id=&quot;jira-安装与配置&quot;&gt;&lt;a href=&quot;#jira-安装与配置&quot; class=&quot;headerlink&quot; title=&quot;jira 安装与配置&quot;&gt;&lt;/a&gt;jira 安装与配置&lt;/h3&gt;&lt;h3 id=&quot;jira-一些功能&quot;&gt;&lt;a href=&quot;#jira-一些功能&quot; class=&quot;headerlink&quot; title=&quot;jira 一些功能&quot;&gt;&lt;/a&gt;jira 一些功能&lt;/h3&gt;&lt;h3 id=&quot;jira-私有云接口-flask&quot;&gt;&lt;a href=&quot;#jira-私有云接口-flask&quot; class=&quot;headerlink&quot; title=&quot;jira+私有云接口+flask&quot;&gt;&lt;/a&gt;jira+私有云接口+flask&lt;/h3&gt;</content>
+&lt;h3 id=&quot;jira-介绍&quot;&gt;&lt;a href=&quot;#jira-介绍&quot; class=&quot;headerlink&quot; title=&quot;jira 介绍&quot;&gt;&lt;/a&gt;jira 介绍&lt;/h3&gt;&lt;p&gt;JIRA是Atlassian公司出品的项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域。&lt;br&gt;JIRA中配置灵活、功能全面、部署简单、扩展丰富，其超过150项特性得到了全球115个国家超过19,000家客户的认可。&lt;/p&gt;
+&lt;h3 id=&quot;jira-安装与配置&quot;&gt;&lt;a href=&quot;#jira-安装与配置&quot; class=&quot;headerlink&quot; title=&quot;jira 安装与配置&quot;&gt;&lt;/a&gt;jira 安装与配置&lt;/h3&gt;&lt;h2 id=&quot;jira官网地址&quot;&gt;&lt;a href=&quot;#jira官网地址&quot; class=&quot;headerlink&quot; title=&quot;jira官网地址&quot;&gt;&lt;/a&gt;jira官网地址&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;https://www.atlassian.com/software/jira
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;jira帐号注册地址&quot;&gt;&lt;a href=&quot;#jira帐号注册地址&quot; class=&quot;headerlink&quot; title=&quot;jira帐号注册地址:&quot;&gt;&lt;/a&gt;jira帐号注册地址:&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;https://id.atlassian.com/signup
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;jira-一些功能&quot;&gt;&lt;a href=&quot;#jira-一些功能&quot; class=&quot;headerlink&quot; title=&quot;jira 一些功能&quot;&gt;&lt;/a&gt;jira 一些功能&lt;/h3&gt;&lt;h3 id=&quot;jira-私有云接口-flask&quot;&gt;&lt;a href=&quot;#jira-私有云接口-flask&quot; class=&quot;headerlink&quot; title=&quot;jira+私有云接口+flask&quot;&gt;&lt;/a&gt;jira+私有云接口+flask&lt;/h3&gt;</content>
     
     <summary type="html">
     
