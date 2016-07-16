@@ -66,7 +66,17 @@ jira">
 jira 介绍JIRA是Atlassian公司出品的项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域。JIRA中配置灵活、功能全面、部署简单、扩展丰富，其超过150项特性得到了全球115个国家超过19,000家客户的认可。
 jira">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/55e736d12f2eb9388e9d2280d4628535e4dd6fcb.jpg">
-<meta property="og:updated_time" content="2016-07-16T18:02:34.000Z">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira1.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira1.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira3.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira4.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira5.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira6.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira7.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira8.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira9.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/jira10.png">
+<meta property="og:updated_time" content="2016-07-16T21:08:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jira的安装配置以及接口调用">
 <meta name="twitter:description" content="最近应用户的需求，使用了一下 jira这个软件，用户要用 jira 作为工作流使用来调用私有云的云资源
@@ -325,7 +335,11 @@ jira">
 <h3 id="jira-介绍"><a href="#jira-介绍" class="headerlink" title="jira 介绍"></a>jira 介绍</h3><p>JIRA是Atlassian公司出品的项目与事务跟踪工具，被广泛应用于缺陷跟踪、客户服务、需求收集、流程审批、任务跟踪、项目跟踪和敏捷管理等工作领域。<br>JIRA中配置灵活、功能全面、部署简单、扩展丰富，其超过150项特性得到了全球115个国家超过19,000家客户的认可。</p>
 <h3 id="jira-安装与配置"><a href="#jira-安装与配置" class="headerlink" title="jira 安装与配置"></a>jira 安装与配置</h3><h2 id="jira官网地址"><a href="#jira官网地址" class="headerlink" title="jira官网地址"></a>jira官网地址</h2><pre><code>https://www.atlassian.com/software/jira
 </code></pre><h2 id="jira帐号注册地址"><a href="#jira帐号注册地址" class="headerlink" title="jira帐号注册地址:"></a>jira帐号注册地址:</h2><pre><code>https://id.atlassian.com/signup
-</code></pre><h3 id="jira-一些功能"><a href="#jira-一些功能" class="headerlink" title="jira 一些功能"></a>jira 一些功能</h3><h3 id="jira-私有云接口-flask"><a href="#jira-私有云接口-flask" class="headerlink" title="jira+私有云接口+flask"></a>jira+私有云接口+flask</h3></span>
+</code></pre><h2 id="jira激活地址"><a href="#jira激活地址" class="headerlink" title="jira激活地址:"></a>jira激活地址:</h2><pre><code>https://id.atlassian.com/login?application=mac&amp;continue=https://my.atlassian.com
+</code></pre><p>1.首先输入 jira 的官网地址，点击 Try it free进入试用界面<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira1.png" class="img-shadow" style="display: block;margin: auto"><br>2.节点点击Try it free<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira1.png" class="img-shadow" style="display: block;margin: auto"><br>3.注册 jira 的帐号，填写相关选项，确定<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira3.png" class="img-shadow" style="display: block;margin: auto"><br>4.然后你会进入下面这个页面<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira4.png" class="img-shadow" style="display: block;margin: auto"><br>5.你的邮箱会收到下面这个邮件，点击验证你的邮箱<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira5.png" class="img-shadow" style="display: block;margin: auto"><br>6.验证完后就开始系统配置你的 jira 了，如下图<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira6.png" class="img-shadow" style="display: block;margin: auto"><br>7.等页面变成一下就说明配置完了<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira7.png" class="img-shadow" style="display: block;margin: auto"><br>8.然后进入jira 激活地址，登录（你的邮箱是帐号）到如下页面，点击红框里的按钮<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira8.png" class="img-shadow" style="display: block;margin: auto"><br>9.进入以下网址，填写表单，（server id 是你 jira 安装到的主机上在设置里查到的）,然后确定<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira9.png" class="img-shadow" style="display: block;margin: auto"><br>10.你就进入了下面的页面，拿到这个License Key，当你安装 jira 访问的时候他会提示你输入这个 key<br><img src="http://7xojjc.com1.z0.glb.clouddn.com/jira10.png" class="img-shadow" style="display: block;margin: auto"></p>
+<h3 id="jira-一些功能"><a href="#jira-一些功能" class="headerlink" title="jira 一些功能"></a>jira 一些功能</h3><p>jira 主要是做工作流，他可以设置工作流方案，自定义字段，很方便好用</p>
+<h3 id="jira-私有云接口-flask"><a href="#jira-私有云接口-flask" class="headerlink" title="jira+私有云接口+flask"></a>jira+私有云接口+flask</h3><p>jira 有一个 webhooks 的东东，是发http 请求的，我通过触发某个按钮，带上操作云资源需要的参数（自定义字段），在 webhooks 指定接受请求的连接，这里是用 python 的 flask 框架来接收 jira 发送的请求，是带有 json 数据的一个post 请求，flask 通过接受到的参数，去做处理，调取私有云系统的 api 从而实现通过 jira 对私有云系统的部分操作。</p>
+</span>
       
     </div>
 
@@ -537,7 +551,7 @@ jira">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-介绍"><span class="nav-number">1.</span> <span class="nav-text">jira 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-安装与配置"><span class="nav-number">2.</span> <span class="nav-text">jira 安装与配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jira官网地址"><span class="nav-number"></span> <span class="nav-text">jira官网地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jira帐号注册地址"><span class="nav-number"></span> <span class="nav-text">jira帐号注册地址:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-一些功能"><span class="nav-number">1.</span> <span class="nav-text">jira 一些功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-私有云接口-flask"><span class="nav-number">2.</span> <span class="nav-text">jira+私有云接口+flask</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-介绍"><span class="nav-number">1.</span> <span class="nav-text">jira 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-安装与配置"><span class="nav-number">2.</span> <span class="nav-text">jira 安装与配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jira官网地址"><span class="nav-number"></span> <span class="nav-text">jira官网地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jira帐号注册地址"><span class="nav-number"></span> <span class="nav-text">jira帐号注册地址:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jira激活地址"><span class="nav-number"></span> <span class="nav-text">jira激活地址:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-一些功能"><span class="nav-number">1.</span> <span class="nav-text">jira 一些功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jira-私有云接口-flask"><span class="nav-number">2.</span> <span class="nav-text">jira+私有云接口+flask</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
