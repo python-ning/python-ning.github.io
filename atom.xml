@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-07-16T21:09:56.000Z</updated>
+  <updated>2016-07-28T22:00:28.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -14,6 +14,155 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis的安装与配置</title>
+    <link href="http://python-ning.github.io/2016/07/28/redis_install_config/"/>
+    <id>http://python-ning.github.io/2016/07/28/redis_install_config/</id>
+    <published>2016-07-28T07:00:00.000Z</published>
+    <updated>2016-07-28T22:00:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/jianyan.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;有时间了，就看了看 redis，大概说一下 redis 的安装和配置，以及配置的各个参数的含义&lt;/p&gt;
+&lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h3&gt;&lt;p&gt;redis 官网&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://redis.io/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;1.进入&lt;a href=&quot;http://redis.io/download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://redis.io/download&lt;/a&gt; 下载页，下面有命令，wget 下载下来，或者直接下载压缩文件&lt;br&gt;2.解压压缩文件，打开解压后的文件夹，运行&lt;code style=&quot;color:red&quot;&gt;make&lt;/code&gt;,可再运行 &lt;code style=&quot;color:red&quot;&gt;make test&lt;/code&gt; 测试是否安装正确&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ wget http://download.redis.io/releases/redis-3.2.1.tar.gz
+$ tar xzf redis-3.2.1.tar.gz
+$ cd redis-3.2.1
+$ make
+$ make test
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;启动服务端&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ src/redis-server
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;4.启动客户端&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ src/redis-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.终端出现以下形式，说明已经进入 redis&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;127.0.0.1:6379&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h3&gt;&lt;p&gt;获取配置文件信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CONFIG GET *
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你要改配置文件，可以直接去修改 redis.cnf，或者在终端里直接一条一条修改，比如下面是修改 redis 权限&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CONFIG SET requirepass password
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;配置参数含义&quot;&gt;&lt;a href=&quot;#配置参数含义&quot; class=&quot;headerlink&quot; title=&quot;配置参数含义&quot;&gt;&lt;/a&gt;配置参数含义&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程&lt;/p&gt;
+&lt;p&gt; daemonize no&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定&lt;/p&gt;
+&lt;p&gt; pidfile /var/run/redis.pid&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定Redis监听端口，默认端口为6379，作者在自己的一篇博文中解释了为什么选用6379作为默认端口，因为6379在手机按键上MERZ对应的号码，而MERZ取自意大利歌女Alessia Merz的名字&lt;/p&gt;
+&lt;p&gt; port 6379&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;绑定的主机地址&lt;/p&gt;
+&lt;p&gt; bind 127.0.0.1&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;5.当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;timeout 300
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose&lt;/p&gt;
+&lt;p&gt; loglevel verbose&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;日志记录方式，默认为标准输出，如果配置Redis为守护进程方式运行，而这里又配置为日志记录方式为标准输出，则日志将会发送给/dev/null&lt;/p&gt;
+&lt;p&gt; logfile stdout&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置数据库的数量，默认数据库为0，可以使用SELECT &lt;dbid&gt;命令在连接上指定数据库id&lt;/dbid&gt;&lt;/p&gt;
+&lt;p&gt; databases 16&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合&lt;/p&gt;
+&lt;p&gt; save &lt;seconds&gt; &lt;changes&gt;&lt;/changes&gt;&lt;/seconds&gt;&lt;/p&gt;
+&lt;p&gt; Redis默认配置文件中提供了三个条件：&lt;/p&gt;
+&lt;p&gt; save 900 1&lt;/p&gt;
+&lt;p&gt; save 300 10&lt;/p&gt;
+&lt;p&gt; save 60 10000&lt;/p&gt;
+&lt;p&gt; 分别表示900秒（15分钟）内有1个更改，300秒（5分钟）内有10个更改以及60秒内有10000个更改。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，如果为了节省CPU时间，可以关闭该选项，但会导致数据库文件变的巨大&lt;/p&gt;
+&lt;p&gt;rdbcompression yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定本地数据库文件名，默认值为dump.rdb&lt;/p&gt;
+&lt;p&gt;dbfilename dump.rdb&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定本地数据库存放目录&lt;/p&gt;
+&lt;p&gt;dir ./&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置当本机为slav服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步&lt;/p&gt;
+&lt;p&gt;slaveof &lt;masterip&gt; &lt;masterport&gt;&lt;/masterport&gt;&lt;/masterip&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;当master服务设置了密码保护时，slav服务连接master的密码&lt;/p&gt;
+&lt;p&gt;masterauth &lt;master-password&gt;&lt;/master-password&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置Redis连接密码，如果配置了连接密码，客户端在连接Redis时需要通过AUTH &lt;password&gt;命令提供密码，默认关闭&lt;/password&gt;&lt;/p&gt;
+&lt;p&gt;requirepass foobared&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置同一时间最大客户端连接数，默认无限制，Redis可以同时打开的客户端连接数为Redis进程可以打开的最大文件描述符数，如果设置 maxclients 0，表示不作限制。当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回max number of clients reached错误信息&lt;/p&gt;
+&lt;p&gt;maxclients 128&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。Redis新的vm机制，会把Key存放内存，Value会存放在swap区&lt;/p&gt;
+&lt;p&gt;maxmemory &lt;bytes&gt;&lt;/bytes&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，如果不开启，可能会在断电时导致一段时间内的数据丢失。因为 redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no&lt;/p&gt;
+&lt;p&gt;appendonly no&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定更新日志文件名，默认为appendonly.aof&lt;/p&gt;
+&lt;p&gt; appendfilename appendonly.aof&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定更新日志条件，共有3个可选值：&lt;br&gt;no：表示等操作系统进行数据缓存同步到磁盘（快）&lt;br&gt;always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全）&lt;br&gt;everysec：表示每秒同步一次（折衷，默认值）&lt;/p&gt;
+&lt;p&gt;appendfsync everysec&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;指定是否启用虚拟内存机制，默认值为no，简单的介绍一下，VM机制将数据分页存放，由Redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中（在后面的文章我会仔细分析Redis的VM机制）&lt;/p&gt;
+&lt;p&gt; vm-enabled no&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享&lt;/p&gt;
+&lt;p&gt; vm-swap-file /tmp/redis.swap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,所有索引数据都是内存存储的(Redis的索引数据 就是keys),也就是说,当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0&lt;/p&gt;
+&lt;p&gt; vm-max-memory 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page上不能被多个对象共享，vm-page-size是要根据存储的 数据大小来设定的，作者建议如果存储很多小对象，page大小最好设置为32或者64bytes；如果存储很大大对象，则可以使用更大的page，如果不 确定，就使用默认值&lt;/p&gt;
+&lt;p&gt; vm-page-size 32&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置swap文件中的page数量，由于页表（一种表示页面空闲或使用的bitmap）是在放在内存中的，，在磁盘上每8个pages将消耗1byte的内存。&lt;/p&gt;
+&lt;p&gt; vm-pages 134217728&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4&lt;/p&gt;
+&lt;p&gt; vm-max-threads 4&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启&lt;/p&gt;
+&lt;p&gt;glueoutputbuf yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法&lt;/p&gt;
+&lt;p&gt;hash-max-zipmap-entries 64&lt;/p&gt;
+&lt;p&gt;hash-max-zipmap-value 512&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）&lt;/p&gt;
+&lt;p&gt;activerehashing yes&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，而同时各个实例又拥有自己的特定配置文件&lt;/p&gt;
+&lt;p&gt;include /path/to/local.conf&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/jianyan.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;有时间了，就看了看 red
+    
+    </summary>
+    
+      <category term="redis" scheme="http://python-ning.github.io/categories/redis/"/>
+    
+    
+      <category term="redis" scheme="http://python-ning.github.io/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>jira的安装配置以及接口调用</title>
@@ -781,50 +930,6 @@ class Article(models.Model):
     
       &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/319037-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
 &lt;p&gt;当你想入门djang
-    
-    </summary>
-    
-      <category term="python" scheme="http://python-ning.github.io/categories/python/"/>
-    
-    
-      <category term="django" scheme="http://python-ning.github.io/tags/django/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Django(六)用django自带Paginator实现分页功能</title>
-    <link href="http://python-ning.github.io/2016/04/08/python_django_paginator/"/>
-    <id>http://python-ning.github.io/2016/04/08/python_django_paginator/</id>
-    <published>2016-04-08T07:00:00.000Z</published>
-    <updated>2016-04-12T17:54:54.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用Paginator可以很方便的实现分页功能，下面就通过一个具体的例子来讲讲如何使用Paginator。&lt;/p&gt;
-&lt;h3 id=&quot;在view-py中使用Paginator&quot;&gt;&lt;a href=&quot;#在view-py中使用Paginator&quot; class=&quot;headerlink&quot; title=&quot;在view.py中使用Paginator&quot;&gt;&lt;/a&gt;在view.py中使用Paginator&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from app.models import Topic
-
-def index(request):
-limit = 3  # 每页显示的记录数
-topics = Topic.objects.all()
-paginator = Paginator(topics, limit)  # 实例化一个分页对象
-
-page = request.GET.get(&amp;apos;page&amp;apos;)  # 获取页码
-try:
-    topics = paginator.page(page)  # 获取某页对应的记录
-except PageNotAnInteger:  # 如果页码不是个整数
-    topics = paginator.page(1)  # 取第一页的记录
-    except EmptyPage:  # 如果页码太大，没有相应的记录
-        topics = paginator.page(paginator.num_pages)  # 取最后一页的记录
-
-    return render_to_response(&amp;apos;index.html&amp;apos;, {&amp;apos;topics&amp;apos;: topics})
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;模板中的相关操作&quot;&gt;&lt;a href=&quot;#模板中的相关操作&quot; class=&quot;headerlink&quot; title=&quot;模板中的相关操作&quot;&gt;&lt;/a&gt;模板中的相关操作&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/fenye.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;效果：&quot;&gt;&lt;a href=&quot;#效果：&quot; class=&quot;headerlink&quot; title=&quot;效果：&quot;&gt;&lt;/a&gt;效果：&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/2013-1-26-django-pagination.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/314935-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在django中使用
     
     </summary>
     
