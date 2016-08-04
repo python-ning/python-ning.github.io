@@ -64,7 +64,7 @@
 <meta property="og:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
 用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：a) 非负数在前，负数在后；b) 非负数部分按照从小到大排序；c) 负数部分按从大到小排序。如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]">
 <meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg">
-<meta property="og:updated_time" content="2016-07-01T18:10:53.000Z">
+<meta property="og:updated_time" content="2016-08-04T06:36:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python面试题精选">
 <meta name="twitter:description" content="小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~
@@ -271,7 +271,7 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-06-27T00:00:00-07:00" content="2016-06-27">
+            <time itemprop="dateCreated" datetime="2016-06-27T00:00:00+08:00" content="2016-06-27">
               2016-06-27
             </time>
           </span>
@@ -417,6 +417,31 @@ query = Author.objects.filter(first_name__in=[&quot;chen&quot;, &quot;ning&quot;
 # Q查询
 query = Author.objects.filter(Q(first_name__contains=&quot;chen&quot;) | Q(first_name__contains=&quot;ning&quot;))
 query = Author.objects.filter(Q(first_name=&quot;chen&quot;) | Q(first_name=&quot;ning&quot;))
+</code></pre><h3 id="考面向对象的一道题"><a href="#考面向对象的一道题" class="headerlink" title="考面向对象的一道题"></a>考面向对象的一道题</h3><pre><code>#coding:utf-8
+
+class Parent(object):
+    x = 1
+    def __init__(self, v):
+        self.x = v
+
+
+class Child(Parent):
+    def __init__(self, v, m):
+        # 调用父类的__init__,填上空缺的
+        self.y = m
+
+
+p = Parent(2)
+
+print p.x, Parent.x
+
+c = Child(2,3)
+print c.x, Parent.x, Child.x
+
+
+Parent.x = 3
+
+print Parent.x , Child.x
 </code></pre></span>
       
     </div>
@@ -633,7 +658,7 @@ query = Author.objects.filter(Q(first_name=&quot;chen&quot;) | Q(first_name=&quo
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序："><span class="nav-number">1.</span> <span class="nav-text">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给出用递归的方式求斐波那契数列的第n项的方法："><span class="nav-number">2.</span> <span class="nav-text">给出用递归的方式求斐波那契数列的第n项的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求大于正整数n的最小质数"><span class="nav-number">3.</span> <span class="nav-text">求大于正整数n的最小质数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在不声明新变量的情况下，让变量a和变量b的值互换？"><span class="nav-number">4.</span> <span class="nav-text">在不声明新变量的情况下，让变量a和变量b的值互换？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python是如何进行内存管理的？"><span class="nav-number">5.</span> <span class="nav-text">Python是如何进行内存管理的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是lambda函数？它有什么好处"><span class="nav-number">6.</span> <span class="nav-text">什么是lambda函数？它有什么好处?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在有一个文件url-txt，每一行都是一个网站名（例如：map-baidu-com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www-”，以“-com”或者”-edu”或者”-gov”作结尾的web域名，然后输出到另一个文件中"><span class="nav-number">7.</span> <span class="nav-text">现在有一个文件url.txt，每一行都是一个网站名（例如：map.baidu.com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www.”，以“.com”或者”.edu”或者”.gov”作结尾的web域名，然后输出到另一个文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个装饰器，计算这个函数运行了多长时间？"><span class="nav-number">8.</span> <span class="nav-text">写一个装饰器，计算这个函数运行了多长时间？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？"><span class="nav-number">9.</span> <span class="nav-text">django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序："><span class="nav-number">1.</span> <span class="nav-text">用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给出用递归的方式求斐波那契数列的第n项的方法："><span class="nav-number">2.</span> <span class="nav-text">给出用递归的方式求斐波那契数列的第n项的方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求大于正整数n的最小质数"><span class="nav-number">3.</span> <span class="nav-text">求大于正整数n的最小质数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在不声明新变量的情况下，让变量a和变量b的值互换？"><span class="nav-number">4.</span> <span class="nav-text">在不声明新变量的情况下，让变量a和变量b的值互换？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python是如何进行内存管理的？"><span class="nav-number">5.</span> <span class="nav-text">Python是如何进行内存管理的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是lambda函数？它有什么好处"><span class="nav-number">6.</span> <span class="nav-text">什么是lambda函数？它有什么好处?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现在有一个文件url-txt，每一行都是一个网站名（例如：map-baidu-com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www-”，以“-com”或者”-edu”或者”-gov”作结尾的web域名，然后输出到另一个文件中"><span class="nav-number">7.</span> <span class="nav-text">现在有一个文件url.txt，每一行都是一个网站名（例如：map.baidu.com）请用Python读取这个文件并且使用正则表达式匹配简单的以“www.”，以“.com”或者”.edu”或者”.gov”作结尾的web域名，然后输出到另一个文件中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写一个装饰器，计算这个函数运行了多长时间？"><span class="nav-number">8.</span> <span class="nav-text">写一个装饰器，计算这个函数运行了多长时间？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？"><span class="nav-number">9.</span> <span class="nav-text">django查询取出数据库”User表”中字段”name”为”chen”和”ning”的数据？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#考面向对象的一道题"><span class="nav-number">10.</span> <span class="nav-text">考面向对象的一道题</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

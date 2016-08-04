@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-07-28T22:13:14.000Z</updated>
+  <updated>2016-07-28T22:13:23.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <title>redis的安装与配置</title>
     <link href="http://python-ning.github.io/2016/07/28/redis_install_config/"/>
     <id>http://python-ning.github.io/2016/07/28/redis_install_config/</id>
-    <published>2016-07-28T07:00:00.000Z</published>
-    <updated>2016-07-28T22:13:14.000Z</updated>
+    <published>2016-07-27T16:00:00.000Z</published>
+    <updated>2016-07-28T22:13:23.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/jianyan.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
 &lt;p&gt;有时间了，就看了看 redis，大概说一下 redis 的安装和配置，以及配置的各个参数的含义&lt;/p&gt;
@@ -138,7 +138,7 @@ hash-max-zipmap-value 512
     <title>jira的安装配置以及接口调用</title>
     <link href="http://python-ning.github.io/2016/07/16/jira_python_api/"/>
     <id>http://python-ning.github.io/2016/07/16/jira_python_api/</id>
-    <published>2016-07-16T07:00:00.000Z</published>
+    <published>2016-07-15T16:00:00.000Z</published>
     <updated>2016-07-16T21:09:56.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/55e736d12f2eb9388e9d2280d4628535e4dd6fcb.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
@@ -169,7 +169,7 @@ hash-max-zipmap-value 512
     <title>我的项目经验</title>
     <link href="http://python-ning.github.io/2016/06/28/ning.chen/"/>
     <id>http://python-ning.github.io/2016/06/28/ning.chen/</id>
-    <published>2016-06-28T07:00:00.000Z</published>
+    <published>2016-06-27T16:00:00.000Z</published>
     <updated>2016-06-29T20:46:17.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;私有云项目&quot;&gt;&lt;a href=&quot;#私有云项目&quot; class=&quot;headerlink&quot; title=&quot;私有云项目&quot;&gt;&lt;/a&gt;私有云项目&lt;/h3&gt;&lt;p&gt;客户有(北京王府井集团，国家电网，神州数码)&lt;/p&gt;
@@ -319,8 +319,8 @@ def create(request):
     <title>python面试题精选</title>
     <link href="http://python-ning.github.io/2016/06/27/python_interview_questions/"/>
     <id>http://python-ning.github.io/2016/06/27/python_interview_questions/</id>
-    <published>2016-06-27T07:00:00.000Z</published>
-    <updated>2016-07-01T18:10:53.000Z</updated>
+    <published>2016-06-26T16:00:00.000Z</published>
+    <updated>2016-08-04T06:36:24.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~&lt;/p&gt;
 &lt;h3 id=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;a href=&quot;#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot; class=&quot;headerlink&quot; title=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;/a&gt;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&lt;/h3&gt;&lt;p&gt;a) 非负数在前，负数在后；&lt;br&gt;b) 非负数部分按照从小到大排序；&lt;br&gt;c) 负数部分按从大到小排序。&lt;br&gt;如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]&lt;br&gt;希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]&lt;/p&gt;
@@ -422,6 +422,31 @@ query = Author.objects.filter(first_name__in=[&amp;quot;chen&amp;quot;, &amp;quo
 # Q查询
 query = Author.objects.filter(Q(first_name__contains=&amp;quot;chen&amp;quot;) | Q(first_name__contains=&amp;quot;ning&amp;quot;))
 query = Author.objects.filter(Q(first_name=&amp;quot;chen&amp;quot;) | Q(first_name=&amp;quot;ning&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;考面向对象的一道题&quot;&gt;&lt;a href=&quot;#考面向对象的一道题&quot; class=&quot;headerlink&quot; title=&quot;考面向对象的一道题&quot;&gt;&lt;/a&gt;考面向对象的一道题&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;#coding:utf-8
+
+class Parent(object):
+    x = 1
+    def __init__(self, v):
+        self.x = v
+
+
+class Child(Parent):
+    def __init__(self, v, m):
+        # 调用父类的__init__,填上空缺的
+        self.y = m
+
+
+p = Parent(2)
+
+print p.x, Parent.x
+
+c = Child(2,3)
+print c.x, Parent.x, Child.x
+
+
+Parent.x = 3
+
+print Parent.x , Child.x
 &lt;/code&gt;&lt;/pre&gt;</content>
     
     <summary type="html">
@@ -441,7 +466,7 @@ query = Author.objects.filter(Q(first_name=&amp;quot;chen&amp;quot;) | Q(first_n
     <title>mac安装mysql</title>
     <link href="http://python-ning.github.io/2016/05/14/mysql_mac_install_question/"/>
     <id>http://python-ning.github.io/2016/05/14/mysql_mac_install_question/</id>
-    <published>2016-05-14T07:00:00.000Z</published>
+    <published>2016-05-13T16:00:00.000Z</published>
     <updated>2016-06-27T22:43:49.000Z</updated>
     
     <content type="html">&lt;p&gt;mac下安装mysql，遇到了一个小波折，折磨了我一天，解决了，也借此机会总结一下。&lt;/p&gt;
@@ -505,7 +530,7 @@ sudo brew services stop mysql
     <title>读改善python程序的91个建议总结</title>
     <link href="http://python-ning.github.io/2016/04/18/reading_comprehension_python_1/"/>
     <id>http://python-ning.github.io/2016/04/18/reading_comprehension_python_1/</id>
-    <published>2016-04-18T07:00:00.000Z</published>
+    <published>2016-04-17T16:00:00.000Z</published>
     <updated>2016-06-27T23:04:51.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;建议一-字符串格式化，让可读性高一些&quot;&gt;&lt;a href=&quot;#建议一-字符串格式化，让可读性高一些&quot; class=&quot;headerlink&quot; title=&quot;建议一 字符串格式化，让可读性高一些&quot;&gt;&lt;/a&gt;建议一 字符串格式化，让可读性高一些&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;print &amp;apos;Hello %S&amp;apos; %(&amp;apos;Chen&amp;apos;,)
@@ -683,7 +708,7 @@ endwith()
     <title>django(八)五步教你实现使用Nginx+uWSGI+Django方法部署Django程序(上)</title>
     <link href="http://python-ning.github.io/2016/04/14/python_django_uwsgi/"/>
     <id>http://python-ning.github.io/2016/04/14/python_django_uwsgi/</id>
-    <published>2016-04-14T07:00:00.000Z</published>
+    <published>2016-04-13T16:00:00.000Z</published>
     <updated>2016-04-14T17:49:14.000Z</updated>
     
     <content type="html">&lt;p&gt;Django的部署可以有很多方式，采用nginx+uwsgi的方式是其中比较常见的一种方式。&lt;/p&gt;
@@ -760,7 +785,7 @@ python manage.py runserver 0.0.0.0:8002
     <title>https工作原理</title>
     <link href="http://python-ning.github.io/2016/04/13/good_article_collect_https/"/>
     <id>http://python-ning.github.io/2016/04/13/good_article_collect_https/</id>
-    <published>2016-04-13T07:00:00.000Z</published>
+    <published>2016-04-12T16:00:00.000Z</published>
     <updated>2016-04-13T18:43:12.000Z</updated>
     
     <content type="html">&lt;p&gt;HTTPS其实是有两部分组成：HTTP + SSL/TLS，也就是在HTTP上又加了一层处理加密信息的模块。服务端和客户端的信息传输都会通过TLS进行加密，所以传输的数据都是加密后的数据&lt;/p&gt;
@@ -793,7 +818,7 @@ python manage.py runserver 0.0.0.0:8002
     <title>Django(七)配置及使用富文本编辑器ckeditor</title>
     <link href="http://python-ning.github.io/2016/04/12/python_django_blog_ckeditor/"/>
     <id>http://python-ning.github.io/2016/04/12/python_django_blog_ckeditor/</id>
-    <published>2016-04-12T07:00:00.000Z</published>
+    <published>2016-04-11T16:00:00.000Z</published>
     <updated>2016-04-13T18:52:06.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/319037-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
@@ -914,7 +939,7 @@ class Article(models.Model):
     <title>初识NoSQL</title>
     <link href="http://python-ning.github.io/2016/04/08/good_article_collect_nosql/"/>
     <id>http://python-ning.github.io/2016/04/08/good_article_collect_nosql/</id>
-    <published>2016-04-08T07:00:00.000Z</published>
+    <published>2016-04-07T16:00:00.000Z</published>
     <updated>2016-04-09T00:29:04.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/318044-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
