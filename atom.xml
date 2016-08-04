@@ -320,7 +320,7 @@ def create(request):
     <link href="http://python-ning.github.io/2016/06/27/python_interview_questions/"/>
     <id>http://python-ning.github.io/2016/06/27/python_interview_questions/</id>
     <published>2016-06-26T16:00:00.000Z</published>
-    <updated>2016-08-04T06:36:24.000Z</updated>
+    <updated>2016-08-04T06:38:27.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/293387-106.jpg&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;小癖好~爱做面试题，感觉每次做份面试题总能在其中复习了很多基础知识和一些算法~&lt;/p&gt;
 &lt;h3 id=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;a href=&quot;#用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot; class=&quot;headerlink&quot; title=&quot;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&quot;&gt;&lt;/a&gt;用规定的Python方法，在一行中对给定的任意整数数列，按照如下规则排序：&lt;/h3&gt;&lt;p&gt;a) 非负数在前，负数在后；&lt;br&gt;b) 非负数部分按照从小到大排序；&lt;br&gt;c) 负数部分按从大到小排序。&lt;br&gt;如： 数列 foo = [-5,8,0,4,9,-4,-20,-2,8,2,-4]&lt;br&gt;希望排序后为[0,2,4,8,8,9,-2,-4,-4,-5,-20]&lt;/p&gt;
@@ -391,8 +391,7 @@ def random_sort(n):
 
 if __name__ == &amp;quot;__main__&amp;quot;:
     random_sort(2000000)
-&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;简单&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.简单&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;# coding:utf8
 import time
 
@@ -409,9 +408,9 @@ def suan(fn):
         print end
         return end - start
     return wrapper
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;@suan
+
+
+@suan
 def func():
     return range(100000)
 
