@@ -57,20 +57,46 @@
 
 <meta name="description" content="1.登录数据库
 mysql -u root -p
-2.">
+2.创建数据库
+CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [[DEFAULT] CHARACTER SET [=] charset_name]
+3.查看当前服务器下的数据库列表
+SHOW {DATABASES|SCHEMAS}
+4.查看指定数据库的定义
+SHOW CREATE {DATAB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql 命令大全">
 <meta property="og:url" content="http://python-ning.github.io/2016/08/17/mysql_commonly_used_commands/index.html">
 <meta property="og:site_name" content="python ning's blog">
 <meta property="og:description" content="1.登录数据库
 mysql -u root -p
-2.">
-<meta property="og:updated_time" content="2016-08-17T02:59:40.000Z">
+2.创建数据库
+CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [[DEFAULT] CHARACTER SET [=] charset_name]
+3.查看当前服务器下的数据库列表
+SHOW {DATABASES|SCHEMAS}
+4.查看指定数据库的定义
+SHOW CREATE {DATAB">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/3.WHERE%20%E6%9D%A1%E4%BB%B6.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_1.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_2_1.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_2_2.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_3_1.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_3_2.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_4.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_5.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_6.png">
+<meta property="og:image" content="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_7.png">
+<meta property="og:updated_time" content="2016-08-17T04:15:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql 命令大全">
 <meta name="twitter:description" content="1.登录数据库
 mysql -u root -p
-2.">
+2.创建数据库
+CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [[DEFAULT] CHARACTER SET [=] charset_name]
+3.查看当前服务器下的数据库列表
+SHOW {DATABASES|SCHEMAS}
+4.查看指定数据库的定义
+SHOW CREATE {DATAB">
+<meta name="twitter:image" content="http://7xojjc.com1.z0.glb.clouddn.com/3.WHERE%20%E6%9D%A1%E4%BB%B6.png">
 
 
 
@@ -320,7 +346,178 @@ mysql -u root -p
       
         <span itemprop="articleBody"><p>1.登录数据库</p>
 <pre><code>mysql -u root -p
-</code></pre><p>2.</p>
+</code></pre><p>2.创建数据库</p>
+<pre><code>CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [[DEFAULT] CHARACTER SET [=] charset_name]
+</code></pre><p>3.查看当前服务器下的数据库列表</p>
+<pre><code>SHOW {DATABASES|SCHEMAS}
+</code></pre><p>4.查看指定数据库的定义</p>
+<pre><code>SHOW CREATE {DATABASE|SCHEMA} db_name
+</code></pre><p>5.修改指定数据库的编码方式</p>
+<pre><code>ALTER {DATABASE|SCHEMA} db_name [DEFAULT] CHARACTER SET [=] charset_name
+</code></pre><p>6.打开指定数据库</p>
+<pre><code>USE db_name
+</code></pre><p>7.删除指定数据库</p>
+<pre><code>DROP {DATABASE|SCHEMA} [IF EXISTS] db_name
+</code></pre><p>8.得到当前打开的数据库名称</p>
+<pre><code>SELECT DATABASE()|SCHEMA();
+</code></pre><p>9.查看上一步操作产生的警告信息</p>
+<pre><code>SHOW WARNINGS;
+</code></pre><p>10.创建数据表</p>
+<pre><code>CREATE TABLE [IF NOT EXISTS] tbl_name(字段名称 字段类型 [完整性约束条件]...)ENGINE=引擎名称 CHARSET=&apos;编码方式&apos;;
+
+create table student(id INT(11) PRIMARY KEY, name VARCHAR(25), age INT(11))
+
+完整性约束条件:
+
+        PRIMARY KEY主键
+        AUTO_INCREMENT自增长
+        FOREIGN KEY外键
+        NOT NULL非空
+        UNIQUE KEY唯一
+        DEFAULT默认值
+</code></pre><p>11.查看数据库下的数据表</p>
+<pre><code>SHOW TABLES
+</code></pre><p>12.查看指定表的表结构</p>
+<pre><code>DESC tbl_name
+
+DESCRIBE tbl_name
+
+SHOW COLUMNS FROM tbl_name
+</code></pre><p>13.删除数据表</p>
+<pre><code>DROP TABLE [IF EXISTS] tbl_name[,tbl_name...]
+</code></pre><p>14.修改表名</p>
+<pre><code>ALTER TABLE tbl_name RENAME [TO|AS] new_name
+
+RENAME TABLE tbl_name TO new_name
+</code></pre><p>15.添加字段</p>
+<pre><code>ALTER TABLE tbl_name ADD 字段名称 字段类型 [完整性约束条件] [FIRST|AFTER 字段名称]
+</code></pre><p>16.删除字段</p>
+<pre><code>ALTER TABLE tbl_name DROP 字段名称
+</code></pre><p>17.修改字段</p>
+<pre><code>ALTER TABLE tbl_name MODIFY 字段名称 字段类型 [完整性约束条件] [FIRST|AFTER 字段名称]
+</code></pre><p>18.修改字段名称</p>
+<pre><code>ALTER TABLE tbl_name CHANGE 旧字段名称 新字段名称 字段类型 [完整性约束条件] [FIRST|AFTER 字段名称]
+</code></pre><p>19.添加默认值</p>
+<pre><code>ALTER TABLE tbl_name ALTER 字段名称 SET DEFAULT 默认值
+</code></pre><p>20.删除默认值</p>
+<pre><code>ALTER TABLE tbl_name ALTER 字段名称 DROP DEFAULT
+</code></pre><p>21.添加主键</p>
+<pre><code>ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] PRIMARY KEY[index_type] (字段名称,...)
+</code></pre><p>22.删除主键</p>
+<pre><code>ALTER TABLE tbl_name DROP PRIMARY KEY
+</code></pre><p>23.添加唯一</p>
+<pre><code>ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY] [索引名称](字段名称,...)
+</code></pre><p>24.删除唯一</p>
+<pre><code>ALTER TABLE tbl_name DROP {INDEX|KEY} index_name
+</code></pre><p>25.修改表的存储引擎</p>
+<pre><code>ALTER TABLE tbl_name ENGINE=存储引擎名称
+</code></pre><p>26.设置自增长的值</p>
+<pre><code>ALTER TABLE tbl_name AUTO_INCREMNET=值
+</code></pre><p>27.插入数据</p>
+<pre><code>不指定具体的字段名
+
+INSERT [INTO] tbl_name VALUES|VALUE(值...)
+
+列出指定字段
+
+INSERT [INTO] tbl_name(字段名称1,...) VALUES|VALUE(值1,...)
+
+同时插入多条记录
+
+INSERT [INTO] tbl_name[(字段名称...)] VALUES(值...),(值...)...
+
+通过SET形式插入记录
+
+INSERT [INTO] tbl_name SET 字段名称=值,...
+
+将查询结果插入到表中
+
+INSERT [INTO] tbl_name[(字段名称,...)] SELECT 字段名称 FROM tbl_name [WHERE 条件]
+</code></pre><p>28.更新(修改)数据</p>
+<pre><code>UPDATE tbl_name SET 字段名称=值,... [WHERE 条件][ORDER BY 字段名称][LIMIT 限制条数]
+</code></pre><p>29.删除数据</p>
+<pre><code>DELETE FROM tbl_name [WHERE 条件][ORDER BY 字段名称][LIMIT 限制条数]
+</code></pre><p>30.彻底清空数据表</p>
+<pre><code>TRUNCATE [TABLE] tbl_name
+</code></pre><p>31.查询记录</p>
+<pre><code>SELECT select_expr [, select_expr ...]
+     [
+         FROM table_references
+         [WHERE 条件]
+         [GROUP BY {col_name | position}  [ASC | DESC], ... 分组]
+         [HAVING 条件 对分组结果进行二次筛选]
+         [ORDER BY {col_name | position} [ASC | DESC], ...排序]
+         [LIMIT 限制显示条数]
+     ]
+
+查询表达式：
+
+        每一个表达式表示想要的一列，必须至少有一列，多个列之间以逗号分隔
+        *表示所有列,tbl_name.*可以表示命名表的所有列
+        查询表达式可以使用[AS]alias_name为其赋予别名
+
+4.GROUP BY查询结果分组:
+
+        COUNT()
+        MAX()
+        MIN()
+        AVG()
+        SUM()
+
+WHERE 条件
+</code></pre><p><img src="http://7xojjc.com1.z0.glb.clouddn.com/3.WHERE%20%E6%9D%A1%E4%BB%B6.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>32.内连接查询</p>
+<pre><code>JOIN|CROSS JOIN INNER JOIN
+
+通过ON 连接条件
+
+显示两个表中符合连接条件的记录
+</code></pre><p>33.外连接查询</p>
+<pre><code>左外连接    显示左表的全部记录及右表符合连接条件的记录
+
+LEFT [OUTER] JOIN
+
+右外连接    显示右表的全部记录以及左表符合条件的记录
+
+RIGHT [OUTER] JOIN
+</code></pre><p>34.联合查询</p>
+<pre><code>UNION
+
+UNION ALL
+
+UNION和UNION ALL 区别是UNION去掉相同记录，UNION ALL 是简单的合并到一起。
+</code></pre><p>35.子查询</p>
+<pre><code>将查询结果写入到数据表
+
+INSERT [INTO] tbl_name [(col_name,...)]SELECT ...
+
+创建数据表同时将查询结果写入到数据表
+
+CREATE TABLE [IF NOT EXISTS] tbl_name[(create_definition,...)]select_statement
+</code></pre><p>36.删除索引</p>
+<pre><code>DROP INDEX 索引名称 ON tbl_name
+</code></pre><p>37.创建索引</p>
+<pre><code>创建表的时候创建索引
+
+CREATE TABLE tbl_name(字段名称 字段类型 [完整性约束条件],…,[UNIQUE|FULLTEXT|SPATIAL] INDEX|KEY [索引名称](字段名称[(长度)] [ASC|DESC]));
+
+在已经存在的表上创建索引
+
+ALTER TABLE tbl_name ADD [UNIQUE|FULLTEXT|SPATIAL] INDEX 索引名称(字段名称[(长度)] [ASC|DESC]);
+</code></pre><p>38.mysql中的函数(数学函数)</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_1.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>39.mysql中的函数(字符串函数)</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_2_1.png" class="img-shadow" style="display: block;margin: auto"><br><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_2_2.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>40.mysql中的函数(日期时间函数)</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_3_1.png" class="img-shadow" style="display: block;margin: auto"><br><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_3_2.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>41.mysql中的函数(条件判断函数)</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_4.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>42.mysql中的函数(系统信息函数)</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_5.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>43.mysql中的函数(加密函数)</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_6.png" class="img-shadow" style="display: block;margin: auto"></p>
+<p>44.mysql中的函数(其他常用函数)</p>
+<p><img src="http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_7.png" class="img-shadow" style="display: block;margin: auto"></p>
 </span>
       
     </div>

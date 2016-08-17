@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-08-17T02:59:40.000Z</updated>
+  <updated>2016-08-17T04:15:52.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -20,19 +20,190 @@
     <link href="http://python-ning.github.io/2016/08/17/mysql_commonly_used_commands/"/>
     <id>http://python-ning.github.io/2016/08/17/mysql_commonly_used_commands/</id>
     <published>2016-08-16T16:00:00.000Z</published>
-    <updated>2016-08-17T02:59:40.000Z</updated>
+    <updated>2016-08-17T04:15:52.000Z</updated>
     
     <content type="html">&lt;p&gt;1.登录数据库&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;mysql -u root -p
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.创建数据库&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [[DEFAULT] CHARACTER SET [=] charset_name]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3.查看当前服务器下的数据库列表&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SHOW {DATABASES|SCHEMAS}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;4.查看指定数据库的定义&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SHOW CREATE {DATABASE|SCHEMA} db_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;5.修改指定数据库的编码方式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER {DATABASE|SCHEMA} db_name [DEFAULT] CHARACTER SET [=] charset_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;6.打开指定数据库&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;USE db_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;7.删除指定数据库&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DROP {DATABASE|SCHEMA} [IF EXISTS] db_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;8.得到当前打开的数据库名称&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT DATABASE()|SCHEMA();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;9.查看上一步操作产生的警告信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SHOW WARNINGS;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;10.创建数据表&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CREATE TABLE [IF NOT EXISTS] tbl_name(字段名称 字段类型 [完整性约束条件]...)ENGINE=引擎名称 CHARSET=&amp;apos;编码方式&amp;apos;;
+
+create table student(id INT(11) PRIMARY KEY, name VARCHAR(25), age INT(11))
+
+完整性约束条件:
+
+        PRIMARY KEY主键
+        AUTO_INCREMENT自增长
+        FOREIGN KEY外键
+        NOT NULL非空
+        UNIQUE KEY唯一
+        DEFAULT默认值
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;11.查看数据库下的数据表&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SHOW TABLES
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;12.查看指定表的表结构&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DESC tbl_name
+
+DESCRIBE tbl_name
+
+SHOW COLUMNS FROM tbl_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;13.删除数据表&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DROP TABLE [IF EXISTS] tbl_name[,tbl_name...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;14.修改表名&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name RENAME [TO|AS] new_name
+
+RENAME TABLE tbl_name TO new_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;15.添加字段&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name ADD 字段名称 字段类型 [完整性约束条件] [FIRST|AFTER 字段名称]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;16.删除字段&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name DROP 字段名称
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;17.修改字段&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name MODIFY 字段名称 字段类型 [完整性约束条件] [FIRST|AFTER 字段名称]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;18.修改字段名称&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name CHANGE 旧字段名称 新字段名称 字段类型 [完整性约束条件] [FIRST|AFTER 字段名称]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;19.添加默认值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name ALTER 字段名称 SET DEFAULT 默认值
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;20.删除默认值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name ALTER 字段名称 DROP DEFAULT
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;21.添加主键&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] PRIMARY KEY[index_type] (字段名称,...)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;22.删除主键&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name DROP PRIMARY KEY
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;23.添加唯一&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY] [索引名称](字段名称,...)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;24.删除唯一&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name DROP {INDEX|KEY} index_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;25.修改表的存储引擎&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name ENGINE=存储引擎名称
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;26.设置自增长的值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ALTER TABLE tbl_name AUTO_INCREMNET=值
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;27.插入数据&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;不指定具体的字段名
+
+INSERT [INTO] tbl_name VALUES|VALUE(值...)
+
+列出指定字段
+
+INSERT [INTO] tbl_name(字段名称1,...) VALUES|VALUE(值1,...)
+
+同时插入多条记录
+
+INSERT [INTO] tbl_name[(字段名称...)] VALUES(值...),(值...)...
+
+通过SET形式插入记录
+
+INSERT [INTO] tbl_name SET 字段名称=值,...
+
+将查询结果插入到表中
+
+INSERT [INTO] tbl_name[(字段名称,...)] SELECT 字段名称 FROM tbl_name [WHERE 条件]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;28.更新(修改)数据&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UPDATE tbl_name SET 字段名称=值,... [WHERE 条件][ORDER BY 字段名称][LIMIT 限制条数]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;29.删除数据&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DELETE FROM tbl_name [WHERE 条件][ORDER BY 字段名称][LIMIT 限制条数]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;30.彻底清空数据表&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;TRUNCATE [TABLE] tbl_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;31.查询记录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT select_expr [, select_expr ...]
+     [
+         FROM table_references
+         [WHERE 条件]
+         [GROUP BY {col_name | position}  [ASC | DESC], ... 分组]
+         [HAVING 条件 对分组结果进行二次筛选]
+         [ORDER BY {col_name | position} [ASC | DESC], ...排序]
+         [LIMIT 限制显示条数]
+     ]
+
+查询表达式：
+
+        每一个表达式表示想要的一列，必须至少有一列，多个列之间以逗号分隔
+        *表示所有列,tbl_name.*可以表示命名表的所有列
+        查询表达式可以使用[AS]alias_name为其赋予别名
+
+4.GROUP BY查询结果分组:
+
+        COUNT()
+        MAX()
+        MIN()
+        AVG()
+        SUM()
+
+WHERE 条件
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/3.WHERE%20%E6%9D%A1%E4%BB%B6.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;32.内连接查询&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;JOIN|CROSS JOIN INNER JOIN
+
+通过ON 连接条件
+
+显示两个表中符合连接条件的记录
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;33.外连接查询&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;左外连接    显示左表的全部记录及右表符合连接条件的记录
+
+LEFT [OUTER] JOIN
+
+右外连接    显示右表的全部记录以及左表符合条件的记录
+
+RIGHT [OUTER] JOIN
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;34.联合查询&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UNION
+
+UNION ALL
+
+UNION和UNION ALL 区别是UNION去掉相同记录，UNION ALL 是简单的合并到一起。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;35.子查询&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;将查询结果写入到数据表
+
+INSERT [INTO] tbl_name [(col_name,...)]SELECT ...
+
+创建数据表同时将查询结果写入到数据表
+
+CREATE TABLE [IF NOT EXISTS] tbl_name[(create_definition,...)]select_statement
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;36.删除索引&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;DROP INDEX 索引名称 ON tbl_name
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;37.创建索引&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;创建表的时候创建索引
+
+CREATE TABLE tbl_name(字段名称 字段类型 [完整性约束条件],…,[UNIQUE|FULLTEXT|SPATIAL] INDEX|KEY [索引名称](字段名称[(长度)] [ASC|DESC]));
+
+在已经存在的表上创建索引
+
+ALTER TABLE tbl_name ADD [UNIQUE|FULLTEXT|SPATIAL] INDEX 索引名称(字段名称[(长度)] [ASC|DESC]);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;38.mysql中的函数(数学函数)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_1.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;39.mysql中的函数(字符串函数)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_2_1.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_2_2.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;40.mysql中的函数(日期时间函数)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_3_1.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_3_2.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;41.mysql中的函数(条件判断函数)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_4.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;42.mysql中的函数(系统信息函数)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_5.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;43.mysql中的函数(加密函数)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_6.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
+&lt;p&gt;44.mysql中的函数(其他常用函数)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xojjc.com1.z0.glb.clouddn.com/mysql_xmind_7.png&quot; class=&quot;img-shadow&quot; style=&quot;display: block;margin: auto&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
       &lt;p&gt;1.登录数据库&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;mysql -u root -p
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.&lt;/p&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2.创建数据库&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name [[DEFAU
     
     </summary>
     
