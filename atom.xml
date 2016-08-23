@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://python-ning.github.io/"/>
-  <updated>2016-08-17T04:15:52.000Z</updated>
+  <updated>2016-08-18T01:31:26.000Z</updated>
   <id>http://python-ning.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://python-ning.github.io/2016/08/17/mysql_commonly_used_commands/"/>
     <id>http://python-ning.github.io/2016/08/17/mysql_commonly_used_commands/</id>
     <published>2016-08-16T16:00:00.000Z</published>
-    <updated>2016-08-17T04:15:52.000Z</updated>
+    <updated>2016-08-18T01:31:26.000Z</updated>
     
     <content type="html">&lt;p&gt;1.登录数据库&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;mysql -u root -p
